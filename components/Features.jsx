@@ -1,4 +1,9 @@
 import React from "react";
+import { MdLocalShipping } from "react-icons/md";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { BiSupport } from "react-icons/bi";
+import { AiFillGift } from "react-icons/ai";
+import { IoMdPricetags } from "react-icons/io";
 
 export default function Features() {
   return (
@@ -14,10 +19,10 @@ export default function Features() {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
           <div class="bg-white shadow-md rounded-lg p-8">
             <div class="flex items-center mb-4">
-              <span class="bg-blue-500 text-white rounded-full p-3 mr-4">
-                <i class="fas fa-shipping-fast"></i>
+              <span class=" rounded-full  mr-4">
+                <MdLocalShipping className="h-7 w-7 text-blue-500" />
               </span>
-              <h3 class="text-xl font-bold">Free Shipping</h3>
+              <h3 class="text-md font-semibold">Free Shipping</h3>
             </div>
             <p class="text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -26,10 +31,10 @@ export default function Features() {
           </div>
           <div class="bg-white shadow-md rounded-lg p-8">
             <div class="flex items-center mb-4">
-              <span class="bg-blue-500 text-white rounded-full p-3 mr-4">
-                <i class="fas fa-money-bill-wave"></i>
+              <span class="rounded-full mr-4">
+                <GiTakeMyMoney className="h-7 w-7 text-blue-500" />
               </span>
-              <h3 class="text-xl font-bold">Money-back Guarantee</h3>
+              <p class="text-md font-semibold">Money-back Guarantee</p>
             </div>
             <p class="text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -38,10 +43,10 @@ export default function Features() {
           </div>
           <div class="bg-white shadow-md rounded-lg p-8">
             <div class="flex items-center mb-4">
-              <span class="bg-blue-500 text-white rounded-full p-3 mr-4">
-                <i class="fas fa-headset"></i>
+              <span class=" rounded-full  mr-4">
+                <BiSupport className="h-7 w-7 text-blue-500" />
               </span>
-              <h3 class="text-xl font-bold">24/7 Customer Support</h3>
+              <h3 class="text-md font-semibold">24/7 Customer Support</h3>
             </div>
             <p class="text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -50,10 +55,10 @@ export default function Features() {
           </div>
           <div class="bg-white shadow-md rounded-lg p-8">
             <div class="flex items-center mb-4">
-              <span class="bg-blue-500 text-white rounded-full p-3 mr-4">
-                <i class="fas fa-tags"></i>
+              <span class=" rounded-full mr-4">
+                <IoMdPricetags className="h-7 w-7 text-blue-500" />
               </span>
-              <h3 class="text-xl font-bold">Affordable Prices</h3>
+              <h3 class="text-md font-semibold">Affordable Prices</h3>
             </div>
             <p class="text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -62,10 +67,10 @@ export default function Features() {
           </div>
           <div class="bg-white shadow-md rounded-lg p-8">
             <div class="flex items-center mb-4">
-              <span class="bg-blue-500 text-white rounded-full p-3 mr-4">
-                <i class="fas fa-gift"></i>
+              <span class="rounded-full mr-4">
+                <AiFillGift className="h-7 w-7 text-blue-500" />
               </span>
-              <h3 class="text-xl font-bold">Free Gift Wrapping</h3>
+              <h3 class="text-md font-semibold">Free Gift Wrapping</h3>
             </div>
             <p class="text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

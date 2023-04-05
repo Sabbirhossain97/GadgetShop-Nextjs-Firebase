@@ -7,7 +7,7 @@ import Products from "../components/Products";
 
 export default function Home() {
   return (
-    <div>
+    <div className="font-inter">
       <div class="bg-white ">
         <header>
           <div>

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "role": "admin",
+    "Phone": "01768370760",
+    "password": "12345"
+  },
+  {
+    "id": 2,
+    "role": "customer",
+    "Phone": "01766651978",
+    "password": "abc123"
+  },
+  {
+    "id": 3,
+    "role": "customer",
+    "Phone": "01724220613",
+    "password": "xyz123"
+  },
+  {
+    "id": 4,
+    "role": "customer",
+    "Phone": "01711276408",
+    "password": "bde111"
+  },
+  {
+    "id": 5,
+    "role": "customer",
+    "Phone": "01981234588",
+    "password": "jkl788"
+  },
+   {
+     "id": 6,
+     "role": "customer",
+     "Phone": "01822234434",
+     "password": "cde899"
+   }
+]
