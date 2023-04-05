@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
 
-export default function Signin() {
+export default function Signup() {
   return (
     <div>
       <Navbar />
@@ -78,17 +78,17 @@ export default function Signin() {
                 className="w-full p-3 bg-blue-500 rounded-2xl hover:bg-blue-600 text-white"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
-                Sign in
+                Sign Up
               </button>
               <div className="text-center mt-8">
                 <p>
                   <span className=" text-base font-medium text-center text-gray-900">
-                    Don't have an account yet?
+                    Already have an account ?
                   </span>
 
-                  <Link href="/Signup">
+                  <Link href="/Signin">
                     <span className="ml-2 text-base font-medium text-center text-[#377dff]">
-                      Sign Up
+                      Sign In
                     </span>
                   </Link>
                 </p>
