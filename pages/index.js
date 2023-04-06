@@ -5,8 +5,8 @@ import Features from "../components/Features";
 import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 
-
 export default function Home() {
+  
   return (
     <div>
       <div className="font-inter">

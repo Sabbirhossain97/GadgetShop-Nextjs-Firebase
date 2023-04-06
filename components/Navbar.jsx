@@ -6,7 +6,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 export default function Navbar() {
   const [openDropDown, setOpenDropDown] = useState(false);
   const getData = useContext(Context);
-  const [cartTotalValue, setCartTotalValue] = getData?.cartTotal;
+  const [cartTotalValue, setCartTotalValue] = getData.cartTotal;
 
   return (
     <nav className="bg-gray-800 fixed right-0 left-0 top-0 z-10">
@@ -144,7 +144,7 @@ export default function Navbar() {
       </div>
       <div className="absolute w-[100px] h-[50px] right-48 top-2  ">
         <AiOutlineShoppingCart className="absolute text-white h-8 w-8 top-2" />
-        <span className="absolute top-0 right-16 text-md text-white bg-blue-500 px-2  rounded-full">
+        <span className="absolute top-1 right-16 text-xs text-white bg-blue-500 px-2  rounded-full">
           {cartTotalValue}
         </span>
       </div>
