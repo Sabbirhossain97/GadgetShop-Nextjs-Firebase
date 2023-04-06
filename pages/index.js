@@ -1,20 +1,22 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import Link from "next/link";
 import Footer from "../components/Footer";
 import Features from "../components/Features";
 import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 
+
 export default function Home() {
   return (
-    <div className="font-inter">
-      <div class="bg-white ">
-        <header>
-          <div>
-            <Navbar />
-          </div>
-        </header>
-        {/* <div class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300">
+    <div>
+      <div className="font-inter">
+        <div class="bg-white ">
+          <header>
+            <div>
+              <Navbar />
+            </div>
+          </header>
+          {/* <div class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300">
           <div class="flex items-center justify-between">
             <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
             <button class="text-gray-600 focus:outline-none">
@@ -185,10 +187,11 @@ export default function Home() {
             </svg>
           </a>
         </div> */}
-        <div className="mt-44">
-          <Products />
-          <Features />
-          <Footer />
+          <div className="mt-44">
+            <Products />
+            <Features />
+            <Footer />
+          </div>
         </div>
       </div>
     </div>

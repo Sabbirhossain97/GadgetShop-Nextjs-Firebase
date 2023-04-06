@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import Context from "../context";
 import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function Navbar() {
   const [openDropDown, setOpenDropDown] = useState(false);
+  const getData = useContext(Context);
+  const [cartTotalValue, setCartTotalValue] = getData?.cartTotal;
+
   return (
     <nav className="bg-gray-800 fixed right-0 left-0 top-0 z-10">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -66,18 +70,16 @@ export default function Navbar() {
                   Shop
                 </a>
                 <Link href="/Cart">
-                  <p
-                   
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                  >
+                  <p className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                     Cart
                   </p>
                 </Link>
               </div>
             </div>
           </div>
-          <div className=" absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <div className="relative ml-10 right-0 ">
+
+          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div className=" relative ml-10 right-0 ">
               <div className="">
                 <button
                   type="button"
@@ -91,7 +93,8 @@ export default function Navbar() {
                     alt=""
                   />
                 </button>
-                <AiOutlineShoppingCart className="absolute left-8 text-white h-6 w-6 ml-8 mt-1 top-0" />
+
+                <div className="w-[30px]"></div>
               </div>
 
               {openDropDown && (
@@ -138,6 +141,12 @@ export default function Navbar() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="absolute w-[100px] h-[50px] right-48 top-2  ">
+        <AiOutlineShoppingCart className="absolute text-white h-8 w-8 top-2" />
+        <span className="absolute top-0 right-16 text-md text-white bg-blue-500 px-2  rounded-full">
+          {cartTotalValue}
+        </span>
       </div>
 
       <div className="sm:hidden " id="mobile-menu">
