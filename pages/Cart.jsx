@@ -1,13 +1,56 @@
-import React, { useContext } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
-import Context from "../context";
+import { Context } from "../context";
 
 export default function Cart() {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
-  //  console.log(items)
+  const [totalItems, setTotalItems] = getData?.cartTotal;
+  const initialState = {
+    items: items,
+  };
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "ADD_PRODUCT":
+        // let updatedCart = state.items.map((currentElm) => {
+        //   if (currentElm.id === action.id) {
+        //     return { ...state, quantity: currentElm.quantity + 1 };
+        //   }
+        //   console.log(currentElm);
+        //   return currentElm;
+        // });
+        let addedProduct = products.filter((currentElm) => {
+          if (currentElm.id === action.id) {
+            return { currentElm };
+          }
+        });
+        let [selectedProduct] = addedProduct;
+
+        return {
+          ...state,
+          items: [...state.items, selectedProduct],
+          total: state.total + 1,
+        };
+      case "REMOVE_PRODUCT":
+        let deleteProduct = state.items.filter((item) => {
+          if (item.id !== action.id) {
+            setTotalItems(totalItems-1)
+            return item;
+          }
+        });
+        return {
+          items: deleteProduct,
+        };
+    }
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    setItems(state.items);
+  }, [state]);
+
   return (
     <div>
       <Navbar />
@@ -19,20 +62,26 @@ export default function Cart() {
           <div className="rounded-lg md:w-2/3">
             {items
               ? items.map((item, key) => (
-                  <div key={key} className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
+                  <div
+                    key={key}
+                    className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
+                  >
                     <img
                       src={item.image}
                       alt="product-image"
-                      className="w-full rounded-lg sm:w-40"
+                      className="w-full rounded-lg sm:w-24 border border-gray-200 p-2"
                     />
-                    <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                      <div className="mt-5 sm:mt-0">
+                    <div className="relative sm:ml-4 sm:flex sm:w-full sm:justify-between flex items-center">
+                      <div className="ml-4 text-left mt-12 sm:mt-0 w-1/2">
                         <h2 className="text-lg font-bold text-gray-900">
                           {item.title}
                         </h2>
+                        <h2>
+                          <p className="text-lg mt-2">$ {item.price} </p>
+                        </h2>
                         {/* <p className="mt-1 text-xs text-gray-700">36EU - 4US</p> */}
                       </div>
-                      <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+                      <div className=" mt-8 absolute right-20 flex flex-row items-center sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                         <div className="flex items-center border-gray-100">
                           <span className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50">
                             {" "}
@@ -49,23 +98,27 @@ export default function Cart() {
                             +{" "}
                           </span>
                         </div>
-                        <div className="flex items-center space-x-4">
-                          <p className="text-sm">$ {item.price} </p>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
-                        </div>
+                      </div>
+                      <div
+                        onClick={() =>
+                          dispatch({ type: "REMOVE_PRODUCT", id: item.id })
+                        }
+                        className="absolute right-4  "
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                          className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
                       </div>
                     </div>
                   </div>

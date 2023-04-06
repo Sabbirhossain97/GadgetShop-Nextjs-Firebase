@@ -1,9 +1,11 @@
 import React, { useEffect, useReducer, useContext } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Link from "next/link";
-import Context from "../context";
+import { Context } from "../context";
 import products from "../products.json";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Products() {
   const getData = useContext(Context);
@@ -30,7 +32,7 @@ export default function Products() {
           }
         });
         let [selectedProduct] = addedProduct;
-        setCartTotalValue(state.total);
+        
         return {
           ...state,
           items: [...state.items, selectedProduct],
@@ -42,14 +44,16 @@ export default function Products() {
 
   useEffect(() => {
     setItems(state.items);
+    setCartTotalValue(state.total);
   }, [state]);
 
   const handleCartAction = (id) => {
-    if (localStorage.getItem("users") === null) {
+    if (localStorage.getItem("users")) {
       router.push("/Signin");
     }
     dispatch({ type: "ADD_PRODUCT", id: id });
   };
+
   return (
     <div class="container mx-auto w-1/2 py-12">
       <div class="text-center mb-8">
@@ -81,7 +85,7 @@ export default function Products() {
                     <Link href={`/SingleProduct/${item.id}`}> Details</Link>
                   </button>
                   <button
-                    onClick={()=>handleCartAction(item.id)}
+                    onClick={() => handleCartAction(item.id)}
                     className="flex justify-center mt-4 ml-4 bg-blue-500 hover:bg-blue-700 px-2 w-1/3 text-white font-bold py-2   rounded-lg"
                   >
                     <AiOutlineShoppingCart className="mt-0.5" />

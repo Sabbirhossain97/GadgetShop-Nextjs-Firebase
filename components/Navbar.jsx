@@ -1,12 +1,35 @@
-import React, { useContext, useState } from "react";
-import Context from "../context";
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../context";
 import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import Cookies from "js-cookie";
+import { RxAvatar } from "react-icons/rx";
 
-export default function Navbar() {
+export default function Navbar({ loggedInUser }) {
   const [openDropDown, setOpenDropDown] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [avatar, setAvatar] = useState(null);
   const getData = useContext(Context);
-  const [cartTotalValue, setCartTotalValue] = getData.cartTotal;
+  const [cartTotalValue, setCartTotalValue] = getData?.cartTotal;
+
+  useEffect(() => {
+    const getUser = localStorage.getItem("user");
+    const avatar = localStorage.getItem("avatar");
+    if (getUser) {
+      setIsLoggedIn(true);
+      setAvatar(avatar);
+    } else {
+      setIsLoggedIn(false);
+      setAvatar(null);
+    }
+  }, []);
+
+  const handleAuth = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("avatar");
+    setIsLoggedIn(false);
+    setAvatar(null);
+  };
 
   return (
     <nav className="bg-gray-800 fixed right-0 left-0 top-0 z-10">
@@ -16,8 +39,6 @@ export default function Navbar() {
             <button
               type="button"
               className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
 
@@ -25,13 +46,13 @@ export default function Navbar() {
                 className="block h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 aria-hidden="true"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                 />
               </svg>
@@ -40,13 +61,13 @@ export default function Navbar() {
                 className="hidden h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 aria-hidden="true"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
@@ -87,11 +108,11 @@ export default function Navbar() {
                   onClick={() => setOpenDropDown(!openDropDown)}
                 >
                   <span className="sr-only">Open user menu</span>
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
+                  {loggedInUser ? (
+                    <img className="h-8 w-8 rounded-full" src={avatar} alt="" />
+                  ) : (
+                    <RxAvatar className="w-8 h-8 text-gray-100/50" />
+                  )}
                 </button>
 
                 <div className="w-[30px]"></div>
@@ -103,7 +124,7 @@ export default function Navbar() {
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
-                  tabindex="-1"
+                  tabIndex="-1"
                 >
                   <Link href="/">
                     <p
@@ -119,23 +140,35 @@ export default function Navbar() {
                     <p
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
-                      tabindex="-1"
+                      tabIndex="-1"
                       id="user-menu-item-0"
                     >
                       Dashboard
                     </p>
                   </Link>
 
-                  <Link href="/Signin">
+                  {isLoggedIn ? (
                     <p
-                      className="block px-4 py-2 text-sm text-gray-700"
+                      onClick={handleAuth}
+                      className="cursor-pointer block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabindex="-1"
                       id="user-menu-item-2"
                     >
-                      Sign In
+                      Sign Out
                     </p>
-                  </Link>
+                  ) : (
+                    <Link href="/Signin">
+                      <p
+                        className="block px-4 py-2 text-sm text-gray-700"
+                        role="menuitem"
+                        tabindex="-1"
+                        id="user-menu-item-2"
+                      >
+                        Sign In
+                      </p>
+                    </Link>
+                  )}
                 </div>
               )}
             </div>
@@ -145,7 +178,7 @@ export default function Navbar() {
       <div className="absolute w-[100px] h-[50px] right-48 top-2  ">
         <AiOutlineShoppingCart className="absolute text-white h-8 w-8 top-2" />
         <span className="absolute top-1 right-16 text-xs text-white bg-blue-500 px-2  rounded-full">
-          {cartTotalValue}
+          {cartTotalValue > 0 ? cartTotalValue : ""}
         </span>
       </div>
 

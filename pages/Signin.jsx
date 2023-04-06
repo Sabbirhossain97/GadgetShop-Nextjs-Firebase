@@ -4,25 +4,36 @@ import Link from "next/link";
 import users from "../users";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Signin() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const router= useRouter()
+  const [loggedInUser, setLoggedInUser] = useState([]);
+  const router = useRouter();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    let authUsers = users.filter((item, index) => {
+    let authUsers = users.filter((item) => {
       if (item.Phone === phone && item.password === password) {
-        localStorage.setItem("users", item.role)
-        router.push("/")
+        localStorage.setItem("user", item.role);
+        localStorage.setItem("avatar", item.avatar);
+        Cookies.set("auth", "loggedIn");
+        // router.push("/");
+        setLoggedInUser(item);
+        setPhone("");
+        setPassword("");
         return item;
       }
     });
-    
   };
+  const notify = (e) => toast("Successfully logged in!");
+
   return (
     <div>
-      <Navbar />
+      <Navbar loggedInUser={loggedInUser} />
       <div className="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl">
           <div>
@@ -76,7 +87,7 @@ export default function Signin() {
                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                 />
                 <label
-                  for="remember-me"
+                  htmlFor="remember-me"
                   className="ml-2 block text-sm text-gray-900"
                 >
                   Remember me
@@ -96,12 +107,16 @@ export default function Signin() {
             <div>
               <button
                 type="submit"
-                onClick={(e) => handleSubmit(e)}
+                onClick={(e) => {
+                  handleSubmit(e);
+                  notify(e);
+                }}
                 className="w-full p-3 bg-blue-500 rounded-2xl hover:bg-blue-600 text-white"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
                 Sign in
               </button>
+              <ToastContainer theme="dark" />
               <div className="text-center mt-8">
                 <p>
                   <span className=" text-base font-medium text-center text-gray-900">

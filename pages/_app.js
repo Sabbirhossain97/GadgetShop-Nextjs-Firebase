@@ -1,5 +1,5 @@
 import "../globals.css";
-import Context from "../context";
+import {Context} from "../context";
 import { useState } from "react";
 
 // This default export is required in a new `pages/_app.js` file.
