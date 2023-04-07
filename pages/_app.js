@@ -5,7 +5,7 @@ import { useState } from "react";
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
   const [cartItem, setCartItem] = useState(null);
-  const [totalCartItem, setTotalCartItem] = useState(null);
+  const [totalCartItem, setTotalCartItem] = useState(0);
   return (
     <Context.Provider
       value={{

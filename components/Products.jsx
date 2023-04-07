@@ -10,33 +10,26 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Products() {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
-  const [cartTotalValue, setCartTotalValue] = getData?.cartTotal;
+  const [totalItems, setTotalItems] = getData?.cartTotal;
   const router = useRouter();
   const initialState = {
     items: [],
-    total: 0,
+    total: totalItems,
   };
   const reducer = (state, action) => {
     switch (action.type) {
       case "ADD_PRODUCT":
-        // let updatedCart = state.items.map((currentElm) => {
-        //   if (currentElm.id === action.id) {
-        //     return { ...state, quantity: currentElm.quantity + 1 };
-        //   }
-        //   console.log(currentElm);
-        //   return currentElm;
-        // });
         let addedProduct = products.filter((currentElm) => {
           if (currentElm.id === action.id) {
             return { currentElm };
           }
         });
         let [selectedProduct] = addedProduct;
-        
+
         return {
           ...state,
           items: [...state.items, selectedProduct],
-          total: state.total + 1,
+          total: setTotalItems(totalItems + 1),
         };
     }
   };
@@ -44,7 +37,6 @@ export default function Products() {
 
   useEffect(() => {
     setItems(state.items);
-    setCartTotalValue(state.total);
   }, [state]);
 
   const handleCartAction = (id) => {
@@ -64,7 +56,7 @@ export default function Products() {
           ? products.map((item, key) => (
               <div
                 key={key}
-                className="p-6 group border rounded-lg shadow-md scale-95 hover:scale-100 hover:shadow-xl transition duration-300 flex flex-col items-center justify-center"
+                className="p-6 group border rounded-lg shadow-md scale-98 hover:scale-100 hover:shadow-xl transition duration-300 flex flex-col items-center justify-center"
               >
                 <div className=" aspect-w-1 aspect-h-1 w-1/2 h-1/2  overflow-hidden rounded-lg bg-white xl:aspect-w-7 xl:aspect-h-8">
                   <img

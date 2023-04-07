@@ -1,47 +1,61 @@
-import React, { useContext, useReducer, useEffect } from "react";
+import React, { useContext, useReducer, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import { Context } from "../context";
+import { useRouter } from "next/router";
 
 export default function Cart() {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
   const [totalItems, setTotalItems] = getData?.cartTotal;
+  const [subtotal, setSubtotal] = useState(null);
+  const router = useRouter();
+
   const initialState = {
     items: items,
+    total: totalItems,
   };
   const reducer = (state, action) => {
     switch (action.type) {
-      case "ADD_PRODUCT":
-        // let updatedCart = state.items.map((currentElm) => {
-        //   if (currentElm.id === action.id) {
-        //     return { ...state, quantity: currentElm.quantity + 1 };
-        //   }
-        //   console.log(currentElm);
-        //   return currentElm;
-        // });
-        let addedProduct = products.filter((currentElm) => {
+      case "INCREMENT_QUANTITY":
+        let incrementQuantity = state.items.map((currentElm) => {
           if (currentElm.id === action.id) {
-            return { currentElm };
+            return { ...currentElm, quantity: currentElm.quantity + 1 };
           }
+          return currentElm;
         });
-        let [selectedProduct] = addedProduct;
 
         return {
           ...state,
-          items: [...state.items, selectedProduct],
-          total: state.total + 1,
+          items: incrementQuantity,
+          total: setTotalItems(totalItems + 1),
         };
+      case "DECREMENT_QUANTITY":
+        let decrementQuantity = state.items.map((currentElm) => {
+          if (currentElm.id === action.id) {
+            if (currentElm.quantity > 1) {
+              return { ...currentElm, quantity: currentElm.quantity - 1 };
+            }
+          }
+          return currentElm;
+        });
+        return {
+          ...state,
+          items: decrementQuantity,
+          total: totalItems > 1 ? setTotalItems(totalItems - 1) : "",
+        };
+
       case "REMOVE_PRODUCT":
         let deleteProduct = state.items.filter((item) => {
           if (item.id !== action.id) {
-            setTotalItems(totalItems-1)
+            setTotalItems(totalItems - 1);
             return item;
           }
         });
         return {
           items: deleteProduct,
+          total: setTotalItems(totalItems - 1),
         };
     }
   };
@@ -51,12 +65,20 @@ export default function Cart() {
     setItems(state.items);
   }, [state]);
 
+  useEffect(() => {
+    let totalValue = state.items.reduce(
+      (acm, currentElm) => acm + currentElm.price * currentElm.quantity,
+      0
+    );
+    setSubtotal(totalValue);
+  }, [state]);
+  console.log(totalItems);
   return (
     <div>
       <Navbar />
       <div className="min-h-screen bg-gray-100 p-20 ">
         <h1 className="mt-20 mb-10 text-center text-2xl font-bold">
-          Shopping Cart{" "}
+          {items.length === 0 ? "Your Cart is Empty!" : "Shopping Cart"}
         </h1>
         <div className="mt-20 mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
           <div className="rounded-lg md:w-2/3">
@@ -83,7 +105,15 @@ export default function Cart() {
                       </div>
                       <div className=" mt-8 absolute right-20 flex flex-row items-center sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                         <div className="flex items-center border-gray-100">
-                          <span className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50">
+                          <span
+                            onClick={() =>
+                              dispatch({
+                                type: "DECREMENT_QUANTITY",
+                                id: item.id,
+                              })
+                            }
+                            className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                          >
                             {" "}
                             -{" "}
                           </span>
@@ -93,7 +123,15 @@ export default function Cart() {
                             value={item.quantity}
                             min="1"
                           />
-                          <span className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50">
+                          <span
+                            onClick={() =>
+                              dispatch({
+                                type: "INCREMENT_QUANTITY",
+                                id: item.id,
+                              })
+                            }
+                            className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                          >
                             {" "}
                             +{" "}
                           </span>
@@ -125,32 +163,40 @@ export default function Cart() {
                 ))
               : ""}
           </div>
-          <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
-            <div className="mb-2 flex justify-between">
-              <p className="text-gray-700">Subtotal</p>
-              <p className="text-gray-700">$129.99</p>
-            </div>
-            <div className="flex justify-between">
-              <p className="text-gray-700">Shipping</p>
-              <p className="text-gray-700">$4.99</p>
-            </div>
-            <hr className="my-4" />
-            <div className="flex justify-between">
-              <p className="text-lg font-bold">Total</p>
-              <div className="">
-                <p className="mb-1 text-lg font-bold">$134.98 USD</p>
-                <p className="text-sm text-gray-700">including VAT</p>
+          {items.length > 0 ? (
+            <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+              <div className="mb-2 flex justify-between">
+                <p className="text-gray-700">Subtotal</p>
+                <p className="text-gray-700">
+                  {subtotal ? subtotal.toFixed(2) : ""}
+                </p>
               </div>
+              <div className="flex justify-between">
+                <p className="text-gray-700">Shipping</p>
+                <p className="text-gray-700">$4.99</p>
+              </div>
+              <hr className="my-4" />
+              <div className="flex justify-between">
+                <p className="text-lg font-bold">Total</p>
+                <div className="">
+                  <p className="mb-1 text-lg font-bold">
+                    {subtotal ? subtotal.toFixed(2) + 4.99 : ""}
+                  </p>
+                  <p className="text-sm text-gray-700">including VAT</p>
+                </div>
+              </div>
+
+              <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
+                <Link href="/Checkout">Check out</Link>
+              </button>
+
+              <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
+                <Link href="/">Continue Shopping</Link>
+              </button>
             </div>
-
-            <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
-              <Link href="/Checkout">Check out</Link>
-            </button>
-
-            <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
-              <Link href="/">Continue Shopping</Link>
-            </button>
-          </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <Footer />
