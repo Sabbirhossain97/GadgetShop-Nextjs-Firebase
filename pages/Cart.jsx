@@ -3,14 +3,12 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import { Context } from "../context";
-import { useRouter } from "next/router";
 
 export default function Cart() {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
   const [totalItems, setTotalItems] = getData?.cartTotal;
   const [subtotal, setSubtotal] = useState(null);
-  const router = useRouter();
 
   const initialState = {
     items: items,
@@ -72,7 +70,7 @@ export default function Cart() {
     );
     setSubtotal(totalValue);
   }, [state]);
-  console.log(totalItems);
+
   return (
     <div>
       <Navbar />
@@ -168,21 +166,26 @@ export default function Cart() {
               <div className="mb-2 flex justify-between">
                 <p className="text-gray-700">Subtotal</p>
                 <p className="text-gray-700">
-                  {subtotal ? subtotal.toFixed(2) : ""}
+                  ${subtotal ? subtotal.toFixed(2) : ""}
                 </p>
               </div>
               <div className="flex justify-between">
                 <p className="text-gray-700">Shipping</p>
-                <p className="text-gray-700">$4.99</p>
+                <p className="text-gray-700">Free</p>
               </div>
               <hr className="my-4" />
               <div className="flex justify-between">
                 <p className="text-lg font-bold">Total</p>
                 <div className="">
-                  <p className="mb-1 text-lg font-bold">
-                    {subtotal ? subtotal.toFixed(2) + 4.99 : ""}
+                  <p className="mb-1 text-lg font-bold ml-10">
+                    $
+                    {items.reduce(
+                      (acm, currentElm) =>
+                        acm + currentElm.price * currentElm.quantity,
+                      0
+                    )}
                   </p>
-                  <p className="text-sm text-gray-700">including VAT</p>
+                  <p className="text-sm text-gray-700 ml-4">including VAT</p>
                 </div>
               </div>
 

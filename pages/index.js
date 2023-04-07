@@ -1,14 +1,17 @@
-import React, { createContext, useState } from "react";
-import Link from "next/link";
+import React from "react";
 import Footer from "../components/Footer";
 import Features from "../components/Features";
 import Navbar from "../components/Navbar";
 import Products from "../components/Products";
-
+import Head from "next/head";
 export default function Home() {
-  
   return (
     <div>
+      <Head>
+        <title>Ecommerce</title>
+        <meta property="og:title" content="Ecommerce" key="title" />
+        <link type="image/png" rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="font-inter">
         <div class="bg-white ">
           <header>

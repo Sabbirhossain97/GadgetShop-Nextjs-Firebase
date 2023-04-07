@@ -1,8 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import users from "../users";
+import secret from "../secret";
+import Footer from "../components/Footer";
+import { useRouter } from "next/router";
 
 export default function Signup() {
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let register = users.filter((currentElm) => {
+      if (
+        currentElm.phone === phone &&
+        secret.some((item) => item.id === currentElm.id)
+      ) {
+        registerNotify(e);
+        let jwt = secret.filter((item) => {
+          if (item.id === currentElm.id) {
+            localStorage.setItem("token", item.key);
+            return;
+          }
+        });
+        return currentElm;
+      }
+    });
+    setTimeout(() => {
+      router.push("/Signin");
+    }, 2000);
+  };
+  const registerNotify = (e) => toast("Successfully Registered!");
+
   return (
     <div>
       <Navbar />
@@ -10,7 +44,7 @@ export default function Signup() {
         <div className="w-full max-w-md space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl ">
           <div>
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Sign in to your account
+              Create your account
             </h2>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
@@ -21,11 +55,13 @@ export default function Signup() {
                   Phone
                 </label>
                 <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
+                  id="phone"
+                  name="phone"
+                  type="text"
+                  autoComplete="phone"
                   required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   className="placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-2xl bg-white border border-gray-400"
                   placeholder="Phone"
                 />
@@ -38,8 +74,10 @@ export default function Signup() {
                   id="password"
                   name="password"
                   type="password"
-                  autocomplete="current-password"
+                  autoComplete="current-password"
                   required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="mt-4 placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-2xl bg-white border border-gray-400"
                   placeholder="Password"
                 />
@@ -75,11 +113,15 @@ export default function Signup() {
             <div>
               <button
                 type="submit"
+                onClick={(e) => {
+                  handleSubmit(e);
+                }}
                 className="w-full p-3 bg-blue-500 rounded-2xl hover:bg-blue-600 text-white"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
                 Sign Up
               </button>
+              <ToastContainer theme="dark" />
               <div className="text-center mt-8">
                 <p>
                   <span className=" text-base font-medium text-center text-gray-900">
@@ -97,6 +139,7 @@ export default function Signup() {
           </form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

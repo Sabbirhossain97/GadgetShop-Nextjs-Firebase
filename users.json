@@ -3,7 +3,7 @@
     "id": 1,
     "role": "admin",
     "name": "Sabbir Hossain",
-    "Phone": "01768370760",
+    "phone": "01768370760",
     "password": "12345",
     "avatar": "https://i.imgur.com/zt5Vu8q.png"
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "role": "customer",
     "name": "Michael Lawson",
-    "Phone": "01766651978",
+    "phone": "01766651978",
     "password": "abc123",
     "avatar": "https://reqres.in/img/faces/7-image.jpg"
   },
@@ -20,7 +20,7 @@
     "id": 3,
     "role": "customer",
     "name": "Lindsay Ferguson",
-    "Phone": "01724220613",
+    "phone": "01724220613",
     "password": "xyz123",
     "avatar": "https://reqres.in/img/faces/8-image.jpg"
   },
@@ -29,7 +29,7 @@
     "id": 4,
     "role": "customer",
     "name": "Tobias Funke",
-    "Phone": "01711276408",
+    "phone": "01711276408",
     "password": "bde111",
     "avatar": "https://reqres.in/img/faces/9-image.jpg"
   },
@@ -37,7 +37,7 @@
     "id": 5,
     "role": "customer",
     "name": "Byron Fields",
-    "Phone": "01981234588",
+    "phone": "01981234588",
     "password": "jkl788",
     "avatar": "https://reqres.in/img/faces/10-image.jpg"
   },
@@ -45,7 +45,7 @@
     "id": 6,
     "role": "customer",
     "name": "George Edwards",
-    "Phone": "01822234434",
+    "phone": "01822234434",
     "password": "cde899",
     "avatar": "https://reqres.in/img/faces/11-image.jpg"
   }

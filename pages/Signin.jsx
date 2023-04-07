@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
 import users from "../users";
@@ -7,33 +7,52 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Context } from "../context";
+import secret from "../secret";
 
 export default function Signin() {
+  const getData = useContext(Context);
+  const [avatar, setAvatar] = getData?.userAvatar;
+  const [isLoggedIn, setIsLoggedIn] = getData?.auth;
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedInUser, setLoggedInUser] = useState([]);
+  const [message, setMessage] = useState("");
   const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let authUsers = users.filter((item) => {
-      if (item.Phone === phone && item.password === password) {
-        localStorage.setItem("user", item.role);
-        localStorage.setItem("avatar", item.avatar);
-        Cookies.set("auth", "loggedIn");
-        // router.push("/");
-        setLoggedInUser(item);
-        setPhone("");
-        setPassword("");
-        return item;
-      }
-    });
+    if (!localStorage.getItem("token")) {
+      setTimeout(() => {
+        router.push("/Signup");
+        setMessage("Please Sign up!");
+      }, 2000);
+    } else {
+      let authUsers = users.filter((item) => {
+        if (item.phone === phone && item.password === password) {
+          localStorage.setItem("user", item.role);
+          localStorage.setItem("avatar", item.avatar);
+          Cookies.set("auth", "loggedIn");
+          setTimeout(() => {
+            router.push("/");
+          }, 2000);
+          setAvatar(localStorage.getItem("avatar"));
+          setPhone("");
+          setPassword("");
+          setIsLoggedIn(true);
+          setMessage("Successfully logged in!");
+          return item;
+        }
+      });
+    }
   };
-  const notify = (e) => toast("Successfully logged in!");
+  const logInNotify = () => toast(message);
+  useEffect(() => {
+    logInNotify();
+  }, [message]);
 
   return (
     <div>
-      <Navbar loggedInUser={loggedInUser} />
+      <Navbar />
       <div className="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl">
           <div>
@@ -109,7 +128,6 @@ export default function Signin() {
                 type="submit"
                 onClick={(e) => {
                   handleSubmit(e);
-                  notify(e);
                 }}
                 className="w-full p-3 bg-blue-500 rounded-2xl hover:bg-blue-600 text-white"
               >

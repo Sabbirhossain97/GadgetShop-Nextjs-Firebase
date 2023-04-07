@@ -4,33 +4,42 @@ import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Cookies from "js-cookie";
 import { RxAvatar } from "react-icons/rx";
+import { useRouter } from "next/router";
 
-export default function Navbar({ loggedInUser }) {
-  const [openDropDown, setOpenDropDown] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [avatar, setAvatar] = useState(null);
+export default function Navbar() {
   const getData = useContext(Context);
+  const [openDropDown, setOpenDropDown] = useState(false);
+  const [items, setItems] = getData?.cart;
+  const [isLoggedIn, setIsLoggedIn] = getData?.auth;
+  const [avatar, setAvatar] = getData?.userAvatar;
   const [cartTotalValue, setCartTotalValue] = getData?.cartTotal;
+  const [role, setRole] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const getUser = localStorage.getItem("user");
-    const avatar = localStorage.getItem("avatar");
+    setRole(getUser);
     if (getUser) {
       setIsLoggedIn(true);
-      setAvatar(avatar);
     } else {
       setIsLoggedIn(false);
-      setAvatar(null);
     }
   }, []);
 
   const handleAuth = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("avatar");
+    localStorage.removeItem("token");
+    setItems(null);
     setIsLoggedIn(false);
     setAvatar(null);
   };
-
+  const handleSignIn = () => {
+    if (!isLoggedIn) {
+      router.push("/Signin");
+    }
+  };
+  console.log(role);
   return (
     <nav className="bg-gray-800 fixed right-0 left-0 top-0 z-10">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -108,7 +117,7 @@ export default function Navbar({ loggedInUser }) {
                   onClick={() => setOpenDropDown(!openDropDown)}
                 >
                   <span className="sr-only">Open user menu</span>
-                  {loggedInUser ? (
+                  {isLoggedIn ? (
                     <img className="h-8 w-8 rounded-full" src={avatar} alt="" />
                   ) : (
                     <RxAvatar className="w-8 h-8 text-gray-100/50" />
@@ -136,16 +145,20 @@ export default function Navbar({ loggedInUser }) {
                       Home
                     </p>
                   </Link>
-                  <Link href="/Admin/Dashboard">
-                    <p
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="user-menu-item-0"
-                    >
-                      Dashboard
-                    </p>
-                  </Link>
+                  {role === "Admin" ? (
+                    <Link href="/Admin/Dashboard">
+                      <p
+                        className="block px-4 py-2 text-sm text-white"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="user-menu-item-0"
+                      >
+                        Dashboard
+                      </p>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
 
                   {isLoggedIn ? (
                     <p
@@ -158,16 +171,15 @@ export default function Navbar({ loggedInUser }) {
                       Sign Out
                     </p>
                   ) : (
-                    <Link href="/Signin">
-                      <p
-                        className="block px-4 py-2 text-sm text-gray-700"
-                        role="menuitem"
-                        tabindex="-1"
-                        id="user-menu-item-2"
-                      >
-                        Sign In
-                      </p>
-                    </Link>
+                    <p
+                      onClick={handleSignIn}
+                      className="cursor-pointer block px-4 py-2 text-sm text-gray-700"
+                      role="menuitem"
+                      tabindex="-1"
+                      id="user-menu-item-2"
+                    >
+                      Sign In
+                    </p>
                   )}
                 </div>
               )}
@@ -197,16 +209,20 @@ export default function Navbar({ loggedInUser }) {
             </p>
           </Link>
 
-          <Link href="/Admin/Dashboard">
-            <p
-              className="block px-4 py-2 text-sm text-white"
-              role="menuitem"
-              tabIndex="-1"
-              id="user-menu-item-0"
-            >
-              Dashboard
-            </p>
-          </Link>
+          {role === "Admin" ? (
+            <Link href="/Admin/Dashboard">
+              <p
+                className="block px-4 py-2 text-sm text-white"
+                role="menuitem"
+                tabIndex="-1"
+                id="user-menu-item-0"
+              >
+                Dashboard
+              </p>
+            </Link>
+          ) : (
+            ""
+          )}
 
           {isLoggedIn ? (
             <p

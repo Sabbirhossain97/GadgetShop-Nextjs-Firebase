@@ -11,6 +11,7 @@ export default function Products() {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
   const [totalItems, setTotalItems] = getData?.cartTotal;
+  const [isLoggedIn, setIsLoggedIn] = getData?.auth;
   const router = useRouter();
   const initialState = {
     items: [],
@@ -40,16 +41,17 @@ export default function Products() {
   }, [state]);
 
   const handleCartAction = (id) => {
-    if (localStorage.getItem("users")) {
+    if (!isLoggedIn) {
       router.push("/Signin");
+    } else {
+      dispatch({ type: "ADD_PRODUCT", id: id });
     }
-    dispatch({ type: "ADD_PRODUCT", id: id });
   };
 
   return (
     <div class="container mx-auto w-1/2 py-12">
       <div class="text-center mb-8">
-        <h2 class="text-3xl font-bold">Top Selling Products</h2>
+        <h2 class="text-3xl font-bold"> Products</h2>
       </div>
       <div className="mt-12 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {products
