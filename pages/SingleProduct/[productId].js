@@ -50,7 +50,7 @@ const SingleProduct = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
    useEffect(() => {
      setItems(state.items);
-   }, [state]);
+   }, []);
 
 
   return (

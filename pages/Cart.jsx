@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import { Context } from "../context";
+import { eslint } from "../next.config";
 
 export default function Cart() {
   const getData = useContext(Context);
@@ -61,8 +62,8 @@ export default function Cart() {
 
   useEffect(() => {
     setItems(state.items);
-    //eslint
-  }, [state]);
+    
+  }, []);
 
   useEffect(() => {
     let totalValue = state.items.reduce(

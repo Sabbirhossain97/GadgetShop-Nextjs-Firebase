@@ -38,7 +38,7 @@ export default function Products() {
 
   useEffect(() => {
     setItems(state.items);
-  }, [state]);
+  }, []);
 
   const handleCartAction = (id) => {
     if (!isLoggedIn) {

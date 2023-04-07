@@ -50,7 +50,7 @@ export default function Signin() {
     if (message) {
       logInNotify();
     } else return;
-  }, [message]);
+  }, []);
 
   return (
     <div>
