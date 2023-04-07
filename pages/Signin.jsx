@@ -47,7 +47,9 @@ export default function Signin() {
   };
   const logInNotify = () => toast(message);
   useEffect(() => {
-    logInNotify();
+    if (message) {
+      logInNotify();
+    } else return;
   }, [message]);
 
   return (

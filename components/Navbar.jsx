@@ -93,17 +93,20 @@ export default function Navbar() {
                     Home
                   </p>
                 </Link>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                >
-                  Shop
-                </a>
-                <Link href="/Cart">
-                  <p className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                    Cart
-                  </p>
-                </Link>
+
+                {isLoggedIn ? (
+                  <Link href="/Cart">
+                    <p className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                      Cart
+                    </p>
+                  </Link>
+                ) : (
+                  <Link href="/Signin">
+                    <p className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                      Cart
+                    </p>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -128,31 +131,19 @@ export default function Navbar() {
               </div>
 
               {openDropDown && (
-                <div
-                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="user-menu-button"
-                  tabIndex="-1"
-                >
+                <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <Link href="/">
                     <p
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
-                      tabindex="-1"
-                      id="user-menu-item-0"
                     >
                       Home
                     </p>
                   </Link>
-                  {role === "Admin" ? (
-                    <Link href="/Admin/Dashboard">
-                      <p
-                        className="block px-4 py-2 text-sm text-white"
-                        role="menuitem"
-                        tabIndex="-1"
-                        id="user-menu-item-0"
-                      >
+
+                  {role === "admin" ? (
+                    <Link href="#">
+                      <p className="block px-4 py-2 text-sm text-black">
                         Dashboard
                       </p>
                     </Link>
@@ -174,9 +165,6 @@ export default function Navbar() {
                     <p
                       onClick={handleSignIn}
                       className="cursor-pointer block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabindex="-1"
-                      id="user-menu-item-2"
                     >
                       Sign In
                     </p>
@@ -199,26 +187,12 @@ export default function Navbar() {
       <div className="sm:hidden " id="mobile-menu">
         <div className="space-y-1 px-2 pb-3 pt-2">
           <Link href="/">
-            <p
-              className="block px-4 py-2 text-sm text-white bold"
-              role="menuitem"
-              tabindex="-1"
-              id="user-menu-item-0"
-            >
-              Home
-            </p>
+            <p className="block px-4 py-2 text-sm text-white bold">Home</p>
           </Link>
 
-          {role === "Admin" ? (
-            <Link href="/Admin/Dashboard">
-              <p
-                className="block px-4 py-2 text-sm text-white"
-                role="menuitem"
-                tabIndex="-1"
-                id="user-menu-item-0"
-              >
-                Dashboard
-              </p>
+          {role === "admin" ? (
+            <Link href="#">
+              <p className="block px-4 py-2 text-sm text-black">Dashboard</p>
             </Link>
           ) : (
             ""
@@ -228,22 +202,12 @@ export default function Navbar() {
             <p
               onClick={handleAuth}
               className="cursor-pointer block px-4 py-2 text-sm text-white"
-              role="menuitem"
-              tabindex="-1"
-              id="user-menu-item-2"
             >
               Sign Out
             </p>
           ) : (
             <Link href="/Signin">
-              <p
-                className="block px-4 py-2 text-sm text-gray-700"
-                role="menuitem"
-                tabindex="-1"
-                id="user-menu-item-2"
-              >
-                Sign In
-              </p>
+              <p className="block px-4 py-2 text-sm text-gray-700">Sign In</p>
             </Link>
           )}
         </div>
