@@ -6,7 +6,6 @@ import Link from "next/link";
 export default function Checkout() {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
-  const [totalItems, setTotalItems] = getData?.cartTotal;
 
   return (
     <div>
@@ -173,11 +172,11 @@ export default function Checkout() {
                   <span>Subtotal</span>
                   <span className="font-semibold ">
                     $
-                    {items.reduce(
+                    {items ? (items.reduce(
                       (acm, currentElm) =>
                         acm + currentElm.price * currentElm.quantity,
                       0
-                    )}
+                    )) :''}
                   </span>
                 </div>
                 <div className="flex justify-between py-4 text-gray-600">
@@ -189,11 +188,11 @@ export default function Checkout() {
                 <span>Total</span>
                 <span>
                   $
-                  {items.reduce(
+                  {items? (items.reduce(
                     (acm, currentElm) =>
                       acm + currentElm.price * currentElm.quantity,
                     0
-                  )}
+                  )): ''}
                 </span>
               </div>
             </div>
