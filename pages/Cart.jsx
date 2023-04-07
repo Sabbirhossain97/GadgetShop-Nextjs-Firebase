@@ -78,7 +78,7 @@ export default function Cart() {
       <Navbar />
       <div className="min-h-screen bg-gray-100 p-20 ">
         <h1 className="mt-20 mb-10 text-center text-2xl font-bold">
-          {items.length === 0 ? "Your Cart is Empty!" : "Shopping Cart"}
+          {items ? items.length === 0 ? "Your Cart is Empty!" : "Shopping Cart" : ""}
         </h1>
         <div className="mt-20 mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
           <div className="rounded-lg md:w-2/3">
