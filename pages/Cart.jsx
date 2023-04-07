@@ -3,17 +3,16 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import { Context } from "../context";
-import { eslint } from "../next.config";
 
 export default function Cart() {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
-  const [totalItems, setTotalItems] = getData?.cartTotal;
+  const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
   const [subtotal, setSubtotal] = useState(null);
 
   const initialState = {
     items: items,
-    total: totalItems,
+    total: totalQauntity,
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -28,7 +27,6 @@ export default function Cart() {
         return {
           ...state,
           items: incrementQuantity,
-          total: setTotalItems(totalItems + 1),
         };
       case "DECREMENT_QUANTITY":
         let decrementQuantity = state.items.map((currentElm) => {
@@ -42,19 +40,16 @@ export default function Cart() {
         return {
           ...state,
           items: decrementQuantity,
-          total: totalItems > 1 ? setTotalItems(totalItems - 1) : "",
         };
 
       case "REMOVE_PRODUCT":
         let deleteProduct = state.items.filter((item) => {
           if (item.id !== action.id) {
-            setTotalItems(totalItems - 1);
             return item;
           }
         });
         return {
           items: deleteProduct,
-          total: setTotalItems(totalItems - 1),
         };
     }
   };
@@ -70,6 +65,11 @@ export default function Cart() {
       0
     );
     setSubtotal(totalValue);
+  }, [state]);
+  useEffect(() => {
+    setTotalQuantity(
+      state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
+    );
   }, [state]);
 
   return (

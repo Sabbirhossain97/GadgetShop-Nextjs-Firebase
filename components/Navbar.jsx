@@ -39,7 +39,6 @@ export default function Navbar() {
       router.push("/Signin");
     }
   };
-  console.log(role);
   return (
     <nav className="bg-gray-800 fixed right-0 left-0 top-0 z-10">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -179,7 +178,7 @@ export default function Navbar() {
         <div className="cursor-pointer absolute w-[100px] h-[50px] right-48 top-2 ">
           <AiOutlineShoppingCart className="absolute text-gray-100/50 h-8 w-8 top-2" />
           <span className="absolute top-1 right-16 text-xs text-white bg-blue-500 px-2  rounded-full">
-            {cartTotalValue > 0 ? cartTotalValue : ""}
+            {cartTotalValue}
           </span>
         </div>
       </Link>

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useContext } from "react";
+import React, { useEffect, useReducer, useContext, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Link from "next/link";
 import { Context } from "../context";
@@ -10,12 +10,12 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Products() {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
-  const [totalItems, setTotalItems] = getData?.cartTotal;
+  const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
   const [isLoggedIn, setIsLoggedIn] = getData?.auth;
   const router = useRouter();
   const initialState = {
     items: [],
-    total: totalItems,
+    total: totalQauntity,
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -30,7 +30,6 @@ export default function Products() {
         return {
           ...state,
           items: [...state.items, selectedProduct],
-          total: setTotalItems(totalItems + 1),
         };
     }
   };
@@ -47,6 +46,12 @@ export default function Products() {
       dispatch({ type: "ADD_PRODUCT", id: id });
     }
   };
+
+  useEffect(() => {
+    setTotalQuantity(
+      state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
+    );
+  }, [state]);
 
   return (
     <div class="container mx-auto w-1/2 py-12">
