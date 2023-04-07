@@ -61,6 +61,7 @@ export default function Cart() {
 
   useEffect(() => {
     setItems(state.items);
+    //eslint
   }, [state]);
 
   useEffect(() => {

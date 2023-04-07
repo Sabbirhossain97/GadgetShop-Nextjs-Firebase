@@ -5,7 +5,7 @@ import products from "../../products.json";
 import { useEffect, useState, useReducer, useContext } from "react";
 import { Context } from "../../context";
 
-const singleProduct = () => {
+const SingleProduct = () => {
   const [singleProduct, setSingleProduct] = useState([]);
   const router = useRouter();
   const getData = useContext(Context);
@@ -117,4 +117,4 @@ const singleProduct = () => {
   );
 };
 
-export default singleProduct;
+export default SingleProduct;
