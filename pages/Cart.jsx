@@ -63,7 +63,7 @@ export default function Cart() {
   useEffect(() => {
     setItems(state.items);
     
-  }, []);
+  }, [state]);
 
   useEffect(() => {
     let totalValue = state.items.reduce(

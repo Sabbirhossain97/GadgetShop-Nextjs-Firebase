@@ -24,7 +24,7 @@ const SingleProduct = () => {
   }
   useEffect(() => {
     getSingleProduct();
-  }, []);
+  }, [pid]);
 
   const initialState = {
     items: [],
@@ -48,10 +48,9 @@ const SingleProduct = () => {
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
-   useEffect(() => {
-     setItems(state.items);
-   }, []);
-
+  useEffect(() => {
+    setItems(state.items);
+  }, []);
 
   return (
     <div className="">
