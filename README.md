@@ -1,16 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS | Ecommerce Project
 
-## Getting Started
+## Project Status
 
-First, run the development server:
+This project is currently under development
+
+## Functionality
+
+- Users can login, register and sign out using "users.json" defined data and localStorage
+- Users can add product to cart, remove, increase quantity and view it on checkout page
+- No backend code 
+
+## Important Note
+
+- Use the predefined user data from "users.json" file
+
+## Installation
+
+1. Clone down this repository. You will need node and npm installed globally on your machine.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  $ git clone git@github.com:Sabbirhossain97/NextJS-ecommerce-project.git
+
 ```
+2. Install:
+```bash
+  $ npm install 
+
+```
+3. To Start Server: 
+
+```bash
+  $ npm run start/dev 
+
+```
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -36,3 +61,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Technology Used
+
+NextJS, Tailwind CSS, Axios
