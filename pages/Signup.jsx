@@ -15,27 +15,34 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     let register = users.filter((currentElm) => {
-      if (
-        currentElm.phone === phone &&
-        secret.some((item) => item.id === currentElm.id)
-      ) {
-        registerNotify(e);
+      if (currentElm.phone === phone && currentElm.password === password) {
         let jwt = secret.filter((item) => {
           if (item.id === currentElm.id) {
             localStorage.setItem("token", item.key);
-            return;
+            return item;
           }
         });
+        toast.success("Successfully registered!", {
+          position: "top-center",
+          autoClose: 3000,
+        });
+        setTimeout(() => {
+          router.push("/Signin");
+        }, 2000);
         return currentElm;
+      } else if (
+        currentElm.phone !== phone &&
+        currentElm.password !== password
+      ) {
+        toast.warn("You can only register with defined users!", {
+          toastId: "warn1",
+          position: "top-center",
+          autoClose: 3000,
+        });
       }
     });
-    setTimeout(() => {
-      router.push("/Signin");
-    }, 2000);
   };
-  const registerNotify = (e) => toast("Successfully Registered!");
 
   return (
     <div>
@@ -121,7 +128,7 @@ export default function Signup() {
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
                 Sign Up
               </button>
-              <ToastContainer theme="dark" />
+              <ToastContainer theme="light" />
               <div className="text-center mt-8">
                 <p>
                   <span className=" text-base font-medium text-center text-gray-900">

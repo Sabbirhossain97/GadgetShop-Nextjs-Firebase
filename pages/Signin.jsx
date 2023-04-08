@@ -16,41 +16,39 @@ export default function Signin() {
   const [isLoggedIn, setIsLoggedIn] = getData?.auth;
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
   const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!localStorage.getItem("token")) {
-      setTimeout(() => {
-        router.push("/Signup");
-        setMessage("Please Sign up!");
-      }, 2000);
-    } else {
-      let authUsers = users.filter((item) => {
-        if (item.phone === phone && item.password === password) {
-          localStorage.setItem("user", item.role);
-          localStorage.setItem("avatar", item.avatar);
-          Cookies.set("auth", "loggedIn");
-          setTimeout(() => {
-            router.push("/");
-          }, 2000);
-          setAvatar(localStorage.getItem("avatar"));
-          setPhone("");
-          setPassword("");
-          setIsLoggedIn(true);
-          setMessage("Successfully logged in!");
-          return item;
-        }
-      });
-    }
+    // if (!localStorage.getItem("token")) {
+    //   setTimeout(() => {
+    //     router.push("/Signup");
+    //     setMessage("Please Sign up!");
+    //   }, 2000);
+    // } else {
+    let authUsers = users.filter((item) => {
+      if (item.phone === phone && item.password === password) {
+        localStorage.setItem("user", item.role);
+        localStorage.setItem("avatar", item.avatar);
+        Cookies.set("auth", "loggedIn");
+        setTimeout(() => {
+          router.push("/");
+        }, 2000);
+        setAvatar(localStorage.getItem("avatar"));
+        setPhone("");
+        setPassword("");
+        setIsLoggedIn(true);
+        toast.success("Successfully logged in!", { position: "top-center" });
+        return item;
+      } else if (item.phone === phone && item.password !== password) {
+        toast.warn("Wrong Credentials", {
+          position: "top-center",
+          autoClose: 3000,
+        });
+      }
+    });
+    return authUsers;
   };
-  const logInNotify = () => toast(message);
-  useEffect(() => {
-    if (message) {
-      logInNotify();
-    } else return;
-  }, []);
 
   return (
     <div>
@@ -136,7 +134,7 @@ export default function Signin() {
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
                 Sign in
               </button>
-              <ToastContainer theme="dark" />
+              <ToastContainer theme="light" />
               <div className="text-center mt-8">
                 <p>
                   <span className=" text-base font-medium text-center text-gray-900">

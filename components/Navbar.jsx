@@ -5,6 +5,8 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import Cookies from "js-cookie";
 import { RxAvatar } from "react-icons/rx";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Navbar() {
   const getData = useContext(Context);
@@ -33,6 +35,10 @@ export default function Navbar() {
     setItems(null);
     setIsLoggedIn(false);
     setAvatar(null);
+    toast.success("You have been logged out!", {
+      position: "top-center",
+      autoClose: 3000,
+    });
   };
   const handleSignIn = () => {
     if (!isLoggedIn) {
@@ -41,6 +47,7 @@ export default function Navbar() {
   };
   return (
     <nav className="bg-gray-800 fixed right-0 left-0 top-0 z-10">
+      <ToastContainer theme="light" />
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -182,7 +189,6 @@ export default function Navbar() {
           </span>
         </div>
       </Link>
-
       <div className="sm:hidden " id="mobile-menu">
         <div className="space-y-1 px-2 pb-3 pt-2">
           <Link href="/">
