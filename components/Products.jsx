@@ -15,7 +15,6 @@ export default function Products() {
   const router = useRouter();
   const initialState = {
     items: [],
-    total: totalQauntity,
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -44,6 +43,13 @@ export default function Products() {
       router.push("/Signin");
     } else {
       dispatch({ type: "ADD_PRODUCT", id: id });
+    }
+  };
+  const goToSingleProduct = (id) => {
+    if (isLoggedIn) {
+      router.push(`/SingleProduct/${id}`);
+    } else {
+      router.push(`/Signin`);
     }
   };
 
@@ -80,8 +86,12 @@ export default function Products() {
                   ${item.price}
                 </p>
                 <div className="flex flex-row justify-center w-full">
-                  <button className="w-1/2 text-sm mt-4 border border-blue-500 text-blue-500 hover:bg-gray-100 py-2 px-1 hover:text-blue-700 font-semibold  rounded-lg">
-                    <Link href={`/SingleProduct/${item.id}`}> Details</Link>
+                  <button
+                    onClick={() => goToSingleProduct(item.id)}
+                    className="w-1/2 text-sm mt-4 border border-blue-500 text-blue-500 hover:bg-gray-100 py-2 px-1 hover:text-blue-700 font-semibold  rounded-lg"
+                  >
+                    {/* <Link href={`/SingleProduct/${item.id}`}> Details</Link> */}
+                    Details
                   </button>
                   <button
                     onClick={() => handleCartAction(item.id)}

@@ -185,11 +185,13 @@ export default function Cart() {
                   <div className="">
                     <p className="mb-1 text-lg font-bold ml-10">
                       $
-                      {items.reduce(
-                        (acm, currentElm) =>
-                          acm + currentElm.price * currentElm.quantity,
-                        0
-                      )}
+                      {items
+                        .reduce(
+                          (acm, currentElm) =>
+                            acm + currentElm.price * currentElm.quantity,
+                          0
+                        )
+                        .toFixed(2)}
                     </p>
                     <p className="text-sm text-gray-700 ml-4">including VAT</p>
                   </div>

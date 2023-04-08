@@ -11,7 +11,7 @@ const SingleProduct = () => {
   const getData = useContext(Context);
   const pid = router.query?.productId;
   const [items, setItems] = getData?.cart;
-  const [totalItems, setTotalItems] = getData?.cartTotal;
+  const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
 
   function getSingleProduct() {
     let filteredProduct = products.filter((item) => {
@@ -28,7 +28,6 @@ const SingleProduct = () => {
 
   const initialState = {
     items: [],
-    total: totalItems,
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -43,14 +42,17 @@ const SingleProduct = () => {
         return {
           ...state,
           items: [...state.items, selectedProduct],
-          total: setTotalItems(totalItems + 1),
         };
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
+
   useEffect(() => {
     setItems(state.items);
-  }, []);
+    setTotalQuantity(
+      state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
+    );
+  }, [state]);
 
   return (
     <div className="">
