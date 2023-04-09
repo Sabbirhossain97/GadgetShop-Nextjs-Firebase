@@ -13,7 +13,7 @@ export default function Home() {
         <link type="image/png" rel="icon" href="/favicon.ico" />
       </Head>
       <div className="font-inter">
-        <div class="bg-white ">
+        <div className="bg-white ">
           <header>
             <div>
               <Navbar />

@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer, useContext, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import Link from "next/link";
 import { Context } from "../context";
 import products from "../products.json";
 import { useRouter } from "next/router";
@@ -19,17 +18,45 @@ export default function Products() {
   const reducer = (state, action) => {
     switch (action.type) {
       case "ADD_PRODUCT":
-        let addedProduct = products.filter((currentElm) => {
+        let existingProduct = state.items.find((currentElm) => {
           if (currentElm.id === action.id) {
-            return { currentElm };
+            toast.error("Item already in the cart!", {
+              position: "top-center",
+              toastId: "error1",
+            });
+            return currentElm;
           }
         });
-        let [selectedProduct] = addedProduct;
 
-        return {
-          ...state,
-          items: [...state.items, selectedProduct],
-        };
+        if (existingProduct) {
+          let updatedCart = state.items.map((currentElm) => {
+            if (currentElm.id === action.id) {
+              let newAmount = currentElm.quantity + 1;
+              return {
+                ...currentElm,
+                quantity: newAmount,
+              };
+            } else {
+              return currentElm;
+            }
+          });
+          return {
+            ...state,
+            items: updatedCart,
+          };
+        } else {
+          let addedProduct = products.filter((currentElm) => {
+            if (currentElm.id === action.id) {
+              return { currentElm };
+            }
+          });
+          let [selectedProduct] = addedProduct;
+
+          return {
+            ...state,
+            items: [...state.items, selectedProduct],
+          };
+        }
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -60,9 +87,9 @@ export default function Products() {
   }, [state]);
 
   return (
-    <div class="container mx-auto w-1/2 py-12">
-      <div class="text-center mb-8">
-        <h2 class="text-3xl font-bold"> Products</h2>
+    <div className="container mx-auto w-1/2 py-12">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold"> Products</h2>
       </div>
       <div className="mt-12 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {products
