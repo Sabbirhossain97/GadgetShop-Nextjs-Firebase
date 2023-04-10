@@ -28,10 +28,11 @@ export default function Navbar() {
     }
   }, []);
 
-  const handleAuth = () => {
+  const handleSignOut = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("avatar");
     localStorage.removeItem("token");
+    Cookies.remove("auth");
     setItems(null);
     setIsLoggedIn(false);
     setAvatar(null);
@@ -39,7 +40,11 @@ export default function Navbar() {
       position: "top-center",
       autoClose: 3000,
     });
+    setTimeout(() => {
+      router.push("/");
+    }, 2000);
   };
+
   const handleSignIn = () => {
     if (!isLoggedIn) {
       router.push("/Signin");
@@ -159,10 +164,10 @@ export default function Navbar() {
 
                   {isLoggedIn ? (
                     <p
-                      onClick={handleAuth}
+                      onClick={handleSignOut}
                       className="cursor-pointer block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
-                      tabindex="-1"
+                      tabIndex="-1"
                       id="user-menu-item-2"
                     >
                       Sign Out
@@ -205,7 +210,7 @@ export default function Navbar() {
 
           {isLoggedIn ? (
             <p
-              onClick={handleAuth}
+              onClick={handleSignOut}
               className="cursor-pointer block px-4 py-2 text-sm text-white"
             >
               Sign Out

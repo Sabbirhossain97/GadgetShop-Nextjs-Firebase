@@ -60,14 +60,18 @@ export default function Products() {
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
-
   useEffect(() => {
     setItems(state.items);
   }, [state]);
-
   const handleCartAction = (id) => {
     if (!isLoggedIn) {
-      router.push("/Signin");
+      toast.warn("Please Sign in!", {
+        position: "top-center",
+        toastId: "warn1",
+      });
+      setTimeout(() => {
+        router.push("/Signin");
+      }, 2000);
     } else {
       dispatch({ type: "ADD_PRODUCT", id: id });
     }

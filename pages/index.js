@@ -4,7 +4,10 @@ import Features from "../components/Features";
 import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import Head from "next/head";
-export default function Home() {
+import Cookies from "js-cookie";
+
+export default function Home({ cookie }) {
+  console.log(cookie);
   return (
     <div>
       <Head>
@@ -199,4 +202,10 @@ export default function Home() {
       </div>
     </div>
   );
+}
+export async function getServerSideProps(context) {
+  const getCookie= 5
+  return {
+    props: { cookie: getCookie },
+  };
 }

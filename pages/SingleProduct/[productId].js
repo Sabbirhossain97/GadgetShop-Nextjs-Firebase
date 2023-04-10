@@ -4,6 +4,8 @@ import Footer from "../../components/Footer";
 import products from "../../products.json";
 import { useEffect, useState, useReducer, useContext } from "react";
 import { Context } from "../../context";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SingleProduct = () => {
   const [singleProduct, setSingleProduct] = useState([]);
@@ -32,17 +34,45 @@ const SingleProduct = () => {
   const reducer = (state, action) => {
     switch (action.type) {
       case "ADD_PRODUCT":
-        let addedProduct = products.filter((currentElm) => {
+        let existingProduct = state.items.find((currentElm) => {
           if (currentElm.id === action.id) {
-            return { currentElm };
+            toast.error("Item already in the cart!", {
+              position: "top-center",
+              toastId: "error1",
+            });
+            return currentElm;
           }
         });
-        let [selectedProduct] = addedProduct;
 
-        return {
-          ...state,
-          items: [...state.items, selectedProduct],
-        };
+        if (existingProduct) {
+          let updatedCart = state.items.map((currentElm) => {
+            if (currentElm.id === action.id) {
+              let newAmount = currentElm.quantity + 1;
+              return {
+                ...currentElm,
+                quantity: newAmount,
+              };
+            } else {
+              return currentElm;
+            }
+          });
+          return {
+            ...state,
+            items: updatedCart,
+          };
+        } else {
+          let addedProduct = products.filter((currentElm) => {
+            if (currentElm.id === action.id) {
+              return { currentElm };
+            }
+          });
+          let [selectedProduct] = addedProduct;
+
+          return {
+            ...state,
+            items: [...state.items, selectedProduct],
+          };
+        }
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -72,9 +102,7 @@ const SingleProduct = () => {
                     src={item.image}
                   />
                   <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-12 p-4 ">
-                    <h2 className="text-sm title-font text-gray-500 tracking-widest">
-                      PRODUCT NAME
-                    </h2>
+                   
                     <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                       {item.title}
                     </h1>

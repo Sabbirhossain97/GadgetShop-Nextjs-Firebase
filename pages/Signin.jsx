@@ -30,7 +30,7 @@ export default function Signin() {
       if (item.phone === phone && item.password === password) {
         localStorage.setItem("user", item.role);
         localStorage.setItem("avatar", item.avatar);
-        Cookies.set("auth", "loggedIn");
+        Cookies.set("auth", true);
         setTimeout(() => {
           router.push("/");
         }, 2000);
