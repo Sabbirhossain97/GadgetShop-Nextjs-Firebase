@@ -15,7 +15,7 @@ export default function Checkout() {
           <div className=" md:flex md:flex-row md:items-center md:justify-center flex flex-col min-h-screen mt-8  ">
             {/* form section */}
 
-            <div className=" w-2/5 mt-4">
+            <div className=" md:w-2/5 w-full md:mt-4 mt-12 ">
               <form className=" border-t border-l border-b border-r border-gray-200 w-full  p-8 bg-white rounded-xl ">
                 <p className="text-gray-800 font-medium text-xl">
                   Customer information
@@ -127,7 +127,7 @@ export default function Checkout() {
 
             {/*order summary section */}
 
-            <div className="border w-1/3 bg-white  border-gray-200 lg:block mb-20 h-3/4 rounded-xl ml-24">
+            <div className="border md:w-1/3 w-10/12 bg-white  border-gray-200 lg:block mb-20 h-3/4 rounded-xl md:ml-24 ml-10 mt-10">
               <h1 className="py-8 border-b-2 text-xl text-gray-600 px-10 ">
                 Order Summary
               </h1>
@@ -172,11 +172,15 @@ export default function Checkout() {
                   <span>Subtotal</span>
                   <span className="font-semibold ">
                     $
-                    {items ? (items.reduce(
-                      (acm, currentElm) =>
-                        acm + currentElm.price * currentElm.quantity,
-                      0
-                    )).toFixed(2) :''}
+                    {items
+                      ? items
+                          .reduce(
+                            (acm, currentElm) =>
+                              acm + currentElm.price * currentElm.quantity,
+                            0
+                          )
+                          .toFixed(2)
+                      : ""}
                   </span>
                 </div>
                 <div className="flex justify-between py-4 text-gray-600">
@@ -188,11 +192,15 @@ export default function Checkout() {
                 <span>Total</span>
                 <span>
                   $
-                  {items? (items.reduce(
-                    (acm, currentElm) =>
-                      acm + currentElm.price * currentElm.quantity,
-                    0
-                  )).toFixed(2): ''}
+                  {items
+                    ? items
+                        .reduce(
+                          (acm, currentElm) =>
+                            acm + currentElm.price * currentElm.quantity,
+                          0
+                        )
+                        .toFixed(2)
+                    : ""}
                 </span>
               </div>
             </div>

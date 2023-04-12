@@ -128,7 +128,7 @@ export default function CartSideBar({ setOpenSideBar, openSideBar }) {
                         {items
                           ? items.map((item) => (
                               <li className="flex py-6">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                <div className="h-32 px-2 py-2 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
                                     src={item.image}
                                     alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch."
