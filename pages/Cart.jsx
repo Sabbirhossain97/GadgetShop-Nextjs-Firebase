@@ -84,7 +84,7 @@ export default function Cart() {
             : ""}
         </h1>
         <div className="mt-20 mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
-          <div className="rounded-lg md:w-2/3">
+          <div className="relative rounded-lg md:w-2/3">
             {items
               ? items.map((item, key) => (
                   <div

@@ -176,7 +176,7 @@ export default function Checkout() {
                       (acm, currentElm) =>
                         acm + currentElm.price * currentElm.quantity,
                       0
-                    )) :''}
+                    )).toFixed(2) :''}
                   </span>
                 </div>
                 <div className="flex justify-between py-4 text-gray-600">
@@ -192,7 +192,7 @@ export default function Checkout() {
                     (acm, currentElm) =>
                       acm + currentElm.price * currentElm.quantity,
                     0
-                  )): ''}
+                  )).toFixed(2): ''}
                 </span>
               </div>
             </div>
