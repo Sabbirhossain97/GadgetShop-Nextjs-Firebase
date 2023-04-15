@@ -73,7 +73,6 @@ export default function Cart() {
       state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
     );
   }, [state]);
-  console.log(router);
 
   return (
     <div>
@@ -94,10 +93,10 @@ export default function Cart() {
                   <AiFillHome className="mt-0.5 text-slate-800 hover:text-blue-500 cursor-pointer" />
                 </Link>
                 <span className="text-gray-400">
-                  &nbsp;{router.pathname.slice(0, 1)}
+                  &nbsp;{router?.pathname.slice(0, 1)}
                 </span>{" "}
                 <span className="text-lg hover:text-blue-500 cursor-pointer">
-                  &nbsp;{router.pathname.slice(1)}
+                  &nbsp;{router?.pathname.slice(1)}
                 </span>
               </div>
             ) : (
