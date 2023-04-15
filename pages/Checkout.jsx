@@ -10,8 +10,7 @@ export default function Checkout() {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
   const router = useRouter();
-  let previousPath = router.query.name;
-  console.log(previousPath);
+  let previousPath = router?.query.name;
   return (
     <div>
       <Navbar />
