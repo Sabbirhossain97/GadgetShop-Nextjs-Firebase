@@ -63,7 +63,7 @@ export default function Navbar() {
     }
   };
   return (
-    <nav className="bg-gray-800 fixed right-0 left-0 top-0 z-10">
+    <nav className="bg-slate-800 fixed right-0 left-0 top-0 z-10">
       <ToastContainer theme="light" />
       {openSideBar ? (
         <CartSideBar

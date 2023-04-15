@@ -3,19 +3,42 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Context } from "../context";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { AiFillHome } from "react-icons/ai";
+
 export default function Checkout() {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
-
+  const router = useRouter();
+  let previousPath = router.query.name;
+  console.log(previousPath);
   return (
     <div>
       <Navbar />
       <div className="mx-auto w-11/12 relative ">
         <div className=" ">
-          <div className=" md:flex md:flex-row md:items-center md:justify-center flex flex-col min-h-screen mt-8  ">
+          <div className="relative md:flex md:flex-row md:items-center md:justify-center flex flex-col min-h-screen mt-16  ">
             {/* form section */}
-
-            <div className=" md:w-2/5 w-full md:mt-4 mt-12 ">
+            <div className=" absolute top-20 left-10 md:top-24 md:left-48 flex flex-row rounded-md text-xl font-medium text-black ">
+              <Link href="/">
+                <AiFillHome className="mt-0.5 text-slate-800 hover:text-blue-500 cursor-pointer" />
+              </Link>
+              <span className="text-gray-400">
+                &nbsp;{router.pathname.slice(0, 1)}
+              </span>
+              <Link href={router.query.name}>
+                <span className="cursor-pointer hover:text-blue-500 text-lg">
+                  &nbsp;{previousPath.slice(1)}
+                </span>
+              </Link>
+              <span className="text-gray-400">
+                &nbsp;{router.pathname.slice(0, 1)}
+              </span>
+              <span className="text-lg hover:text-blue-500 cursor-pointer">
+                &nbsp;{router.pathname.slice(1)}
+              </span>
+            </div>
+            <div className=" md:w-2/5 w-10/12 ml-10 md:ml-0 md:mt-4 mt-32">
               <form className=" border-t border-l border-b border-r border-gray-200 w-full  p-8 bg-white rounded-xl ">
                 <p className="text-gray-800 font-medium text-xl">
                   Customer information
@@ -28,9 +51,9 @@ export default function Checkout() {
                     Name
                   </label>
                   <input
-                    className="mt-2 w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                    className="placeholder:text-sm mt-2 w-full px-3 py-1 text-gray-700 bg-gray-200 rounded"
                     id="cus_name"
-                    name="cus_name"
+                    name="name"
                     type="text"
                     required=""
                     placeholder="Your Name"
@@ -40,14 +63,14 @@ export default function Checkout() {
                 <div className="mt-6">
                   <label
                     className="font-semibold block text-sm text-gray-600"
-                    htmlFor="cus_email"
+                    htmlFor="email"
                   >
                     Email
                   </label>
                   <input
-                    className="mt-2 w-full px-5  py-1 text-gray-700 bg-gray-200 rounded"
+                    className="placeholder:text-sm mt-2 w-full px-3  py-1 text-gray-700 bg-gray-200 rounded"
                     id="cus_email"
-                    name="cus_email"
+                    name="email"
                     type="text"
                     required=""
                     placeholder="Your Email"
@@ -59,7 +82,7 @@ export default function Checkout() {
                     Address
                   </label>
                   <input
-                    className="mt-2 w-full px-2 py-2 text-gray-700 bg-gray-200 rounded"
+                    className="placeholder:text-sm mt-2 w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
                     type="text"
                     required
                     placeholder="Street"
@@ -67,7 +90,7 @@ export default function Checkout() {
                 </div>
                 <div className="mt-4">
                   <input
-                    className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded"
+                    className="placeholder:text-sm w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
                     type="text"
                     required=""
                     placeholder="City"
@@ -75,7 +98,7 @@ export default function Checkout() {
                 </div>
                 <div className="inline-block mt-4 w-1/2 pr-1">
                   <input
-                    className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded"
+                    className="placeholder:text-sm w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
                     type="text"
                     required
                     placeholder="Country"
@@ -83,7 +106,7 @@ export default function Checkout() {
                 </div>
                 <div className="inline-block mt-2 -mx-0.5 pl-1 w-1/2">
                   <input
-                    className="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded"
+                    className="placeholder:text-sm w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
                     type="text"
                     required=""
                     placeholder="Zip"
@@ -100,7 +123,7 @@ export default function Checkout() {
                     Card
                   </label>
                   <input
-                    className="mt-2 w-full px-2 py-2 text-gray-700 bg-gray-200 rounded"
+                    className="placeholder:text-sm mt-2 w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
                     type="text"
                     required=""
                     placeholder="Card Number MM/YY CVC"
@@ -108,14 +131,14 @@ export default function Checkout() {
                 </div>
                 <div className="mt-8">
                   <button
-                    className="font-semibold px-4 py-2 text-white  bg-blue-500 hover:bg-blue-600 rounded"
+                    className="text-sm font-semibold px-4 py-2 text-white  bg-slate-800 hover:bg-slate-700 rounded-md"
                     type="submit"
                   >
                     Confirm Payment
                   </button>
                   <Link href="/">
                     <button
-                      className="ml-4 font-semibold px-4 py-2 text-white  bg-blue-500 hover:bg-blue-600 rounded"
+                      className="text-sm ml-4 font-semibold px-4 py-2 text-white  bg-slate-800 hover:bg-slate-700 rounded-md"
                       type="submit"
                     >
                       Cancel
@@ -127,47 +150,49 @@ export default function Checkout() {
 
             {/*order summary section */}
 
-            <div className="border md:w-1/3 w-10/12 bg-white  border-gray-200 lg:block mb-20 h-3/4 rounded-xl md:ml-24 ml-10 mt-10">
-              <h1 className="py-8 border-b-2 text-xl text-gray-600 px-10 ">
+            <div className="border md:w-1/3 w-10/12 bg-white  border-gray-200  md:mt-10 mt-8 mb-20 h-[610px] rounded-xl md:ml-24 ml-10 ">
+              <h1 className="py-4 border-b-2 text-xl text-gray-600 px-10 ">
                 Order Summary
               </h1>
-              <ul className="py-16 border-b space-y-6 px-8">
-                {items
-                  ? items.map((item, key) => (
-                      <li
-                        key={key}
-                        className="grid grid-cols-6 gap-2 border-b-1"
-                      >
-                        <div className="col-span-1 self-center">
-                          <img
-                            src={item.image}
-                            alt="Product"
-                            className="rounded w-full"
-                          />
-                        </div>
-                        <div className="flex flex-col col-span-3 pt-2">
-                          <span className="text-gray-600 text-md font-semi-bold">
-                            {item.title}
-                          </span>
-                          <span className="text-gray-400 text-sm inline-block pt-2">
-                            {item.category}
-                          </span>
-                        </div>
-                        <div className="col-span-2 pt-3">
-                          <div className="flex items-center space-x-2 text-sm justify-between">
-                            <span className="text-gray-400">
-                              {item.quantity} x ${item.price.toFixed(2)}
+              <div className="h-[340px] overflow-y-auto">
+                <ul className=" py-16  space-y-6 px-8  ">
+                  {items
+                    ? items.map((item, key) => (
+                        <li
+                          key={key}
+                          className="grid grid-cols-6 gap-2 border-b-1"
+                        >
+                          <div className="col-span-1 ">
+                            <img
+                              src={item.image}
+                              alt="Product"
+                              className="rounded w-full   "
+                            />
+                          </div>
+                          <div className="flex flex-col col-span-3 pt-2 ml-4">
+                            <span className="text-gray-600 text-md font-semi-bold">
+                              {item.title}
                             </span>
-                            <span className=" font-semibold inline-block">
-                              ${(item.quantity * item.price).toFixed(2)}
+                            <span className="text-gray-400 text-sm inline-block pt-2">
+                              {item.category}
                             </span>
                           </div>
-                        </div>
-                      </li>
-                    ))
-                  : ""}
-              </ul>
-              <div className="px-8 border-b">
+                          <div className="col-span-2 pt-3">
+                            <div className="flex items-center space-x-2 text-sm justify-between">
+                              <span className="text-gray-400">
+                                {item.quantity} x ${item.price.toFixed(2)}
+                              </span>
+                              <span className=" font-semibold inline-block">
+                                ${(item.quantity * item.price).toFixed(2)}
+                              </span>
+                            </div>
+                          </div>
+                        </li>
+                      ))
+                    : ""}
+                </ul>
+              </div>
+              <div className="px-8 border-b border-t border-gray-200 mt-8">
                 <div className="flex justify-between py-4 text-gray-600">
                   <span>Subtotal</span>
                   <span className="font-semibold ">
@@ -188,7 +213,7 @@ export default function Checkout() {
                   <span className="font-semibold ">Free</span>
                 </div>
               </div>
-              <div className="font-semibold text-xl px-8 flex justify-between py-8 text-gray-600">
+              <div className="font-semibold text-xl px-8 flex justify-between py-4 text-gray-600">
                 <span>Total</span>
                 <span>
                   $

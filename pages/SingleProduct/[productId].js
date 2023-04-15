@@ -10,6 +10,7 @@ import { TbReplace } from "react-icons/tb";
 import { SiAdguard } from "react-icons/si";
 import { MdLocalShipping } from "react-icons/md";
 import Link from "next/link";
+import { AiFillHome } from "react-icons/ai";
 
 const SingleProduct = () => {
   const [singleProduct, setSingleProduct] = useState([]);
@@ -96,18 +97,19 @@ const SingleProduct = () => {
           ? singleProduct.map((item, key) => (
               <section key={key} className="mt-16 text-gray-600  min-h-screen">
                 <div className="relative container px-5 py-24 mx-auto ">
-                  <p className="absolute md:left-52 top-12 text-2xl">
+                  <div className="flex flex-row text-xl absolute md:top-24 md:left-52 ">
                     <Link href="/">
                       <span className="text-blue-500 hover:text-blue-600">
-                        Home/
+                        <AiFillHome className="mt-1 text-slate-800 hover:text-slate-700" />
                       </span>
-                    </Link>{" "}
-                    {item.category}
-                  </p>
-                  <div className="lg:w-3/4 mx-auto flex flex-wrap ">
+                    </Link>
+                    &nbsp;{"/"}
+                    <p className="text-slate-900">&nbsp;{item.category}</p>
+                  </div>
+                  <div className="mt-10 lg:w-3/4 mx-auto flex flex-wrap ">
                     <img
                       alt="ecommerce"
-                      className="border border-gray-200 lg:w-1/2 w-full lg:h-auto h-54 object-fit px-24 py-2 rounded-md"
+                      className="border border-gray-200 lg:w-1/2 w-full lg:h-auto h-54 object-contain px-24 py-2 rounded-md"
                       src={item.image}
                     />
                     <div className=" lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 py-8">
@@ -169,31 +171,33 @@ const SingleProduct = () => {
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            className="w-4 h-4 text-gray-500"
+                            className="w-4 h-4 text-gray-400"
                             viewBox="0 0 24 24"
                           >
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                           </svg>
-                          <span className="text-gray-600 ml-3">4 Reviews</span>
+                          <span className="text-blue-600 ml-3">
+                            {"( 42 Reviews )"}
+                          </span>
                         </span>
                       </div>
                       <p className="leading-relaxed">{item.description}</p>
                       <div className="flex flex-row justify-between mt-12 items-center mb-5 ">
                         <div className="flex flex-col items-center ">
                           <span className="border p-2 rounded-full bg-gray-100">
-                            <MdLocalShipping className="text-3xl text-blue-500 " />
+                            <MdLocalShipping className="text-3xl text-slate-800 " />
                           </span>
                           <p>Free Delivery</p>
                         </div>
                         <div className="flex flex-col items-center">
                           <span className="border p-2 rounded-full bg-gray-100">
-                            <TbReplace className="text-3xl text-blue-500 " />
+                            <TbReplace className="text-3xl text-slate-800 " />
                           </span>
                           <p>30 days replacement </p>
                         </div>
                         <div className="flex flex-col items-center">
                           <span className="border p-2 rounded-full bg-gray-100">
-                            <SiAdguard className="text-3xl text-blue-500 " />
+                            <SiAdguard className="text-3xl text-slate-800 " />
                           </span>
                           <p>2 years warranty</p>
                         </div>
@@ -208,7 +212,7 @@ const SingleProduct = () => {
                           <span className="text-blue-500">{item.category}</span>
                         </span>
                       </div>
-                      <div className="flex mt-12  ">
+                      <div className="flex mt-12 border-t border-gray-200 py-4 ">
                         <span className="title-font font-medium text-2xl text-gray-900">
                           ${item.price}
                         </span>
@@ -216,7 +220,7 @@ const SingleProduct = () => {
                           onClick={() =>
                             dispatch({ type: "ADD_PRODUCT", id: item.id })
                           }
-                          className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
+                          className="flex ml-auto text-white bg-slate-800 border-0 py-2 px-6 focus:outline-none hover:bg-slate-700 rounded"
                         >
                           Add to cart
                         </button>

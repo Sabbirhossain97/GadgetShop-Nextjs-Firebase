@@ -2,6 +2,9 @@ import "../globals.css";
 import { Context } from "../context";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
@@ -24,7 +27,10 @@ export default function MyApp({ Component, pageProps }) {
         auth: [isLoggedIn, setIsLoggedIn],
       }}
     >
-      <Component {...pageProps} />
+      {" "}
+      <div className={inter.className}>
+        <Component {...pageProps} />
+      </div>
     </Context.Provider>
   );
 }

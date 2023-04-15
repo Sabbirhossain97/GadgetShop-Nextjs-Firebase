@@ -5,7 +5,8 @@ import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import Head from "next/head";
 import Cookies from "js-cookie";
-
+import Carousel from "../components/Carousel";
+import Shop from "../pages/Shop"
 export default function Home({ cookie }) {
   return (
     <div>
@@ -21,9 +22,10 @@ export default function Home({ cookie }) {
               <Navbar />
             </div>
           </header>
-         
-          <div className="mt-44">
-            <Products />
+
+          <div className=" mx-auto">
+            <Carousel />
+            <Shop />
             <Features />
             <Footer />
           </div>
