@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Context } from "../context";
@@ -9,8 +9,12 @@ import { AiFillHome } from "react-icons/ai";
 export default function Checkout() {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
+  const [previousPath, setPreviousPath] = useState("");
   const router = useRouter();
-  let previousPath = router?.query.name;
+  // let previousPath = router?.query.name;
+  useEffect(() => {
+    setPreviousPath(router?.query.name);
+  }, [router]);
   return (
     <div>
       <Navbar />
@@ -23,18 +27,18 @@ export default function Checkout() {
                 <AiFillHome className="mt-0.5 text-slate-800 hover:text-blue-500 cursor-pointer" />
               </Link>
               <span className="text-gray-400">
-                &nbsp;{router?.pathname.slice(0, 1)}
+                &nbsp;{previousPath ? router?.pathname.slice(0, 1) : ""}
               </span>
               <Link href={router?.query.name}>
                 <span className="cursor-pointer hover:text-blue-500 text-lg">
-                  &nbsp;{previousPath.slice(1)}
+                  &nbsp;{previousPath ? previousPath.slice(1) : ""}
                 </span>
               </Link>
               <span className="text-gray-400">
-                &nbsp;{router?.pathname.slice(0, 1)}
+                &nbsp;{previousPath ? router?.pathname.slice(0, 1) : ""}
               </span>
               <span className="text-lg hover:text-blue-500 cursor-pointer">
-                &nbsp;{router?.pathname.slice(1)}
+                &nbsp;{previousPath ? router?.pathname.slice(1) : ""}
               </span>
             </div>
             <div className=" md:w-2/5 w-10/12 ml-10 md:ml-0 md:mt-4 mt-32">
