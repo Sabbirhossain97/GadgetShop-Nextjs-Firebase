@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Context } from "../../context";
 import { useRouter } from "next/router";
 import { AiFillHome } from "react-icons/ai";
+import EmptyCart from "../../components/EmptyCart";
 
 export default function Cart() {
   const getData = useContext(Context);
@@ -53,6 +54,11 @@ export default function Cart() {
         return {
           items: deleteProduct,
         };
+      case "CLEAR_ALL":
+        return {
+          ...state,
+          items: [],
+        };
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -62,29 +68,41 @@ export default function Cart() {
   }, [state]);
 
   useEffect(() => {
-    let totalValue = state.items.reduce(
-      (acm, currentElm) => acm + currentElm.price * currentElm.quantity,
-      0
-    );
-    setSubtotal(totalValue);
+    if (state) {
+      let totalValue = state.items.reduce(
+        (acm, currentElm) => acm + currentElm.price * currentElm.quantity,
+        0
+      );
+      setSubtotal(totalValue);
+    } else return;
   }, [state]);
   useEffect(() => {
-    setTotalQuantity(
-      state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
-    );
+    if (state) {
+      setTotalQuantity(
+        state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
+      );
+    } else return;
   }, [state]);
-
+  console.log(state);
   return (
     <div>
       <Navbar />
       <div className="min-h-screen bg-gray-100/50 p-20 ">
-        <h1 className="mt-8 mb-10 text-center text-4xl font-bold">
-          {items
-            ? items.length === 0
-              ? "Your Cart is Empty!"
-              : "Shopping Cart"
-            : ""}
-        </h1>
+        {items ? (
+          items.length === 0 ? (
+            <div>
+              {" "}
+              <EmptyCart />{" "}
+            </div>
+          ) : (
+            <h1 className="mt-4 mb-10 text-center text-4xl font-bold">
+              Shopping Cart{" "}
+            </h1>
+          )
+        ) : (
+          ""
+        )}
+
         <div className="max-w-5xl mx-auto relative ">
           {items ? (
             items.length > 0 ? (
@@ -230,7 +248,13 @@ export default function Cart() {
                     type="text"
                     className="w-full mt-4 py-1.5 rounded-md focus:outline-none px-2"
                   />
-                  <button className=" bottom-8 mt-12 w-full  mx-auto rounded-md bg-slate-800 py-1.5 font-medium text-blue-50 hover:bg-slate-700">
+                  <button
+                    onClick={() => dispatch({ type: "CLEAR_ALL" })}
+                    className=" bottom-8 mt-12 w-full  mx-auto rounded-md bg-red-600 py-1.5 font-medium text-blue-50 hover:bg-red-700"
+                  >
+                    Clear All<span className="ml-2"></span>
+                  </button>
+                  <button className=" bottom-8 mt-4 w-full  mx-auto rounded-md bg-slate-800 py-1.5 font-medium text-blue-50 hover:bg-slate-700">
                     <Link href="/Shop/Checkout">
                       Checkout<span className="ml-2">&rarr;</span>
                     </Link>

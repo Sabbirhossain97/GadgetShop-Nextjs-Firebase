@@ -101,7 +101,7 @@ export default function Products() {
           ? products.map((item, key) => (
               <div
                 key={key}
-                className="relative mx-auto p-4 group border rounded-lg shadow-lg md:w-11/12 w-4/5 h-96 hover:shadow-xl transition duration-300 flex flex-col items-center justify-center"
+                className="relative mx-auto p-4 group border rounded-lg shadow-lg md:w-11/12 w-3/4 h-96 hover:shadow-xl transition duration-300 flex flex-col items-center justify-center"
               >
                 <div
                   onClick={() => goToSingleProduct(item.id)}

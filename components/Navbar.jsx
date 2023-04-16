@@ -17,6 +17,7 @@ export default function Navbar() {
   const [avatar, setAvatar] = getData?.userAvatar;
   const [cartTotalValue, setCartTotalValue] = getData?.cartTotal;
   const [isOpen, setIsOpen] = useState(false);
+  const [showSideCart, setShowSideCart] = useState(false);
   const [openSideBar, setOpenSideBar] = useState(false);
   const [role, setRole] = useState("");
   const router = useRouter();
@@ -55,18 +56,24 @@ export default function Navbar() {
   };
   const goToCart = () => {
     if (window.innerWidth < 800) {
-      // router.push("/CartSideBar");
-      setOpenSideBar(true);
+      setShowSideCart(true);
     } else if (window.innerWidth > 800) {
-      setOpenSideBar(false);
-      router.push("/Shop/Cart");
+      setShowSideCart(false);
+      if (!isLoggedIn) {
+        router.push("/Signin");
+      } else {
+        router.push("/Shop/Cart");
+      }
     }
   };
+
   return (
     <nav className="bg-slate-800 fixed right-0 left-0 top-0 z-10">
       <ToastContainer theme="light" />
-      {openSideBar ? (
+      {showSideCart ? (
         <CartSideBar
+          setShowSideCart={setShowSideCart}
+          showSideCart={showSideCart}
           setOpenSideBar={setOpenSideBar}
           openSideBar={openSideBar}
         />
@@ -128,7 +135,6 @@ export default function Navbar() {
                 </Link>
 
                 {isLoggedIn ? (
-                  // <Link href="/Cart">
                   <p
                     onClick={goToCart}
                     className="cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
@@ -136,7 +142,6 @@ export default function Navbar() {
                     Cart
                   </p>
                 ) : (
-                  /* </Link> */
                   <Link href="/Signin">
                     <p className="cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                       Cart
@@ -153,7 +158,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={goToCart}
-              className="relative  rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              className="relative hover:bg-slate-900 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
               <AiOutlineShoppingCart className=" text-gray-100/50 text-3xl" />
               <span className="absolute top-0 right-1 text-xs text-white bg-blue-500 h-4 w-4   rounded-full">

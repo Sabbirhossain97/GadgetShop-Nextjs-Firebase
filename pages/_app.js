@@ -6,13 +6,13 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
   const [cartItem, setCartItem] = useState(null);
   const [totalCartItem, setTotalCartItem] = useState(0);
   const [avatar, setAvatar] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  let cookie= Cookies.get('auth')
+  let cookie = Cookies.get("auth");
+
   useEffect(() => {
     const item = localStorage.getItem("avatar");
     setAvatar(item);

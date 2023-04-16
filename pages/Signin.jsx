@@ -53,8 +53,8 @@ export default function Signin() {
   return (
     <div>
       <Navbar />
-      <div className="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl">
+      <div className="bg-gray-100 flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div className="bg-white w-full max-w-md space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl">
           <div>
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign in to your account
@@ -75,7 +75,7 @@ export default function Signin() {
                   required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-2xl bg-white border border-gray-400"
+                  className="placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-md bg-white border border-gray-400"
                   placeholder="Phone"
                 />
               </div>
@@ -91,7 +91,7 @@ export default function Signin() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="mt-4 placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-2xl bg-white border border-gray-400"
+                  className="mt-4 placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-md bg-white border border-gray-400"
                   placeholder="Password"
                 />
               </div>
@@ -113,14 +113,7 @@ export default function Signin() {
                 </label>
               </div>
 
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot your password?
-                </a>
-              </div>
+           
             </div>
 
             <div>
@@ -129,7 +122,7 @@ export default function Signin() {
                 onClick={(e) => {
                   handleSubmit(e);
                 }}
-                className="w-full p-3 bg-blue-500 rounded-2xl hover:bg-blue-600 text-white"
+                className="w-full p-3 bg-slate-800 rounded-md hover:bg-slate-700 text-white"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
                 Sign in
@@ -142,7 +135,7 @@ export default function Signin() {
                   </span>
 
                   <Link href="/Signup">
-                    <span className="ml-2 text-base font-medium text-center text-[#377dff]">
+                    <span className="ml-2 text-base font-bold text-center text-slate-800 hover:text-blue-700">
                       Sign Up
                     </span>
                   </Link>

@@ -4,7 +4,12 @@ import { MdDelete } from "react-icons/md";
 import { BsCartX } from "react-icons/bs";
 import Link from "next/link";
 
-export default function CartSideBar({ setOpenSideBar, openSideBar }) {
+export default function CartSideBar({
+  setShowSideCart,
+  showSideCart,
+  setOpenSideBar,
+  openSideBar,
+}) {
   const getData = useContext(Context);
   const [items, setItems] = getData?.cart;
   const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
@@ -71,20 +76,25 @@ export default function CartSideBar({ setOpenSideBar, openSideBar }) {
       state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
     );
   }, [state]);
-  console.log(items);
+
+  useEffect(() => {
+    setOpenSideBar(!openSideBar);
+  }, [showSideCart]);
+
   return (
     <div className="relative z-10 ">
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-200 ease-in-out"></div>
 
-      <div className="fixed inset-0 overflow-hidden ease-in-out duration-300 translate-x-0">
-        <div className="absolute inset-0 overflow-hidden translate-x-0">
-          <div
-            className={` fixed inset-y-0 right-0 flex transition pl-10 ease-in-out duration-300 
-            `}
-          >
+      <div className="fixed inset-0 overflow-hidden translate-x-0">
+        <div
+          className={`absolute inset-0 overflow-hidden${
+            showSideCart&&openSideBar ? "translate-x-0" : "translate-x-full "
+          } ease-in-out duration-300`}
+        >
+          <div className=" fixed inset-y-0 right-0 flex transition pl-10 ease-in-out duration-300 ">
             <div className="pointer-events-auto w-screen max-w-md">
               <div
-                className={`flex h-full flex-col bg-white shadow-xl ease-in-out duration-300 `}
+                className={`flex h-full flex-col bg-white shadow-xl ease-in-out duration-300  `}
               >
                 <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 ">
                   <div className="flex items-start justify-between border-b p-2 border-gray-200">
@@ -97,10 +107,9 @@ export default function CartSideBar({ setOpenSideBar, openSideBar }) {
                     <div className="ml-3 flex h-7 items-center">
                       <button
                         type="button"
-                        onClick={() => setOpenSideBar(false)}
+                        onClick={() => setShowSideCart(!showSideCart)}
                         className="-m-2 p-2 text-gray-400 hover:text-gray-500"
                       >
-                        <span className="sr-only">Close panel</span>
                         <svg
                           className="h-6 w-6"
                           fill="red"
@@ -227,7 +236,7 @@ export default function CartSideBar({ setOpenSideBar, openSideBar }) {
                       </p>
                       <div className="mt-6">
                         <Link href="/Checkout">
-                          <p className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                          <p className="flex items-center justify-center rounded-md border border-transparent bg-slate-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-slate-700">
                             Checkout
                             <span className="ml-2 text-lg"> &rarr;</span>
                           </p>
@@ -236,7 +245,7 @@ export default function CartSideBar({ setOpenSideBar, openSideBar }) {
                     </div>
                   )}
                   <Link href="/">
-                    <p className="mt-6 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                    <p className="mt-6 flex items-center justify-center rounded-md border border-transparent bg-slate-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-slate-700">
                       <span className=" text-lg"> &larr;</span>
                       <span className="ml-2">Continue Shopping </span>
                     </p>
