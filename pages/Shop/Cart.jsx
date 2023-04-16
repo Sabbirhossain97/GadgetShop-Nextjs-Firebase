@@ -1,8 +1,8 @@
 import React, { useContext, useReducer, useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import Link from "next/link";
-import { Context } from "../context";
+import { Context } from "../../context";
 import { useRouter } from "next/router";
 import { AiFillHome } from "react-icons/ai";
 
@@ -12,6 +12,7 @@ export default function Cart() {
   const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
   const [subtotal, setSubtotal] = useState(null);
   const router = useRouter();
+  const pathName= router.pathname
   const initialState = {
     items: items,
     total: totalQauntity,
@@ -234,7 +235,7 @@ export default function Cart() {
                     <Link
                       href={{
                         pathname: "/Checkout",
-                        query: { name: router.pathname },
+                        query: { name: pathName },
                       }}
                     >
                       Checkout<span className="ml-2">&rarr;</span>

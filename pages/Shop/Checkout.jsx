@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import { Context } from "../context";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import { Context } from "../../context";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { AiFillHome } from "react-icons/ai";
@@ -11,7 +11,6 @@ export default function Checkout() {
   const [items, setItems] = getData?.cart;
   const [previousPath, setPreviousPath] = useState("");
   const router = useRouter();
-  // let previousPath = router?.query.name;
   useEffect(() => {
     setPreviousPath(router?.query.name);
   }, [router]);
