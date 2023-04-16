@@ -12,7 +12,6 @@ export default function Cart() {
   const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
   const [subtotal, setSubtotal] = useState(null);
   const router = useRouter();
-  const pathName= router.pathname
   const initialState = {
     items: items,
     total: totalQauntity,
@@ -97,7 +96,7 @@ export default function Cart() {
                   &nbsp;{router?.pathname.slice(0, 1)}
                 </span>{" "}
                 <span className="text-lg hover:text-blue-500 cursor-pointer">
-                  &nbsp;{router?.pathname.slice(1)}
+                  &nbsp;Cart
                 </span>
               </div>
             ) : (
@@ -232,12 +231,7 @@ export default function Cart() {
                     className="w-full mt-4 py-1.5 rounded-md focus:outline-none px-2"
                   />
                   <button className=" bottom-8 mt-12 w-full  mx-auto rounded-md bg-slate-800 py-1.5 font-medium text-blue-50 hover:bg-slate-700">
-                    <Link
-                      href={{
-                        pathname: "/Checkout",
-                        query: { name: pathName },
-                      }}
-                    >
+                    <Link href="/Shop/Checkout">
                       Checkout<span className="ml-2">&rarr;</span>
                     </Link>
                   </button>

@@ -59,7 +59,7 @@ export default function Navbar() {
       setOpenSideBar(true);
     } else if (window.innerWidth > 800) {
       setOpenSideBar(false);
-      router.push("/Cart");
+      router.push("/Shop/Cart");
     }
   };
   return (
