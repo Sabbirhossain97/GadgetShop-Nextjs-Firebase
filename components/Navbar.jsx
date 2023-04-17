@@ -12,13 +12,12 @@ import CartSideBar from "./CartSideBar";
 export default function Navbar() {
   const getData = useContext(Context);
   const [openDropDown, setOpenDropDown] = useState(false);
-  const [items, setItems] = getData?.cart;
+  const [state, dispatch] = getData?.cartReducer;
   const [isLoggedIn, setIsLoggedIn] = getData?.auth;
   const [avatar, setAvatar] = getData?.userAvatar;
   const [cartTotalValue, setCartTotalValue] = getData?.cartTotal;
   const [isOpen, setIsOpen] = useState(false);
-  const [showSideCart, setShowSideCart] = useState(false);
-  const [openSideBar, setOpenSideBar] = useState(false);
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const [role, setRole] = useState("");
   const router = useRouter();
 
@@ -37,7 +36,7 @@ export default function Navbar() {
     localStorage.removeItem("avatar");
     localStorage.removeItem("token");
     Cookies.remove("auth");
-    setItems(null);
+    dispatch({type: "CLEAR_ALL"})
     setIsLoggedIn(false);
     setAvatar(null);
     toast.success("You have been logged out!", {
@@ -56,9 +55,9 @@ export default function Navbar() {
   };
   const goToCart = () => {
     if (window.innerWidth < 800) {
-      setShowSideCart(true);
+      setIsSideBarOpen(!isSideBarOpen);
     } else if (window.innerWidth > 800) {
-      setShowSideCart(false);
+      setIsSideBarOpen(!isSideBarOpen);
       if (!isLoggedIn) {
         router.push("/Signin");
       } else {
@@ -70,16 +69,11 @@ export default function Navbar() {
   return (
     <nav className="bg-slate-800 fixed right-0 left-0 top-0 z-10">
       <ToastContainer theme="light" />
-      {showSideCart ? (
-        <CartSideBar
-          setShowSideCart={setShowSideCart}
-          showSideCart={showSideCart}
-          setOpenSideBar={setOpenSideBar}
-          openSideBar={openSideBar}
-        />
-      ) : (
-        ""
-      )}
+
+      <CartSideBar
+        setIsSideBarOpen={setIsSideBarOpen}
+        isSideBarOpen={isSideBarOpen}
+      />
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -158,7 +152,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={goToCart}
-              className="relative hover:bg-slate-900 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              className="relative hover:bg-slate-900 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none  focus:ring-1 focus:ring-offset-2 focus:ring-offset-gray-800"
             >
               <AiOutlineShoppingCart className=" text-gray-100/50 text-3xl" />
               <span className="absolute top-0 right-1 text-xs text-white bg-blue-500 h-4 w-4   rounded-full">
@@ -185,7 +179,11 @@ export default function Navbar() {
               </div>
 
               {openDropDown && (
-                <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div
+                  className={`absolute right-0 z-2 mt-2 transition-all origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+                    openDropDown ? "w-48" : "w-0"
+                  }  ease-in-out duration-500`}
+                >
                   <Link href="/">
                     <p
                       className="block px-4 py-2 text-sm text-gray-700"
@@ -232,8 +230,9 @@ export default function Navbar() {
 
       {isOpen ? (
         <div
-          className="sm:hidden transition-all ease-in-out delay-300"
-          id="mobile-menu"
+          className={`sm:hidden transition-all${
+            isOpen ? "h-24" : "h-0"
+          } ease-in-out delay-300`}
         >
           <div className="space-y-1 px-2 pb-3 pt-2">
             <Link href="/">

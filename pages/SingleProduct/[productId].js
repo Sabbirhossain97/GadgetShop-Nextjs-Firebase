@@ -17,8 +17,8 @@ const SingleProduct = () => {
   const router = useRouter();
   const getData = useContext(Context);
   const pid = router.query?.productId;
-  const [items, setItems] = getData?.cart;
   const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
+  const [state, dispatch] = getData?.cartReducer;
 
   function getSingleProduct() {
     let filteredProduct = products.filter((item) => {
@@ -33,57 +33,7 @@ const SingleProduct = () => {
     getSingleProduct();
   }, [pid]);
 
-  const initialState = {
-    items: [],
-  };
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "ADD_PRODUCT":
-        let existingProduct = state.items.find((currentElm) => {
-          if (currentElm.id === action.id) {
-            toast.error("Item already in the cart!", {
-              position: "top-center",
-              toastId: "error1",
-            });
-            return currentElm;
-          }
-        });
-
-        if (existingProduct) {
-          let updatedCart = state.items.map((currentElm) => {
-            if (currentElm.id === action.id) {
-              let newAmount = currentElm.quantity + 1;
-              return {
-                ...currentElm,
-                quantity: newAmount,
-              };
-            } else {
-              return currentElm;
-            }
-          });
-          return {
-            ...state,
-            items: updatedCart,
-          };
-        } else {
-          let addedProduct = products.filter((currentElm) => {
-            if (currentElm.id === action.id) {
-              return { currentElm };
-            }
-          });
-          let [selectedProduct] = addedProduct;
-
-          return {
-            ...state,
-            items: [...state.items, selectedProduct],
-          };
-        }
-    }
-  };
-  const [state, dispatch] = useReducer(reducer, initialState);
-
   useEffect(() => {
-    setItems(state.items);
     setTotalQuantity(
       state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
     );
@@ -124,9 +74,9 @@ const SingleProduct = () => {
                           <svg
                             fill="currentColor"
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             className="w-4 h-4 text-yellow-400"
                             viewBox="0 0 24 24"
                           >
@@ -135,9 +85,9 @@ const SingleProduct = () => {
                           <svg
                             fill="currentColor"
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             className="w-4 h-4 text-yellow-400"
                             viewBox="0 0 24 24"
                           >
@@ -146,9 +96,9 @@ const SingleProduct = () => {
                           <svg
                             fill="currentColor"
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             className="w-4 h-4 text-yellow-400"
                             viewBox="0 0 24 24"
                           >
@@ -157,9 +107,9 @@ const SingleProduct = () => {
                           <svg
                             fill="currentColor"
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             className="w-4 h-4 text-yellow-400"
                             viewBox="0 0 24 24"
                           >
@@ -168,9 +118,9 @@ const SingleProduct = () => {
                           <svg
                             fill="none"
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             className="w-4 h-4 text-gray-400"
                             viewBox="0 0 24 24"
                           >

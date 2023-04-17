@@ -1,95 +1,47 @@
-import React, { useContext, useReducer, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context";
 import { MdDelete } from "react-icons/md";
 import { BsCartX } from "react-icons/bs";
 import Link from "next/link";
 
-export default function CartSideBar({
-  setShowSideCart,
-  showSideCart,
-  setOpenSideBar,
-  openSideBar,
-}) {
+export default function CartSideBar({ isSideBarOpen, setIsSideBarOpen }) {
   const getData = useContext(Context);
-  const [items, setItems] = getData?.cart;
   const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
+  const [state, dispatch] = getData?.cartReducer;
   const [subtotal, setSubtotal] = useState(null);
-
-  const initialState = {
-    items: items,
-    total: totalQauntity,
-  };
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "INCREMENT_QUANTITY":
-        let incrementQuantity = state.items.map((currentElm) => {
-          if (currentElm.id === action.id) {
-            return { ...currentElm, quantity: currentElm.quantity + 1 };
-          }
-          return currentElm;
-        });
-
-        return {
-          ...state,
-          items: incrementQuantity,
-        };
-      case "DECREMENT_QUANTITY":
-        let decrementQuantity = state.items.map((currentElm) => {
-          if (currentElm.id === action.id) {
-            if (currentElm.quantity > 1) {
-              return { ...currentElm, quantity: currentElm.quantity - 1 };
-            }
-          }
-          return currentElm;
-        });
-        return {
-          ...state,
-          items: decrementQuantity,
-        };
-
-      case "REMOVE_PRODUCT":
-        let deleteProduct = state.items.filter((item) => {
-          if (item.id !== action.id) {
-            return item;
-          }
-        });
-        return {
-          items: deleteProduct,
-        };
-    }
-  };
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    setItems(state.items);
-  }, [state]);
-
   useEffect(() => {
     let totalValue = state.items.reduce(
       (acm, currentElm) => acm + currentElm.price * currentElm.quantity,
       0
     );
     setSubtotal(totalValue);
-  }, [state]);
-  useEffect(() => {
     setTotalQuantity(
       state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
     );
   }, [state]);
 
-  useEffect(() => {
-    setOpenSideBar(!openSideBar);
-  }, [showSideCart]);
-
+  const clearCart = () => {
+    dispatch({ type: "CLEAR_ALL" });
+    setTimeout(() => {
+      setIsSideBarOpen(!isSideBarOpen);
+    }, 1500);
+  };
   return (
-    <div className="relative z-10 ">
-      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-200 ease-in-out"></div>
-
-      <div className="fixed inset-0 overflow-hidden translate-x-0">
+    <div className={`relative ${isSideBarOpen ? "z-10" : ""}`}>
+      <div
+        className={`  transition-opacity duration-400 ease-in-out ${
+          isSideBarOpen
+            ? "fixed bg-gray-500 bg-opacity-75 inset-0  "
+            : "bg-white bg-opacity-0"
+        }`}
+      ></div>
+      <div
+        className={` overflow-hidden ${isSideBarOpen ? "fixed inset-0" : ""}`}
+      >
         <div
-          className={`absolute inset-0 overflow-hidden${
-            showSideCart&&openSideBar ? "translate-x-0" : "translate-x-full "
-          } ease-in-out duration-300`}
+          className={`absolute inset-0 overflow-hidden transition ease-in-out duration-500 ${
+            isSideBarOpen ? "translate-x-0" : "translate-x-full"
+          } `}
         >
           <div className=" fixed inset-y-0 right-0 flex transition pl-10 ease-in-out duration-300 ">
             <div className="pointer-events-auto w-screen max-w-md">
@@ -107,8 +59,10 @@ export default function CartSideBar({
                     <div className="ml-3 flex h-7 items-center">
                       <button
                         type="button"
-                        onClick={() => setShowSideCart(!showSideCart)}
-                        className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                        onClick={() => {
+                          setIsSideBarOpen(!isSideBarOpen);
+                        }}
+                        className="-m-2 p-0.5  rounded-md text-gray-400 hover:text-red-500 "
                       >
                         <svg
                           className="h-6 w-6"
@@ -134,9 +88,9 @@ export default function CartSideBar({
                         role="list"
                         className="-my-6 divide-y divide-gray-200 overflow-y-auto"
                       >
-                        {items
-                          ? items.map((item) => (
-                              <li className="flex py-6">
+                        {state.items
+                          ? state.items.map((item, key) => (
+                              <li key={key} className="flex py-6">
                                 <div className="h-32 px-2 py-2 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
                                     src={item.image}
@@ -177,6 +131,7 @@ export default function CartSideBar({
                                         className="h-7 w-8 border bg-white text-center text-xs outline-none"
                                         type="number"
                                         value={item.quantity}
+                                        readOnly
                                         min="1"
                                       />
                                       <span
@@ -211,11 +166,15 @@ export default function CartSideBar({
                       </ul>
                     </div>
 
-                    {state.items.length === 0 ? (
-                      <div className="absolute top-[200px] left-1/3">
-                        <BsCartX className=" text-9xl" />
-                        <p className="text-xl mt-6 ml-2">Cart is Empty!</p>
-                      </div>
+                    {state.items ? (
+                      state.items.length === 0 ? (
+                        <div className="absolute top-[200px] left-1/3">
+                          <BsCartX className=" text-9xl" />
+                          <p className="text-xl mt-6 ml-2">Cart is Empty!</p>
+                        </div>
+                      ) : (
+                        ""
+                      )
                     ) : (
                       ""
                     )}
@@ -223,33 +182,46 @@ export default function CartSideBar({
                 </div>
 
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                  {state.items.length === 0 ? (
-                    ""
+                  {state.items ? (
+                    state.items.length === 0 ? (
+                      ""
+                    ) : (
+                      <div>
+                        <div className="flex justify-between text-base font-medium text-gray-900">
+                          <p>Subtotal</p>
+                          <p>${subtotal ? subtotal.toFixed(2) : ""}</p>
+                        </div>
+                        <p className="mt-0.5 text-sm text-gray-500">
+                          Shipping and taxes calculated at checkout.
+                        </p>
+                        <div className="mt-6">
+                          <Link href="/Shop/Checkout">
+                            <p className="flex items-center justify-center rounded-md border border-transparent bg-slate-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-slate-700">
+                              Checkout
+                              <span className="ml-2 text-lg"> &rarr;</span>
+                            </p>
+                          </Link>
+                        </div>
+                      </div>
+                    )
                   ) : (
-                    <div>
-                      <div className="flex justify-between text-base font-medium text-gray-900">
-                        <p>Subtotal</p>
-                        <p>${subtotal ? subtotal.toFixed(2) : ""}</p>
-                      </div>
-                      <p className="mt-0.5 text-sm text-gray-500">
-                        Shipping and taxes calculated at checkout.
-                      </p>
-                      <div className="mt-6">
-                        <Link href="/Checkout">
-                          <p className="flex items-center justify-center rounded-md border border-transparent bg-slate-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-slate-700">
-                            Checkout
-                            <span className="ml-2 text-lg"> &rarr;</span>
-                          </p>
-                        </Link>
-                      </div>
-                    </div>
+                    ""
                   )}
-                  <Link href="/">
-                    <p className="mt-6 flex items-center justify-center rounded-md border border-transparent bg-slate-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-slate-700">
-                      <span className=" text-lg"> &larr;</span>
-                      <span className="ml-2">Continue Shopping </span>
+                  {state.items.length === 0 ? (
+                    <Link href="/">
+                      <p className="mt-6 flex items-center justify-center rounded-md border border-transparent bg-slate-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-slate-700">
+                        <span className=" text-lg"> &larr;</span>
+                        <span className="ml-2">Continue Shopping </span>
+                      </p>
+                    </Link>
+                  ) : (
+                    <p
+                      onClick={clearCart}
+                      className="cursor-pointer mt-6 flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700"
+                    >
+                      <span className="">Clear Cart </span>
                     </p>
-                  </Link>
+                  )}
                 </div>
               </div>
             </div>

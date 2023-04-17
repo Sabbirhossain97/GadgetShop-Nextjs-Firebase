@@ -9,61 +9,11 @@ import { AiFillHome } from "react-icons/ai";
 
 export default function Products() {
   const getData = useContext(Context);
-  const [items, setItems] = getData?.cart;
   const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
   const [isLoggedIn, setIsLoggedIn] = getData?.auth;
+  const [state, dispatch] = getData?.cartReducer;
   const router = useRouter();
-  const initialState = {
-    items: [],
-  };
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "ADD_PRODUCT":
-        let existingProduct = state.items.find((currentElm) => {
-          if (currentElm.id === action.id) {
-            toast.error("Item already in the cart!", {
-              position: "top-center",
-              toastId: "error1",
-            });
-            return currentElm;
-          }
-        });
 
-        if (existingProduct) {
-          let updatedCart = state.items.map((currentElm) => {
-            if (currentElm.id === action.id) {
-              let newAmount = currentElm.quantity + 1;
-              return {
-                ...currentElm,
-                quantity: newAmount,
-              };
-            } else {
-              return currentElm;
-            }
-          });
-          return {
-            ...state,
-            items: updatedCart,
-          };
-        } else {
-          let addedProduct = products.filter((currentElm) => {
-            if (currentElm.id === action.id) {
-              return { currentElm };
-            }
-          });
-          let [selectedProduct] = addedProduct;
-
-          return {
-            ...state,
-            items: [...state.items, selectedProduct],
-          };
-        }
-    }
-  };
-  const [state, dispatch] = useReducer(reducer, initialState);
-  useEffect(() => {
-    setItems(state.items);
-  }, [state]);
   const handleCartAction = (id) => {
     if (!isLoggedIn) {
       toast.warn("Please Sign in!", {
@@ -84,7 +34,7 @@ export default function Products() {
       router.push(`/Signin`);
     }
   };
-
+  console.log(state);
   useEffect(() => {
     setTotalQuantity(
       state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
@@ -115,10 +65,10 @@ export default function Products() {
                     />
                   </div>
                   <hr className="mt-4 bg-gray-300 w-full"></hr>
-                  <h3 className="mt-4 text-sm text-gray-700 text-center">
+                  <h3 className="mt-4 text-sm font-semibold text-gray-900 text-center">
                     {item.title}
                   </h3>
-                  <p className="mt-1 text-lg font-medium text-gray-900">
+                  <p className="mt-4 text-lg  text-gray-500">
                     ${item.price}
                   </p>
                 </div>
@@ -130,7 +80,7 @@ export default function Products() {
                     <p className=" flex flex-row justify-around">
                       <span>Add to cart </span>
                       <span>
-                        <AiOutlineShoppingCart className="mt-1.5 absolute md:right-10 right-16" />
+                        <AiOutlineShoppingCart className="mt-1 absolute md:right-10 right-14" />
                       </span>
                     </p>
                   </button>

@@ -58,7 +58,7 @@ export default function Signup() {
             <input type="hidden" name="remember" value="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
-                <label for="email-address" className="sr-only">
+                <label htmlFor="email-address" className="sr-only">
                   Phone
                 </label>
                 <input
@@ -74,7 +74,7 @@ export default function Signup() {
                 />
               </div>
               <div className="mt-4">
-                <label for="password" className="sr-only">
+                <label htmlFor="password" className="sr-only">
                   Password
                 </label>
                 <input
@@ -100,7 +100,7 @@ export default function Signup() {
                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                 />
                 <label
-                  for="remember-me"
+                  htmlFor="remember-me"
                   className="ml-2 block text-sm text-gray-900"
                 >
                   Remember me

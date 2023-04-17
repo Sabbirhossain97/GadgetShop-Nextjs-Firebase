@@ -8,7 +8,7 @@ import { AiFillHome } from "react-icons/ai";
 
 export default function Checkout() {
   const getData = useContext(Context);
-  const [items, setItems] = getData?.cart;
+  const [state, dispatch] = getData?.cartReducer;
   const router = useRouter();
   return (
     <div>
@@ -155,8 +155,8 @@ export default function Checkout() {
               </h1>
               <div className="h-[340px] overflow-y-auto">
                 <ul className=" py-16  space-y-6 px-8  ">
-                  {items
-                    ? items.map((item, key) => (
+                  {state.items
+                    ? state.items.map((item, key) => (
                         <li
                           key={key}
                           className="grid grid-cols-6 gap-2 border-b-1"
@@ -179,10 +179,10 @@ export default function Checkout() {
                           <div className="col-span-2 pt-3">
                             <div className="flex items-center space-x-2 text-sm justify-between">
                               <span className="text-gray-400">
-                                {item.quantity} x ${item.price.toFixed(2)}
+                                {item.quantity} x ${item.price}
                               </span>
                               <span className=" font-semibold inline-block">
-                                ${(item.quantity * item.price).toFixed(2)}
+                                ${(item.quantity * item.price)}
                               </span>
                             </div>
                           </div>
@@ -196,14 +196,14 @@ export default function Checkout() {
                   <span>Subtotal</span>
                   <span className="font-semibold ">
                     $
-                    {items
-                      ? items
+                    {state.items
+                      ? state.items
                           .reduce(
                             (acm, currentElm) =>
                               acm + currentElm.price * currentElm.quantity,
                             0
                           )
-                          .toFixed(2)
+                         
                       : ""}
                   </span>
                 </div>
@@ -216,14 +216,14 @@ export default function Checkout() {
                 <span>Total</span>
                 <span>
                   $
-                  {items
-                    ? items
+                  {state.items
+                    ? state.items
                         .reduce(
                           (acm, currentElm) =>
                             acm + currentElm.price * currentElm.quantity,
                           0
                         )
-                        .toFixed(2)
+                        
                     : ""}
                 </span>
               </div>

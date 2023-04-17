@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Link from "next/link";
@@ -9,87 +9,28 @@ import EmptyCart from "../../components/EmptyCart";
 
 export default function Cart() {
   const getData = useContext(Context);
-  const [items, setItems] = getData?.cart;
   const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
+  const [state, dispatch] = getData?.cartReducer;
   const [subtotal, setSubtotal] = useState(null);
   const router = useRouter();
-  const initialState = {
-    items: items,
-    total: totalQauntity,
-  };
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "INCREMENT_QUANTITY":
-        let incrementQuantity = state.items.map((currentElm) => {
-          if (currentElm.id === action.id) {
-            return { ...currentElm, quantity: currentElm.quantity + 1 };
-          }
-          return currentElm;
-        });
-
-        return {
-          ...state,
-          items: incrementQuantity,
-        };
-      case "DECREMENT_QUANTITY":
-        let decrementQuantity = state.items.map((currentElm) => {
-          if (currentElm.id === action.id) {
-            if (currentElm.quantity > 1) {
-              return { ...currentElm, quantity: currentElm.quantity - 1 };
-            }
-          }
-          return currentElm;
-        });
-        return {
-          ...state,
-          items: decrementQuantity,
-        };
-
-      case "REMOVE_PRODUCT":
-        let deleteProduct = state.items.filter((item) => {
-          if (item.id !== action.id) {
-            return item;
-          }
-        });
-        return {
-          items: deleteProduct,
-        };
-      case "CLEAR_ALL":
-        return {
-          ...state,
-          items: [],
-        };
-    }
-  };
-  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    setItems(state.items);
-  }, [state]);
-
-  useEffect(() => {
-    if (state) {
-      let totalValue = state.items.reduce(
-        (acm, currentElm) => acm + currentElm.price * currentElm.quantity,
-        0
-      );
-      setSubtotal(totalValue);
-    } else return;
-  }, [state]);
-  useEffect(() => {
-    if (state) {
-      setTotalQuantity(
-        state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
-      );
-    } else return;
+    let totalValue = state.items.reduce(
+      (acm, currentElm) => acm + currentElm.price * currentElm.quantity,
+      0
+    );
+    setSubtotal(totalValue);
+    setTotalQuantity(
+      state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
+    );
   }, [state]);
   console.log(state);
   return (
     <div>
       <Navbar />
       <div className="min-h-screen bg-gray-100/50 p-20 ">
-        {items ? (
-          items.length === 0 ? (
+        {state.items ? (
+          state.items.length === 0 ? (
             <div>
               {" "}
               <EmptyCart />{" "}
@@ -104,8 +45,8 @@ export default function Cart() {
         )}
 
         <div className="max-w-5xl mx-auto relative ">
-          {items ? (
-            items.length > 0 ? (
+          {state.items ? (
+            state.items.length > 0 ? (
               <div className="flex flex-row rounded-md text-xl font-medium text-black ">
                 <Link href="/">
                   <AiFillHome className="mt-0.5 text-slate-800 hover:text-blue-500 cursor-pointer" />
@@ -125,8 +66,8 @@ export default function Cart() {
           )}
           <div className="mt-4 relative mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-0 xl:px-0   ">
             <div className="relative md:w-4/5 overflow-y-auto max-h-[640px]  ">
-              {items
-                ? items.map((item, key) => (
+              {state.items
+                ? state.items.map((item, key) => (
                     <div
                       key={key}
                       className="bg-white  relative justify-between p-4 border-b md:grid md:grid-cols-4 md:grid-rows-none grid grid-cols-2 grid-rows-3   "
@@ -135,7 +76,7 @@ export default function Cart() {
                         <img
                           src={item.image}
                           alt="product-image"
-                          className="ml-8 rounded-lg w-24 h-32 border border-gray-200 p-2 object-fit"
+                          className="ml-8 rounded-lg w-24 h-32 border border-gray-200 p-2 object-fill object-center"
                         />
                       </div>
 
@@ -208,8 +149,8 @@ export default function Cart() {
                 : ""}
             </div>
 
-            {items ? (
-              items.length > 0 ? (
+            {state.items ? (
+              state.items.length > 0 ? (
                 <div className="relative mt-6 bg-gray-200/50 border-r p-6  md:mt-0 md:w-1/3 h-[640px]">
                   <p className="text-gray-700 text-3xl font-semibold border-b border-gray-300 py-4">
                     Summary
@@ -218,7 +159,7 @@ export default function Cart() {
                   <div className="mt-8 mb-2 flex justify-between ">
                     <p className="text-gray-700 font-semibold">Subtotal</p>
                     <p className="text-gray-700 font-semibold">
-                      ${subtotal ? subtotal.toFixed(2) : ""}
+                      ${subtotal ? subtotal : ""}
                     </p>
                   </div>
                   <div className="py-6 flex justify-between border-b border-gray-300">
@@ -230,15 +171,15 @@ export default function Cart() {
                     <div className="">
                       <p className="mb-1 text-lg font-bold ml-10">
                         $
-                        {items
+                        {state.items
                           .reduce(
                             (acm, currentElm) =>
                               acm + currentElm.price * currentElm.quantity,
                             0
                           )
-                          .toFixed(2)}
+                          }
                       </p>
-                      <p className="text-sm text-gray-700 ml-4 font-semibold">
+                      <p className="text-sm text-gray-700 font-semibold">
                         including VAT
                       </p>
                     </div>
