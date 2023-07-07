@@ -1,115 +1,11 @@
 [
   {
     "id": 1,
-    "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    "price": 110,
-    "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    "category": "men's clothing",
-    "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    "rating": {
-      "rate": 3.9,
-      "stock": 120
-    },
-    "quantity": 1
-  },
-  {
-    "id": 2,
-    "title": "Mens Casual Premium Slim Fit T-Shirts ",
-    "price": 22,
-    "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
-    "category": "men's clothing",
-    "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-    "rating": {
-      "rate": 4.1,
-      "stock": 259
-    },
-    "quantity": 1
-  },
-  {
-    "id": 3,
-    "title": "Mens Cotton Jacket",
-    "price": 56,
-    "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
-    "category": "men's clothing",
-    "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-    "rating": {
-      "rate": 4.7,
-      "stock": 500
-    },
-    "quantity": 1
-  },
-  {
-    "id": 4,
-    "title": "Mens Casual Slim Fit",
-    "price": 16,
-    "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
-    "category": "men's clothing",
-    "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-    "rating": {
-      "rate": 2.1,
-      "stock": 430
-    },
-    "quantity": 1
-  },
-  {
-    "id": 5,
-    "title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
-    "price": 695,
-    "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-    "category": "jewelery",
-    "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
-    "rating": {
-      "rate": 4.6,
-      "stock": 400
-    },
-    "quantity": 1
-  },
-  {
-    "id": 6,
-    "title": "Solid Gold Petite Micropave ",
-    "price": 168,
-    "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    "category": "jewelery",
-    "image": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    "rating": {
-      "rate": 3.9,
-      "stock": 70
-    },
-    "quantity": 1
-  },
-  {
-    "id": 7,
-    "title": "White Gold Plated Princess",
-    "price": 10,
-    "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
-    "category": "jewelery",
-    "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
-    "rating": {
-      "rate": 3,
-      "stock": 400
-    },
-    "quantity": 1
-  },
-  {
-    "id": 8,
-    "title": "Pierced Owl Rose Gold Plated Stainless Steel Double",
-    "price": 11,
-    "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
-    "category": "jewelery",
-    "image": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
-    "rating": {
-      "rate": 1.9,
-      "stock": 100
-    },
-    "quantity": 1
-  },
-  {
-    "id": 9,
-    "title": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
+    "title": "WD Blue 1TB HDD ",
     "price": 64,
     "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
-    "category": "electronics",
-    "image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
+    "category": "HDD & SSD",
+    "image": "https://storage.cloud.google.com/ecommerce-products/WD%20INT%20Blue%201TB-228x228.jpg?authuser=1",
     "rating": {
       "rate": 3.3,
       "stock": 203
@@ -117,12 +13,12 @@
     "quantity": 1
   },
   {
-    "id": 10,
-    "title": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+    "id": 2,
+    "title": "Toshiba 1TB HDD",
     "price": 109,
     "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
-    "category": "electronics",
-    "image": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+    "category": "HDD & SSD",
+    "image": "https://storage.cloud.google.com/ecommerce-products/p300-1tb-1-228x228.jpg?authuser=1",
     "rating": {
       "rate": 2.9,
       "stock": 470
@@ -130,12 +26,12 @@
     "quantity": 1
   },
   {
-    "id": 11,
-    "title": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
+    "id": 3,
+    "title": "Samsung 870 Evo 250GB Sata SSD",
     "price": 109,
     "description": "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
-    "category": "electronics",
-    "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
+    "category": "HDD & SSD",
+    "image": "https://storage.cloud.google.com/ecommerce-products/870-evo-01-228x228.jpg?authuser=1",
     "rating": {
       "rate": 4.8,
       "stock": 319
@@ -143,12 +39,12 @@
     "quantity": 1
   },
   {
-    "id": 12,
-    "title": "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
+    "id": 4,
+    "title": "Samsung 980 Pro 500GB NVMe SSD",
     "price": 114,
     "description": "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
-    "category": "electronics",
-    "image": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg",
+    "category": "HDD & SSD",
+    "image": "https://storage.cloud.google.com/ecommerce-products/980-pro-01-228x228.jpg?authuser=1",
     "rating": {
       "rate": 4.8,
       "stock": 400
@@ -156,12 +52,25 @@
     "quantity": 1
   },
   {
-    "id": 13,
-    "title": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
+    "id": 5,
+    "title": "Seagate 1TB HDD",
+    "price": 114,
+    "description": "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
+    "category": "HDD & SSD",
+    "image": "https://storage.cloud.google.com/ecommerce-products/seagate-1-228x228.jpg?authuser=1",
+    "rating": {
+      "rate": 4.8,
+      "stock": 400
+    },
+    "quantity": 1
+  },
+  {
+    "id": 6,
+    "title": "MSI Optix G27 27inch 165HZ FHD",
     "price": 600,
     "description": "21. 5 inches Full HD (1920 x 1080) widescreen IPS display And Radeon free Sync technology. No compatibility for VESA Mount Refresh Rate: 75Hz - Using HDMI port Zero-frame design | ultra-thin | 4ms response time | IPS panel Aspect ratio - 16: 9. Color Supported - 16. 7 million colors. Brightness - 250 nit Tilt angle -5 degree to 15 degree. Horizontal viewing angle-178 degree. Vertical viewing angle-178 degree 75 hertz",
-    "category": "electronics",
-    "image": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
+    "category": "Monitors",
+    "image": "https://storage.cloud.google.com/ecommerce-products/msi-optix-g273-01-228x228.jpg?authuser=1",
     "rating": {
       "rate": 2.9,
       "stock": 250
@@ -169,12 +78,12 @@
     "quantity": 1
   },
   {
-    "id": 14,
-    "title": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
+    "id": 7,
+    "title": "Samsung Odyssey G5 27inch",
     "price": 1000,
     "description": "49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side QUANTUM DOT (QLED) TECHNOLOGY, HDR support and factory calibration provides stunningly realistic and accurate color and contrast 144HZ HIGH REFRESH RATE and 1ms ultra fast response time work to eliminate motion blur, ghosting, and reduce input lag",
-    "category": "electronics",
-    "image": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
+    "category": "Monitors",
+    "image": "https://storage.cloud.google.com/ecommerce-products/odyssey-g5-27-inch-228x228.jpg?authuser=1",
     "rating": {
       "rate": 2.2,
       "stock": 140
@@ -182,117 +91,404 @@
     "quantity": 1
   },
   {
-    "id": 15,
-    "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
-    "price": 57,
-    "description": "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
-    "category": "women's clothing",
-    "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
+    "id": 8,
+    "title": "Asus VG27AQ1A Gaming Monitor",
+    "price": 1000,
+    "description": "49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side QUANTUM DOT (QLED) TECHNOLOGY, HDR support and factory calibration provides stunningly realistic and accurate color and contrast 144HZ HIGH REFRESH RATE and 1ms ultra fast response time work to eliminate motion blur, ghosting, and reduce input lag",
+    "category": "Monitors",
+    "image": "https://storage.cloud.google.com/ecommerce-products/tuf-vg27aq1a-02-228x228.jpg?authuser=1",
     "rating": {
-      "rate": 2.6,
-      "stock": 235
+      "rate": 2.2,
+      "stock": 140
     },
     "quantity": 1
   },
   {
-    "id": 16,
-    "title": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
-    "price": 30,
-    "description": "100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist / Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON",
-    "category": "women's clothing",
-    "image": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
+    "id": 9,
+    "title": "LG 24GNU Gaming Monitor",
+    "price": 1000,
+    "description": "49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side QUANTUM DOT (QLED) TECHNOLOGY, HDR support and factory calibration provides stunningly realistic and accurate color and contrast 144HZ HIGH REFRESH RATE and 1ms ultra fast response time work to eliminate motion blur, ghosting, and reduce input lag",
+    "category": "Monitors",
+    "image": "https://storage.cloud.google.com/ecommerce-products/24gn650-b-01-228x228.jpg?authuser=1",
     "rating": {
-      "rate": 2.9,
-      "stock": 340
+      "rate": 2.2,
+      "stock": 140
     },
     "quantity": 1
   },
   {
-    "id": 17,
-    "title": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
-    "price": 40,
-    "description": "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.",
-    "category": "women's clothing",
-    "image": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
+    "id": 10,
+    "title": "Gigabyte M32U Gaming Monitor",
+    "price": 1000,
+    "description": "49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side QUANTUM DOT (QLED) TECHNOLOGY, HDR support and factory calibration provides stunningly realistic and accurate color and contrast 144HZ HIGH REFRESH RATE and 1ms ultra fast response time work to eliminate motion blur, ghosting, and reduce input lag",
+    "category": "Monitors",
+    "image": "https://storage.cloud.google.com/ecommerce-products/m32u-01-228x228.jpg?authuser=1",
     "rating": {
-      "rate": 3.8,
-      "stock": 679
+      "rate": 2.2,
+      "stock": 140
     },
     "quantity": 1
   },
+
   {
-    "id": 18,
-    "title": "MBJ Women's Solid Short Sleeve Boat Neck V ",
-    "price": 10,
-    "description": "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem",
-    "category": "women's clothing",
-    "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
-    "rating": {
-      "rate": 4.7,
-      "stock": 130
-    },
-    "quantity": 1
-  },
-  {
-    "id": 19,
-    "title": "Opna Women's Short Sleeve Moisture",
-    "price": 8,
-    "description": "100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort",
-    "category": "women's clothing",
-    "image": "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg",
-    "rating": {
-      "rate": 4.5,
-      "stock": 146
-    },
-    "quantity": 1
-  },
-  {
-    "id": 20,
-    "title": "DANVOUY Womens T Shirt Casual Cotton Short",
-    "price": 13,
-    "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
-    "category": "women's clothing",
-    "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
-    "rating": {
-      "rate": 3.6,
-      "stock": 145
-    },
-    "quantity": 1
-  },
-  {
-    "id": 21,
+    "id": 11,
     "title": "Samsung S21",
     "description": "The Samsung Galaxy S21 specs are top-notch including a Snapdragon 888 chipset, 5G capability, 8GB RAM coupled with 128/256GB storage, and a 4000mAh battery. The phone sports a 6.2-inch Dynamic AMOLED display with an adaptive 120Hz refresh rate. In the camera department, a triple-sensor setup is presented. The Samsung Galaxy S21 price starts at $800 for the base 128GB model",
-    "category": "electronics",
+    "category": "Phone",
     "price": 850,
-    "image": "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "image": "https://storage.cloud.google.com/ecommerce-products/galaxy-s21-fe-5g-olive-500x500.webp?authuser=1",
     "quantity": 1
   },
   {
-    "id": 22,
+    "id": 12,
     "title": "Samsung M21",
     "description": "Samsung Galaxy M21 comes with 6.4 inches Full HD+ Super AMOLED screen. It has a Full-View waterdrop notch design. The front side is protected by a 3rd generation Gorilla Glass. The back camera is of triple 48+8+5 MP with PDAF, LED flash, depth sensor, ultrawide etc. and UHD 4K video recording. The front camera is of 20 MP. Samsung Galaxy M21 comes with 6000 mAh huge battery with 15W fast charging. It has 4 or 6 GB RAM, 2.3 GHz octa-core CPU and Mali-G72 MP3 GPU. It is powered by Exynos 9611 (10nm) chipset. The device comes with 64 or 128 GB UFS 2.1 internal storage and dedicated MicroSD slot. There is a back-mounted fingerprint sensor in this phone.",
-    "category": "electronics",
+    "category": "Phone",
     "price": 210,
     "image": "https://images.pexels.com/photos/47261/pexels-photo-47261.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     "quantity": 1
   },
   {
-    "id": 23,
+    "id": 13,
     "title": "Redmi 9",
     "description": "Redmi 9 mobile was launched on 27th August 2020. The phone comes with a 6.53-inch touchscreen display offering a resolution of 720x1600 pixels and an aspect ratio of 20:9. Redmi 9 is powered by an octa-core MediaTek Helio G35 processor. It comes with 4GB of RAM. The Redmi 9 runs Android 10 and is powered by a 5000mAh battery. The Redmi 9 supports proprietary fast charging.",
-    "category": "electronics",
+    "category": "Phone",
     "price": 120,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71A9Vo1BatL._SL1500_.jpg",
     "quantity": 1
   },
   {
-    "id": 24,
+    "id": 14,
     "title": "Iphone 12",
     "description": "The iPhone 12 is the latest model of Apple's popular smartphone, and it comes packed with a variety of impressive features. One of the most noticeable changes is the new, flat-edged design, which looks sleek and modern. The display has also been improved, with a Super Retina XDR display that offers vibrant colors and excellent contrast. The A14 Bionic chip powers the iPhone 12, providing fast and efficient performance, and there's 5G connectivity for lightning-fast internet speeds.",
-    "category": "electronics",
+    "category": "Phone",
     "price": 850,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71hIfcIPyxS._SL1500_.jpg",
+    "quantity": 1
+  },
+  {
+    "id": 15,
+    "title": "Huawei P50 Pro",
+    "description": "The iPhone 12 is the latest model of Apple's popular smartphone, and it comes packed with a variety of impressive features. One of the most noticeable changes is the new, flat-edged design, which looks sleek and modern. The display has also been improved, with a Super Retina XDR display that offers vibrant colors and excellent contrast. The A14 Bionic chip powers the iPhone 12, providing fast and efficient performance, and there's 5G connectivity for lightning-fast internet speeds.",
+    "category": "Phone",
+    "price": 850,
+    "image": "https://storage.cloud.google.com/ecommerce-products/p50-pro-gold-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 16,
+    "title": "LG 42inch TV",
+    "description": "",
+    "category": "Television",
+    "price": 1000,
+    "image": "http://www.lg.com/us/images/tvs/md05802269/gallery/medium01.jpg",
+    "quantity": 1
+  },
+
+  {
+    "id": 17,
+    "title": "Haier 32inch TV",
+    "description": "",
+    "category": "Television",
+    "price": 1000,
+    "image": "https://storage.cloud.google.com/ecommerce-products/lh32k66g-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 18,
+    "title": "Singer 50inch TV",
+    "description": "",
+    "category": "Television",
+    "price": 900,
+    "image": "https://storage.cloud.google.com/ecommerce-products/sle50g22gotv-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 19,
+    "title": "Samsung 43 4k TV",
+    "description": "",
+    "category": "Television",
+    "price": 950,
+    "image": "https://storage.cloud.google.com/ecommerce-products/samsung43'-4k.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 20,
+    "title": "Sony Bravia 55inch",
+    "description": "",
+    "category": "Television",
+    "price": 1000,
+    "image": "https://storage.cloud.google.com/ecommerce-products/sony-bravia-xr-55x90j-55-4k-hdr-led-smart-google-tv-03-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 21,
+    "title": "Razer Blackshark V2",
+    "description": "",
+    "category": "Headphones",
+    "price": 50,
+    "image": "https://storage.cloud.google.com/ecommerce-products/blackshark-v2-x-00001-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 22,
+    "title": "Razer Kraken ",
+    "description": "",
+    "category": "Headphones",
+    "price": 40,
+    "image": "https://storage.cloud.google.com/ecommerce-products/kraken-x-1-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 23,
+    "title": "HyperX Cloud Stinger ",
+    "description": "",
+    "category": "Headphones",
+    "price": 45,
+    "image": "https://storage.cloud.google.com/ecommerce-products/cloud-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 24,
+    "title": "HyperX Cloud Alpha",
+    "description": "",
+    "category": "Headphones",
+    "price": 42,
+    "image": "https://storage.cloud.google.com/ecommerce-products/cloud-alpha-s-06-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 25,
+    "title": "HyperX Cloud II",
+    "description": "",
+    "category": "Headphones",
+    "price": 42,
+    "image": "https://storage.cloud.google.com/ecommerce-products/cloud-ii-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 26,
+    "title": "Intel Arc A750 8GB",
+    "description": "",
+    "category": "Graphics Card",
+    "price": 350,
+    "image": "https://storage.cloud.google.com/ecommerce-products/arc-a750-01-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 27,
+    "title": "Intel Arc A770 16GB",
+    "description": "",
+    "category": "Graphics Card",
+    "price": 400,
+    "image": "https://storage.cloud.google.com/ecommerce-products/arc-a770-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 28,
+    "title": "Gigabyte RTX 4070ti 12GB",
+    "description": "",
+    "category": "Graphics Card",
+    "price": 1200,
+    "image": "https://storage.cloud.google.com/ecommerce-products/geforce-rtx-4070-ti-aero-oc-12g-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 29,
+    "title": "MSI RTX 4080 16GB",
+    "description": "",
+    "category": "Graphics Card",
+    "price": 1500,
+    "image": "https://storage.cloud.google.com/ecommerce-products/geforce-rtx-4080-16gb-gaming-trio-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 30,
+    "title": "Asus RTX 3060 12GB",
+    "description": "",
+    "category": "Graphics Card",
+    "price": 400,
+    "image": "https://storage.cloud.google.com/ecommerce-products/rtx-3060-v2-oc-01-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 31,
+    "title": "Intel i7 11700",
+    "description": "",
+    "category": "Processor",
+    "price": 250,
+    "image": "https://storage.cloud.google.com/ecommerce-products/i7-11700-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 32,
+    "title": "Intel i7 12700",
+    "description": "",
+    "category": "Processor",
+    "price": 350,
+    "image": "https://storage.cloud.google.com/ecommerce-products/i7-12700-01-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 33,
+    "title": "Intel i9 10900",
+    "description": "",
+    "category": "Processor",
+    "price": 450,
+    "image": "https://storage.cloud.google.com/ecommerce-products/i9-10900-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 34,
+    "title": "AMD Ryzen 5 3600",
+    "description": "",
+    "category": "Processor",
+    "price": 150,
+    "image": "https://storage.cloud.google.com/ecommerce-products/ryzen-5-3600-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 35,
+    "title": "AMD Ryzen 5 7600X",
+    "description": "",
+    "category": "Processor",
+    "price": 220,
+    "image": "https://storage.cloud.google.com/ecommerce-products/ryzen-5-7600x-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 36,
+    "title": "Asrock B660M Pro RS",
+    "description": "",
+    "category": "Motherboard",
+    "price": 150,
+    "image": "https://storage.cloud.google.com/ecommerce-products/b660m-pro-rs-ax-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 37,
+    "title": "Gigabyte B760M D2H DDR4",
+    "description": "",
+    "category": "Motherboard",
+    "price": 180,
+    "image": "https://storage.cloud.google.com/ecommerce-products/b760m-d2h-ddr4-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 38,
+    "title": "MSI Mag B660M Bazooka",
+    "description": "",
+    "category": "Motherboard",
+    "price": 200,
+    "image": "https://storage.cloud.google.com/ecommerce-products/mag-b660m-bazooka-ddr4-01-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 39,
+    "title": "Asus Prime B760 plus",
+    "description": "",
+    "category": "Motherboard",
+    "price": 160,
+    "image": "https://storage.cloud.google.com/ecommerce-products/prime-b760-plus-d4-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 40,
+    "title": "Asus TUF B660M E D4",
+    "description": "",
+    "category": "Motherboard",
+    "price": 220,
+    "image": "https://storage.cloud.google.com/ecommerce-products/tuf-gaming-b660m-e-01-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 41,
+    "title": "Team TForce Delta RGB Ram 32GB (7600Mhz)",
+    "description": "",
+    "category": "RAM",
+    "price": 550,
+    "image": "https://storage.cloud.google.com/ecommerce-products/delta-rgb-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 42,
+    "title": "Kingston Fury Beast 8GB (3200MHz)",
+    "description": "",
+    "category": "RAM",
+    "price": 50,
+    "image": "https://storage.cloud.google.com/ecommerce-products/fury-beast-rgb-01-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 43,
+    "title": "Gskill Trident Z 8GB (3200Mhz)",
+    "description": "",
+    "category": "RAM",
+    "price": 45,
+    "image": "https://storage.cloud.google.com/ecommerce-products/trident-z-rgb-8gb-1-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 44,
+    "title": "Corsair Vengeance RGB Pro White 16GB (3200MHz)",
+    "description": "",
+    "category": "RAM",
+    "price": 90,
+    "image": "https://storage.cloud.google.com/ecommerce-products/vengeance-rgb-pro-ram-kit-white-01-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 45,
+    "title": "Corsair Vengeance RGB RS Black 16GB (3200MHz)",
+    "description": "",
+    "category": "RAM",
+    "price": 45,
+    "image": "https://storage.cloud.google.com/ecommerce-products/vengeance-rgb-rs-01-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 46,
+    "title": "Xbox One S 1TB",
+    "description": "",
+    "category": "Console",
+    "price": 300,
+    "image": "https://storage.cloud.google.com/ecommerce-products/xbox-one-s-1-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 47,
+    "title": "Xbox Series S 512GB",
+    "description": "",
+    "category": "Console",
+    "price": 320,
+    "image": "https://storage.cloud.google.com/ecommerce-products/xbox-series-s-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 48,
+    "title": "Xbox Series X 1TB ",
+    "description": "",
+    "category": "Console",
+    "price": 500,
+    "image": "https://storage.cloud.google.com/ecommerce-products/xbox-series-x-01-228x228.webp?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 49,
+    "title": "Sony Playstation 5 Digital Edition",
+    "description": "",
+    "category": "Console",
+    "price": 600,
+    "image": "https://storage.cloud.google.com/ecommerce-products/sony-playstation-5-digital-edition-01-228x228.jpg?authuser=1",
+    "quantity": 1
+  },
+  {
+    "id": 50,
+    "title": "Nintendo Switch Fortnite Edition",
+    "description": "",
+    "category": "Console",
+    "price": 45,
+    "image": "https://storage.cloud.google.com/ecommerce-products/nintendo-switch-fortnite-wildcat-bundle-01-228x228.webp?authuser=1",
     "quantity": 1
   }
 ]

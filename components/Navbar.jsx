@@ -2,25 +2,28 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context";
 import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import Cookies from "js-cookie";
 import { RxAvatar } from "react-icons/rx";
 import { useRouter } from "next/router";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import CartSideBar from "./CartSideBar";
+import { getAuth, signOut } from "firebase/auth";
+import firebaseAapp from "../services/firebase";
+import toast from "react-hot-toast";
+import Notification from "./subcomponents/Notification";
 
+const auth = getAuth(firebaseAapp);
 export default function Navbar() {
   const getData = useContext(Context);
   const [openDropDown, setOpenDropDown] = useState(false);
   const [state, dispatch] = getData?.cartReducer;
-  const [isLoggedIn, setIsLoggedIn] = getData?.auth;
   const [avatar, setAvatar] = getData?.userAvatar;
   const [cartTotalValue, setCartTotalValue] = getData?.cartTotal;
+  const [isLoggedIn, setIsLoggedIn] = getData?.isAuth;
   const [isOpen, setIsOpen] = useState(false);
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const [role, setRole] = useState("");
   const router = useRouter();
 
+  console.log(isLoggedIn);
   useEffect(() => {
     const getUser = localStorage.getItem("user");
     setRole(getUser);
@@ -31,21 +34,12 @@ export default function Navbar() {
     }
   }, []);
 
-  const handleSignOut = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("avatar");
-    localStorage.removeItem("token");
-    Cookies.remove("auth");
-    dispatch({type: "CLEAR_ALL"})
-    setIsLoggedIn(false);
-    setAvatar(null);
-    toast.success("You have been logged out!", {
+  const handleSignOut = async () => {
+    await signOut(auth);
+    dispatch({ type: "CLEAR_ALL" });
+    toast.success("Logged Out!", {
       position: "top-center",
-      autoClose: 3000,
     });
-    setTimeout(() => {
-      router.push("/");
-    }, 2000);
   };
 
   const handleSignIn = () => {
@@ -68,13 +62,12 @@ export default function Navbar() {
 
   return (
     <nav className="bg-slate-800 fixed right-0 left-0 top-0 z-10">
-      <ToastContainer theme="light" />
-
       <CartSideBar
         setIsSideBarOpen={setIsSideBarOpen}
         isSideBarOpen={isSideBarOpen}
       />
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
+
+      <div className="mx-auto w-10/12 px-2 sm:px-6 lg:px-8 ">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <button
@@ -117,8 +110,8 @@ export default function Navbar() {
             </button>
           </div>
           <div className=" flex flex-row flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className=" hidden sm:ml-6 sm:block">
-              <div className="flex space-x-4">
+            <div className=" hidden sm:ml-6 sm:block ">
+              <div className="flex space-x-4 ">
                 <Link href="/">
                   <p
                     className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
@@ -147,8 +140,6 @@ export default function Navbar() {
           </div>
 
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            {/* cart */}
-
             <button
               type="button"
               onClick={goToCart}

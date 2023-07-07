@@ -155,7 +155,7 @@ const SingleProduct = () => {
                       <div className="h-[1px] mt-2 bg-gray-200"></div>
                       <div className="mt-4">
                         <p>
-                          Available: <span className="font-bold">In Stock</span>
+                          Availability: <span className="font-bold">In Stock</span>
                         </p>
                         <span className="mt-4">
                           Category:{" "}

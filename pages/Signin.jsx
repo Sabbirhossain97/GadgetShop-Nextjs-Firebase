@@ -1,58 +1,47 @@
 import React, { useState, useContext, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
-import users from "../users";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
-import Cookies from "js-cookie";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast from "react-hot-toast";
 import { Context } from "../context";
-import secret from "../secret";
+import signIn from "../services/signin";
+import Spinner from "../components/subcomponents/Spinner";
+import Notification from "../components/subcomponents/Notification";
 
 export default function Signin() {
   const getData = useContext(Context);
-  const [avatar, setAvatar] = getData?.userAvatar;
-  const [isLoggedIn, setIsLoggedIn] = getData?.auth;
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({});
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // if (!localStorage.getItem("token")) {
-    //   setTimeout(() => {
-    //     router.push("/Signup");
-    //     setMessage("Please Sign up!");
-    //   }, 2000);
-    // } else {
-    let authUsers = users.filter((item) => {
-      if (item.phone === phone && item.password === password) {
-        localStorage.setItem("user", item.role);
-        localStorage.setItem("avatar", item.avatar);
-        Cookies.set("auth", true);
-        setTimeout(() => {
-          router.push("/");
-        }, 2000);
-        setAvatar(localStorage.getItem("avatar"));
-        setPhone("");
-        setPassword("");
-        setIsLoggedIn(true);
-        toast.success("Successfully logged in!", { position: "top-center" });
-        return item;
-      } else if (item.phone === phone && item.password !== password) {
-        toast.warn("Wrong Credentials", {
-          position: "top-center",
-          autoClose: 3000,
-        });
+    try {
+      setLoading(true);
+      const { user, error } = await signIn(email, password);
+      if (error) {
+        console.log(error);
+      } else {
+        setUser(user);
       }
-    });
-    return authUsers;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+         toast.success("Logged in!", {
+           position: "top-center",
+         });
+         router.push("/")
+    }
   };
 
   return (
     <div>
       <Navbar />
+      <Notification/>
       <div className="bg-gray-100 flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <div className="bg-white w-full max-w-md space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl">
           <div>
@@ -64,19 +53,19 @@ export default function Signin() {
             <input type="hidden" name="remember" value="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Phone
+                <label htmlFor="email" className="sr-only">
+                  Email
                 </label>
                 <input
-                  id="phone"
-                  name="phone"
-                  type="text"
-                  autoComplete="phone"
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="current-email"
                   required
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-md bg-white border border-gray-400"
-                  placeholder="Phone"
+                  placeholder="Email"
                 />
               </div>
               <div className="mt-4">
@@ -112,8 +101,6 @@ export default function Signin() {
                   Remember me
                 </label>
               </div>
-
-           
             </div>
 
             <div>
@@ -125,9 +112,8 @@ export default function Signin() {
                 className="w-full p-3 bg-slate-800 rounded-md hover:bg-slate-700 text-white"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
-                Sign in
+                {loading ? <Spinner /> : "Sign In"}
               </button>
-              <ToastContainer theme="light" />
               <div className="text-center mt-8">
                 <p>
                   <span className=" text-base font-medium text-center text-gray-900">

@@ -1,6 +1,4 @@
 import products from "../../products";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export const reducer = (state, action) => {
   switch (action.type) {

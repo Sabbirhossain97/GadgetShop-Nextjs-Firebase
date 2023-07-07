@@ -3,23 +3,18 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Context } from "../context";
 import products from "../products.json";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { AiFillHome } from "react-icons/ai";
+import toast from "react-hot-toast";
 
 export default function Products() {
   const getData = useContext(Context);
   const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
-  const [isLoggedIn, setIsLoggedIn] = getData?.auth;
+  const [isLoggedIn, setIsLoggedIn] = getData?.isAuth;
   const [state, dispatch] = getData?.cartReducer;
   const router = useRouter();
 
   const handleCartAction = (id) => {
     if (!isLoggedIn) {
-      toast.warn("Please Sign in!", {
-        position: "top-center",
-        toastId: "warn1",
-      });
       setTimeout(() => {
         router.push("/Signin");
       }, 2000);
@@ -34,7 +29,6 @@ export default function Products() {
       router.push(`/Signin`);
     }
   };
-  console.log(state);
   useEffect(() => {
     setTotalQuantity(
       state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
@@ -42,7 +36,7 @@ export default function Products() {
   }, [state]);
 
   return (
-    <div className="container mx-auto w-3/4 py-2 mt-24">
+    <div className="container mx-auto w-3/4 py-2 mt-10">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold">Products</h2>
       </div>
@@ -68,19 +62,17 @@ export default function Products() {
                   <h3 className="mt-4 text-sm font-semibold text-gray-900 text-center">
                     {item.title}
                   </h3>
-                  <p className="mt-4 text-lg  text-gray-500">
-                    ${item.price}
-                  </p>
+                  <p className="mt-4 text-lg  text-gray-500">${item.price}</p>
                 </div>
-                <div className="flex flex-row w-4/5 absolute bottom-4 md:right-8">
+                <div className="flex flex-row w-[150px] relative ">
                   <button
                     onClick={() => handleCartAction(item.id)}
-                    className="w-full mt-4 ml-4 bg-slate-800 hover:bg-slate-700 px-2  text-white font-bold py-2  rounded-lg"
+                    className="w-full mt-4 bg-slate-800 hover:bg-slate-700 px-2  text-white font-bold py-2 rounded-md"
                   >
-                    <p className=" flex flex-row justify-around">
+                    <p className="text-sm flex flex-row justify-around">
                       <span>Add to cart </span>
                       <span>
-                        <AiOutlineShoppingCart className="mt-1 absolute md:right-10 right-14" />
+                        <AiOutlineShoppingCart className="mt-1 absolute right-4" />
                       </span>
                     </p>
                   </button>

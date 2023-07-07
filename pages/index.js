@@ -2,12 +2,12 @@ import React from "react";
 import Footer from "../components/Footer";
 import Features from "../components/Features";
 import Navbar from "../components/Navbar";
-import Products from "../components/Products";
 import Head from "next/head";
-import Cookies from "js-cookie";
 import Carousel from "../components/Carousel";
-import Shop from "../pages/Shop"
-export default function Home({ cookie }) {
+import Shop from "../pages/Shop";
+import FeaturedCategories from "../components/FeaturedCategories";
+import Hero from "../components/Hero";
+export default function Home() {
   return (
     <div>
       <Head>
@@ -15,7 +15,7 @@ export default function Home({ cookie }) {
         <meta property="og:title" content="Ecommerce" key="title" />
         <link type="image/png" rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="font-inter">
+      <div >
         <div className="bg-white ">
           <header>
             <div>
@@ -25,6 +25,7 @@ export default function Home({ cookie }) {
 
           <div className=" mx-auto">
             <Carousel />
+            <FeaturedCategories />
             <Shop />
             <Features />
             <Footer />
@@ -34,9 +35,4 @@ export default function Home({ cookie }) {
     </div>
   );
 }
-export async function getServerSideProps(context) {
-  const getCookie= 5
-  return {
-    props: { cookie: getCookie },
-  };
-}
+

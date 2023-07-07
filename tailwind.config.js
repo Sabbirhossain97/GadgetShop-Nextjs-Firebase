@@ -6,11 +6,14 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "hero-image": "url('/assets/background.png')",
+      },
+    },
   },
   fontFamily: {
-    sans: ["Inter var, sans-serif"],
+    sans: ["Poppins"],
   },
   plugins: [],
 };
-

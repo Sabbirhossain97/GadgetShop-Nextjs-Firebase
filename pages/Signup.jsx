@@ -1,76 +1,85 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import users from "../users";
-import secret from "../secret";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
+import signup from "../services/signup";
+import Spinner from "../components/subcomponents/Spinner";
+import toast from "react-hot-toast";
+import Notification from "../components/subcomponents/Notification";
+import { FcGoogle } from "react-icons/fc";
+import { BsFacebook } from "react-icons/bs";
 
 export default function Signup() {
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let register = users.filter((currentElm) => {
-      if (currentElm.phone === phone && currentElm.password === password) {
-        let jwt = secret.filter((item) => {
-          if (item.id === currentElm.id) {
-            localStorage.setItem("token", item.key);
-            return item;
-          }
-        });
-        toast.success("Successfully registered!", {
-          position: "top-center",
-          autoClose: 3000,
-        });
-        setTimeout(() => {
-          router.push("/Signin");
-        }, 2000);
-        return currentElm;
-      } else if (
-        currentElm.phone !== phone &&
-        currentElm.password !== password
-      ) {
-        toast.warn("You can only register with defined users!", {
-          toastId: "warn1",
-          position: "top-center",
-          autoClose: 3000,
-        });
+
+    try {
+      setLoading(true);
+      const { user, error } = await signup(email, password);
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(user);
       }
-    });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div>
       <Navbar />
       <div className="bg-gray-100 flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-        <div className="bg-white w-full max-w-md space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl ">
+        <div className="bg-white w-full max-w-xl space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl ">
           <div>
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Create your account
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
-            <input type="hidden" name="remember" value="true" />
+          <form className="mt-8 space-y-6">
+            <div className="flex flex-row w-full ">
+              <div className="flex items-center justify-center h-[52px] w-1/2 ">
+                <button className="w-full flex items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                  <FcGoogle className="text-2xl" />
+                  <span className="ml-2 text-sm">Sign up with Google</span>
+                </button>
+              </div>
+              <div className="flex items-center justify-start h-[52px] w-1/2 ml-4">
+                <button className="flex w-full items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                  <BsFacebook className="text-2xl text-[#1778f2]" />
+                  <span className="ml-2">Sign up with Facebook</span>
+                </button>
+              </div>
+            </div>
+
+            <div className=" flex justify-center font-semibold">
+              <h3>or</h3>
+              <hr className="bg-blue-500" />
+              <hr className="bg-blue-500" />
+            </div>
             <div className="-space-y-px rounded-md shadow-sm">
-              <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Phone
+              <div className="mt-4">
+                <label htmlFor="email" className="sr-only">
+                  Email
                 </label>
                 <input
-                  id="phone"
-                  name="phone"
-                  type="text"
-                  autoComplete="phone"
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="current-email"
                   required
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-md bg-white border border-gray-400"
-                  placeholder="Phone"
+                  placeholder="Email"
                 />
               </div>
               <div className="mt-4">
@@ -106,8 +115,6 @@ export default function Signup() {
                   Remember me
                 </label>
               </div>
-
-              
             </div>
 
             <div>
@@ -119,9 +126,8 @@ export default function Signup() {
                 className="w-full p-3 bg-slate-800 rounded-md hover:bg-slate-700 text-white"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
-                Sign Up
+                {loading ? <Spinner /> : "Sign Up"}
               </button>
-              <ToastContainer theme="light" />
               <div className="text-center mt-8">
                 <p>
                   <span className=" text-base font-medium text-center text-gray-900">
