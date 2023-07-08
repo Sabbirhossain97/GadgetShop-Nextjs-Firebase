@@ -15,7 +15,7 @@ export default function Checkout() {
       <Navbar />
       <div className="mx-auto w-11/12 relative ">
         <div className=" ">
-          <div className="relative md:flex md:flex-row md:items-center md:justify-center flex flex-col min-h-screen mt-16  ">
+          <div className=" relative md:flex md:flex-row md:items-center md:justify-center flex flex-col min-h-screen mt-16 flex-wrap ">
             {/* form section */}
             <div className=" absolute top-20 left-10 md:top-24 md:left-48 flex flex-row rounded-md text-xl font-medium text-black ">
               <Link href="/">

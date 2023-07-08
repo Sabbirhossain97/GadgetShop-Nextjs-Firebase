@@ -24,7 +24,6 @@ export default function Cart() {
       state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
     );
   }, [state]);
-  console.log(state);
   return (
     <div>
       <Navbar />

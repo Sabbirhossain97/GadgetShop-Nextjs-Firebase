@@ -8,6 +8,14 @@ import { Context } from "../context";
 import signIn from "../services/signin";
 import Spinner from "../components/subcomponents/Spinner";
 import Notification from "../components/subcomponents/Notification";
+import { FcGoogle } from "react-icons/fc";
+import { BsFacebook } from "react-icons/bs";
+import {
+  auth,
+  googleProvider,
+  facebookAuthProvider,
+} from "../services/authproviders";
+import { signInWithPopup } from "firebase/auth";
 
 export default function Signin() {
   const getData = useContext(Context);
@@ -15,6 +23,7 @@ export default function Signin() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({});
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -23,7 +32,7 @@ export default function Signin() {
       setLoading(true);
       const { user, error } = await signIn(email, password);
       if (error) {
-        console.log(error);
+        setError(error.message);
       } else {
         setUser(user);
       }
@@ -31,24 +40,48 @@ export default function Signin() {
       console.log(error);
     } finally {
       setLoading(false);
-         toast.success("Logged in!", {
-           position: "top-center",
-         });
-         router.push("/")
+      // toast.success("Logged in!", {
+      //   position: "top-center",
+      // });
+      // router.push("/");
+      setEmail("");
+      setPassword("");
     }
+  };
+  const signUpWithGoogle = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => console.log(error));
+  };
+  const signUpWithFacebook = () => {
+    signInWithPopup(auth, facebookAuthProvider)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
     <div>
       <Navbar />
-      <Notification/>
+      <Notification />
       <div className="bg-gray-100 flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-        <div className="bg-white w-full max-w-md space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl">
+        <div className="bg-white w-full max-w-xl space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl">
           <div>
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign in to your account
             </h2>
           </div>
+          {error ? (
+            <div className="border p-3 border-red-400 bg-red-100/50 text-center">
+              <p className="text-red-500">{error} </p>
+            </div>
+          ) : (
+            ""
+          )}
+
           <form className="mt-8 space-y-6">
             <input type="hidden" name="remember" value="true" />
             <div className="-space-y-px rounded-md shadow-sm">
@@ -63,7 +96,10 @@ export default function Signin() {
                   autoComplete="current-email"
                   required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError("");
+                  }}
                   className="placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-md bg-white border border-gray-400"
                   placeholder="Email"
                 />
@@ -86,23 +122,6 @@ export default function Signin() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
-                  Remember me
-                </label>
-              </div>
-            </div>
-
             <div>
               <button
                 type="submit"
@@ -121,11 +140,38 @@ export default function Signin() {
                   </span>
 
                   <Link href="/Signup">
-                    <span className="ml-2 text-base font-bold text-center text-slate-800 hover:text-blue-700">
+                    <span className="ml-2 text-base font-semibold text-center text-blue-500 hover:text-blue-700">
                       Sign Up
                     </span>
                   </Link>
                 </p>
+              </div>
+            </div>
+            <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+              <p className="mx-4 mb-0 text-center font-semibold dark:text-slate-900">
+                or
+              </p>
+            </div>
+            <div className="flex flex-row w-full ">
+              <div className="flex items-center justify-center h-[52px] w-1/2 ">
+                <button
+                  type="button"
+                  onClick={signUpWithGoogle}
+                  className="w-full flex items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                >
+                  <FcGoogle className="text-2xl" />
+                  <span className="ml-2 text-sm">Sign in with Google</span>
+                </button>
+              </div>
+              <div className="flex items-center justify-start h-[52px] w-1/2 ml-4">
+                <button
+                  type="button"
+                  onClick={signUpWithFacebook}
+                  className="flex w-full items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                >
+                  <BsFacebook className="text-2xl text-[#1778f2]" />
+                  <span className="ml-2">Sign in with Facebook</span>
+                </button>
               </div>
             </div>
           </form>

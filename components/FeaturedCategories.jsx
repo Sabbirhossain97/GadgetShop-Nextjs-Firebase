@@ -3,14 +3,14 @@ import React from "react";
 export default function FeaturedCategories() {
   return (
     <div>
-      <section class="text-gray-600 body-font">
-        <div class="container px-16 py-24 mx-auto">
-          <div class="flex flex-col text-center w-full mb-12">
-            <h1 class="sm:text-3xl text-3xl font-bold title-font text-gray-900">
+      <section className="text-gray-600 body-font">
+        <div className="container px-16 py-24 mx-auto">
+          <div className="flex flex-col text-center w-full mb-12">
+            <h1 className="sm:text-3xl text-3xl font-bold title-font text-gray-900">
               Featured Categories
             </h1>
           </div>
-          <div class="flex flex-wrap -m-4 text-center">
+          <div className="flex flex-wrap -m-4 text-center">
             {[
               "TV",
               "Monitors",

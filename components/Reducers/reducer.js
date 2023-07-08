@@ -5,10 +5,6 @@ export const reducer = (state, action) => {
     case "ADD_PRODUCT":
       let existingProduct = state.items.find((currentElm) => {
         if (currentElm.id === action.id) {
-          toast.warn("Item already in the cart!", {
-            position: "top-center",
-            toastId: "warn1",
-          });
           return currentElm;
         }
       });

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useLayoutEffect } from "react";
 import { Context } from "../context";
 import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -11,29 +11,41 @@ import toast from "react-hot-toast";
 import Notification from "./subcomponents/Notification";
 
 const auth = getAuth(firebaseAapp);
+
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+}
+
 export default function Navbar() {
   const getData = useContext(Context);
   const [openDropDown, setOpenDropDown] = useState(false);
   const [state, dispatch] = getData?.cartReducer;
-  const [avatar, setAvatar] = getData?.userAvatar;
   const [cartTotalValue, setCartTotalValue] = getData?.cartTotal;
-  const [isLoggedIn, setIsLoggedIn] = getData?.isAuth;
+  const [user, setUser] = getData?.isAuth;
   const [isOpen, setIsOpen] = useState(false);
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const [role, setRole] = useState("");
+  const [browserWindow, setBrowserWindow] = useState(null);
+  const [width, height] = useWindowSize();
   const router = useRouter();
-
-  console.log(isLoggedIn);
-  useEffect(() => {
-    const getUser = localStorage.getItem("user");
-    setRole(getUser);
-    if (getUser) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
-
+  // useEffect(() => {
+  //   const getUser = localStorage.getItem("user");
+  //   setRole(getUser);
+  //   if (getUser) {
+  //     setIsLoggedIn(true);
+  //   } else {
+  //     setIsLoggedIn(false);
+  //   }
+  // }, []);
   const handleSignOut = async () => {
     await signOut(auth);
     dispatch({ type: "CLEAR_ALL" });
@@ -48,18 +60,18 @@ export default function Navbar() {
     }
   };
   const goToCart = () => {
-    if (window.innerWidth < 800) {
-      setIsSideBarOpen(!isSideBarOpen);
-    } else if (window.innerWidth > 800) {
-      setIsSideBarOpen(!isSideBarOpen);
-      if (!isLoggedIn) {
-        router.push("/Signin");
-      } else {
-        router.push("/Shop/Cart");
-      }
+    if (width < 800) {
+      setIsSideBarOpen(true);
+    } else if (width > 800) {
+      setIsSideBarOpen(false);
+      router.push("/Shop/Cart");
+      // if (!user) {
+      //   router.push("/Signin");
+      // } else {
+      //   router.push("/Shop/Cart");
+      // }
     }
   };
-
   return (
     <nav className="bg-slate-800 fixed right-0 left-0 top-0 z-10">
       <CartSideBar
@@ -67,9 +79,9 @@ export default function Navbar() {
         isSideBarOpen={isSideBarOpen}
       />
 
-      <div className="mx-auto w-10/12 px-2 sm:px-6 lg:px-8 ">
+      <div className="mx-auto w-full md:w-10/12 px-2 sm:px-6 lg:px-8  ">
         <div className="relative flex h-16 items-center justify-between">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden ">
             <button
               type="button"
               className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
@@ -121,7 +133,7 @@ export default function Navbar() {
                   </p>
                 </Link>
 
-                {isLoggedIn ? (
+                {user ? (
                   <p
                     onClick={goToCart}
                     className="cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
@@ -159,8 +171,12 @@ export default function Navbar() {
                   onClick={() => setOpenDropDown(!openDropDown)}
                 >
                   <span className="sr-only">Open user menu</span>
-                  {isLoggedIn ? (
-                    <img className="h-8 w-8 rounded-full" src={avatar} alt="" />
+                  {user ? (
+                    <img
+                      className="h-8 w-8 rounded-full"
+                      src={user?.photoURL}
+                      alt=""
+                    />
                   ) : (
                     <RxAvatar className="w-8 h-8 text-gray-100/50" />
                   )}
@@ -194,7 +210,7 @@ export default function Navbar() {
                     ""
                   )}
 
-                  {isLoggedIn ? (
+                  {user ? (
                     <p
                       onClick={handleSignOut}
                       className="cursor-pointer block px-4 py-2 text-sm text-gray-700"
@@ -235,7 +251,7 @@ export default function Navbar() {
               </p>
             </Link>
 
-            {isLoggedIn ? (
+            {user ? (
               <p
                 onClick={goToCart}
                 className="cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
