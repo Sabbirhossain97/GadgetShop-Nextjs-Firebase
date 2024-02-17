@@ -1,60 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
-import signup from "../services/signup";
 import Spinner from "../components/subcomponents/Spinner";
 import toast from "react-hot-toast";
 import Notification from "../components/subcomponents/Notification";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
-import {
-  auth,
-  googleProvider,
-  facebookAuthProvider,
-} from "../services/authproviders";
 import { signInWithPopup } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore"
+import { v4 as uuidv4 } from 'uuid';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, registerWithEmailAndPassword, signInWithGoogle, signInWithFacebook } from "../services/firebase";
 
 export default function Signup() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const router = useRouter();
+  const db = getFirestore();
+  const [user, loading, error] = useAuthState(auth);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    try {
-      setLoading(true);
-      const { user, error } = await signup(email, password);
-      if (error) {
-        setError(error.message);
-      } else {
-        console.log(user);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
+  const register = () => {
+    registerWithEmailAndPassword(name, email, password)
   };
 
-  const signUpWithGoogle = () => {
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => console.log(error));
-  };
-  const signUpWithFacebook = () => {
-    signInWithPopup(auth, facebookAuthProvider)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => console.log(error));
-  };
+  useEffect(() => {
+    if (loading) return;
+    if (user) router.push("/");
+  }, [user, loading]);
 
   return (
     <div>
@@ -74,7 +50,25 @@ export default function Signup() {
             ""
           )}
           <form className="mt-8 space-y-6">
-            <div className="-space-y-px rounded-md shadow-sm">
+            <div className="space-y-4 rounded-md shadow-sm">
+              <div className="mt-4">
+                <label htmlFor="email" className="sr-only">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="name"
+                  autoComplete="name"
+                  required
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                  className="placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-md bg-white border border-gray-400"
+                  placeholder="Name"
+                />
+              </div>
               <div className="mt-4">
                 <label htmlFor="email" className="sr-only">
                   Email
@@ -88,7 +82,6 @@ export default function Signup() {
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
-                    setError("");
                   }}
                   className="placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-md bg-white border border-gray-400"
                   placeholder="Email"
@@ -115,9 +108,7 @@ export default function Signup() {
             <div>
               <button
                 type="submit"
-                onClick={(e) => {
-                  handleSubmit(e);
-                }}
+                onClick={register}
                 className="w-full p-3 bg-slate-800 rounded-md hover:bg-slate-700 text-white"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
@@ -146,7 +137,7 @@ export default function Signup() {
               <div className="flex items-center justify-center h-[52px] w-1/2 ">
                 <button
                   type="button"
-                  onClick={signUpWithGoogle}
+                  onClick={signInWithGoogle}
                   className="w-full flex items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                 >
                   <FcGoogle className="text-2xl" />
@@ -156,7 +147,7 @@ export default function Signup() {
               <div className="flex items-center justify-start h-[52px] w-1/2 ml-4">
                 <button
                   type="button"
-                  onClick={signUpWithFacebook}
+                  onClick={signInWithFacebook}
                   className="flex w-full items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                 >
                   <BsFacebook className="text-2xl text-[#1778f2]" />
@@ -166,8 +157,8 @@ export default function Signup() {
             </div>
           </form>
         </div>
-      </div>
+      </div >
       <Footer />
-    </div>
+    </div >
   );
 }

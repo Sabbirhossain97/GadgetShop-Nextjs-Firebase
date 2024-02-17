@@ -157,37 +157,37 @@ export default function Checkout() {
                 <ul className=" py-16  space-y-6 px-8  ">
                   {state.items
                     ? state.items.map((item, key) => (
-                        <li
-                          key={key}
-                          className="grid grid-cols-6 gap-2 border-b-1"
-                        >
-                          <div className="col-span-1 ">
-                            <img
-                              src={item.image}
-                              alt="Product"
-                              className="rounded w-full   "
-                            />
-                          </div>
-                          <div className="flex flex-col col-span-3 pt-2 ml-4">
-                            <span className="text-gray-600 text-md font-semi-bold">
-                              {item.title}
+                      <li
+                        key={key}
+                        className="grid grid-cols-6 gap-2 border-b-1"
+                      >
+                        <div className="col-span-1 ">
+                          <img
+                            src={item.image}
+                            alt="Product"
+                            className="rounded w-full   "
+                          />
+                        </div>
+                        <div className="flex flex-col col-span-3 pt-2 ml-4">
+                          <span className="text-gray-600 text-md font-semi-bold">
+                            {item.title}
+                          </span>
+                          <span className="text-gray-400 text-sm inline-block pt-2">
+                            {item.category}
+                          </span>
+                        </div>
+                        <div className="col-span-2 pt-3">
+                          <div className="flex items-center space-x-2 text-sm justify-between">
+                            <span className="text-gray-400">
+                              {item.quantity} x ${item.price}
                             </span>
-                            <span className="text-gray-400 text-sm inline-block pt-2">
-                              {item.category}
+                            <span className=" font-semibold inline-block">
+                              ${(item.quantity * item.price)}
                             </span>
                           </div>
-                          <div className="col-span-2 pt-3">
-                            <div className="flex items-center space-x-2 text-sm justify-between">
-                              <span className="text-gray-400">
-                                {item.quantity} x ${item.price}
-                              </span>
-                              <span className=" font-semibold inline-block">
-                                ${(item.quantity * item.price)}
-                              </span>
-                            </div>
-                          </div>
-                        </li>
-                      ))
+                        </div>
+                      </li>
+                    ))
                     : ""}
                 </ul>
               </div>
@@ -198,12 +198,12 @@ export default function Checkout() {
                     $
                     {state.items
                       ? state.items
-                          .reduce(
-                            (acm, currentElm) =>
-                              acm + currentElm.price * currentElm.quantity,
-                            0
-                          )
-                         
+                        .reduce(
+                          (acm, currentElm) =>
+                            acm + currentElm.price * currentElm.quantity,
+                          0
+                        )
+
                       : ""}
                   </span>
                 </div>
@@ -218,12 +218,12 @@ export default function Checkout() {
                   $
                   {state.items
                     ? state.items
-                        .reduce(
-                          (acm, currentElm) =>
-                            acm + currentElm.price * currentElm.quantity,
-                          0
-                        )
-                        
+                      .reduce(
+                        (acm, currentElm) =>
+                          acm + currentElm.price * currentElm.quantity,
+                        0
+                      )
+
                     : ""}
                 </span>
               </div>

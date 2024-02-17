@@ -5,17 +5,11 @@ import Footer from "../components/Footer";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { Context } from "../context";
-import signIn from "../services/signin";
 import Spinner from "../components/subcomponents/Spinner";
 import Notification from "../components/subcomponents/Notification";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
-import {
-  auth,
-  googleProvider,
-  facebookAuthProvider,
-} from "../services/authproviders";
-import { signInWithPopup } from "firebase/auth";
+
 
 export default function Signin() {
   const getData = useContext(Context);
@@ -48,20 +42,7 @@ export default function Signin() {
       setPassword("");
     }
   };
-  const signUpWithGoogle = () => {
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => console.log(error));
-  };
-  const signUpWithFacebook = () => {
-    signInWithPopup(auth, facebookAuthProvider)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => console.log(error));
-  };
+  
 
   return (
     <div>
@@ -156,7 +137,6 @@ export default function Signin() {
               <div className="flex items-center justify-center h-[52px] w-1/2 ">
                 <button
                   type="button"
-                  onClick={signUpWithGoogle}
                   className="w-full flex items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                 >
                   <FcGoogle className="text-2xl" />
@@ -166,7 +146,6 @@ export default function Signin() {
               <div className="flex items-center justify-start h-[52px] w-1/2 ml-4">
                 <button
                   type="button"
-                  onClick={signUpWithFacebook}
                   className="flex w-full items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                 >
                   <BsFacebook className="text-2xl text-[#1778f2]" />

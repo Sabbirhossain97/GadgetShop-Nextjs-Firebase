@@ -8,8 +8,8 @@ import toast from "react-hot-toast";
 
 export default function Products() {
   const getData = useContext(Context);
-  const [totalQauntity, setTotalQuantity] = getData?.cartTotal;
-  const [isLoggedIn, setIsLoggedIn] = getData?.isAuth;
+  const [_, setTotalQuantity] = getData?.cartTotal;
+  const [isLoggedIn] = getData?.isAuth;
   const [state, dispatch] = getData?.cartReducer;
   const router = useRouter();
 
