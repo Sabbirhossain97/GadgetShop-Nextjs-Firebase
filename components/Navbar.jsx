@@ -102,7 +102,6 @@ export default function Navbar() {
     }
   };
 
-
   return (
     <nav className="bg-slate-800 fixed right-0 left-0 top-0 z-10">
       <CartSideBar
@@ -111,7 +110,7 @@ export default function Navbar() {
       />
 
       <div className="mx-auto w-full md:w-10/12 px-2 sm:px-6 lg:px-8  ">
-        <div className="relative flex h-16 items-center justify-between">
+        <div className="relative flex h-[70px] items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden ">
             <button
               type="button"
@@ -152,29 +151,30 @@ export default function Navbar() {
               )}
             </button>
           </div>
-          <div className=" flex flex-row flex-1 items-center justify-center sm:items-stretch sm:justify-start ">
-            <div className=" hidden sm:ml-6 sm:block ">
-              <div className="flex space-x-4 items-center h-full">
-                <Link href="/">
+          <div className="flex flex-row flex-1 items-center justify-center sm:items-stretch sm:justify-start ">
+            <div className="flex space-x-4 items-center h-full">
+              {/* <Link href="/">
                   <p
                     className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                     aria-current="page"
                   >
                     Home
                   </p>
-                </Link>
+                
                 <Link href="/Products">
                   <p className="cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                     Products
                   </p>
-                </Link>
-              </div>
+                </Link> */}
+              <Link href="/">
+                <img src="/assets/logo.png" width="200px" height="100px" className="mb-4 " />
+              </Link>
             </div>
-            <div className="ml-12 w-4/6 flex items-center relative">
+            <div className="ml-12 w-4/6 flex items-center relative ">
               <input onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search" className=" h-[40px] w-full rounded-md bg-gray-100 border border-gray-600 indent-10" />
               <IoSearch className="absolute left-4 text-gray-600" />
               {
-                searchQuery && <div className="bg-gray-100 w-full pb-4 pl-2 pt-2 z-1000 absolute top-10 max-h-96 shadow-xl overflow-y-auto rounded-md">
+                searchQuery && <div className="bg-gray-100 w-full pb-4 pl-2 pt-2 z-1000 absolute top-16 max-h-96 shadow-xl overflow-y-auto rounded-md">
                   <ul className="space-y-2">
                     {searchedProducts.length > 0 ? searchedProducts.map((product) => (
                       <li

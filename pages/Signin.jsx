@@ -9,40 +9,26 @@ import Spinner from "../components/subcomponents/Spinner";
 import Notification from "../components/subcomponents/Notification";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, logInWithEmailAndPassword, signInWithFacebook, signInWithGoogle } from "../services/firebase";
 
 export default function Signin() {
   const getData = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState({});
-  const [error, setError] = useState("");
   const router = useRouter();
+  const [user, loading, error] = useAuthState(auth);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      setLoading(true);
-      const { user, error } = await signIn(email, password);
-      if (error) {
-        setError(error.message);
-      } else {
-        setUser(user);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-      // toast.success("Logged in!", {
-      //   position: "top-center",
-      // });
-      // router.push("/");
-      setEmail("");
-      setPassword("");
-    }
+    logInWithEmailAndPassword(email, password)
   };
-  
+
+  useEffect(() => {
+    if (loading) return;
+    if (user) router.push("/");
+  }, [user, loading]);
+
 
   return (
     <div>
@@ -79,7 +65,6 @@ export default function Signin() {
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
-                    setError("");
                   }}
                   className="placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-md bg-white border border-gray-400"
                   placeholder="Email"
@@ -137,6 +122,7 @@ export default function Signin() {
               <div className="flex items-center justify-center h-[52px] w-1/2 ">
                 <button
                   type="button"
+                  onClick={signInWithGoogle}
                   className="w-full flex items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                 >
                   <FcGoogle className="text-2xl" />
@@ -146,6 +132,7 @@ export default function Signin() {
               <div className="flex items-center justify-start h-[52px] w-1/2 ml-4">
                 <button
                   type="button"
+                  onClick={signInWithFacebook}
                   className="flex w-full items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                 >
                   <BsFacebook className="text-2xl text-[#1778f2]" />

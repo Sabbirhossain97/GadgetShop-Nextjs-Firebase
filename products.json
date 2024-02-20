@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "WD Blue 2TB HDD",
-    "price": 64,
+    "price": 60,
     "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
     "category": "HDD & SSD",
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/WD-2TB.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvV0QtMlRCLndlYnAiLCJpYXQiOjE3MDgwOTE3OTEsImV4cCI6MTg2NTc3MTc5MX0.B7cJpESyFwV-nQuc-UJs3SCIPv9V-Dqo902t0fjIp1c&t=2024-02-16T13%3A56%3A32.638Z",
@@ -10,12 +10,13 @@
       "rate": 3.3,
       "stock": 203
     },
-    "quantity": 1
+    "quantity": 1,
+     "discount": 100
   },
   {
     "id": 2,
     "title": "Toshiba 1TB HDD",
-    "price": 109,
+    "price": 100,
     "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
     "category": "HDD & SSD",
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/Toshiba%201TB.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvVG9zaGliYSAxVEIuanBnIiwiaWF0IjoxNzA4MDkxNjU0LCJleHAiOjE4NjU3NzE2NTR9.NahFGVHavIqBpWvcuY2gaINSNeutlYCCOmzjd4xn4SY&t=2024-02-16T13%3A54%3A15.341Z",
@@ -23,12 +24,13 @@
       "rate": 2.9,
       "stock": 470
     },
-    "quantity": 1
+    "quantity": 1,
+    "discount": 50
   },
   {
     "id": 3,
     "title": "Samsung 870 Evo 250GB Sata SSD",
-    "price": 109,
+    "price": 100,
     "description": "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
     "category": "HDD & SSD",
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/870-evo.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvODcwLWV2by5qcGciLCJpYXQiOjE3MDgwOTE1ODksImV4cCI6MTg2NTc3MTU4OX0.u24yy8cDAD4ILnDp228ySDe4s2_AeHaJrYLCDihklEg&t=2024-02-16T13%3A53%3A11.257Z",
@@ -36,12 +38,13 @@
       "rate": 4.8,
       "stock": 319
     },
-    "quantity": 1
+    "quantity": 1,
+    "discount": 150
   },
   {
     "id": 4,
     "title": "Samsung 980 Pro 500GB NVMe SSD",
-    "price": 114,
+    "price": 115,
     "description": "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
     "category": "HDD & SSD",
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/980-pro.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvOTgwLXByby5qcGciLCJpYXQiOjE3MDgwOTE1NTYsImV4cCI6MTg2NTc3MTU1Nn0.aLTZvDsL7Jx2ngVIeQ-J9EC21cqsbL4pmDjMN4u0KyU&t=2024-02-16T13%3A52%3A37.619Z",
@@ -49,12 +52,13 @@
       "rate": 4.8,
       "stock": 400
     },
-    "quantity": 1
+    "quantity": 1,
+    "discount": 60
   },
   {
     "id": 5,
     "title": "Seagate 1TB HDD",
-    "price": 114,
+    "price": 115,
     "description": "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
     "category": "HDD & SSD",
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/seagate-1.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvc2VhZ2F0ZS0xLmpwZyIsImlhdCI6MTcwODA5MTQ0OCwiZXhwIjoxODY1NzcxNDQ4fQ.7bdW18wrJB_ck-LXxjs6Sa8k5KfKS1W01CX0rdv6Mbc&t=2024-02-16T13%3A50%3A50.215Z",
@@ -62,7 +66,8 @@
       "rate": 4.8,
       "stock": 400
     },
-    "quantity": 1
+    "quantity": 1,
+    "discount": 250
   },
   {
     "id": 6,
@@ -75,7 +80,8 @@
       "rate": 2.9,
       "stock": 250
     },
-    "quantity": 1
+    "quantity": 1,
+    "discount": 80
   },
   {
     "id": 7,
@@ -88,7 +94,8 @@
       "rate": 2.2,
       "stock": 140
     },
-    "quantity": 1
+    "quantity": 1,
+    "discount": 120
   },
   {
     "id": 8,
@@ -101,7 +108,8 @@
       "rate": 2.2,
       "stock": 140
     },
-    "quantity": 1
+    "quantity": 1,
+    "discount": 100
   },
   {
     "id": 9,
@@ -114,7 +122,8 @@
       "rate": 2.2,
       "stock": 140
     },
-    "quantity": 1
+    "quantity": 1,
+    "discount": 110
   },
   {
     "id": 10,
@@ -127,7 +136,8 @@
       "rate": 2.2,
       "stock": 140
     },
-    "quantity": 1
+    "quantity": 1,
+    "discount": 130
   },
 
   {
@@ -137,7 +147,8 @@
     "category": "Phone",
     "price": 850,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/S21-Fe.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvUzIxLUZlLmpwZyIsImlhdCI6MTcwODA5MTIwMSwiZXhwIjoxODY1NzcxMjAxfQ.oFIP2avKf6zharYrubV5gozzNrBvDJaj8t3hrp-rNG0&t=2024-02-16T13%3A46%3A42.323Z",
-    "quantity": 1
+    "quantity": 1,
+    "discount": 200
   },
   {
     "id": 12,
@@ -146,7 +157,8 @@
     "category": "Phone",
     "price": 210,
     "image": "https://images.pexels.com/photos/47261/pexels-photo-47261.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-    "quantity": 1
+    "quantity": 1,
+    "discount": 160
   },
   {
     "id": 13,
@@ -155,7 +167,8 @@
     "category": "Phone",
     "price": 120,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71A9Vo1BatL._SL1500_.jpg",
-    "quantity": 1
+    "quantity": 1,
+    "discount": 100
   },
   {
     "id": 14,
@@ -164,7 +177,8 @@
     "category": "Phone",
     "price": 850,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71hIfcIPyxS._SL1500_.jpg",
-    "quantity": 1
+    "quantity": 1,
+    "discount": 200
   },
   {
     "id": 15,
@@ -173,7 +187,8 @@
     "category": "Phone",
     "price": 850,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/p50-pro.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvcDUwLXByby53ZWJwIiwiaWF0IjoxNzA4MDkxMDM4LCJleHAiOjE4NjU3NzEwMzh9.iLUVMwnp2P8r-1SgiDeZVcXo1tqClUl7Is6s2Epf03c&t=2024-02-16T13%3A43%3A59.950Z",
-    "quantity": 1
+    "quantity": 1,
+    "discount": 80
   },
   {
     "id": 16,

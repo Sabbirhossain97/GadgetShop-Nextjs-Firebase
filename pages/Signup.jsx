@@ -24,13 +24,16 @@ export default function Signup() {
 
 
   const register = () => {
-    registerWithEmailAndPassword(name, email, password)
+    const response = registerWithEmailAndPassword(name, email, password);
+    console.log(response)
   };
 
   useEffect(() => {
     if (loading) return;
     if (user) router.push("/");
   }, [user, loading]);
+
+  console.log(error)
 
   return (
     <div>
@@ -107,7 +110,7 @@ export default function Signup() {
 
             <div>
               <button
-                type="submit"
+                type="button"
                 onClick={register}
                 className="w-full p-3 bg-slate-800 rounded-md hover:bg-slate-700 text-white"
               >

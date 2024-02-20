@@ -1,31 +1,56 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { Context } from '../context'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import products from "../products.json"
-
-function getCategories(products) {
-    const categories = [];
-    products.forEach(product => {
-        if (!categories.includes(product.category)) {
-            categories.push(product.category);
-        }
-    });
-
-    return categories;
-}
+import { Pagination } from 'antd';
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useRouter } from "next/router";
+import { Slider, Switch } from 'antd';
 
 function Products() {
-
+    const getData = useContext(Context);
+    const [isLoggedIn] = getData?.isAuth;
+    const [_, dispatch] = getData?.cartReducer;
     const [productList, setProductList] = useState(products);
     const [filters, setFilters] = useState({
         category: [],
-        sort: ""
     })
-    const categories = getCategories(products);
-    const [isSortOpen, setIsSortOpen] = useState(false)
+    const [sortBy, setSortBy] = useState("")
+    const [categories, setCategories] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(12);
+    const [priceRange, setPriceRange] = useState({ min: 0, max: 5000 });
+    const [localPriceRange, setLocalPriceRange] = useState([0, 5000]);
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = productList.slice(indexOfFirstItem, indexOfLastItem);
+    const router = useRouter();
+
+    const onChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    const priceRangeChange = (value) => {
+        setLocalPriceRange(value)
+    }
+
+    useEffect(() => {
+        setPriceRange({ min: localPriceRange[0], max: localPriceRange[1] });
+    }, [localPriceRange]);
+
+    useEffect(() => {
+        const allCategories = [];
+        products.forEach(product => {
+            if (!allCategories.includes(product.category)) {
+                allCategories.push(product.category);
+            }
+        });
+        setCategories(allCategories)
+    }, [])
 
     const handleCategory = (e) => {
-        if (!filters.category.includes(e.target.value)) {
+        if (e.target.checked) {
             setFilters({ ...filters, category: [...filters.category, e.target.value] })
         } else {
             setFilters((prevFilters) => ({
@@ -35,37 +60,55 @@ function Products() {
         }
     }
 
-    useEffect(() => {
+    const handleSort = (e) => {
+        setSortBy(e.target.value)
+    }
+
+    const applyFilters = () => {
+        let filtered = products.filter((product) => {
+            if (product.price >= priceRange.min && product.price <= priceRange.max) {
+                return product
+            }
+        })
         if (filters.category.length > 0) {
-            const filteredProductCategory = products.map((product) => {
+            filtered = products.map((product) => {
                 if (filters.category.includes(product.category)) {
                     return product
                 }
-            })
-            setProductList(filteredProductCategory.filter((item) => item !== undefined))
+            }).filter((item) => item !== undefined)
         } else if (filters.category.length === 0) {
-            setProductList(products)
+            setProductList(filtered)
         }
-        if (filters.sort === "Price: Low to High") {
-            const productsAsc = productList.sort((a, b) => a.price - b.price);
-            setProductList(productsAsc)
+        if (sortBy === "asc") {
+            filtered = filtered.sort((a, b) => a.price - b.price);
+        } else if (sortBy === "desc") {
+            filtered = filtered.sort((a, b) => b.price - a.price);
         }
-        if (filters.sort === "Price: High to Low") {
-            const productsAsc = productList.sort((a, b) => b.price - a.price);
-            setProductList(productsAsc)
-        }
-    }, [filters.category, filters.sort])
+        setProductList(filtered)
+    }
 
-    console.log(filters)
+    useEffect(() => {
+        applyFilters()
+    }, [priceRange, filters, sortBy])
+
+    const handleCartAction = (id) => {
+        if (!isLoggedIn) {
+            setTimeout(() => {
+                router.push("/Signin");
+            }, 2000);
+        } else {
+            dispatch({ type: "ADD_PRODUCT", id: id });
+        }
+    };
 
     return (
         <div>
             <Navbar />
             <div className="h-screen">
-                <div class="bg-white">
+                <div className="bg-white">
                     <div>
                         {/* mobile section */}
-                        {/* <div class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
+                        {/* <div class="relative bg-slate-800 z-40 lg:hidden" role="dialog" aria-modal="true">
                             <div class="fixed inset-0 bg-black bg-opacity-25"></div>
                             <div class="fixed inset-0 z-40 flex">
                                 <div class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
@@ -185,7 +228,7 @@ function Products() {
                                 </div>
                             </div>
                         </div> */}
-                        <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                        <main class="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
                             <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
                                 <h1 class="text-4xl font-bold tracking-tight text-gray-900">All Products</h1>
                                 <div class="flex items-center">
@@ -193,9 +236,33 @@ function Products() {
                             </div>
                             <section aria-labelledby="products-heading" class="pb-24 pt-6 ">
                                 <h2 id="products-heading" class="sr-only">Products</h2>
-                                <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 ">
+                                <div class=" grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 ">
                                     <form class="hidden lg:block">
                                         <h3 class="sr-only">Categories</h3>
+                                        <div class="border-b border-gray-200 py-6 ">
+                                            <h3 class="-my-3 flow-root">
+                                                <button type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" aria-expanded="false">
+                                                    <span class="font-medium text-gray-900">Price Range</span>
+                                                </button>
+                                            </h3>
+                                            <div class="pt-6" id="filter-section-1">
+                                                <div class="space-y-4">
+                                                    <Slider
+                                                        range
+                                                        min={0}
+                                                        max={5000}
+                                                        defaultValue={[0, 5000]}
+                                                        value={localPriceRange}
+                                                        styles={{
+                                                            track: {
+                                                                background: "rgb(59,130,246)"
+                                                            }
+                                                        }}
+                                                        onChange={priceRangeChange}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div class="border-b border-gray-200 py-6">
                                             <h3 class="-my-3 flow-root">
@@ -205,10 +272,10 @@ function Products() {
                                             </h3>
                                             <div class="pt-6" id="filter-section-1">
                                                 <div class="space-y-4">
-                                                    {categories.map((category) => (
+                                                    {categories.map((category, index) => (
                                                         <div class="flex items-center">
-                                                            <input onChange={(e) => handleCategory(e)} id="filter-category-0" name="category" value={category} type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-                                                            <label for="filter-category-0" className="ml-3 text-sm text-gray-600">{category}</label>
+                                                            <input onChange={(e) => handleCategory(e)} id={`filter-category-${index}`} name="category" value={category} type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                                                            <label for={`filter-category-${index}`} className="ml-3 text-sm text-gray-600">{category}</label>
                                                         </div>
                                                     ))}
                                                 </div>
@@ -224,11 +291,11 @@ function Products() {
                                             <div class="pt-6" id="filter-section-1">
                                                 <div class="space-y-4">
                                                     <div class="flex items-center">
-                                                        <input onChange={(e) => setFilters({ ...filters, sort: e.target.value })} id="filter-category-0" name="category" value="Price: Low to High" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                                                        <input onChange={(e) => handleSort(e)} id="filter-category-asc" name="category" value="asc" type="radio" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                                                         <label for="filter-category-0" className="ml-3 text-sm text-gray-600">Price: Low to High</label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input onChange={(e) => setFilters({ ...filters, sort: e.target.value })} id="filter-category-0" name="category" value="Price: High to Low" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                                                        <input onChange={(e) => handleSort(e)} id="filter-category-desc" name="category" value="desc" type="radio" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                                                         <label for="filter-category-0" className="ml-3 text-sm text-gray-600">Price: High to Low</label>
                                                     </div>
                                                 </div>
@@ -236,9 +303,9 @@ function Products() {
                                         </div>
                                     </form>
 
-                                    <div className="grid grid-cols-4 gap-y-8 gap-x-2 col-span-3">
-                                        {productList
-                                            ? productList.map((item, key) => (
+                                    <div className=" grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-y-8 gap-x-2 col-span-3">
+                                        {currentItems
+                                            ? currentItems.map((item, key) => (
                                                 <div
                                                     key={key}
                                                     className="relative mx-auto p-4 group border rounded-lg shadow-lg md:w-11/12 w-3/4 h-96 hover:shadow-xl transition duration-300 flex flex-col items-center justify-center"
@@ -261,12 +328,13 @@ function Products() {
                                                     </div>
                                                     <div className="flex flex-row w-[150px] relative ">
                                                         <button
+                                                            onClick={() => handleCartAction(item.id)}
                                                             className="w-full mt-4 bg-slate-800 hover:bg-slate-700 px-2  text-white font-bold py-2 rounded-md"
                                                         >
                                                             <p className="text-sm flex flex-row justify-around">
                                                                 <span>Add to cart </span>
                                                                 <span>
-                                                                    {/* <AiOutlineShoppingCart className="mt-1 absolute right-4" /> */}
+                                                                    <AiOutlineShoppingCart className="mt-1 absolute right-4" />
                                                                 </span>
                                                             </p>
                                                         </button>
@@ -277,9 +345,17 @@ function Products() {
                                     </div>
                                 </div>
                             </section>
+                            <div className='flex justify-center mb-20'>
+                                <Pagination
+                                    onChange={onChange}
+                                    current={currentPage}
+                                    pageSize={itemsPerPage}
+                                    total={productList.length} />
+                            </div>
                         </main>
                     </div>
                 </div>
+
                 <Footer />
             </div>
         </div>
