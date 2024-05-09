@@ -6,6 +6,7 @@ import { Context } from "../../context";
 import { useRouter } from "next/router";
 import { AiFillHome } from "react-icons/ai";
 import EmptyCart from "../../components/EmptyCart";
+import Subnavbar from "../../components/Subnavbar";
 
 export default function Cart() {
   const getData = useContext(Context);
@@ -27,7 +28,8 @@ export default function Cart() {
   return (
     <div>
       <Navbar />
-      <div className="min-h-screen bg-gray-100/50 p-20 ">
+      <Subnavbar/>
+      <div className="min-h-screen bg-gray-100/50 py-40 px-10 md:px-20 lg:px-0 ">
         {state.items ? (
           state.items.length === 0 ? (
             <div>
@@ -63,23 +65,23 @@ export default function Cart() {
           ) : (
             ""
           )}
-          <div className="mt-4 relative mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-0 xl:px-0   ">
-            <div className="relative md:w-4/5 overflow-y-auto max-h-[640px]  ">
+          <div className="mt-4 border flex flex-wrap lg:flex-nowrap  relative mx-auto max-w-5xl justify-center md:space-x-0 xl:px-0   ">
+            <div className="relative overflow-y-auto max-h-[640px]  ">
               {state.items
                 ? state.items.map((item, key) => (
                     <div
                       key={key}
-                      className="bg-white  relative justify-between p-4 border-b md:grid md:grid-cols-4 md:grid-rows-none grid grid-cols-2 grid-rows-3   "
+                      className="bg-white border relative justify-between p-4 border-b md:grid md:grid-cols-4 gap-x-4 md:grid-rows-none grid grid-cols-3 grid-rows-3   "
                     >
                       <div className=" md:col-span-1 col-span-2 ">
                         <img
                           src={item.image}
                           alt="product-image"
-                          className="ml-8 rounded-lg w-24 h-32 border border-gray-200 p-2 object-fill object-center"
+                          className="ml-8 rounded-lg w-24 h-24 border border-gray-200 p-2 object-fill object-center"
                         />
                       </div>
 
-                      <div className=" w-3/4 flex flex-col justify-center text-left md:col-span-2 col-span-2">
+                      <div className="border w-3/5 flex flex-col justify-center text-left md:col-span-2 col-span-2">
                         <h2 className="text-lg font-bold text-left text-gray-900">
                           {item.title}
                         </h2>
@@ -88,7 +90,7 @@ export default function Cart() {
                         </h2>
                         {/* <p className="mt-1 text-xs text-gray-700">36EU - 4US</p> */}
                       </div>
-                      <div className="relative  flex flex-row items-center justify-between col-span-2 md:col-span-1 ">
+                      <div className="relative w-2/5 border flex flex-row items-center justify-between col-span-2 md:col-span-1 ">
                         <div className="flex items-center border-gray-100 w-1/2  absolute ">
                           <span
                             onClick={() =>
@@ -125,7 +127,7 @@ export default function Cart() {
                           onClick={() =>
                             dispatch({ type: "REMOVE_PRODUCT", id: item.id })
                           }
-                          className=" flex justify-center items-center absolute right-0  h-8 w-8"
+                          className="border absolute"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

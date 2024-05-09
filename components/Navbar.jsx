@@ -10,6 +10,7 @@ import firebaseAapp from "../services/firebase";
 import toast from "react-hot-toast";
 import { IoSearch } from "react-icons/io5";
 import products from "../products.json"
+import { Flash } from "./SvgComponents/SVG";
 
 const auth = getAuth(firebaseAapp);
 
@@ -58,11 +59,22 @@ export default function Navbar() {
     });
   };
 
+  const handleRegister = () => {
+    if (!isLoggedIn) {
+      router.push("/Signup");
+    }
+  };
+
   const handleSignIn = () => {
     if (!isLoggedIn) {
       router.push("/Signin");
     }
   };
+
+  const handleSpecialDeals = ()=> {
+    router.push('/SpecialDeals')
+  }
+
   const goToCart = () => {
     if (width < 800) {
       setIsSideBarOpen(true);
@@ -103,7 +115,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-slate-800 fixed right-0 left-0 top-0 z-10">
+    <nav className="bg-slate-800 fixed right-0 left-0 top-0 z-20">
       <CartSideBar
         setIsSideBarOpen={setIsSideBarOpen}
         isSideBarOpen={isSideBarOpen}
@@ -151,26 +163,13 @@ export default function Navbar() {
               )}
             </button>
           </div>
-          <div className="flex flex-row flex-1 items-center justify-center sm:items-stretch sm:justify-start ">
+          <div className=" flex flex-row flex-1 items-center justify-center sm:items-stretch sm:justify-start ">
             <div className="flex space-x-4 items-center h-full">
-              {/* <Link href="/">
-                  <p
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                    aria-current="page"
-                  >
-                    Home
-                  </p>
-                
-                <Link href="/Products">
-                  <p className="cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                    Products
-                  </p>
-                </Link> */}
               <Link href="/">
                 <img src="/assets/logo.png" width="200px" height="100px" className="mb-4 " />
               </Link>
             </div>
-            <div className="ml-12 w-4/6 flex items-center relative ">
+            <div className="ml-12 w-3/4 flex items-center relative ">
               <input onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search" className=" h-[40px] w-full rounded-md bg-gray-100 border border-gray-600 indent-10" />
               <IoSearch className="absolute left-4 text-gray-600" />
               {
@@ -200,7 +199,40 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
+          <div className=" w-1/4 flex items-center gap-8 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
+            <div className="flex w-1/4">
+              <Flash />
+              <div onClick={handleSpecialDeals} className="hover:opacity-75 cursor-pointer hover:text-blue-500">
+                <p className="flex text-sm text-white">Offers</p>
+                <p className=" text-[12px] text-gray-400 whitespace-nowrap">Special Deals</p>
+              </div>
+            </div>
+            <div className="relative right-0 ">
+              <div >
+
+                {user ? (
+                  <div className="flex items-center gap-2">
+                    <img
+                      className="h-8 w-8 rounded-full"
+                      src={user?.photoURL}
+                      alt=""
+                    />
+                    <div className="flex flex-col text-white">
+                      <p className="text-sm font-bold">{user.displayName}</p>
+                      <p className="text-[12px] font-norma text-gray-400"><span className="cursor-pointer hover:text-blue-500">Profile</span> or <span onClick={handleSignOut} className="cursor-pointer hover:text-blue-500">Logout</span></p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <RxAvatar className="w-8 h-8 text-gray-100/50" />
+                    <div className="flex flex-col text-white">
+                      <p className="text-sm font-bold">Account</p>
+                      <p className="text-[12px] text-gray-400"><span onClick={handleRegister} className="cursor-pointer hover:text-blue-500 transition duration-300">Register</span> or <span onClick={handleSignIn} className="cursor-pointer hover:text-blue-500 transition duration-300">Login</span></p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
             <button
               type="button"
               onClick={goToCart}
@@ -211,75 +243,10 @@ export default function Navbar() {
                 {cartTotalValue}
               </span>
             </button>
-
-            <div className=" relative ml-10 right-0 ">
-              <div className="">
-                <button
-                  type="button"
-                  className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  onClick={() => setOpenDropDown(!openDropDown)}
-                >
-                  <span className="sr-only">Open user menu</span>
-                  {user ? (
-                    <img
-                      className="h-8 w-8 rounded-full"
-                      src={user?.photoURL}
-                      alt=""
-                    />
-                  ) : (
-                    <RxAvatar className="w-8 h-8 text-gray-100/50" />
-                  )}
-                </button>
-
-                <div className="w-[30px]"></div>
-              </div>
-
-              {openDropDown && (
-                <div
-                  className={`absolute right-0 z-2 mt-2 transition-all origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${openDropDown ? "w-48" : "w-0"
-                    }  ease-in-out duration-500`}
-                >
-                  <Link href="/">
-                    <p
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                    >
-                      Home
-                    </p>
-                  </Link>
-
-                  {role === "admin" ? (
-                    <Link href="#">
-                      <p className="block px-4 py-2 text-sm text-black">
-                        Dashboard
-                      </p>
-                    </Link>
-                  ) : (
-                    ""
-                  )}
-
-                  {user ? (
-                    <p
-                      onClick={handleSignOut}
-                      className="cursor-pointer block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="user-menu-item-2"
-                    >
-                      Sign Out
-                    </p>
-                  ) : (
-                    <p
-                      onClick={handleSignIn}
-                      className="cursor-pointer block px-4 py-2 text-sm text-gray-700"
-                    >
-                      Sign In
-                    </p>
-                  )}
-                </div>
-              )}
-            </div>
           </div>
+
+
+        
         </div>
       </div>
 

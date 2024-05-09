@@ -1,13 +1,12 @@
 import React from "react";
 import { MdLocalShipping } from "react-icons/md";
-import { GiTakeMyMoney } from "react-icons/gi";
 import { BiSupport } from "react-icons/bi";
 import { AiFillGift } from "react-icons/ai";
 import { IoMdPricetags } from "react-icons/io";
 
 export default function Features() {
   return (
-    <div className="bg-gray-100 py-24 sm:py-32 mt-12">
+    <div className="font-sans bg-gray-100 py-24 sm:py-32 mt-12">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

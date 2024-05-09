@@ -1,39 +1,18 @@
 import React from "react";
+import { sponsors } from "../helpers/helpers";
 
 export default function Footer() {
   return (
-    <section className="py-10 bg-slate-800 sm:pt-16 lg:pt-24">
-      <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+    <section className="py-10 bg-slate-800 sm:pt-16 lg:pt-12">
+      <div className="px-4 mx-auto sm:px-6 lg:px-2 max-w-7xl">
         <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
           <div className="col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
-            <p className="text-sm font-semibold tracking-widest text-white uppercase">
-              Subscribe to newsletter
-            </p>
-
-            <form action="#" method="POST" className="mt-6">
-              <div>
-                <label htmlFor="email" className="sr-only">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Enter your email"
-                  className="placeholder:text-sm block w-full p-2 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center px-6 py-2 mt-3 font-semibold text-white transition-all duration-200 bg-slate-700 rounded-md hover:bg-blue-800 focus:bg-blue-700"
-              >
-                Subscribe
-              </button>
-            </form>
+            <div>
+              <img src="/assets/logo.png" />
+            </div>
           </div>
 
-          <div>
+          <div className="flex flex-col justify-end">
             <p className="text-sm font-semibold tracking-widest text-white uppercase">
               Company
             </p>
@@ -46,7 +25,7 @@ export default function Footer() {
                   className="flex text-base text-gray-100/50 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
-                  About{" "}
+                  About Us{" "}
                 </a>
               </li>
 
@@ -68,7 +47,7 @@ export default function Footer() {
                   className="flex text-base text-gray-100/50 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
-                  Works{" "}
+                  Contact Us{" "}
                 </a>
               </li>
 
@@ -79,13 +58,13 @@ export default function Footer() {
                   className="flex text-base text-gray-100/50 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
-                  Career{" "}
+                  Refund Policy{" "}
                 </a>
               </li>
             </ul>
           </div>
 
-          <div>
+          <div className="flex flex-col justify-end">
             <p className="text-sm font-semibold tracking-widest text-white uppercase">
               Help
             </p>
@@ -137,7 +116,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
+          <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8 flex justify-center">
             <ul className="flex items-center space-x-3 mt-9">
               <li>
                 <a
@@ -216,9 +195,17 @@ export default function Footer() {
           </div>
         </div>
 
+        <div className='w-full mx-auto flex gap-3 py-6 justify-center lg:justify-end items-center'>
+          {sponsors.map((item, index) => (
+            <div key={index}>
+              <img src={`/assets/sponsors/${item}.png`} className='cursor-pointer h-full w-full' />
+            </div>
+          ))}
+        </div>
+
         <hr className="mt-16 mb-10 border-gray-100/20" />
         <p className="text-sm text-center text-white">
-          © Copyright 2023, All Rights Reserved
+          © Gadget Shop 2024, All Rights Reserved
         </p>
       </div>
     </section>

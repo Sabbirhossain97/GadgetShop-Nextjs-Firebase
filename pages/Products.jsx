@@ -6,7 +6,7 @@ import products from "../products.json"
 import { Pagination } from 'antd';
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { Slider, Switch } from 'antd';
+import { Spin, Slider } from 'antd';
 
 function Products() {
     const getData = useContext(Context);
@@ -20,6 +20,7 @@ function Products() {
     const [categories, setCategories] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(12);
+    const [loading, setLoading] = useState(false)
     const [priceRange, setPriceRange] = useState({ min: 0, max: 5000 });
     const [localPriceRange, setLocalPriceRange] = useState([0, 5000]);
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -88,7 +89,11 @@ function Products() {
     }
 
     useEffect(() => {
-        applyFilters()
+        setLoading(true)
+        setTimeout(() => {
+            applyFilters();
+            setLoading(false)
+        }, 2000)
     }, [priceRange, filters, sortBy])
 
     const handleCartAction = (id) => {
@@ -303,7 +308,10 @@ function Products() {
                                         </div>
                                     </form>
 
-                                    <div className=" grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-y-8 gap-x-2 col-span-3">
+                                    <div className={`${loading && "opacity-75"} relative grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-y-8 gap-x-2 col-span-3`}>
+                                        {loading ? <div className='absolute top-1/2 left-1/2 '>
+                                            <Spin size='large' />
+                                        </div> : ""}
                                         {currentItems
                                             ? currentItems.map((item, key) => (
                                                 <div
