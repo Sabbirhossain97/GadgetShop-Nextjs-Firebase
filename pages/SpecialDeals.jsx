@@ -1,27 +1,22 @@
 import React from 'react'
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../components/Navigation/Navbar';
+import Footer from '../components/Footer/Footer';
 import { specialDeals } from '../helpers/helpers';
 import { DateRange } from '../components/SvgComponents/SVG';
-import Subnavbar from '../components/Subnavbar';
+import Subnavbar from '../components/Navigation/Subnavbar';
 
 function SpecialDeals() {
-    console.log(specialDeals.map((deal) => {
-        return {
-            image: deal.img
-        }
-    }))
+
     return (
         <div>
             <Navbar />
             <Subnavbar />
-            <div className='min-h-screen max-w-[1500px] mx-auto py-20'>
-                <div className={`py-20 relative gap-x-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-y-8 col-span-3`}>
-
+            <div className='min-h-screen max-w-[1500px] mx-auto py-10 xl:py-20 px-10'>
+                <div className={`py-20 relative gap-x-10 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-y-8 col-span-3`}>
                     {specialDeals.map((deal, index) => (
                         <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg drop-shadow-lg">
                             <div className="relative ">
-                                <img className="w-full  object-cover h-[200px]" src={`/assets/specialDeals/${deal.img}.png`} alt="Product Image" />
+                                <img className="w-full object-cover max-h-[200px]" src={`/assets/specialDeals/${deal.img}.png`} alt="Product Image" />
                             </div>
                             <div className="p-4 ">
                                 <h3 className="text-lg text-center font-medium mb-2">{deal.title}</h3>

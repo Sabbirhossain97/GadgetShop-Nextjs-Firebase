@@ -1,13 +1,12 @@
 import React from "react";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer/Footer";
 import Features from "../components/Features";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navigation/Navbar";
 import Head from "next/head";
-import Carousel from "../components/Carousel";
+import Carousel from "../components/Hero/Carousel";
 import Shop from "../pages/Shop";
 import FeaturedCategories from "../components/FeaturedCategories";
-import Hero from "../components/Hero";
-import Subnavbar from "../components/Subnavbar";
+import Subnavbar from "../components/Navigation/Subnavbar";
 
 export default function Home() {
   return (
@@ -21,7 +20,7 @@ export default function Home() {
         <div>
           <Navbar />
           <Subnavbar />
-          <div className="mt-16 mx-auto">
+          <div className="mx-auto">
             <Carousel />
             <FeaturedCategories />
             <Shop />

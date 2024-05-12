@@ -41,7 +41,11 @@ export const reducer = (state, action) => {
     case "INCREMENT_QUANTITY":
       let incrementQuantity = state.items.map((currentElm) => {
         if (currentElm.id === action.id) {
-          return { ...currentElm, quantity: currentElm.quantity + 1 };
+          if (currentElm.quantity + 1 <= currentElm.rating.stock) {
+            return { ...currentElm, quantity: currentElm.quantity + 1 };
+          } else {
+            return currentElm;
+          }
         }
         return currentElm;
       });

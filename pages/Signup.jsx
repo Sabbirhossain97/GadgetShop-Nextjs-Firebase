@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navigation/Navbar";
 import Link from "next/link";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer/Footer";
 import { useRouter } from "next/router";
-import Spinner from "../components/subcomponents/Spinner";
+import Spinner from "../components/Animation/Spinner";
 import toast from "react-hot-toast";
-import Notification from "../components/subcomponents/Notification";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { signInWithPopup } from "firebase/auth";
@@ -33,7 +32,6 @@ export default function Signup() {
     if (user) router.push("/");
   }, [user, loading]);
 
-  console.log(error)
 
   return (
     <div>
@@ -112,7 +110,7 @@ export default function Signup() {
               <button
                 type="button"
                 onClick={register}
-                className="w-full p-3 bg-slate-800 rounded-md hover:bg-slate-700 text-white"
+                className="w-full p-3 bg-slate-800 rounded-md hover:bg-slate-700 text-white transition duration-300"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
                 {loading ? <Spinner /> : "Sign Up"}
@@ -136,25 +134,25 @@ export default function Signup() {
                 or
               </p>
             </div>
-            <div className="flex flex-row w-full ">
-              <div className="flex items-center justify-center h-[52px] w-1/2 ">
+            <div className="flex flex-row flex-wrap sm:flex-nowrap gap-4 sm:gap-0 w-full ">
+              <div className="flex items-center justify-center h-[52px] w-full sm:w-1/2 ">
                 <button
                   type="button"
                   onClick={signInWithGoogle}
-                  className="w-full flex items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                  className="w-full flex items-center justify-center h-[52px] transition duration-300 bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                 >
                   <FcGoogle className="text-2xl" />
-                  <span className="ml-2 text-sm">Sign in with Google</span>
+                  <span className="ml-2 text-sm whitespace-nowrap">Sign in with Google</span>
                 </button>
               </div>
-              <div className="flex items-center justify-start h-[52px] w-1/2 ml-4">
+              <div className="flex items-center justify-start h-[52px] w-full sm:w-1/2 ml-0 sm:ml-4">
                 <button
                   type="button"
                   onClick={signInWithFacebook}
-                  className="flex w-full items-center justify-center h-[52px] bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                  className="flex w-full items-center justify-center h-[52px] transition duration-300 bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                 >
                   <BsFacebook className="text-2xl text-[#1778f2]" />
-                  <span className="ml-2">Sign in with Facebook</span>
+                  <span className="ml-2" whitespace-nowrap>Sign in with Facebook</span>
                 </button>
               </div>
             </div>

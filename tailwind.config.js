@@ -10,10 +10,11 @@ module.exports = {
       backgroundImage: {
         "hero-image": "url('/assets/background.png')",
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
     },
   },
-  fontFamily: {
-    sans: ["Poppins"],
-  },
+
   plugins: [],
 };

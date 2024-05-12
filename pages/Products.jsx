@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Context } from '../context'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import Navbar from '../components/Navigation/Navbar'
+import Footer from '../components/Footer/Footer'
 import products from "../products.json"
 import { Pagination } from 'antd';
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -363,7 +363,6 @@ function Products() {
                         </main>
                     </div>
                 </div>
-
                 <Footer />
             </div>
         </div>

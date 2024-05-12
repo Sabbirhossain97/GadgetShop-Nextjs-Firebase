@@ -10,9 +10,9 @@ import "swiper/css/bundle";
 export default function Carousel() {
   return (
     <div>
-      <div className="w-full pb-16 mx-auto bg-gray-100">
+      <div className="w-full pb-16 pt-0 xl:pt-16 mx-auto bg-gray-100">
         <section className="text-gray-600 body-font">
-          <div className="container px-5 mx-auto flex flex-wrap">
+          <div className="max-w-[1536px] px-5 mx-auto flex flex-wrap">
             <div className="flex w-full mb-20 flex-wrap"></div>
             <div className="flex flex-wrap md:-m-2 -m-1">
               <div className="flex flex-wrap w-1/2">

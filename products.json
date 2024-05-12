@@ -8,10 +8,10 @@
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/WD-2TB.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvV0QtMlRCLndlYnAiLCJpYXQiOjE3MDgwOTE3OTEsImV4cCI6MTg2NTc3MTc5MX0.B7cJpESyFwV-nQuc-UJs3SCIPv9V-Dqo902t0fjIp1c&t=2024-02-16T13%3A56%3A32.638Z",
     "rating": {
       "rate": 3.3,
-      "stock": 203
+      "stock": 200
     },
     "quantity": 1,
-     "discount": 100
+    "discount": 100
   },
   {
     "id": 2,
@@ -139,7 +139,6 @@
     "quantity": 1,
     "discount": 130
   },
-
   {
     "id": 11,
     "title": "Samsung S21 Fe",
@@ -147,6 +146,10 @@
     "category": "Phone",
     "price": 850,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/S21-Fe.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvUzIxLUZlLmpwZyIsImlhdCI6MTcwODA5MTIwMSwiZXhwIjoxODY1NzcxMjAxfQ.oFIP2avKf6zharYrubV5gozzNrBvDJaj8t3hrp-rNG0&t=2024-02-16T13%3A46%3A42.323Z",
+    "rating": {
+      "rate": 3.5,
+      "stock": 100
+    },
     "quantity": 1,
     "discount": 200
   },
@@ -157,6 +160,10 @@
     "category": "Phone",
     "price": 210,
     "image": "https://images.pexels.com/photos/47261/pexels-photo-47261.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "rating": {
+      "rate": 4.5,
+      "stock": 240
+    },
     "quantity": 1,
     "discount": 160
   },
@@ -167,6 +174,10 @@
     "category": "Phone",
     "price": 120,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71A9Vo1BatL._SL1500_.jpg",
+    "rating": {
+      "rate": 3.2,
+      "stock": 150
+    },
     "quantity": 1,
     "discount": 100
   },
@@ -177,6 +188,10 @@
     "category": "Phone",
     "price": 850,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71hIfcIPyxS._SL1500_.jpg",
+    "rating": {
+      "rate": 3.8,
+      "stock": 100
+    },
     "quantity": 1,
     "discount": 200
   },
@@ -187,6 +202,10 @@
     "category": "Phone",
     "price": 850,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/p50-pro.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvcDUwLXByby53ZWJwIiwiaWF0IjoxNzA4MDkxMDM4LCJleHAiOjE4NjU3NzEwMzh9.iLUVMwnp2P8r-1SgiDeZVcXo1tqClUl7Is6s2Epf03c&t=2024-02-16T13%3A43%3A59.950Z",
+    "rating": {
+      "rate": 4.0,
+      "stock": 120
+    },
     "quantity": 1,
     "discount": 80
   },
@@ -197,9 +216,12 @@
     "category": "Television",
     "price": 1000,
     "image": "http://www.lg.com/us/images/tvs/md05802269/gallery/medium01.jpg",
+    "rating": {
+      "rate": 4.6,
+      "stock": 180
+    },
     "quantity": 1
   },
-
   {
     "id": 17,
     "title": "Haier 32inch TV",
@@ -207,6 +229,10 @@
     "category": "Television",
     "price": 1000,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/haier-32.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvaGFpZXItMzIud2VicCIsImlhdCI6MTcwODA5MTAxOCwiZXhwIjoxODY1NzcxMDE4fQ.z3DtZm61DjwPJb6ITV9O5tGte1Hf1Nb9yIqK_d6N8vQ&t=2024-02-16T13%3A43%3A39.998Z",
+    "rating": {
+      "rate": 3.8,
+      "stock": 130
+    },
     "quantity": 1
   },
   {
@@ -216,6 +242,10 @@
     "category": "Television",
     "price": 900,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/sle50g22got.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvc2xlNTBnMjJnb3Qud2VicCIsImlhdCI6MTcwODA5MDk4OCwiZXhwIjoxODY1NzcwOTg4fQ.b6pPqDo5xWC8K8tslE8eEDl-MfK5xGCgmrgOc5dHceQ&t=2024-02-16T13%3A43%3A09.319Z",
+    "rating": {
+      "rate": 3.5,
+      "stock": 200
+    },
     "quantity": 1
   },
   {
@@ -225,6 +255,10 @@
     "category": "Television",
     "price": 950,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/samsung43'-4k.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvc2Ftc3VuZzQzJy00ay5qcGciLCJpYXQiOjE3MDgwOTA3OTMsImV4cCI6MTg2NTc3MDc5M30.ZYMcMIAUQgY-ivqiIv_m_Yt0xOR47dIPE5DUh8GLSco&t=2024-02-16T13%3A39%3A54.534Z",
+    "rating": {
+      "rate": 4.4,
+      "stock": 240
+    },
     "quantity": 1
   },
   {
@@ -234,6 +268,10 @@
     "category": "Television",
     "price": 1000,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/sony-bravia-xr-55x90j-55-4k-hdr-led-smart-google-tv.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvc29ueS1icmF2aWEteHItNTV4OTBqLTU1LTRrLWhkci1sZWQtc21hcnQtZ29vZ2xlLXR2LmpwZyIsImlhdCI6MTcwODA5MDc3NywiZXhwIjoxODY1NzcwNzc3fQ.ml76HXcEBVm7A78w4hxTmqvuXYtHH97rYD2dQX26_JU&t=2024-02-16T13%3A39%3A38.694Z",
+    "rating": {
+      "rate": 4.8,
+      "stock": 80
+    },
     "quantity": 1
   },
   {
@@ -243,6 +281,10 @@
     "category": "Headphones",
     "price": 50,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/kraken-v3.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMva3Jha2VuLXYzLndlYnAiLCJpYXQiOjE3MDgwOTA3NDYsImV4cCI6MTg2NTc3MDc0Nn0._YAw7lVhWg-UZ0mOy4mFirVMiRWBsIec-3x9IEMbXzs&t=2024-02-16T13%3A39%3A07.308Z",
+    "rating": {
+      "rate": 3.4,
+      "stock": 90
+    },
     "quantity": 1
   },
   {
@@ -252,6 +294,10 @@
     "category": "Headphones",
     "price": 40,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/kraken-x.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMva3Jha2VuLXguanBnIiwiaWF0IjoxNzA4MDkwNzI4LCJleHAiOjE4NjU3NzA3Mjh9.fM4SleeqaqXz3ffkgPd7MvNjROHkF5RndZuha1QY3t4&t=2024-02-16T13%3A38%3A50.257Z",
+     "rating": {
+      "rate": 3.6,
+      "stock": 190
+    },
     "quantity": 1
   },
   {
@@ -261,6 +307,10 @@
     "category": "Headphones",
     "price": 45,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/cloud.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvY2xvdWQuanBnIiwiaWF0IjoxNzA4MDkwNjg0LCJleHAiOjE4NjU3NzA2ODR9.FxU7xuIXwUkIp8STszf9J-bkl6PHSxtgWo34g-EF6p8&t=2024-02-16T13%3A38%3A05.569Z",
+     "rating": {
+      "rate": 4.1,
+      "stock": 160
+    },
     "quantity": 1
   },
   {
@@ -270,6 +320,10 @@
     "category": "Headphones",
     "price": 42,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/cloud-alpha-s.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvY2xvdWQtYWxwaGEtcy5qcGciLCJpYXQiOjE3MDgwOTA2NjEsImV4cCI6MTg2NTc3MDY2MX0.CfJylBwiugSCrz8KEe4VQ0D6mVz8xgoB0fcpWHSo3rc&t=2024-02-16T13%3A37%3A43.127Z",
+     "rating": {
+      "rate": 4.6,
+      "stock": 140
+    },
     "quantity": 1
   },
   {
@@ -279,6 +333,10 @@
     "category": "Headphones",
     "price": 42,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/cloud-ii.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvY2xvdWQtaWkuanBnIiwiaWF0IjoxNzA4MDkwNjM4LCJleHAiOjE4NjU3NzA2Mzh9.10F24Et0mjz3VX8duP9zRLdGxI_eRpfHXOzFV_xdVP4&t=2024-02-16T13%3A37%3A19.857Z",
+     "rating": {
+      "rate": 4.5,
+      "stock": 140
+    },
     "quantity": 1
   },
   {
@@ -288,6 +346,10 @@
     "category": "Graphics Card",
     "price": 350,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/arc-a750.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvYXJjLWE3NTAuanBnIiwiaWF0IjoxNzA4MDkwNTc1LCJleHAiOjE4NjU3NzA1NzV9.yr89SiwGFDGWXMZHa3AEdSqEbzfpy0sSStXIgUGAh3k&t=2024-02-16T13%3A36%3A16.814Z",
+     "rating": {
+      "rate": 4.3,
+      "stock": 200
+    },
     "quantity": 1
   },
   {
@@ -297,6 +359,10 @@
     "category": "Graphics Card",
     "price": 400,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/arc-a770.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvYXJjLWE3NzAud2VicCIsImlhdCI6MTcwODA5MDU1OCwiZXhwIjoxODY1NzcwNTU4fQ.i6xciKJcqr_d4HO5L_EvLkAO6eJLINnTUjpuzt7DlVs&t=2024-02-16T13%3A35%3A59.511Z",
+     "rating": {
+      "rate": 4.65,
+      "stock": 110
+    },
     "quantity": 1
   },
   {
@@ -306,6 +372,10 @@
     "category": "Graphics Card",
     "price": 1200,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/geforce-rtx-4070-ti-aero-oc-12g.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvZ2Vmb3JjZS1ydHgtNDA3MC10aS1hZXJvLW9jLTEyZy53ZWJwIiwiaWF0IjoxNzA4MDkwNTM5LCJleHAiOjE4NjU3NzA1Mzl9.GJl6EFtfPcYjzFTqM54KNYMnn4Kc1fhweq2ZRJ4Ai28&t=2024-02-16T13%3A35%3A41.099Z",
+     "rating": {
+      "rate": 4.8,
+      "stock": 40
+    },
     "quantity": 1
   },
   {
@@ -315,6 +385,10 @@
     "category": "Graphics Card",
     "price": 1500,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/geforce-rtx-4080-16gb-gaming-trio.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvZ2Vmb3JjZS1ydHgtNDA4MC0xNmdiLWdhbWluZy10cmlvLndlYnAiLCJpYXQiOjE3MDgwOTA1MTksImV4cCI6MTg2NTc3MDUxOX0.Ufx1w3Ih4troTx2kTDCWTw-Gu13e5mVOKx1q7AHPHp0&t=2024-02-16T13%3A35%3A21.258Z",
+     "rating": {
+      "rate": 5.0,
+      "stock": 50
+    },
     "quantity": 1
   },
   {
@@ -324,6 +398,10 @@
     "category": "Graphics Card",
     "price": 400,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/rtx-3060-v2-oc.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvcnR4LTMwNjAtdjItb2MuanBnIiwiaWF0IjoxNzA4MDkwNTAxLCJleHAiOjE4NjU3NzA1MDF9.9VYxIdJ8zqdUQkLD4lbrlSpU5bGpQbz7KUXDupofhdg&t=2024-02-16T13%3A35%3A02.579Z",
+     "rating": {
+      "rate": 4.3,
+      "stock": 120
+    },
     "quantity": 1
   },
   {
@@ -333,6 +411,10 @@
     "category": "Processor",
     "price": 250,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/i7-11700.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvaTctMTE3MDAuanBnIiwiaWF0IjoxNzA4MDkwNDU4LCJleHAiOjE4NjU3NzA0NTh9.TYU9mg9pGws-sSTVk-SHBzC09p8br9PfyH7V80xCXLs&t=2024-02-16T13%3A34%3A20.247Z",
+     "rating": {
+      "rate": 4.5,
+      "stock": 100
+    },
     "quantity": 1
   },
   {
@@ -342,6 +424,10 @@
     "category": "Processor",
     "price": 350,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/i7-12700.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvaTctMTI3MDAuanBnIiwiaWF0IjoxNzA4MDkwNDM2LCJleHAiOjE4NjU3NzA0MzZ9.ElC2rkxp6MqBQU713LC6TaF-j35nXJLyldTiZbl13es&t=2024-02-16T13%3A33%3A58.034Z",
+     "rating": {
+      "rate": 4.8,
+      "stock": 120
+    },
     "quantity": 1
   },
   {
@@ -351,6 +437,10 @@
     "category": "Processor",
     "price": 450,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/i9-10900.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvaTktMTA5MDAuanBnIiwiaWF0IjoxNzA4MDkwNDEyLCJleHAiOjE4NjU3NzA0MTJ9.AVCeeWQFhdjpyxgbDxLQh73J3tPkVc5bB-hR-yOJFdQ&t=2024-02-16T13%3A33%3A34.161Z",
+     "rating": {
+      "rate": 4.7,
+      "stock": 130
+    },
     "quantity": 1
   },
   {
@@ -360,6 +450,10 @@
     "category": "Processor",
     "price": 150,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/ryzen-5-3600.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvcnl6ZW4tNS0zNjAwLmpwZyIsImlhdCI6MTcwODA5MDI5MiwiZXhwIjoxODY1NzcwMjkyfQ.DewWn27oIKnwt7QHlCu5Fjvbr5Gg0XTaunzzza4pHLg&t=2024-02-16T13%3A31%3A34.033Z",
+     "rating": {
+      "rate": 4.4,
+      "stock": 280
+    },
     "quantity": 1
   },
   {
@@ -369,6 +463,10 @@
     "category": "Processor",
     "price": 220,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/ryzen-5-7600.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvcnl6ZW4tNS03NjAwLndlYnAiLCJpYXQiOjE3MDgwOTAzODksImV4cCI6MTg2NTc3MDM4OX0.2Rwd_yUlzRbH4hGZJ0M66Cw1cqdGW30d--Hk3kBcGAo&t=2024-02-16T13%3A33%3A10.750Z",
+     "rating": {
+      "rate": 3.8,
+      "stock": 170
+    },
     "quantity": 1
   },
   {
@@ -378,6 +476,10 @@
     "category": "Motherboard",
     "price": 150,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/Asrock-B660M.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvQXNyb2NrLUI2NjBNLmpwZyIsImlhdCI6MTcwODA5MTk5MiwiZXhwIjoxODY1NzcxOTkyfQ.kcFC1tNzAd9Pn8s_ONpRfGcJCNvOYDBDfFfe9UWXdCo&t=2024-02-16T13%3A59%3A53.812Z",
+     "rating": {
+      "rate": 3.7,
+      "stock": 340
+    },
     "quantity": 1
   },
   {
@@ -387,6 +489,10 @@
     "category": "Motherboard",
     "price": 180,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/Gigabyte%20B760M.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvR2lnYWJ5dGUgQjc2ME0ud2VicCIsImlhdCI6MTcwODA5MjAxOSwiZXhwIjoxODY1NzcyMDE5fQ.JG5IQV2l-pm70Pl9Y7GYUXIZMoZyTJEPOcDs9mtuoFo&t=2024-02-16T14%3A00%3A20.708Z",
+     "rating": {
+      "rate": 4.3,
+      "stock": 270
+    },
     "quantity": 1
   },
   {
@@ -396,6 +502,10 @@
     "category": "Motherboard",
     "price": 200,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/mag-b660m-bazooka-ddr4.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvbWFnLWI2NjBtLWJhem9va2EtZGRyNC5qcGciLCJpYXQiOjE3MDgwOTAyMjIsImV4cCI6MTg2NTc3MDIyMn0.kZrjN8ckzkndI4844F3-YaTeT4Wrnb7dqEN-5Wx-A4Y&t=2024-02-16T13%3A30%3A24.181Z",
+     "rating": {
+      "rate": 4.2,
+      "stock": 250
+    },
     "quantity": 1
   },
   {
@@ -405,6 +515,10 @@
     "category": "Motherboard",
     "price": 160,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/prime-b760-plus-d4.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvcHJpbWUtYjc2MC1wbHVzLWQ0LndlYnAiLCJpYXQiOjE3MDgwOTAxOTMsImV4cCI6MTg2NTc3MDE5M30.mQ3dxOtLqVJ9MakKSlgGiJMQRMhT_HrHidP6R7burG8&t=2024-02-16T13%3A29%3A54.849Z",
+     "rating": {
+      "rate": 3.8,
+      "stock": 340
+    },
     "quantity": 1
   },
   {
@@ -414,6 +528,10 @@
     "category": "Motherboard",
     "price": 220,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/b660m-pro.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvYjY2MG0tcHJvLndlYnAiLCJpYXQiOjE3MDgwOTAxMTMsImV4cCI6MTg2NTc3MDExM30.MzwVGxxqeCuZqNzLtCWsQv4DAdtUyFfWF5sRAv_EKj4&t=2024-02-16T13%3A28%3A35.067Z",
+     "rating": {
+      "rate": 4.7,
+      "stock": 240
+    },
     "quantity": 1
   },
   {
@@ -423,6 +541,10 @@
     "category": "RAM",
     "price": 550,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/delta-rgb.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvZGVsdGEtcmdiLndlYnAiLCJpYXQiOjE3MDgwOTAwNjYsImV4cCI6MTg2NTc3MDA2Nn0.7g6Q6zQdWsqtjSzUvnnjXq4ev5rnaR-ZdJLg6hWGsTE&t=2024-02-16T13%3A27%3A48.240Z",
+     "rating": {
+      "rate": 4.3,
+      "stock": 340
+    },
     "quantity": 1
   },
   {
@@ -432,6 +554,10 @@
     "category": "RAM",
     "price": 50,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/fury-beast-rgb.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvZnVyeS1iZWFzdC1yZ2IuanBnIiwiaWF0IjoxNzA4MDkwMDIzLCJleHAiOjE4NjU3NzAwMjN9.e9CDkz9tDQS9vsjZZTcKTfeQEXIfvLbshIlNrUjWVRo&t=2024-02-16T13%3A27%3A04.892Z",
+     "rating": {
+      "rate": 4.6,
+      "stock": 310
+    },
     "quantity": 1
   },
   {
@@ -441,6 +567,10 @@
     "category": "RAM",
     "price": 45,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/trident-z-rgb-8gb.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvdHJpZGVudC16LXJnYi04Z2IuanBnIiwiaWF0IjoxNzA4MDg5OTkxLCJleHAiOjE4NjU3Njk5OTF9.x1sZjJwLtQxR1ajRgN3_1b8Zp692hZOr8vFvLsbRIm4&t=2024-02-16T13%3A26%3A33.085Z",
+     "rating": {
+      "rate": 4.7,
+      "stock": 240
+    },
     "quantity": 1
   },
   {
@@ -450,6 +580,10 @@
     "category": "RAM",
     "price": 90,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/vengeance-rgb-pro-ram-kit.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvdmVuZ2VhbmNlLXJnYi1wcm8tcmFtLWtpdC5qcGciLCJpYXQiOjE3MDgwODk5NjIsImV4cCI6MTg2NTc2OTk2Mn0.Q6LYpHR0A9V77K3PsK3PxgOjltsdHy4CVE0m98iUW3U&t=2024-02-16T13%3A26%3A03.512Z",
+     "rating": {
+      "rate": 5.0,
+      "stock": 220
+    },
     "quantity": 1
   },
   {
@@ -459,6 +593,10 @@
     "category": "RAM",
     "price": 45,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/vengeance-rgb-rs.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvdmVuZ2VhbmNlLXJnYi1ycy5qcGciLCJpYXQiOjE3MDgwODk5MzcsImV4cCI6MTg2NTc2OTkzN30.y7By8OxZSh9Me65CFBVH6TT8eUvm0OLh3gNaXBMzGyM&t=2024-02-16T13%3A25%3A38.778Z",
+     "rating": {
+      "rate": 4.9,
+      "stock": 2100
+    },
     "quantity": 1
   },
   {
@@ -468,6 +606,10 @@
     "category": "Console",
     "price": 300,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/xbox-one-s.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMveGJveC1vbmUtcy5qcGciLCJpYXQiOjE3MDgwODk4NDEsImV4cCI6MTg2NTc2OTg0MX0.9xjn01rQe_JeP6WxindFvgcEQd8W9aXCPLMwprVjioc&t=2024-02-16T13%3A24%3A02.301Z",
+     "rating": {
+      "rate": 3.9,
+      "stock": 70
+    },
     "quantity": 1
   },
   {
@@ -477,6 +619,10 @@
     "category": "Console",
     "price": 320,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/xbox_series_s.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMveGJveF9zZXJpZXNfcy53ZWJwIiwiaWF0IjoxNzA4MDg5NzcwLCJleHAiOjE4NjU3Njk3NzB9.FOYR9s0ScARcZJ7PKSWeUpWGglGyKmjdKgk3b4tI5eQ&t=2024-02-16T13%3A22%3A51.394Z",
+     "rating": {
+      "rate": 4.5,
+      "stock": 110
+    },
     "quantity": 1
   },
   {
@@ -486,6 +632,10 @@
     "category": "Console",
     "price": 500,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/xbox-series-x-01-228x228.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMveGJveC1zZXJpZXMteC0wMS0yMjh4MjI4LndlYnAiLCJpYXQiOjE3MDgwODg3MjksImV4cCI6MTczOTYyNDcyOX0.slmUCE09NOKk3JfuED11qAPHRcQ5s2cSta93flUi8bs&t=2024-02-16T13%3A05%3A30.531Z",
+     "rating": {
+      "rate": 4.2,
+      "stock": 200
+    },
     "quantity": 1
   },
   {
@@ -495,6 +645,10 @@
     "category": "Console",
     "price": 600,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/PS5.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvUFM1LmpwZyIsImlhdCI6MTcwODA4OTcwNywiZXhwIjoxODY1NzY5NzA3fQ.ISqpXJ7d9n9vApS22N0H6kYXQLdh-YsMKDn4aMR8KcE&t=2024-02-16T13%3A21%3A48.547Z",
+     "rating": {
+      "rate": 3.9,
+      "stock": 180
+    },
     "quantity": 1
   },
   {
@@ -504,6 +658,10 @@
     "category": "Console",
     "price": 45,
     "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/nintendo-switch.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvbmludGVuZG8tc3dpdGNoLndlYnAiLCJpYXQiOjE3MDgwODk2ODEsImV4cCI6MTg2NTc2OTY4MX0.wyHENizGVaih3dyQP2CtaCEUhPfPSKF7XvjQa4Ah_VY&t=2024-02-16T13%3A21%3A22.916Z",
+     "rating": {
+      "rate": 3.8,
+      "stock": 160
+    },
     "quantity": 1
   }
 ]

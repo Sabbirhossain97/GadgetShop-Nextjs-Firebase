@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../components/Navigation/Navbar";
+import Footer from "../../components/Footer/Footer";
 import products from "../../products.json";
 import { useEffect, useState, useContext } from "react";
 import { Context } from "../../context";

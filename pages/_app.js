@@ -1,11 +1,10 @@
 import "../globals.css";
 import { Context } from "../context";
 import { useState, useEffect, useReducer } from "react";
-import { Inter } from "next/font/google";
 import { reducer } from "../components/Reducers/reducer";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import firebaseAapp from "../services/firebase";
-const inter = Inter({ subsets: ["latin"] });
+import Notification from "../components/Animation/Notification";
 
 const auth = getAuth(firebaseAapp);
 
@@ -13,6 +12,7 @@ export default function MyApp({ Component, pageProps }) {
   const [totalCartItem, setTotalCartItem] = useState(0);
   const [avatar, setAvatar] = useState(null);
   const [user, setUser] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const initialState = {
     items: [],
   };
@@ -31,17 +31,21 @@ export default function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <Context.Provider
-      value={{
-        cartTotal: [totalCartItem, setTotalCartItem],
-        userAvatar: [avatar, setAvatar],
-        cartReducer: [state, dispatch],
-        isAuth: [user, setUser],
-      }}
-    >
-      <div className="font-sans">
-        <Component {...pageProps} />
-      </div>
-    </Context.Provider>
+    <>
+      <Notification />
+      <Context.Provider
+        value={{
+          cartTotal: [totalCartItem, setTotalCartItem],
+          userAvatar: [avatar, setAvatar],
+          cartReducer: [state, dispatch],
+          isAuth: [user, setUser],
+          sidebar: [isSidebarOpen, setIsSidebarOpen]
+        }}
+      >
+        <div className="font-sans">
+          <Component {...pageProps} />
+        </div>
+      </Context.Provider>
+    </>
   );
 }

@@ -1,11 +1,10 @@
-import React, { useEffect, useReducer, useContext, useState } from "react";
+import { useEffect, useContext } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Context } from "../context";
 import products from "../products.json";
 import { useRouter } from "next/router";
-import { AiFillHome } from "react-icons/ai";
-import toast from "react-hot-toast";
 import Link from "next/link";
+import { message } from "antd";
 
 export default function Products() {
   const getData = useContext(Context);
@@ -16,10 +15,12 @@ export default function Products() {
 
   const handleCartAction = (id) => {
     if (!isLoggedIn) {
+      message.warning("Please Sign in!")
       setTimeout(() => {
         router.push("/Signin");
       }, 2000);
     } else {
+      message.success("Product added to cart")
       dispatch({ type: "ADD_PRODUCT", id: id });
     }
   };
@@ -43,15 +44,16 @@ export default function Products() {
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold">Featured Products</h2>
         </div>
-        <div className="mt-12 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-x-8">
+        <div className="mt-12 grid grid-cols-1 gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-x-8">
           {products
             ? products.slice(0, 15).map((item, key) => (
               <div
                 key={key}
-                className="relative mx-auto p-4 group border rounded-lg shadow-lg md:w-11/12 w-3/4 h-96 hover:shadow-xl transition duration-300 flex flex-col items-center justify-center"
+                onClick={() => goToSingleProduct(item.id)}
+                className="cursor-pointer relative mx-auto p-4 group border rounded-lg shadow-lg md:w-11/12 w-3/4 h-96 hover:shadow-xl transition duration-300 flex flex-col items-center justify-center"
               >
                 <div
-                  onClick={() => goToSingleProduct(item.id)}
+                 
                   className="cursor-pointer flex flex-col items-center justify-center"
                 >
                   <div className="absolute left-0 top-4 border bg-slate-800">
