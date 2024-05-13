@@ -7,14 +7,12 @@ import { useRouter } from "next/router";
 import CartSideBar from "./CartSideBar";
 import { getAuth, signOut } from "firebase/auth";
 import firebaseAapp from "../../services/firebase";
-import toast from "react-hot-toast";
+import { message } from "antd";
 import { IoSearch } from "react-icons/io5";
 import products from "../../products.json"
-import { Flash, SearchLoader, SearchLoaderMb } from "../SvgComponents/SVG";
+import { Flash } from "../SvgComponents/SVG";
 import { useWindowSize } from "../hooks/useWindowSize";
-import { Input } from 'antd';
-
-const { Search } = Input;
+import { FaRegHeart } from "react-icons/fa";
 
 const auth = getAuth(firebaseAapp);
 
@@ -24,10 +22,10 @@ export default function Navbar() {
   const [cartTotalValue] = getData?.cartTotal;
   const [user] = getData?.isAuth;
   const [isLoggedIn] = getData?.isAuth;
+  const [wishlist] = getData?.wishlistData
   const [, setIsOpen] = getData?.sidebar;
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const [width] = useWindowSize();
-  const [isSearched, setIsSearched] = useState(false)
   const [searchQuery, setSearchQuery] = useState("");
   const [searchedProducts, setSearchedProducts] = useState(null)
   const [showSearchBar, setShowSearchBar] = useState(false)
@@ -36,9 +34,10 @@ export default function Navbar() {
   const handleSignOut = async () => {
     await signOut(auth);
     dispatch({ type: "CLEAR_ALL" });
-    toast.success("Logged Out!", {
-      position: "top-center",
-    });
+    message.success("You have been logged Out!");
+    setTimeout(() => {
+      router.push("/")
+    }, 1000)
   };
 
   const handleRegister = () => {
@@ -57,6 +56,10 @@ export default function Navbar() {
     router.push('/SpecialDeals')
   }
 
+  const handleWishlist = () => {
+    router.push("/Wishlist")
+  }
+
   const goToCart = () => {
     if (width < 800) {
       setIsSideBarOpen(true);
@@ -67,7 +70,6 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    setIsSearched(true);
     const timeoutId = setTimeout(() => {
       const fetchedProducts = products.filter((val) => {
         if (searchQuery === "") {
@@ -77,11 +79,9 @@ export default function Navbar() {
         }
       });
       setSearchedProducts(fetchedProducts);
-      setIsSearched(false);
     }, 1500);
 
     return () => clearTimeout(timeoutId);
-
 
   }, [searchQuery])
 
@@ -127,7 +127,7 @@ export default function Navbar() {
                   strokeWidth="1.5"
                   stroke="currentColor"
                   aria-hidden="true"
-                 
+
                 >
                   <path
                     strokeLinecap="round"
@@ -145,7 +145,6 @@ export default function Navbar() {
             <div className="hidden ml-2 xl:ml-4 w-11/12 sm:flex items-center relative">
               <input onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search" className=" h-[40px] w-full rounded-md bg-gray-100 indent-10" />
               <IoSearch className="absolute left-4 text-gray-600" />
-              {isSearched ? <SearchLoader /> : "  "}
               {
                 searchQuery && <div className="bg-white w-full pb-4 pl-2 pt-2 z-1000 absolute top-16 max-h-96 shadow-xl overflow-y-auto rounded-md">
                   <ul className="space-y-2">
@@ -191,8 +190,6 @@ export default function Navbar() {
                   onClick={(e) => e.stopPropagation()} className="p-4 relative">
                   <input onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search for products..." className="h-[40px] w-full rounded-md bg-gray-100 border border-gray-600 indent-10" />
                   <IoSearch className="absolute top-7 left-7" />
-                  {isSearched ? <SearchLoaderMb /> : ""}
-
                   {
                     searchQuery && <div className="bg-white mx-auto p-4 z-1000 left-4 right-4 absolute top-16 max-h-96 shadow-xl overflow-y-auto rounded-md">
                       <ul className="space-y-2">
@@ -222,9 +219,21 @@ export default function Navbar() {
                   }
                 </div>
               </div> : ""}
+            <div className="block sm:hidden">
+              <button
+                type="button"
+                onClick={goToCart}
+                className="relative hover:bg-slate-900 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none  focus:ring-1 focus:ring-offset-2 focus:ring-offset-gray-800"
+              >
+                <AiOutlineShoppingCart className=" text-gray-100/50 text-3xl " />
+                <span className="absolute rounded-full z-10 text-white text-sm -top-1 left-4 bg-blue-500 px-2">
+                  {cartTotalValue}
+                </span>
+              </button>
+            </div>
           </div>
 
-          <div className="hidden xl:flex xl:w-[400px] items-center justify-end gap-8 sm:static sm:inset-auto sm:pr-0 ">
+          <div className="hidden xl:flex xl:w-[500px] items-center justify-end gap-6 sm:static sm:inset-auto sm:pr-0 ">
             <div className="flex items-center">
               <Flash />
               <div onClick={handleSpecialDeals} className="hover:opacity-75 cursor-pointer hover:text-blue-500">
@@ -239,7 +248,7 @@ export default function Navbar() {
                     <img
                       className="h-8 w-8 rounded-full"
                       src={user?.photoURL}
-                      alt=""
+                      alt="avatarUrl"
                     />
                     <div className="flex flex-col text-white">
                       <p className="text-sm font-bold whitespace-nowrap">{user.displayName}</p>
@@ -255,6 +264,14 @@ export default function Navbar() {
                     </div>
                   </div>
                 )}
+              </div>
+            </div>
+            <div className="flex items-center gap-2 relative">
+              <FaRegHeart className="text-gray-100/50 w-8 h-8" />
+              <span className="absolute rounded-full text-white text-sm -top-1 left-3 bg-blue-500 px-2">{wishlist.length}</span>
+              <div onClick={handleWishlist} className="hover:opacity-75 cursor-pointer hover:text-blue-500">
+                <p className="flex text-sm text-white">My</p>
+                <p className=" text-[12px] text-gray-400 whitespace-nowrap">Wishlist</p>
               </div>
             </div>
             <div>
@@ -264,7 +281,7 @@ export default function Navbar() {
                 className="relative hover:bg-slate-900 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none  focus:ring-1 focus:ring-offset-2 focus:ring-offset-gray-800"
               >
                 <AiOutlineShoppingCart className=" text-gray-100/50 text-3xl " />
-                <span className="absolute top-0 right-1 text-xs text-white bg-blue-500 h-4 w-4  rounded-full">
+                <span className="absolute rounded-full z-10 text-white text-sm -top-1 left-5 bg-blue-500 px-2">
                   {cartTotalValue}
                 </span>
               </button>
@@ -273,14 +290,14 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* for mobile screen */}
+      {/* secondary navbar for mobile screen */}
       <div className="py-2 block xl:hidden fixed z-10 bottom-0 left-0 right-0 bg-slate-800 shadow-md border-t border-slate-700">
         <ul className="text-white flex justify-around items-center">
           <li className="h-full">
-            <div className="flex">
+            <div className="flex flex-col sm:flex-row justify-center items-center">
               <Flash />
-              <div onClick={handleSpecialDeals} className="hover:opacity-75 cursor-pointer hover:text-blue-500">
-                <p className="flex text-sm text-white">Offers</p>
+              <div onClick={handleSpecialDeals} className="hover:opacity-75 cursor-pointer hover:text-blue-500 flex flex-col items-center sm:items-start sm:flex-col">
+                <p className=" text-sm text-white">Offers</p>
                 <p className=" text-[12px] text-gray-400 whitespace-nowrap">Special Deals</p>
               </div>
             </div>
@@ -289,13 +306,13 @@ export default function Navbar() {
             <div className="block relative right-0 ">
               <div >
                 {user ? (
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-col sm:flex-row items-center gap-2">
                     <img
                       className="h-8 w-8 rounded-full"
                       src={user?.photoURL}
                       alt=""
                     />
-                    <div className="flex flex-col text-white">
+                    <div className="flex flex-col items-center sm:items-start text-white">
                       <p className="text-sm font-bold whitespace-nowrap">{user.displayName}</p>
                       <p className="text-[12px] font-norma text-gray-400"><span className="cursor-pointer hover:text-blue-500">Profile</span> or <span onClick={handleSignOut} className="cursor-pointer hover:text-blue-500">Logout</span></p>
                     </div>
@@ -313,6 +330,16 @@ export default function Navbar() {
             </div>
           </li>
           <li>
+            <div className="flex flex-col sm:flex-row items-center gap-2 relative">
+              <FaRegHeart className="text-gray-100/50 w-8 h-8" />
+              <span className="absolute rounded-full text-white text-sm -top-1 left-6 sm:left-3 bg-blue-500 px-2">{wishlist.length}</span>
+              <div onClick={handleWishlist} className="hover:opacity-75 cursor-pointer hover:text-blue-500 flex flex-col items-center sm:items-start">
+                <p className="flex text-sm text-white">My</p>
+                <p className=" text-[12px] text-gray-400 whitespace-nowrap">Wishlist</p>
+              </div>
+            </div>
+          </li>
+          <li className="hidden sm:block">
             <div>
               <button
                 type="button"
@@ -320,7 +347,7 @@ export default function Navbar() {
                 className="relative hover:bg-slate-900 rounded-full p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-offset-gray-800"
               >
                 <AiOutlineShoppingCart className=" text-gray-100/50 text-3xl " />
-                <span className="absolute top-0 right-1 text-xs text-white bg-blue-500 h-4 w-4  rounded-full">
+                <span className="absolute rounded-full z-10 text-white text-sm -top-1 left-5 bg-blue-500 px-2">
                   {cartTotalValue}
                 </span>
               </button>

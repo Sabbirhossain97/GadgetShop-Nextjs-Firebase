@@ -9,6 +9,9 @@ import { SiAdguard } from "react-icons/si";
 import { MdLocalShipping } from "react-icons/md";
 import Link from "next/link";
 import { AiFillHome } from "react-icons/ai";
+import { FaRegHeart } from "react-icons/fa";
+import addToWishlist from "../../services/wishlist/addToWishlist";
+import { handleCartAction } from "../../helpers/addToCart";
 
 const SingleProduct = () => {
   const [singleProduct, setSingleProduct] = useState([]);
@@ -16,6 +19,7 @@ const SingleProduct = () => {
   const getData = useContext(Context);
   const pid = router.query?.productId;
   const [_, setTotalQuantity] = getData?.cartTotal;
+  const [user] = getData?.isAuth;
   const [state, dispatch] = getData?.cartReducer;
 
   function getSingleProduct() {
@@ -161,17 +165,32 @@ const SingleProduct = () => {
                       </span>
                     </div>
                     <div className="flex mt-12 border-t border-gray-200 py-4 ">
-                      <span className="title-font font-medium text-2xl text-gray-900">
-                        ${item.price}
-                      </span>
-                      <button
-                        onClick={() =>
-                          dispatch({ type: "ADD_PRODUCT", id: item.id })
-                        }
-                        className="flex ml-auto text-white bg-slate-800 border-0 py-2 px-6 focus:outline-none hover:bg-slate-700 rounded"
-                      >
-                        Add to cart
-                      </button>
+                      <div className="w-1/3">
+                        <span className="title-font font-medium text-2xl text-gray-900">
+                          ${item.price}
+                        </span>
+                      </div>
+                      <div className="w-2/3  flex justify-between">
+                        <button
+                          onClick={() => addToWishlist(user, item, router)}
+                          className=" px-8 flex justify-center  text-black font-semibold border hover:bg-gray-200 py-2 rounded-md transition duration-300"
+                        >
+                          <p className="text-sm flex flex-row gap-2 items-center">
+                            <span>Add to wishlist </span>
+                            <span>
+                              <FaRegHeart className="" />
+                            </span>
+                          </p>
+                        </button>
+                        <button
+                          onClick={() =>
+                            handleCartAction(user, item.id, router, dispatch)
+                          }
+                          className="whitespace-nowrap flex text-white bg-slate-800 border-0 py-2 px-6 focus:outline-none hover:bg-slate-700 rounded"
+                        >
+                          Add to cart
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

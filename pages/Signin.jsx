@@ -8,6 +8,7 @@ import Spinner from "../components/Animation/Spinner";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { message } from "antd";
 import { auth, logInWithEmailAndPassword, signInWithFacebook, signInWithGoogle } from "../services/firebase";
 
 export default function Signin() {
@@ -23,15 +24,18 @@ export default function Signin() {
 
   useEffect(() => {
     if (loading) return;
-    if (user) router.push("/");
+    if (user) {
+      message.success(`logged in as ${user.displayName}`)
+      setTimeout(() => {
+        router.push("/");
+      }, 1000)
+    }
   }, [user, loading]);
-
-  console.log(user)
 
   return (
     <div>
       <Navbar />
-      <Subnavbar/>
+      <Subnavbar />
       <div className="bg-gray-100 flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <div className="bg-white w-full max-w-xl space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl">
           <div>
