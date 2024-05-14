@@ -5,7 +5,7 @@ export const handleCartAction = (user,id,router,dispatch) => {
         message.warning("Please Sign in!")
         setTimeout(() => {
             router.push("/Signin");
-        }, 2000);
+        }, 1500);
     } else {
         message.success("Product added to cart")
         dispatch({ type: "ADD_PRODUCT", id: id });

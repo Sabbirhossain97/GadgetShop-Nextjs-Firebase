@@ -319,9 +319,9 @@ export default function Navbar() {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex items-center gap-2">
+                    <div className="flex flex-col sm:flex-row items-center gap-2">
                     <RxAvatar className="w-8 h-8 text-gray-100/50" />
-                    <div className="flex flex-col text-white">
+                      <div className="flex flex-col items-center sm:items-start text-white">
                       <p className="text-sm font-bold">Account</p>
                       <p className="text-[12px] text-gray-400"><span onClick={handleRegister} className="cursor-pointer hover:text-blue-500 transition duration-300">Register</span> or <span onClick={handleSignIn} className="cursor-pointer hover:text-blue-500 transition duration-300">Login</span></p>
                     </div>

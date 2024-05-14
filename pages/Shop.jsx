@@ -17,19 +17,14 @@ export default function Products() {
   const router = useRouter();
 
   const goToSingleProduct = (id) => {
-    if (user) {
-      router.push(`/SingleProduct/${id}`);
-    } else {
-      router.push(`/Signin`);
-    }
+    router.push(`/SingleProduct/${id}`);
   };
+  
   useEffect(() => {
     setTotalQuantity(
       state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
     );
   }, [state]);
-
-
 
   return (
     <>
