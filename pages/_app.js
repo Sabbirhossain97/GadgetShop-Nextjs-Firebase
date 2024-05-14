@@ -6,7 +6,7 @@ import { onAuthStateChanged, getAuth } from "firebase/auth";
 import firebaseAapp from "../services/firebase";
 import Notification from "../components/Animation/Notification";
 import { db } from "../services/firebase";
-import { collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 
 const auth = getAuth(firebaseAapp);
 
@@ -34,7 +34,7 @@ export default function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const getWishlistData = async () => {
-      if(!user){
+      if (!user) {
         setWishlist([])
         return
       }
@@ -54,8 +54,12 @@ export default function MyApp({ Component, pageProps }) {
           snapshot.forEach((doc) => {
             wishlistData.push({ id: doc.id, ...doc.data() });
           });
-          const { Products } = wishlistData?.[0];
-          setWishlist(Products);
+          if (wishlistData.length > 0) {
+            const { Products } = wishlistData?.[0];
+            setWishlist(Products);
+          } else {
+            setWishlist([]);
+          }
         });
       } catch (error) {
         console.error('Error fetching wishlist:', error);

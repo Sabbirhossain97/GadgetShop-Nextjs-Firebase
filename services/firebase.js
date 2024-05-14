@@ -6,8 +6,8 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
   signOut,
+  updateProfile
 } from "firebase/auth";
 import {
   getFirestore,
@@ -84,31 +84,27 @@ const logInWithEmailAndPassword = async (email, password) => {
   }
 };
 
-const registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (username, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
+    
+    await updateProfile(user, {
+      displayName: username
+    });
+
     await addDoc(collection(db, "users"), {
       uid: user.uid,
-      name,
+      username,
       authProvider: "local",
       email,
     });
   } catch (err) {
-    console.error(err);
     message.error(err.message);
   }
 };
 
-const sendPasswordReset = async (email) => {
-  try {
-    await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent!");
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
-  }
-};
+
 
 const logout = () => {
   signOut(auth);
@@ -121,6 +117,5 @@ export {
   signInWithFacebook,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
-  sendPasswordReset,
   logout,
 };

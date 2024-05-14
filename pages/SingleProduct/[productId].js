@@ -48,8 +48,8 @@ const SingleProduct = () => {
         {singleProduct.length > 0
           ? singleProduct.map((item, key) => (
             <section key={key} className="mt-16 text-gray-600  min-h-screen">
-              <div className="relative container px-5 py-24 mx-auto ">
-                <div className="flex flex-row text-xl absolute md:top-24 md:left-52 ">
+              <div className="relative container px-5 py-24 mx-auto">
+                <div className="flex flex-row text-xl mx-auto lg:w-full xl:w-3/4 ">
                   <Link href="/">
                     <span className="text-blue-500 hover:text-blue-600">
                       <AiFillHome className="mt-1 text-slate-800 hover:text-slate-700" />
@@ -58,7 +58,7 @@ const SingleProduct = () => {
                   &nbsp;{"/"}
                   <p className="text-slate-900">&nbsp;{item.category}</p>
                 </div>
-                <div className="mt-10 lg:w-3/4 mx-auto flex flex-wrap ">
+                <div className="mt-4 lg:w-full xl:w-3/4 mx-auto flex flex-wrap">
                   <img
                     alt="ecommerce"
                     className="border border-gray-200 lg:w-1/2 w-full lg:h-auto h-54 object-contain px-24 py-2 rounded-md"
@@ -71,8 +71,8 @@ const SingleProduct = () => {
                     <h1 className="text-gray-900 text-3xl title-font font-medium mb-1 mt-2">
                       {item.title}
                     </h1>
-                    <div className="flex flex-col mb-4 mt-4">
-                      <span className="flex items-center mt-4">
+                    <div className="flex flex-col mb-4">
+                      <span className="flex items-center mt-2">
                         <svg
                           fill="currentColor"
                           stroke="currentColor"
@@ -164,32 +164,38 @@ const SingleProduct = () => {
                         <span className="text-blue-500">{item.category}</span>
                       </span>
                     </div>
-                    <div className="flex mt-12 border-t border-gray-200 py-4 ">
-                      <div className="w-1/3">
+                    <div className="flex flex-wrap sm:flex-nowrap mt-12 border-t border-gray-200 py-4 ">
+                      <div className="w-[80px] ">
                         <span className="title-font font-medium text-2xl text-gray-900">
                           ${item.price}
                         </span>
                       </div>
-                      <div className="w-2/3  flex justify-between">
-                        <button
-                          onClick={() => addToWishlist(user, item, router)}
-                          className=" px-8 flex justify-center  text-black font-semibold border hover:bg-gray-200 py-2 rounded-md transition duration-300"
-                        >
-                          <p className="text-sm flex flex-row gap-2 items-center">
-                            <span>Add to wishlist </span>
-                            <span>
-                              <FaRegHeart className="" />
-                            </span>
-                          </p>
-                        </button>
-                        <button
-                          onClick={() =>
-                            handleCartAction(user, item.id, router, dispatch)
-                          }
-                          className="whitespace-nowrap flex text-white bg-slate-800 border-0 py-2 px-6 focus:outline-none hover:bg-slate-700 rounded"
-                        >
-                          Add to cart
-                        </button>
+                      <div className="w-full flex flex-wrap mt-6 sm:mt-0 sm:flex-nowrap gap-4 justify-end">
+                        <div className="w-full sm:w-[200px] lg:w-[150px]">
+                          <button
+                            onClick={() => addToWishlist(user, item, router)}
+                            className="px-5 w-full flex justify-center  text-black font-semibold border hover:bg-gray-200 py-2 rounded-md transition duration-300"
+                          >
+                            <p className="text-sm flex flex-row gap-2 items-center">
+                              <span className="whitespace-nowrap">Add to wishlist </span>
+                              <span>
+                                <FaRegHeart className="" />
+                              </span>
+                            </p>
+                          </button>
+                        </div>
+                        <div className="w-full sm:w-[150px] lg:w-[120px]">
+                          <button
+                            onClick={() =>
+                              handleCartAction(user, item.id, router, dispatch)
+                            }
+                            className="whitespace-nowrap w-full text-white bg-slate-800 border-0 py-2 px-6 focus:outline-none hover:bg-slate-700 rounded"
+                          >
+                            <p className="flex justify-center">
+                              <span>Add to cart</span>
+                            </p>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>

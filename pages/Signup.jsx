@@ -1,37 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../context";
 import Navbar from "../components/Navigation/Navbar";
 import Link from "next/link";
 import Footer from "../components/Footer/Footer";
 import { useRouter } from "next/router";
-import Spinner from "../components/Animation/Spinner";
-import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
-import { signInWithPopup } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore"
-import { v4 as uuidv4 } from 'uuid';
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, registerWithEmailAndPassword, signInWithGoogle, signInWithFacebook } from "../services/firebase";
+import { registerWithEmailAndPassword, signInWithGoogle, signInWithFacebook } from "../services/firebase";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { signupSchema } from "../helpers/Form/signupSchema";
+import { IoEye } from "react-icons/io5";
+import { IoMdEyeOff } from "react-icons/io";
 
 export default function Signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const getData = useContext(Context)
+  const [user] = getData?.isAuth;
   const router = useRouter();
-  const db = getFirestore();
-  const [user, loading, error] = useAuthState(auth);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false)
+  
+  useEffect(() => {
+    if (!user) return;
+    if (user) router.push("/");
+  }, [user]);
 
-
-  const register = () => {
-    const response = registerWithEmailAndPassword(name, email, password);
-    console.log(response)
+  const initialValues = {
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
   };
 
-  useEffect(() => {
-    if (loading) return;
-    if (user) router.push("/");
-  }, [user, loading]);
-
+  const handleSubmit = async (values, { setSubmitting }) => {
+    const { username, email, password } = values
+    registerWithEmailAndPassword(username, email, password);
+    setSubmitting(false);
+  };
 
   return (
     <div>
@@ -43,120 +47,117 @@ export default function Signup() {
               Create your account
             </h2>
           </div>
-          {error ? (
-            <div className="border p-3 border-red-400 bg-red-100/50 text-center">
-              <p className="text-red-500">{error} </p>
-            </div>
-          ) : (
-            ""
-          )}
-          <form className="mt-8 space-y-6">
-            <div className="space-y-4 rounded-md shadow-sm">
-              <div className="mt-4">
-                <label htmlFor="email" className="sr-only">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="name"
-                  autoComplete="name"
-                  required
-                  value={name}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                  }}
-                  className="placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-md bg-white border border-gray-400"
-                  placeholder="Name"
-                />
-              </div>
-              <div className="mt-4">
-                <label htmlFor="email" className="sr-only">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="current-email"
-                  required
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  className="placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-md bg-white border border-gray-400"
-                  placeholder="Email"
-                />
-              </div>
-              <div className="mt-4">
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="mt-4 placeholder:text-gray-300 text-base font-medium text-left text-slate-800  focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-3 rounded-md bg-white border border-gray-400"
-                  placeholder="Password"
-                />
-              </div>
-            </div>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={signupSchema}
+            onSubmit={handleSubmit}
+          >
+            {({ isSubmitting, errors, touched }) => (
+              <Form className="mt-8 space-y-6">
+                <div className="mb-4">
+                  <Field
+                    type="text"
+                    placeholder="username"
+                    name="username"
+                    className={`placeholder:text-gray-400/50 w-full px-3 py-2 border rounded-md transition-colors duration-300 ease-in-out ${errors.username && touched.username ? 'border-red-500' : ''
+                      }`}
+                  />
+                  <ErrorMessage name="username" component="div" className="text-red-500" />
+                </div>
 
-            <div>
-              <button
-                type="button"
-                onClick={register}
-                className="w-full p-3 bg-slate-800 rounded-md hover:bg-slate-700 text-white transition duration-300"
-              >
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
-                {loading ? <Spinner /> : "Sign Up"}
-              </button>
-              <div className="text-center mt-8">
-                <p>
-                  <span className=" text-base font-semibold text-center text-gray-900">
-                    Already have an account ?
-                  </span>
+                <div className="mb-4">
+                  <Field
+                    type="email"
+                    placeholder="email"
+                    name="email"
+                    className={`placeholder:text-gray-400/50 w-full px-3 py-2 border rounded-md transition-colors duration-300 ease-in-out ${errors.email && touched.email ? 'border-red-500' : ''
+                      }`}
+                  />
+                  <ErrorMessage name="email" component="div" className="text-red-500" />
+                </div>
 
-                  <Link href="/Signin">
-                    <span className="ml-2 text-base font-semibold text-center text-blue-500 hover:text-blue-700">
-                      Sign In
-                    </span>
-                  </Link>
-                </p>
-              </div>
-            </div>
-            <div class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
-              <p class="mx-4 mb-0 text-center font-semibold dark:text-slate-900">
-                or
-              </p>
-            </div>
-            <div className="flex flex-row flex-wrap sm:flex-nowrap gap-4 sm:gap-0 w-full ">
-              <div className="flex items-center justify-center h-[52px] w-full sm:w-1/2 ">
-                <button
-                  type="button"
-                  onClick={signInWithGoogle}
-                  className="w-full flex items-center justify-center h-[52px] transition duration-300 bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-                >
-                  <FcGoogle className="text-2xl" />
-                  <span className="ml-2 text-sm whitespace-nowrap">Sign in with Google</span>
-                </button>
-              </div>
-              <div className="flex items-center justify-start h-[52px] w-full sm:w-1/2 ml-0 sm:ml-4">
-                <button
-                  type="button"
-                  onClick={signInWithFacebook}
-                  className="flex w-full items-center justify-center h-[52px] transition duration-300 bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-                >
-                  <BsFacebook className="text-2xl text-[#1778f2]" />
-                  <span className="ml-2" whitespace-nowrap>Sign in with Facebook</span>
-                </button>
-              </div>
-            </div>
-          </form>
+                <div className="mb-4 relative">
+                  <Field
+                    type={showPassword ? "text" : "password"}
+                    placeholder="password"
+                    name="password"
+                    className={`placeholder:text-gray-400/50 w-full px-3 py-2 border rounded-md transition-colors duration-300 ease-in-out ${errors.password && touched.password ? 'border-red-500' : ''
+                      }`}
+                  />
+                  <ErrorMessage name="password" component="div" className="text-red-500" />
+                  {showPassword ?
+                    <IoEye onClick={() => setShowPassword(!showPassword)} className="cursor-pointer absolute top-3 right-4 h-5 w-5 text-gray-400 " /> :
+                    <IoMdEyeOff onClick={() => setShowPassword(!showPassword)} className="cursor-pointer absolute top-3 right-4 h-5 w-5 text-gray-400 " />
+                  }
+                </div>
+
+                <div className="mb-4 relative">
+                  <Field
+                    type={showConfirmPass ? "text" : "password"}
+                    placeholder="confirm password"
+                    name="confirmPassword"
+                    className={`placeholder:text-gray-400/50 w-full px-3 py-2 border rounded-md transition-colors duration-300 ease-in-out ${errors.confirmPassword && touched.confirmPassword ? 'border-red-500' : ''
+                      }`}
+                  />
+                  <ErrorMessage name="confirmPassword" component="div" className="text-red-500" />
+                  {showConfirmPass ?
+                    <IoEye onClick={() => setShowConfirmPass(!showConfirmPass)} className="cursor-pointer absolute top-3 right-4 h-5 w-5 text-gray-400 " /> :
+                    <IoMdEyeOff onClick={() => setShowConfirmPass(!showConfirmPass)} className="cursor-pointer absolute top-3 right-4 h-5 w-5 text-gray-400 " />
+                  }
+                </div>
+
+                <div>
+                  <button
+                    type="submit"
+                    className="w-full p-3 bg-slate-800 rounded-md hover:bg-slate-700 text-white transition duration-300"
+                  >
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
+                    {isSubmitting ? 'Processing...' : 'Sign Up'}
+                  </button>
+                  <div className="text-center mt-8">
+                    <p>
+                      <span className=" text-base font-semibold text-center text-gray-900">
+                        Already have an account ?
+                      </span>
+
+                      <Link href="/Signin">
+                        <span className="ml-2 text-base font-semibold text-center text-blue-500 hover:text-blue-700">
+                          Sign In
+                        </span>
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+                <div class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+                  <p class="mx-4 mb-0 text-center font-semibold dark:text-slate-900">
+                    or
+                  </p>
+                </div>
+                <div className="flex flex-row flex-wrap sm:flex-nowrap gap-4 sm:gap-0 w-full ">
+                  <div className="flex items-center justify-center h-[52px] w-full sm:w-1/2 ">
+                    <button
+                      type="button"
+                      onClick={signInWithGoogle}
+                      className="w-full flex items-center justify-center h-[52px] transition duration-300 bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    >
+                      <FcGoogle className="text-2xl" />
+                      <span className="ml-2 text-sm whitespace-nowrap">Sign in with Google</span>
+                    </button>
+                  </div>
+                  <div className="flex items-center justify-start h-[52px] w-full sm:w-1/2 ml-0 sm:ml-4">
+                    <button
+                      type="button"
+                      onClick={signInWithFacebook}
+                      className="flex w-full items-center justify-center h-[52px] transition duration-300 bg-white border border-gray-200 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    >
+                      <BsFacebook className="text-2xl text-[#1778f2]" />
+                      <span className="ml-2" whitespace-nowrap>Sign in with Facebook</span>
+                    </button>
+                  </div>
+                </div>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div >
       <Footer />

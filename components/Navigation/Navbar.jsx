@@ -13,6 +13,7 @@ import products from "../../products.json"
 import { Flash } from "../SvgComponents/SVG";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { FaRegHeart } from "react-icons/fa";
+import { avatarPlaceHolder } from "../SvgComponents/SVG";
 
 const auth = getAuth(firebaseAapp);
 
@@ -245,13 +246,13 @@ export default function Navbar() {
               <div >
                 {user ? (
                   <div className="flex items-center gap-2">
-                    <img
+                    {user?.photoURL ? <img
                       className="h-8 w-8 rounded-full"
                       src={user?.photoURL}
                       alt="avatarUrl"
-                    />
+                    /> : <RxAvatar className="w-8 h-8 text-gray-100/50" />}
                     <div className="flex flex-col text-white">
-                      <p className="text-sm font-bold whitespace-nowrap">{user.displayName}</p>
+                      <p className="text-sm font-bold whitespace-nowrap">{user.displayName ? user.displayName : "Account"}</p>
                       <p className="text-[12px] font-norma text-gray-400"><span className="cursor-pointer hover:text-blue-500">Profile</span> or <span onClick={handleSignOut} className="cursor-pointer hover:text-blue-500">Logout</span></p>
                     </div>
                   </div>
