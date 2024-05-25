@@ -88,7 +88,7 @@ function Wishlist() {
                                                     <td className="px-6 py-4 flex justify-center gap-4">
                                                         <button
                                                             onClick={(e) => { handleCartAction(user, item.id, router, dispatch) }}
-                                                            className="w-1/3 mt-4 bg-slate-800 hover:bg-slate-700 px-2 transition duration-300 text-white font-semibold py-2 rounded-md"
+                                                            className="w-[120px] mt-4 bg-slate-800 hover:bg-slate-700 px-2 transition duration-300 text-white font-semibold py-2 rounded-md"
                                                         >
                                                             <p className="text-sm flex flex-row justify-around">
                                                                 <span className='whitespace-nowrap'>Add to cart </span>
@@ -96,7 +96,7 @@ function Wishlist() {
                                                         </button>
                                                         <button
                                                             onClick={() => handleDeleteItem(user,item.id)}
-                                                            className="w-1/4 mt-4 bg-red-600 hover:bg-red-700 px-2 transition duration-300 text-white font-semibold py-2 rounded-md"
+                                                            className="w-[100px] mt-4 bg-red-600 hover:bg-red-700 px-2 transition duration-300 text-white font-semibold py-2 rounded-md"
                                                         >
                                                             <p className="text-sm flex flex-row justify-around">
                                                                 <span className='whitespace-nowrap'>Delete </span>

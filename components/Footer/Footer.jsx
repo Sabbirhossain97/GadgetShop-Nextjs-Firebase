@@ -3,7 +3,7 @@ import { sponsors } from "../../helpers/helpers";
 
 export default function Footer() {
   return (
-    <section className="py-10 bg-slate-800 sm:pt-16 lg:pt-12 mb-10 xl:mb-0">
+    <section className="py-10 bg-slate-800 sm:pt-16 lg:pt-12 xl:mb-0">
       <div className="px-4 mx-auto sm:px-6 lg:px-2 max-w-7xl">
         <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
           <div className="col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">

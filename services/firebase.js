@@ -50,7 +50,6 @@ const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
-    console.error(err);
     alert(err.message);
   }
 };
@@ -70,7 +69,6 @@ const signInWithFacebook = async () => {
       });
     }
   } catch (err) {
-    console.error(err);
     alert(err.message);
   }
 };
@@ -79,7 +77,6 @@ const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    console.error(err);
     message.error(err.message);
   }
 };
@@ -103,8 +100,6 @@ const registerWithEmailAndPassword = async (username, email, password) => {
     message.error(err.message);
   }
 };
-
-
 
 const logout = () => {
   signOut(auth);

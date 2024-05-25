@@ -44,9 +44,6 @@ const SingleProduct = () => {
     );
   }, [state]);
 
-  const generateRandomReview = (review) => {
-    return Math.floor(Math.random() * review)
-  }
 
   useEffect(() => {
     setUserRating(countStars(singleProduct))
@@ -90,7 +87,7 @@ const SingleProduct = () => {
                       <span key={`full-star-${index}`}>{star}</span>
                     ))}
                     <span className="text-blue-600 ml-3">
-                      ( {generateRandomReview(100)} )
+                      ( 42 )
                     </span>
                   </span>
                 </div>

@@ -5,6 +5,7 @@ import { Context } from "../../context";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { AiFillHome } from "react-icons/ai";
+import { sponsors } from "../../helpers/helpers";
 
 export default function Checkout() {
   const getData = useContext(Context);
@@ -13,33 +14,33 @@ export default function Checkout() {
   return (
     <div>
       <Navbar />
-      <div className="mx-auto w-11/12 relative ">
-        <div className=" ">
-          <div className=" relative md:flex md:flex-row md:items-center md:justify-center flex flex-col min-h-screen mt-16 flex-wrap ">
+      <div className="mx-auto w-11/12 relative min-h-screen">
+        <div >
+          <div className="relative flex flex-col xl:flex-row md:items-start md:justify-center flex-wrap py-44">
             {/* form section */}
-            <div className=" absolute top-20 left-10 md:top-24 md:left-48 flex flex-row rounded-md text-xl font-medium text-black ">
-              <Link href="/">
-                <AiFillHome className="mt-0.5 text-slate-800 hover:text-blue-500 cursor-pointer" />
-              </Link>
-              <span className="text-gray-400">
-                &nbsp;{router?.pathname.slice(0, 1)}
-              </span>
-              <Link href="/Shop/Cart">
-                <span className="text-slate-900 hover:text-blue-600">
-                  &nbsp;Cart
-                </span>
-              </Link>
-              <span>
+            <div className="w-full xl:w-2/5 ml-10 md:ml-0 md:mt-4">
+              <div className="flex flex-row rounded-md text-xl font-medium text-black ">
+                <Link href="/">
+                  <AiFillHome className="mt-0.5 text-slate-800 hover:text-blue-500 cursor-pointer" />
+                </Link>
                 <span className="text-gray-400">
                   &nbsp;{router?.pathname.slice(0, 1)}
                 </span>
-                &nbsp;
-                <span className="text-slate-900">Checkout</span>
-              </span>
-            </div>
-            <div className=" md:w-2/5 w-10/12 ml-10 md:ml-0 md:mt-4 mt-32">
-              <form className=" border-t border-l border-b border-r border-gray-200 w-full  p-8 bg-white rounded-xl ">
-                <p className="text-gray-800 font-medium text-xl">
+                <Link href="/Shop/Cart">
+                  <span className="text-slate-900 hover:text-blue-600">
+                    &nbsp;Cart
+                  </span>
+                </Link>
+                <span>
+                  <span className="text-gray-400">
+                    &nbsp;{router?.pathname.slice(0, 1)}
+                  </span>
+                  &nbsp;
+                  <span className="text-slate-900">Checkout</span>
+                </span>
+              </div>
+              <form className="mt-4 border-t border-l border-b border-r border-gray-200 w-full  p-8 bg-white rounded-xl ">
+                <p className="text-gray-800 font-bold text-xl">
                   Customer information
                 </p>
                 <div className="mt-4">
@@ -111,10 +112,51 @@ export default function Checkout() {
                     placeholder="Zip"
                   />
                 </div>
-                <p className="mt-8 text-gray-800 font-medium text-xl">
-                  Payment information
-                </p>
-                <div className="mt-2">
+                <div>
+                  <p className="pt-8 pb-2 text-gray-800 font-bold text-xl border-b border-gray-200">
+                    Payment Method
+                  </p>
+                  <p className="text-md mt-4 font-semibold">Select a payment method</p>
+                  <div className="pt-4">
+                    <div className="flex items-center mb-4">
+                      <input type="radio" value="" name="payment" id="radio-cash" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300" />
+                      <label htmlFor="radio-cash" className="ms-2 text-sm font-medium text-gray-900 ">Cash on delivery</label>
+                    </div>
+                    <div className="flex items-center">
+                      <input type="radio" value="" name="payment" id="radio-online" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300" />
+                      <label htmlFor="radio-online" className="ms-2 text-sm font-medium text-gray-900 ">Online payment</label>
+                    </div>
+                  </div>
+                  <div className="pt-4">
+                    <p className="font-semibold">We Accept</p>
+                    <div className="flex pt-2">
+                      {sponsors.slice(0, 3).map((item, index) => (
+                        <div key={index}>
+                          <img src={`/assets/sponsors/${item}.png`} className='cursor-pointer h-8 w-12' />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="pt-8 pb-2 text-gray-800 font-bold text-xl border-b border-gray-200">
+                    Delivery Method
+                  </p>
+                  <p className="text-md mt-4 font-semibold">Select a delivery method</p>
+                  <div className="pt-4">
+                    <div className="flex items-center mb-4">
+                      <input type="radio" value="" name="delivery" id="radio-home" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300" />
+                      <label htmlFor="radio-home" className="ms-2 text-sm font-medium text-gray-900 ">Home delivery</label>
+                    </div>
+                    <div className="flex items-center">
+                      <input type="radio" value="" name="delivery" id="radio-store" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300" />
+                      <label htmlFor="radio-store" className="ms-2 text-sm font-medium text-gray-900 ">Store pickup</label>
+                    </div>
+                  </div>
+                </div>
+
+                {/* <div className="mt-2">
                   <label
                     className="font-semibold block text-sm text-gray-600"
                     htmlFor="cus_name"
@@ -127,7 +169,7 @@ export default function Checkout() {
                     required=""
                     placeholder="Card Number MM/YY CVC"
                   />
-                </div>
+                </div> */}
                 <div className="mt-8">
                   <button
                     className="text-sm font-semibold px-4 py-2 text-white  bg-slate-800 hover:bg-slate-700 rounded-md"
@@ -149,7 +191,7 @@ export default function Checkout() {
 
             {/*order summary section */}
 
-            <div className="border md:w-1/3 w-10/12 bg-white  border-gray-200  md:mt-10 mt-8 mb-20 h-[610px] rounded-xl md:ml-24 ml-10 ">
+            <div className="border w-full xl:w-1/3  bg-white border-gray-200 h-[610px] rounded-xl xl:ml-24 ml-0 mt-16">
               <h1 className="py-4 border-b-2 text-xl text-gray-600 px-10 ">
                 Order Summary
               </h1>
@@ -191,7 +233,7 @@ export default function Checkout() {
                     : ""}
                 </ul>
               </div>
-              <div className="px-8 border-b border-t border-gray-200 mt-8">
+              <div className="px-8 border-b border-t border-gray-200 pt-8">
                 <div className="flex justify-between py-4 text-gray-600">
                   <span>Subtotal</span>
                   <span className="font-semibold ">
