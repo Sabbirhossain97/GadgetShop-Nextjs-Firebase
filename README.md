@@ -55,4 +55,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Technology Used
 
-NextJS, Tailwind CSS, Axios
+NextJS, Tailwind CSS, Axios , Firebase
