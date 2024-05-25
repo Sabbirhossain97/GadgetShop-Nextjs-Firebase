@@ -4,16 +4,6 @@
 
 This project is currently under development
 
-## Functionality
-
-- Users can login, register and sign out using "users.json" defined data and localStorage
-- Users can add product to cart, remove, increase quantity and view it on checkout page
-- No backend code 
-
-## Important Note
-
-- Use the predefined user data from "users.json" file
-
 ## Installation
 
 1. Clone down this repository. You will need node and npm installed globally on your machine.
@@ -65,4 +55,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Technology Used
 
-NextJS, Tailwind CSS, Axios
+NextJS, Tailwind CSS, Axios , Firebase
