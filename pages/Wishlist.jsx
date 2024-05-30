@@ -22,7 +22,6 @@ function Wishlist() {
         <div>
             <Navbar />
             <Subnavbar />
-            This is wishlist page!
             <div className='min-h-screen max-w-[1500px] mx-auto py-10 xl:py-10 px-10 mt-24'>
                 <div>
                     <h1 className={`text-3xl font-semibold py-2 ${wishlist.length === 0 && 'border-b-2'} `}>My Wishlist</h1>
@@ -95,7 +94,7 @@ function Wishlist() {
                                                             </p>
                                                         </button>
                                                         <button
-                                                            onClick={() => handleDeleteItem(user,item.id)}
+                                                            onClick={() => handleDeleteItem(user, item.id)}
                                                             className="w-[100px] mt-4 bg-red-600 hover:bg-red-700 px-2 transition duration-300 text-white font-semibold py-2 rounded-md"
                                                         >
                                                             <p className="text-sm flex flex-row justify-around">

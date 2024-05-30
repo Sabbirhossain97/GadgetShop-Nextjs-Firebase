@@ -3,18 +3,21 @@ import { Context } from '../context'
 import Navbar from '../components/Navigation/Navbar'
 import Footer from '../components/Footer/Footer'
 import products from "../products.json"
+import addToWishlist from '../services/wishlist/addToWishlist'
 import { Pagination } from 'antd';
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { Spin, Slider } from 'antd';
 import { IoFilterSharp } from "react-icons/io5";
 import { BsFillEmojiFrownFill } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
 import { message } from 'antd'
 
 function Products() {
     const getData = useContext(Context);
     const [isLoggedIn] = getData?.isAuth;
     const [_, dispatch] = getData?.cartReducer;
+    const [user] = getData?.isAuth;
     const [productList, setProductList] = useState(products);
     const [filters, setFilters] = useState({
         sortBy: "",
@@ -412,7 +415,7 @@ function Products() {
                                                         </h3>
                                                         <p className="mt-4 text-lg  text-gray-500">${item.price}</p>
                                                     </div>
-                                                    <div className="flex flex-row w-[150px] relative ">
+                                                    <div className="flex flex-col w-[150px] relative ">
                                                         <button
                                                             onClick={() => handleCartAction(item.id)}
                                                             className="w-full mt-4 bg-slate-800 hover:bg-slate-700 px-2  text-white font-bold py-2 rounded-md"
@@ -421,6 +424,20 @@ function Products() {
                                                                 <span>Add to cart </span>
                                                                 <span>
                                                                     <AiOutlineShoppingCart className="mt-1 absolute right-4" />
+                                                                </span>
+                                                            </p>
+                                                        </button>
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                addToWishlist(user, item, router);
+                                                            }}
+                                                            className="w-full mt-4 px-2  text-black font-semibold border hover:bg-gray-200 py-2 rounded-md transition duration-300"
+                                                        >
+                                                            <p className="text-sm flex flex-row justify-around items-center">
+                                                                <span>Add to wishlist </span>
+                                                                <span>
+                                                                    <FaRegHeart />
                                                                 </span>
                                                             </p>
                                                         </button>

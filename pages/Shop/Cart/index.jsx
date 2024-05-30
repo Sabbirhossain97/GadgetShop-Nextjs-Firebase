@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../../components/Navigation/Navbar";
-import Footer from "../../components/Footer/Footer";
+import Navbar from "../../../components/Navigation/Navbar";
+import Footer from "../../../components/Footer/Footer";
 import Link from "next/link";
-import { Context } from "../../context";
-import EmptyCart from "../../components/EmptyCart";
-import Subnavbar from "../../components/Navigation/Subnavbar";
+import { Context } from "../../../context";
+import EmptyCart from "../../../components/EmptyCart";
+import Subnavbar from "../../../components/Navigation/Subnavbar";
 import { AiFillHome } from "react-icons/ai";
 import { useRouter } from "next/router";
-import Spinner from "../../components/Animation/Spinner";
+import Spinner from "../../../components/Animation/Spinner";
 import { message } from "antd";
-import { useWindowSize } from "../../components/hooks/useWindowSize";
+import { useWindowSize } from "../../../components/hooks/useWindowSize";
 
 export default function Cart() {
   const getData = useContext(Context);
