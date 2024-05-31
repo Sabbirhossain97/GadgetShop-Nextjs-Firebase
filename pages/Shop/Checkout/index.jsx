@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import Navbar from "../../../components/Navigation/Navbar";
+import Subnavbar from "../../../components/Navigation/Subnavbar";
 import Footer from "../../../components/Footer/Footer";
 import { Context } from "../../../context";
 import Link from "next/link";
@@ -11,7 +12,6 @@ import moment from "moment/moment";
 import addOrder from "../../../services/orders/addOrder";
 import { message } from 'antd'
 import Spinner from "../../../components/Animation/Spinner";
-
 export default function Checkout() {
   const getData = useContext(Context);
   const [state, dispatch] = getData?.cartReducer;
@@ -94,6 +94,7 @@ export default function Checkout() {
   return (
     <div>
       <Navbar />
+      <Subnavbar/>
       <div className="mx-auto w-11/12 relative min-h-screen">
         <div >
           <div className="relative flex flex-col xl:flex-row md:items-start md:justify-center flex-wrap py-44">

@@ -243,7 +243,11 @@ export default function Navbar() {
                     /> : <RxAvatar className="w-8 h-8 text-gray-100/50" />}
                     <div className="flex flex-col text-white">
                       <p className="text-sm font-bold whitespace-nowrap">{user.displayName ? user.displayName : "Account"}</p>
-                      <p className="text-[12px] font-norma text-gray-400"><span className="cursor-pointer hover:text-blue-500">Profile</span> or <span onClick={handleSignOut} className="cursor-pointer hover:text-blue-500">Logout</span></p>
+                      <p className="text-[12px] font-norma text-gray-400">
+                        <Link href="/Profile">
+                          <span className="cursor-pointer hover:text-blue-500">Profile</span>
+                        </Link>
+                         &nbsp;or <span onClick={handleSignOut} className="cursor-pointer hover:text-blue-500">Logout</span></p>
                     </div>
                   </div>
                 ) : (
@@ -282,7 +286,7 @@ export default function Navbar() {
       </div>
 
       {/* secondary navbar for mobile screen */}
-      <div className="py-2 block xl:hidden fixed z-10 bottom-0 left-0 right-0 bg-slate-800 shadow-md border-t border-slate-700">
+      <div className="py-4 block xl:hidden fixed z-10 bottom-0 left-0 right-0 bg-slate-800 shadow-md border-t border-slate-700">
         <ul className="text-white flex justify-around items-center">
           <li className="h-full">
             <div className="flex flex-col sm:flex-row justify-center items-center">
@@ -305,7 +309,11 @@ export default function Navbar() {
                     />
                     <div className="flex flex-col items-center sm:items-start text-white">
                       <p className="text-sm font-bold whitespace-nowrap">{user.displayName}</p>
-                      <p className="text-[12px] font-norma text-gray-400"><span className="cursor-pointer hover:text-blue-500">Profile</span> or <span onClick={handleSignOut} className="cursor-pointer hover:text-blue-500">Logout</span></p>
+                      <p className="text-[12px] font-norma text-gray-400">
+                        <Link href="/Profile">
+                          <span className="cursor-pointer hover:text-blue-500">Profile</span>
+                        </Link>
+                        &nbsp;or <span onClick={handleSignOut} className="cursor-pointer hover:text-blue-500">Logout</span></p>
                     </div>
                   </div>
                 ) : (

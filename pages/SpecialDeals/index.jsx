@@ -29,7 +29,6 @@ function SpecialDeals() {
                             </div>
                         </div>
                     ))}
-
                 </div>
             </div>
             <Footer />

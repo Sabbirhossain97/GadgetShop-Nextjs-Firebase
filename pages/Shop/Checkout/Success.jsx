@@ -48,8 +48,6 @@ function Success() {
         getOrderData();
     }, [user]);
 
-    console.log(orderList)
-
     return (
         <div>
             <Navbar />
