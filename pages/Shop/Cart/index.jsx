@@ -9,7 +9,6 @@ import { AiFillHome } from "react-icons/ai";
 import { useRouter } from "next/router";
 import Spinner from "../../../components/Animation/Spinner";
 import { message } from "antd";
-import { useWindowSize } from "../../../components/hooks/useWindowSize";
 
 export default function Cart() {
   const getData = useContext(Context);
@@ -17,7 +16,6 @@ export default function Cart() {
   const [state, dispatch] = getData?.cartReducer;
   const [subtotal, setSubtotal] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [width] = useWindowSize();
   const router = useRouter();
 
   useEffect(() => {
@@ -178,10 +176,10 @@ export default function Cart() {
                     ${subtotal ? subtotal : ""}
                   </p>
                 </div>
-                <div className="py-6 flex justify-between border-b border-gray-300">
+                {/* <div className="py-6 flex justify-between border-b border-gray-300">
                   <p className="text-gray-700 font-semibold">Shipping</p>
                   <p className="text-gray-700 font-semibold">Free</p>
-                </div>
+                </div> */}
                 <div className="mt-8 flex justify-between">
                   <p className="text-lg font-bold">Total</p>
                   <div className="">
@@ -200,11 +198,7 @@ export default function Cart() {
                     </p>
                   </div>
                 </div>
-                <div className="mt-8 font-semibold">Promo Code</div>
-                <input
-                  type="text"
-                  className="w-full mt-4 py-1.5 rounded-md focus:outline-none px-2"
-                />
+                
                 <button
                   onClick={handleClearAll}
                   className="flex justify-center bottom-8 mt-12 w-full mx-auto rounded-md bg-red-600 py-1.5 font-medium text-blue-50 hover:bg-red-700"

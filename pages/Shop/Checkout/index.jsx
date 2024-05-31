@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "../../../components/Navigation/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import { Context } from "../../../context";
@@ -9,13 +9,16 @@ import { sponsors } from "../../../helpers/helpers";
 import { v4 as uuidv4 } from 'uuid';
 import moment from "moment/moment";
 import addOrder from "../../../services/orders/addOrder";
+import { message } from 'antd'
+import Spinner from "../../../components/Animation/Spinner";
 
 export default function Checkout() {
   const getData = useContext(Context);
-  const [state] = getData?.cartReducer;
+  const [state, dispatch] = getData?.cartReducer;
   const [user] = getData?.isAuth;
   const [paymentMethod, setPaymentMethod] = useState("");
   const [deliveryMethod, setDeliveryMethod] = useState("")
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const currentDate = moment().format("MMMM Do YYYY")
 
@@ -30,7 +33,6 @@ export default function Checkout() {
       setDeliveryMethod("store")
     }
   };
-  console.log(state)
 
   const handleOrderConfirm = (e) => {
     e.preventDefault();
@@ -48,6 +50,7 @@ export default function Checkout() {
         return {
           productId: product.id,
           productName: product.title,
+          productImage: product.image,
           quantity: product.quantity,
           price: product.price,
           subtotal: product.price * product.quantity
@@ -73,8 +76,14 @@ export default function Checkout() {
       notes: notes,
     }
     try {
-      addOrder(user, payload)
-      router.push("/Shop/Checkout/Success")
+      setLoading(true)
+      setTimeout(() => {
+        addOrder(user, payload)
+        router.push("/Shop/Checkout/Success")
+        dispatch({ type: "CLEAR_ALL" })
+        message.success("Order placed successfully!")
+        setLoading(false)
+      }, 2000)
     } catch (error) {
       console.log(error)
     }
@@ -291,12 +300,12 @@ export default function Checkout() {
                     />
                   </div>
                 </div>
-                <div className="mt-8">
+                <div className="mt-8 flex">
                   <button
-                    className="text-sm font-semibold px-4 py-2 text-white  bg-slate-800 hover:bg-slate-700 rounded-md"
+                    className="text-sm flex items-center font-semibold px-4 py-2 text-white  bg-slate-800 hover:bg-slate-700 rounded-md"
                     type="submit"
                   >
-                    Confirm Payment
+                    {loading ? <><Spinner />Processing...</> : "Confirm Payment"}
                   </button>
                   <Link href="/">
                     <button

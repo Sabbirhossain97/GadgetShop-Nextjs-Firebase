@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../context";
-import Navbar from "../components/Navigation/Navbar";
+import { Context } from "../../context";
+import Navbar from "../../components/Navigation/Navbar";
 import Link from "next/link";
-import Footer from "../components/Footer/Footer";
+import Footer from "../../components/Footer/Footer";
 import { useRouter } from "next/router";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
-import { registerWithEmailAndPassword, signInWithGoogle, signInWithFacebook } from "../services/firebase";
+import { registerWithEmailAndPassword, signInWithGoogle, signInWithFacebook } from "../../services/firebase";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { signupSchema } from "../helpers/Form/signupSchema";
+import { signupSchema } from "../../helpers/Form/signupSchema";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 

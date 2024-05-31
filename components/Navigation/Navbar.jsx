@@ -35,9 +35,7 @@ export default function Navbar() {
     await signOut(auth);
     dispatch({ type: "CLEAR_ALL" });
     message.success("You have been logged Out!");
-    setTimeout(() => {
-      router.push("/")
-    }, 1000)
+    router.push("/")
   };
 
   const handleRegister = () => {

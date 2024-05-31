@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navigation/Navbar";
-import Subnavbar from "../components/Navigation/Subnavbar";
+import Navbar from "../../components/Navigation/Navbar";
+import Subnavbar from "../../components/Navigation/Subnavbar";
 import Link from "next/link";
-import Footer from "../components/Footer/Footer";
+import Footer from "../../components/Footer/Footer";
 import { useRouter } from "next/router";
-import Spinner from "../components/Animation/Spinner";
+import Spinner from "../../components/Animation/Spinner";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Modal, message } from "antd";
-import { auth, logInWithEmailAndPassword, signInWithFacebook, signInWithGoogle } from "../services/firebase";
+import { auth, logInWithEmailAndPassword, signInWithFacebook, signInWithGoogle } from "../../services/firebase";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
-import { signinSchema } from "../helpers/Form/signinSchema";
+import { signinSchema } from "../../helpers/Form/signinSchema";
 import { sendPasswordResetEmail } from "firebase/auth";
 
 export default function Signin() {

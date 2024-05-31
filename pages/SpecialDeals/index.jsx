@@ -1,9 +1,9 @@
 import React from 'react'
-import Navbar from '../components/Navigation/Navbar';
-import Footer from '../components/Footer/Footer';
-import { specialDeals } from '../helpers/helpers';
-import { DateRange } from '../components/SvgComponents/SVG';
-import Subnavbar from '../components/Navigation/Subnavbar';
+import Navbar from '../../components/Navigation/Navbar';
+import Footer from '../../components/Footer/Footer';
+import { specialDeals } from '../../helpers/helpers';
+import { DateRange } from '../../components/SvgComponents/SVG';
+import Subnavbar from '../../components/Navigation/Subnavbar';
 
 function SpecialDeals() {
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext, useCallback } from 'react'
-import { Context } from '../context'
-import Navbar from '../components/Navigation/Navbar'
-import Footer from '../components/Footer/Footer'
-import products from "../products.json"
-import addToWishlist from '../services/wishlist/addToWishlist'
+import { Context } from '../../context'
+import Navbar from '../../components/Navigation/Navbar'
+import Footer from '../../components/Footer/Footer'
+import products from "../../products.json"
+import addToWishlist from '../../services/wishlist/addToWishlist'
 import { Pagination } from 'antd';
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useRouter } from "next/router";

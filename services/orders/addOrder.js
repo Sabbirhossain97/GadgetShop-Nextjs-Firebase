@@ -1,6 +1,5 @@
 import { db } from "../firebase";
 import { addDoc, collection, updateDoc, getDocs, query, where, doc } from "firebase/firestore";
-// import { message } from "antd";
 
 const addOrder = async (user, order) => {
  
@@ -9,7 +8,7 @@ const addOrder = async (user, order) => {
     if (!querySnapshot.empty) {
         querySnapshot.forEach(async (orderDoc) => {
             const existingOrdersRef = doc(db, 'orders', orderDoc.id);
-            const existingOrderData = existingOrdersRef.data();
+            const existingOrderData = orderDoc.data();
             if (!existingOrderData.orders.some(orderItem => orderItem.id === order.orderId)) {
                 const updatedOrders = [...existingOrderData.orders, order];
                 try {

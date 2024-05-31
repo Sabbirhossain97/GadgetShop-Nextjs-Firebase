@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { Context } from '../context';
-import Navbar from '../components/Navigation/Navbar';
-import Subnavbar from '../components/Navigation/Subnavbar';
+import { Context } from '../../context';
+import Navbar from '../../components/Navigation/Navbar';
+import Subnavbar from '../../components/Navigation/Subnavbar';
 import { useRouter } from 'next/router';
-import Footer from '../components/Footer/Footer';
-import { handleCartAction } from '../helpers/addToCart';
-import { handleDeleteItem } from '../services/wishlist/deleteFromWishlist';
+import Footer from '../../components/Footer/Footer';
+import { handleCartAction } from '../../helpers/addToCart';
+import { handleDeleteItem } from '../../services/wishlist/deleteFromWishlist';
 
 function Wishlist() {
     const router = useRouter()

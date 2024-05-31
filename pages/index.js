@@ -4,7 +4,7 @@ import Features from "../components/Features";
 import Navbar from "../components/Navigation/Navbar";
 import Head from "next/head";
 import Carousel from "../components/Hero/Carousel";
-import Shop from "../pages/Shop";
+import FeaturedProducts from "../components/FeaturedProducts";
 import FeaturedCategories from "../components/FeaturedCategories";
 import Subnavbar from "../components/Navigation/Subnavbar";
 
@@ -23,7 +23,7 @@ export default function Home() {
           <div className="mx-auto">
             <Carousel />
             <FeaturedCategories />
-            <Shop />
+            <FeaturedProducts />
             <Features />
             <Footer />
           </div>
