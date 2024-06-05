@@ -55,10 +55,12 @@ function index() {
                                 </Link>
                             </div>
                             <div className="p-4 sm:w-1/2 md:w-1/3 xl:w-1/4 w-full">
-                                <div className="cursor-pointer border border-gray-300 hover:border-blue-700 hover:shadow-lg transition duration-300 px-4 py-10 rounded-lg">
-                                    <RiLockPasswordFill className='w-10 h-10 mb-3 inline-block text-blue-700' />
-                                    <h2 className="title-font font-medium text-lg text-gray-900">Change Password</h2>
-                                </div>
+                                <Link href="/Profile/Password">
+                                    <div className="cursor-pointer border border-gray-300 hover:border-blue-700 hover:shadow-lg transition duration-300 px-4 py-10 rounded-lg">
+                                        <RiLockPasswordFill className='w-10 h-10 mb-3 inline-block text-blue-700' />
+                                        <h2 className="title-font font-medium text-lg text-gray-900">Change Password</h2>
+                                    </div>
+                                </Link>
                             </div>
                             <div className="p-4 sm:w-1/2 md:w-1/3 xl:w-1/4 w-full">
                                 <div className="cursor-pointer border border-gray-300 hover:border-blue-700 hover:shadow-lg transition duration-300 px-4 py-10 rounded-lg">

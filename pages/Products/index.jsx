@@ -24,6 +24,7 @@ function Products() {
         category: [],
         priceRange: { min: 0, max: 5000 }
     })
+    const [isFilterActive, setIsFilterActive] = useState(false)
     const [categories, setCategories] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(12);
@@ -185,6 +186,14 @@ function Products() {
         router.push(`/SingleProduct/${id}`);
     };
 
+    useEffect(() => {
+        if (filters.sortBy === "" && filters.category.length === 0 && filters.priceRange.min === 0 && filters.priceRange.max === 5000) {
+            setIsFilterActive(false)
+        } else {
+            setIsFilterActive(true)
+        }
+    }, [filters])
+
     return (
         <div>
             <Navbar />
@@ -256,7 +265,7 @@ function Products() {
                                         <div className="pt-6" id="filter-section-1">
                                             <div className="space-y-4">
                                                 {categories.map((category, index) => (
-                                                    <div className="flex items-center">
+                                                    <div key={index} className="flex items-center">
                                                         <input onChange={(e) => handleCategory(e)} id={`filter-category-${index}`} name="category" value={category} checked={filters.category.includes(category)} type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                                                         <label for={`filter-category-${index}`} className="ml-3 text-sm text-gray-600">{category}</label>
                                                     </div>
@@ -284,11 +293,11 @@ function Products() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='py-6 px-4'>
+                                    {isFilterActive && <div className='py-6 px-4'>
                                         <button onClick={clearFilters} className="w-full mt-4 bg-red-500 hover:bg-red-700 px-2 transition duration-300 text-white font-semibold py-2 rounded-md">
                                             Clear all filters
                                         </button>
-                                    </div>
+                                    </div>}
                                 </div>
                             </div>
                         </div>
@@ -353,7 +362,7 @@ function Products() {
                                             <div className="pt-6" id="filter-section-1">
                                                 <div className="space-y-4">
                                                     {categories.map((category, index) => (
-                                                        <div className="flex items-center">
+                                                        <div key={index} className="flex items-center">
                                                             <input onChange={(e) => handleCategory(e)} id={`filter-category-${index}`} name="category" value={category} checked={filters.category.includes(category)} type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                                                             <label for={`filter-category-${index}`} className="ml-3 text-sm text-gray-600">{category}</label>
                                                         </div>
@@ -381,11 +390,11 @@ function Products() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='py-6'>
+                                        {isFilterActive && <div className='py-6'>
                                             <button onClick={clearFilters} className="w-full mt-4 bg-red-500 hover:bg-red-700 px-2 transition duration-300 text-white font-semibold py-2 rounded-md">
                                                 Clear all filters
                                             </button>
-                                        </div>
+                                        </div>}
                                     </div>
 
                                     <div className={`${loading && "opacity-75"} relative grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-y-8 gap-x-2 col-span-3`}>

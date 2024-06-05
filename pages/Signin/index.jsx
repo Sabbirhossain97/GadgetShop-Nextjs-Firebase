@@ -19,6 +19,7 @@ import { sendPasswordResetEmail } from "firebase/auth";
 export default function Signin() {
   const router = useRouter();
   const [user, loading, error] = useAuthState(auth);
+  const [formLoading, setFormLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isPassResetModalOpen, setIsPassResetModalOpen] = useState(false);
   const [passResetEmail, setPassResetEmail] = useState('')
@@ -38,10 +39,18 @@ export default function Signin() {
     password: '',
   };
 
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting, setStatus }) => {
     const { email, password } = values
-    logInWithEmailAndPassword(email, password)
-    setSubmitting(false);
+    setFormLoading(true)
+    try {
+      await logInWithEmailAndPassword(email, password)
+        .then(res => setStatus({ error: res }))
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setFormLoading(false)
+      setSubmitting(false);
+    }
   };
 
   const handleCancel = () => {
@@ -85,7 +94,7 @@ export default function Signin() {
             validationSchema={signinSchema}
             onSubmit={handleSubmit}
           >
-            {({ errors, touched }) => (
+            {({ errors, touched, status }) => (
               <Form className="mt-8 space-y-6">
                 <div className="mb-4">
                   <Field
@@ -111,7 +120,7 @@ export default function Signin() {
                     <IoMdEyeOff onClick={() => setShowPassword(!showPassword)} className="cursor-pointer absolute top-3 right-4 h-5 w-5 text-gray-400 " />
                   }
                 </div>
-
+                {status && status.error && <div className="text-red-500 text-sm text-center">{status.error}</div>}
                 <div className="text-right">
                   <p className="text-blue-600 hover:text-blue-400 transition duration-300">
                     <span onClick={() => setIsPassResetModalOpen(true)} className="cursor-pointer">Forgot Password?</span>
@@ -124,7 +133,7 @@ export default function Signin() {
                     className="w-full p-3 bg-slate-800 transition duration-300 rounded-md hover:bg-slate-700 text-white"
                   >
                     <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
-                    {loading ? <Spinner /> : "Sign In"}
+                    {formLoading ? <p className="flex justify-center items-center"><Spinner /> Processing...</p> : "Sign In"}
                   </button>
                   <div className="text-center mt-8">
                     <p>

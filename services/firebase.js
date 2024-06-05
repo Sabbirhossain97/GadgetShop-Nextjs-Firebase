@@ -7,7 +7,10 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
-  updateProfile
+  updateProfile,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updatePassword
 } from "firebase/auth";
 import {
   getFirestore,
@@ -74,10 +77,13 @@ const signInWithFacebook = async () => {
 };
 
 const logInWithEmailAndPassword = async (email, password) => {
+  let error;
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     message.error(err.message);
+    error = err.message;
+    return error
   }
 };
 
@@ -108,6 +114,9 @@ const logout = () => {
 export {
   auth,
   db,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updatePassword,
   signInWithGoogle,
   signInWithFacebook,
   logInWithEmailAndPassword,
