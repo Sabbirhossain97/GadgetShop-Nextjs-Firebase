@@ -1,18 +1,23 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Context } from '../../../context'
-import Navbar from '../../../components/Navigation/Navbar'
-import Footer from '../../../components/Footer/Footer'
-import Subnavbar from '../../../components/Navigation/Subnavbar'
+import { Context } from '../../../../context'
+import Navbar from '../../../../components/Navigation/Navbar'
+import Footer from '../../../../components/Footer/Footer'
+import Subnavbar from '../../../../components/Navigation/Subnavbar'
 import { useRouter } from "next/router";
-import { db } from '../../../services/firebase'
+import { db } from '../../../../services/firebase'
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { AiFillHome } from "react-icons/ai";
+import Link from 'next/link'
+import useBreadCrumbNavigation from '../../../../helpers/hooks/useBreadCrumbNavigation'
 
 function OrderInfo() {
     const router = useRouter();
+    const { pathname } = router;
     const getData = useContext(Context);
     const [user] = getData?.isAuth;
     const [orderInfo, setOrderInfo] = useState(null)
     const oid = router.query?.orderId?.split("=")[1]
+    const breadcrumbNav = useBreadCrumbNavigation(pathname)
 
     useEffect(() => {
         const getOrderData = async () => {
@@ -52,13 +57,34 @@ function OrderInfo() {
         getOrderData();
     }, [user, oid]);
 
-    console.log(orderInfo)
-
     return (
         <div>
             <Navbar />
             <Subnavbar />
-            <div className='min-h-screen max-w-[1500px] mx-auto py-10 xl:py-10 px-10 mt-24'>
+            <div className='min-h-screen max-w-[1500px] mx-auto py-10 xl:py-10 px-10 mt-10 xl:mt-24'>
+                <div className='flex items-center justify-center py-4'>
+                    <Link href="/">
+                        <AiFillHome className='hover:text-blue-500 cursor-pointer' />
+                    </Link>
+                    <span>&nbsp;/&nbsp;</span>
+                    <div className='flex space-x-1'>
+                        {breadcrumbNav.slice(0, 3).map((route, index) => (
+                            <React.Fragment key={route.href}>
+                                {index < breadcrumbNav.length - 2 ? (
+                                    <Link href={route.href}>
+                                        <p className="hover:text-blue-500">{route.name}
+                                            {index < breadcrumbNav.length - 2 && (
+                                                <span>&nbsp;/</span>
+                                            )}
+                                        </p>
+                                    </Link>
+                                ) : (
+                                        <p className="hover:text-blue-500 cursor-pointer">{route.name}</p>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </div>
+                </div>
                 {orderInfo &&
                     <section className="bg-white py-8 antialiased md:py-16 flex flex-wrap lg:flex-nowrap gap-8">
                         <div className="mx-auto w-full lg:w-1/2 px-0 2xl:px-0 border border-gray-300 bg-gray-50 rounded-lg">
@@ -122,7 +148,7 @@ function OrderInfo() {
                                     <li className="mb-10 ms-6 text-primary-700 dark:text-primary-500 flex flex-col justify-center">
                                         <span className="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-white ring-2 ring-blue-500">
                                             <svg className="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5" />
+                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 11.917 9.724 16.5 19 7.5" />
                                             </svg>
                                         </span>
                                         <h4 className="mb-0.5 text-base font-semibold">{orderInfo?.orderDate}</h4>
@@ -132,7 +158,7 @@ function OrderInfo() {
                                     <li className="mb-10 ms-6 text-primary-700 dark:text-primary-500 flex flex-col justify-center">
                                         <span className="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-white ring-2 ring-blue-500">
                                             <svg className="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5" />
+                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 11.917 9.724 16.5 19 7.5" />
                                             </svg>
                                         </span>
                                         <h4 className="mb-0.5 font-semibold">{orderInfo?.orderDate}</h4>
@@ -142,12 +168,12 @@ function OrderInfo() {
                                     <li className="mb-10 ms-6 text-primary-700 dark:text-primary-500 flex flex-col justify-center">
                                         <span className="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-white ring-2 ring-blue-500">
                                             <svg className="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5" />
+                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 11.917 9.724 16.5 19 7.5" />
                                             </svg>
                                         </span>
                                         <div>
                                             <h4 className="mb-0.5 font-semibold">{orderInfo?.orderDate}</h4>
-                                            <a href="#" class="text-sm font-medium hover:underline">Order placed - Receipt #{orderInfo?.orderId}</a>
+                                            <a href="#" className="text-sm font-medium hover:underline">Order placed - Receipt #{orderInfo?.orderId}</a>
                                         </div>
                                     </li>
                                 </ol>

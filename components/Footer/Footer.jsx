@@ -74,7 +74,7 @@ export default function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-gray-100/50 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                  className="flex text-base whitespace-nowrap text-gray-100/50 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
                   Customer Support{" "}
@@ -96,7 +96,7 @@ export default function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-gray-100/50 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                  className="flex text-base whitespace-nowrap text-gray-100/50 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
                   Terms & Conditions{" "}
@@ -107,7 +107,7 @@ export default function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-gray-100/50 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                  className="flex text-base  text-gray-100/50 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
                   Privacy Policy{" "}

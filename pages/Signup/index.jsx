@@ -11,6 +11,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { signupSchema } from "../../helpers/Form/signupSchema";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
+import { message } from "antd";
 
 export default function Signup() {
   const getData = useContext(Context)
@@ -18,10 +19,15 @@ export default function Signup() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false)
-  
+
   useEffect(() => {
     if (!user) return;
-    if (user) router.push("/");
+    if (user) {
+      message.success(`logged in as ${user.displayName}`)
+      setTimeout(() => {
+        router.push("/");
+      }, 1000)
+    }
   }, [user]);
 
   const initialValues = {

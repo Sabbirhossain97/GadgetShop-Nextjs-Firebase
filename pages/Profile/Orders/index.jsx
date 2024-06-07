@@ -1,17 +1,22 @@
 import React, { useState, useEffect, useContext } from 'react'
-import Navbar from '../../components/Navigation/Navbar'
-import { Context } from '../../context'
-import Subnavbar from '../../components/Navigation/Subnavbar'
-import Footer from '../../components/Footer/Footer'
-import { db } from '../../services/firebase'
+import Navbar from '../../../components/Navigation/Navbar'
+import { Context } from '../../../context'
+import Subnavbar from '../../../components/Navigation/Subnavbar'
+import Footer from '../../../components/Footer/Footer'
+import { db } from '../../../services/firebase'
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { useRouter } from "next/router";
+import { AiFillHome } from "react-icons/ai";
+import Link from 'next/link'
+import useBreadCrumbNavigation from '../../../helpers/hooks/useBreadCrumbNavigation'
 
 function index() {
     const router = useRouter();
+    const { pathname } = router;
     const getData = useContext(Context);
     const [user] = getData?.isAuth;
     const [orderList, setOrderList] = useState(null)
+    const breadcrumbNav = useBreadCrumbNavigation(pathname)
 
     useEffect(() => {
         const getOrderData = async () => {
@@ -50,16 +55,35 @@ function index() {
     }, [user]);
 
     const goToOrderInfo = (id) => {
-        router.push(`/Orders/info/order_id=${id}`);
+        router.push(`/Profile/Orders/info/order_id=${id}`);
     };
 
     return (
         <div>
             <Navbar />
             <Subnavbar />
-            <div className='min-h-screen max-w-[1500px] mx-auto py-10 xl:py-10 px-10 mt-32'>
+            <div className='min-h-screen max-w-[1500px] mx-auto py-10 xl:py-10 px-10 mt-10 xl:mt-24'>
+                <div className='flex items-center justify-center py-4'>
+                    <Link href="/">
+                        <AiFillHome className='hover:text-blue-500 cursor-pointer' />
+                    </Link>
+                    <span>&nbsp;/&nbsp;</span>
+                    <div className='flex space-x-1'>
+                        {breadcrumbNav.slice(0, 3).map((route, index) => (
+                            <React.Fragment key={route.href}>
+                                <Link href={route.href}>
+                                    <p className="hover:text-blue-500">{route.name}
+                                        {index < breadcrumbNav.length - 1 && (
+                                            <span>&nbsp;/</span>
+                                        )}
+                                    </p>
+                                </Link>
+                            </React.Fragment>
+                        ))}
+                    </div>
+                </div>
                 {orderList && <div>
-                    <h1 className={`text-3xl font-semibold py-2 ${orderList.length === 0 && 'border-b-2'} `}>Order History</h1>
+                    <h1 className={`text-2xl font-semibold py-2 ${orderList.length === 0 && 'border-b-2'} `}>Order History</h1>
                     <div className='pt-5 relative'>
                         <div className='w-full overflow-auto'>
                             {

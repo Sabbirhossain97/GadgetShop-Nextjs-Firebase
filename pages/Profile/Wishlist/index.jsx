@@ -1,30 +1,52 @@
-import { useContext } from 'react';
-import { Context } from '../../context';
-import Navbar from '../../components/Navigation/Navbar';
-import Subnavbar from '../../components/Navigation/Subnavbar';
+import React, { useState, useEffect, useContext } from 'react';
+import { Context } from '../../../context';
+import Navbar from '../../../components/Navigation/Navbar';
+import Subnavbar from '../../../components/Navigation/Subnavbar';
 import { useRouter } from 'next/router';
-import Footer from '../../components/Footer/Footer';
-import { handleCartAction } from '../../helpers/addToCart';
-import { handleDeleteItem } from '../../services/wishlist/deleteFromWishlist';
+import Footer from '../../../components/Footer/Footer';
+import { handleCartAction } from '../../../helpers/addToCart';
+import { handleDeleteItem } from '../../../services/wishlist/deleteFromWishlist';
+import useBreadCrumbNavigation from '../../../helpers/hooks/useBreadCrumbNavigation';
+import { AiFillHome } from "react-icons/ai";
+import Link from 'next/link';
 
 function Wishlist() {
     const router = useRouter()
     const getData = useContext(Context);
+    const { pathname } = router;
+    const breadcrumbNav = useBreadCrumbNavigation(pathname)
     const [wishlist] = getData?.wishlistData
     const [user] = getData?.isAuth;
     const [, dispatch] = getData?.cartReducer;
-
-    const handleSignIn = () => {
-        router.push('/Signin')
-    }
 
     return (
         <div>
             <Navbar />
             <Subnavbar />
-            <div className='min-h-screen max-w-[1500px] mx-auto py-10 xl:py-10 px-10 mt-24'>
+            <div className='min-h-screen max-w-[1500px] mx-auto py-10 xl:py-10 px-10 mt-10 xl:mt-24'>
+                <div className='flex items-center justify-center py-4'>
+                    <Link href="/">
+                        <AiFillHome className='hover:text-blue-500 cursor-pointer' />
+                    </Link>
+                    <span>&nbsp;/&nbsp;</span>
+                    <div className='flex space-x-1'>
+                        {breadcrumbNav.slice(0, 3).map((route, index) => (
+                            <React.Fragment key={route.href}>
+                                <Link href={route.href}>
+                                    <p className="hover:text-blue-500">{route.name}
+                                        {index < breadcrumbNav.length - 1 && (
+                                            <span>&nbsp;/</span>
+                                        )}
+                                    </p>
+
+                                </Link>
+
+                            </React.Fragment>
+                        ))}
+                    </div>
+                </div>
                 <div>
-                    <h1 className={`text-3xl font-semibold py-2 ${wishlist.length === 0 && 'border-b-2'} `}>My Wishlist</h1>
+                    <h1 className={`text-2xl font-semibold py-2 ${wishlist.length === 0 && 'border-b-2'} `}>My Wishlist</h1>
                     <div className='pt-5 relative'>
                         <div className='w-full overflow-auto'>
                             {
@@ -37,14 +59,15 @@ function Wishlist() {
                                             <h1>You haven't saved anything yet.</h1>
                                         </div>
                                         <div className='flex justify-center'>
-                                            <button
-                                                onClick={handleSignIn}
-                                                className="w-[150px] rounded-md mt-4 bg-slate-800 hover:bg-slate-700 px-4 transition duration-300 text-white font-bold py-2 "
-                                            >
-                                                <p className="text-lg flex flex-row justify-around">
-                                                    <span className='whitespace-nowrap'>Sign in</span>
-                                                </p>
-                                            </button>
+                                            <Link href="/">
+                                                <button
+                                                    className="w-[200px] rounded-md mt-4 bg-slate-800 hover:bg-slate-700 px-4 transition duration-300 text-white font-bold py-2 "
+                                                >
+                                                    <p className="text-lg flex flex-row justify-around">
+                                                        <span className='whitespace-nowrap'>Return to Shop</span>
+                                                    </p>
+                                                </button>
+                                            </Link>
                                         </div>
                                     </>
 

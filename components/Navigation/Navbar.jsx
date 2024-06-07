@@ -55,7 +55,7 @@ export default function Navbar() {
   }
 
   const handleWishlist = () => {
-    router.push("/Wishlist")
+    router.push("/Profile/Wishlist")
   }
 
   const goToCart = () => {

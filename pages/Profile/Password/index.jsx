@@ -9,10 +9,14 @@ import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { message } from 'antd'
 import { useRouter } from 'next/router'
+import { AiFillHome } from "react-icons/ai";
+import Link from 'next/link'
+import useBreadCrumbNavigation from '../../../helpers/hooks/useBreadCrumbNavigation'
 
 function index() {
     const router = useRouter();
-
+    const { pathname } = router;
+    const breadcrumbNav = useBreadCrumbNavigation(pathname)
     const [showCurrPassword, setShowCurrPassword] = useState(false);
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -27,13 +31,12 @@ function index() {
 
     const handlePasswordChange = async (values, { setSubmitting, setFieldError }) => {
         const user = auth.currentUser;
-        console.log(values)
         const credentials = EmailAuthProvider.credential(user.email, values.currentPassword);
         try {
             await reauthenticateWithCredential(user, credentials);
             await updatePassword(user, values.newPassword);
             message.success('Password updated successfully');
-            router.push("/");
+            router.push("/Profile");
         } catch (error) {
             if (error.code === 'auth/wrong-password') {
                 message.error(error.message)
@@ -54,7 +57,26 @@ function index() {
         <div>
             <Navbar />
             <Subnavbar />
-            <div className='min-h-screen max-w-[1500px] mx-auto py-10 xl:py-10 px-10 flex items-center justify-center'>
+            <div className='min-h-screen max-w-[1500px] mx-auto flex flex-col gap-12 items-center py-10 xl:py-10 px-10 mt-24'>
+                <div className='flex items-center justify-center py-4'>
+                    <Link href="/">
+                        <AiFillHome className='hover:text-blue-500 cursor-pointer' />
+                    </Link>
+                    <span>&nbsp;/&nbsp;</span>
+                    <div className='flex space-x-1'>
+                        {breadcrumbNav.slice(0, 3).map((route, index) => (
+                            <React.Fragment key={route.href}>
+                                <Link href={route.href}>
+                                    <p className="hover:text-blue-500">{route.name}
+                                        {index < breadcrumbNav.length - 1 && (
+                                            <span>&nbsp;/</span>
+                                        )}
+                                    </p>
+                                </Link>
+                            </React.Fragment>
+                        ))}
+                    </div>
+                </div>
                 <div className="w-full p-6 bg-white rounded-lg shadow md:mt-0 sm:max-w-md border sm:p-8">
                     <h2 className="mb-1 text-xl font-bold text-center leading-tight tracking-tight text-gray-900 md:text-2xl ">
                         Change Password

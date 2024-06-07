@@ -21,6 +21,7 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { message } from "antd";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -35,6 +36,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 
@@ -91,7 +93,7 @@ const registerWithEmailAndPassword = async (username, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    
+
     await updateProfile(user, {
       displayName: username
     });
@@ -114,6 +116,7 @@ const logout = () => {
 export {
   auth,
   db,
+  storage,
   EmailAuthProvider,
   reauthenticateWithCredential,
   updatePassword,
