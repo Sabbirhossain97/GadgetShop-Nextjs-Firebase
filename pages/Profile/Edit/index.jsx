@@ -10,16 +10,22 @@ import { message } from 'antd';
 import { useRouter } from 'next/router';
 import Spinner from '../../../components/Animation/Spinner';
 import { CgSpinner } from "react-icons/cg";
+import useBreadCrumbNavigation from '../../../helpers/hooks/useBreadCrumbNavigation';
+import { AiFillHome } from "react-icons/ai";
+import Link from 'next/link';
+
 
 function index() {
     const [user, setUser] = useState(null);
     const router = useRouter();
+    const { pathname } = router;
     const [loading, setLoading] = useState(false);
     const [infoLoading, setInfoLoading] = useState(true)
     const [profile, setProfile] = useState({ username: '', email: '', password: '', picURL: '' });
     const [hasPhoto, setHasPhoto] = useState(!!profile.picURL);
     const [currentPhotoURL, setCurrentPhotoURL] = useState(profile.picURL);
     const [file, setFile] = useState(null);
+    const breadcrumbNav = useBreadCrumbNavigation(pathname)
 
     useEffect(() => {
         const auth = getAuth();
@@ -57,9 +63,6 @@ function index() {
         }
         setInfoLoading(false)
     };
-
-    console.log(profile)
-
 
     const handleFileChange = (e) => {
         const file = e.target.files[0]
@@ -130,7 +133,26 @@ function index() {
             <Navbar />
             <Subnavbar />
             <div className='min-h-screen max-w-[1500px] flex flex-col items-center justify-center mx-auto py-10 xl:py-10 px-10 mt-10 xl:mt-24'>
-                <div className={`w-full relative ${infoLoading ? 'opacity-50' : "opacity-100"} p-6 bg-white rounded-lg shadow md:mt-0 sm:max-w-md border sm:p-8`}>
+                <div className='flex items-center justify-center pb-10'>
+                    <Link href="/">
+                        <AiFillHome className='hover:text-blue-500 cursor-pointer' />
+                    </Link>
+                    <span>&nbsp;/&nbsp;</span>
+                    <div className='flex space-x-1'>
+                        {breadcrumbNav.slice(0, 3).map((route, index) => (
+                            <React.Fragment key={route.href}>
+                                <Link href={route.href}>
+                                    <p className="hover:text-blue-500">{route.name}
+                                        {index < breadcrumbNav.length - 1 && (
+                                            <span>&nbsp;/</span>
+                                        )}
+                                    </p>
+                                </Link>
+                            </React.Fragment>
+                        ))}
+                    </div>
+                </div>
+                <div className={`w-full border relative ${infoLoading ? 'opacity-50' : "opacity-100"} p-6 bg-white rounded-lg shadow md:mt-0 sm:max-w-md border sm:p-8`}>
                     {infoLoading && <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                         <div className='relative'>
                             <CgSpinner className="text-5xl animate-spin text-blue-500" />

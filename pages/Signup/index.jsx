@@ -12,6 +12,7 @@ import { signupSchema } from "../../helpers/Form/signupSchema";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { message } from "antd";
+import Spinner from "../../components/Animation/Spinner";
 
 export default function Signup() {
   const getData = useContext(Context)
@@ -19,11 +20,12 @@ export default function Signup() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false)
+  const [formLoading, setFormLoading] = useState(false);
 
   useEffect(() => {
     if (!user) return;
     if (user) {
-      message.success(`logged in as ${user.displayName}`)
+      message.success(`Registered Successfully!`)
       setTimeout(() => {
         router.push("/");
       }, 1000)
@@ -38,9 +40,16 @@ export default function Signup() {
   };
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    const { username, email, password } = values
-    registerWithEmailAndPassword(username, email, password);
-    setSubmitting(false);
+    const { username, email, password } = values;
+    setFormLoading(true)
+    try {
+      await registerWithEmailAndPassword(username, email, password);
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setFormLoading(false)
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -118,7 +127,7 @@ export default function Signup() {
                     className="w-full p-3 bg-slate-800 rounded-md hover:bg-slate-700 text-white transition duration-300"
                   >
                     <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
-                    {isSubmitting ? 'Processing...' : 'Sign Up'}
+                    {formLoading ? <p className="flex justify-center items-center"><Spinner /> Processing...</p> : "Sign In"}
                   </button>
                   <div className="text-center mt-8">
                     <p>
