@@ -1,16 +1,23 @@
 import React, { useState, useEffect, useContext } from 'react'
-import Navbar from '../../../components/Navigation/Navbar';
-import Subnavbar from '../../../components/Navigation/Subnavbar';
-import Footer from '../../../components/Footer/Footer';
-import { Context } from '../../../context';
-import { db } from '../../../services/firebase';
+import Navbar from '../../../../../components/Navigation/Navbar';
+import Subnavbar from '../../../../../components/Navigation/Subnavbar';
+import Footer from '../../../../../components/Footer/Footer';
+import { Context } from '../../../../../context';
+import { db } from '../../../../../services/firebase';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import Link from 'next/link';
+import withAuth from '../../../../../helpers/ProtectedRoutes/withAuth';
+import { AiFillHome } from "react-icons/ai";
+import useBreadCrumbNavigation from '../../../../../helpers/hooks/useBreadCrumbNavigation';
+import { useRouter } from "next/router";
 
 function Success() {
     const getData = useContext(Context);
     const [user] = getData?.isAuth;
-    const [orderList, setOrderList] = useState(null)
+    const [orderList, setOrderList] = useState(null);
+    const router = useRouter();
+    const { pathname } = router;
+    const breadcrumbNav = useBreadCrumbNavigation(pathname)
 
     useEffect(() => {
         const getOrderData = async () => {
@@ -48,11 +55,32 @@ function Success() {
         getOrderData();
     }, [user]);
 
+    console.log(breadcrumbNav)
+
     return (
         <div>
             <Navbar />
             <Subnavbar />
             <div className='min-h-screen max-w-[1500px] mx-auto py-10 xl:py-10 px-10 mt-24'>
+                <div className='flex items-center justify-center py-4'>
+                    <Link href="/">
+                        <AiFillHome className='hover:text-blue-500 cursor-pointer' />
+                    </Link>
+                    <span>&nbsp;/&nbsp;</span>
+                    <div className='flex space-x-1'>
+                        {breadcrumbNav.slice(0, 4).map((route, index) => (
+                            <React.Fragment key={route.href}>
+                                {index > 0 && <Link href={route.href}>
+                                    <p className="hover:text-blue-500">{route.name}
+                                        {index < breadcrumbNav.length - 1 && (
+                                            <span>&nbsp;/</span>
+                                        )}
+                                    </p>
+                                </Link>}
+                            </React.Fragment>
+                        ))}
+                    </div>
+                </div>
                 {orderList &&
                     <section className="bg-white py-8 antialiased md:py-16 flex flex-wrap lg:flex-nowrap gap-8">
                         <div className="mx-auto w-full lg:w-1/2 px-0 2xl:px-0 ">
@@ -172,4 +200,4 @@ function Success() {
     )
 }
 
-export default Success
+export default withAuth(Success)

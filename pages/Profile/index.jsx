@@ -19,8 +19,9 @@ import { reauthenticateWithPopup, EmailAuthProvider, reauthenticateWithCredentia
 import Spinner from '../../components/Animation/Spinner'
 import { RxAvatar } from "react-icons/rx";
 import { getAuth } from 'firebase/auth';
+import withAuth from '../../helpers/ProtectedRoutes/withAuth'
 
-function index() {
+function Profile() {
     const getData = useContext(Context);
     const [user] = getData?.isAuth;
     const [email, setEmail] = useState('');
@@ -219,4 +220,4 @@ function index() {
     )
 }
 
-export default index
+export default withAuth(Profile)

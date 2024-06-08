@@ -15,8 +15,9 @@ import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { signinSchema } from "../../helpers/Form/signinSchema";
 import { sendPasswordResetEmail } from "firebase/auth";
+import withPublic from "../../helpers/ProtectedRoutes/withPublic";
 
-export default function Signin() {
+ function Signin() {
   const router = useRouter();
   const [user, loading, error] = useAuthState(auth);
   const [formLoading, setFormLoading] = useState(false);
@@ -225,3 +226,5 @@ export default function Signin() {
     </div>
   );
 }
+
+export default withPublic(Signin)

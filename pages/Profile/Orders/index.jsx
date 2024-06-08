@@ -9,8 +9,9 @@ import { useRouter } from "next/router";
 import { AiFillHome } from "react-icons/ai";
 import Link from 'next/link'
 import useBreadCrumbNavigation from '../../../helpers/hooks/useBreadCrumbNavigation'
+import withAuth from '../../../helpers/ProtectedRoutes/withAuth'
 
-function index() {
+function Orders() {
     const router = useRouter();
     const { pathname } = router;
     const getData = useContext(Context);
@@ -96,14 +97,15 @@ function index() {
                                             <h1>You haven't ordered anything yet.</h1>
                                         </div>
                                         <div className='flex justify-center'>
-                                            <button
-                                                // onClick={handleSignIn}
-                                                className="w-[150px] rounded-md mt-4 bg-slate-800 hover:bg-slate-700 px-4 transition duration-300 text-white font-bold py-2 "
-                                            >
-                                                <p className="text-lg flex flex-row justify-around">
-                                                    <span className='whitespace-nowrap'>Sign in</span>
-                                                </p>
-                                            </button>
+                                            <Link href="/">
+                                                <button
+                                                    className="w-[150px] rounded-md mt-4 bg-slate-800 hover:bg-slate-700 px-4 transition duration-300 text-white font-bold py-2 "
+                                                >
+                                                    <p className="text-lg flex flex-row justify-around">
+                                                        <span className='whitespace-nowrap'>Shop</span>
+                                                    </p>
+                                                </button>
+                                            </Link>
                                         </div>
                                     </>
                                     :
@@ -190,4 +192,4 @@ function index() {
     )
 }
 
-export default index
+export default withAuth(Orders)

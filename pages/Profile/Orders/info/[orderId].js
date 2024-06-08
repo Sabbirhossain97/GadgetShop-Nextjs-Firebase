@@ -9,6 +9,7 @@ import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { AiFillHome } from "react-icons/ai";
 import Link from 'next/link'
 import useBreadCrumbNavigation from '../../../../helpers/hooks/useBreadCrumbNavigation'
+import withAuth from '../../../../helpers/ProtectedRoutes/withAuth'
 
 function OrderInfo() {
     const router = useRouter();
@@ -215,4 +216,4 @@ function OrderInfo() {
     )
 }
 
-export default OrderInfo
+export default withAuth(OrderInfo)

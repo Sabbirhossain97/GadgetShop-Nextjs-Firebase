@@ -304,7 +304,7 @@ function Products() {
                         {/* mobile screen filter end */}
                         <main className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
                             <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
-                                <h1 className="text-2xl lg:text-4xl font-bold tracking-tight text-gray-900">All Products</h1>
+                                <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">All Products</h1>
                                 <button onClick={() => setSidebarFilter(!sidebarFilter)} className='hover:text-blue-500 transition duration-300'>
                                     <h1 className='text-xl lg:hidden flex items-center gap-2'>Filters <IoFilterSharp /></h1>
                                 </button>

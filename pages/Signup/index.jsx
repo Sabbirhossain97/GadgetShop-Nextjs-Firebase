@@ -13,8 +13,9 @@ import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { message } from "antd";
 import Spinner from "../../components/Animation/Spinner";
+import withPublic from "../../helpers/ProtectedRoutes/withPublic";
 
-export default function Signup() {
+function Signup() {
   const getData = useContext(Context)
   const [user] = getData?.isAuth;
   const router = useRouter();
@@ -179,3 +180,5 @@ export default function Signup() {
     </div >
   );
 }
+
+export default withPublic(Signup)

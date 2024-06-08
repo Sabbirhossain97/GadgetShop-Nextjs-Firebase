@@ -1,13 +1,13 @@
 import { useEffect, useContext } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { Context } from "../context";
-import products from "../products.json";
+import { Context } from "../../context";
+import products from "../../products.json";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Tooltip } from "antd";
 import { FaRegHeart } from "react-icons/fa";
-import addToWishlist from "../services/wishlist/addToWishlist";
-import { handleCartAction } from "../helpers/addToCart";
+import addToWishlist from "../../services/wishlist/addToWishlist";
+import { handleCartAction } from "../../helpers/addToCart";
 
 export default function FeaturedProducts() {
     const getData = useContext(Context);

@@ -13,6 +13,8 @@ import products from "../../products.json"
 import { Flash } from "../SvgComponents/SVG";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { FaRegHeart } from "react-icons/fa";
+import Spinner from "../Animation/Spinner";
+import { CgSpinner } from "react-icons/cg";
 
 const auth = getAuth(firebaseAapp);
 
@@ -28,7 +30,8 @@ export default function Navbar() {
   const [width] = useWindowSize();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchedProducts, setSearchedProducts] = useState(null)
-  const [showSearchBar, setShowSearchBar] = useState(false)
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [searchLoading, setSearchLoading] = useState(false)
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -68,19 +71,23 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      const fetchedProducts = products.filter((val) => {
-        if (searchQuery === "") {
-          return [];
-        } else if (val.title.toLowerCase().includes(searchQuery.toLowerCase())) {
-          return val;
-        }
-      });
-      setSearchedProducts(fetchedProducts);
-    }, 1500);
-
-    return () => clearTimeout(timeoutId);
-
+    if (searchQuery.trim() === "") {
+      return
+    } else {
+      setSearchLoading(true)
+      const timeoutId = setTimeout(() => {
+        const fetchedProducts = products.filter((val) => {
+          if (searchQuery === "") {
+            return [];
+          } else if (val.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+            return val;
+          }
+        });
+        setSearchedProducts(fetchedProducts);
+        setSearchLoading(false)
+      }, 2000);
+      return () => clearTimeout(timeoutId);
+    }
   }, [searchQuery])
 
   const goToSingleProduct = useCallback((id) => {
@@ -140,24 +147,25 @@ export default function Navbar() {
                 searchQuery && <div className="bg-white w-full pb-4 pl-2 pt-2 z-1000 absolute top-16 max-h-96 shadow-xl overflow-y-auto rounded-md">
                   <ul className="space-y-2">
                     {
-                      searchedProducts && searchedProducts.length > 0 ? searchedProducts.map((product, index) => (
-                        <li
-                          key={index}
-                          onClick={() => goToSingleProduct(product.id)}
-                          className=" hover:bg-gray-200 cursor-pointer transition duration-300 hover:opacity-75">
-                          <div className="flex space-x-2">
-                            <img className="h-24 w-24" src={product.image} />
-                            <div className=" w-full flex flex-col space-y-2 justify-center">
-                              <p>{product.title}</p>
-                              <p>${product.price}</p>
+                      searchLoading ? <li className="text-center flex justify-center h-44 items-center"><CgSpinner className="text-blue-500 animate-spin text-2xl text-center" /> </li> :
+                        searchedProducts && searchedProducts.length > 0 ? searchedProducts.map((product, index) => (
+                          <li
+                            key={index}
+                            onClick={() => goToSingleProduct(product.id)}
+                            className=" hover:bg-gray-200 cursor-pointer transition duration-300 hover:opacity-75">
+                            <div className="flex space-x-2">
+                              <img className="h-24 w-24" src={product.image} />
+                              <div className=" w-full flex flex-col space-y-2 justify-center">
+                                <p>{product.title}</p>
+                                <p>${product.price}</p>
+                              </div>
                             </div>
+                          </li>
+                        )) : <li className=" hover:bg-gray-200 cursor-pointer">
+                          <div className="flex space-x-2 text-center justify-center">
+                            <h1 className="text-center">No products found!</h1>
                           </div>
                         </li>
-                      )) : <li className=" hover:bg-gray-200 cursor-pointer">
-                        <div className="flex space-x-2 text-center justify-center">
-                          <h1 className="text-center">No products found!</h1>
-                        </div>
-                      </li>
                     }
                   </ul>
                 </div>
@@ -185,21 +193,22 @@ export default function Navbar() {
                     searchQuery && <div className="bg-white mx-auto p-4 z-1000 left-4 right-4 absolute top-16 max-h-96 shadow-xl overflow-y-auto rounded-md">
                       <ul className="space-y-2">
                         {
-                          searchedProducts.length > 0 && searchedProducts.map((product, index) => (
-                            <li
-                              key={index}
-                              onClick={() => goToSingleProduct(product.id)}
-                              className=" hover:bg-gray-200 cursor-pointer">
-                              <div className="flex space-x-2">
-                                <img className="h-24 w-24" src={product.image} />
-                                <div className=" w-full flex flex-col space-y-2 justify-center">
-                                  <p>{product.title}</p>
-                                  <p>${product.price}</p>
+                          searchLoading ? <li className="text-center flex justify-center h-44 items-center"><CgSpinner className="text-blue-500 animate-spin text-2xl text-center" /> </li> :
+                            searchedProducts.length > 0 && searchedProducts.map((product, index) => (
+                              <li
+                                key={index}
+                                onClick={() => goToSingleProduct(product.id)}
+                                className=" hover:bg-gray-200 cursor-pointer">
+                                <div className="flex space-x-2">
+                                  <img className="h-24 w-24" src={product.image} />
+                                  <div className=" w-full flex flex-col space-y-2 justify-center">
+                                    <p>{product.title}</p>
+                                    <p>${product.price}</p>
+                                  </div>
                                 </div>
-                              </div>
-                            </li>
+                              </li>
 
-                          ))}
+                            ))}
                         {searchedProducts.length === 0 && <li >
                           <div className="flex space-x-2 text-center justify-center">
                             <h1 className="text-center">No products found!</h1>
@@ -247,7 +256,7 @@ export default function Navbar() {
                         <Link href="/Profile">
                           <span className="cursor-pointer hover:text-blue-500">Profile</span>
                         </Link>
-                         &nbsp;or <span onClick={handleSignOut} className="cursor-pointer hover:text-blue-500">Logout</span></p>
+                        &nbsp;or <span onClick={handleSignOut} className="cursor-pointer hover:text-blue-500">Logout</span></p>
                     </div>
                   </div>
                 ) : (

@@ -12,8 +12,9 @@ import { useRouter } from 'next/router'
 import { AiFillHome } from "react-icons/ai";
 import Link from 'next/link'
 import useBreadCrumbNavigation from '../../../helpers/hooks/useBreadCrumbNavigation'
+import withAuth from '../../../helpers/ProtectedRoutes/withAuth'
 
-function index() {
+function Password() {
     const router = useRouter();
     const { pathname } = router;
     const breadcrumbNav = useBreadCrumbNavigation(pathname)
@@ -146,4 +147,4 @@ function index() {
     )
 }
 
-export default index
+export default withAuth(Password)

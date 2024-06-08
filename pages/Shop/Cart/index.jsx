@@ -3,12 +3,13 @@ import Navbar from "../../../components/Navigation/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import Link from "next/link";
 import { Context } from "../../../context";
-import EmptyCart from "../../../components/EmptyCart";
+import EmptyCart from "../../../components/Empty/EmptyCart";
 import Subnavbar from "../../../components/Navigation/Subnavbar";
-import { AiFillHome } from "react-icons/ai";
 import { useRouter } from "next/router";
 import Spinner from "../../../components/Animation/Spinner";
 import { message } from "antd";
+import useBreadCrumbNavigation from "../../../helpers/hooks/useBreadCrumbNavigation";
+import { AiFillHome } from "react-icons/ai";
 
 export default function Cart() {
   const getData = useContext(Context);
@@ -17,6 +18,8 @@ export default function Cart() {
   const [subtotal, setSubtotal] = useState(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { pathname } = router;
+  const breadcrumbNav = useBreadCrumbNavigation(pathname)
 
   useEffect(() => {
     let totalValue = state.items.reduce(
@@ -37,13 +40,30 @@ export default function Cart() {
       message.success("Cart is cleared")
     }, 2000)
   }
-
-
   return (
     <div>
       <Navbar />
       <Subnavbar />
       <div className="min-h-screen bg-gray-100/50 py-40 px-10 md:px-20 lg:px-0 ">
+        <div className='flex items-center justify-center py-4'>
+          <Link href="/">
+            <AiFillHome className='hover:text-blue-500 cursor-pointer' />
+          </Link>
+          <span>&nbsp;/&nbsp;</span>
+          <div className='flex space-x-1'>
+            {breadcrumbNav.slice(0, 3).map((route, index) => (
+              <React.Fragment key={route.href}>
+                {index > 0 && <Link href={route.href}>
+                  <p className="hover:text-blue-500">{route.name}
+                    {index < breadcrumbNav.length - 1 && (
+                      <span>&nbsp;/</span>
+                    )}
+                  </p>
+                </Link>}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
         {state.items ? (
           state.items.length === 0 ? (
             <div>
@@ -58,26 +78,6 @@ export default function Cart() {
         ) : (
           ""
         )}
-        {state.items ? (
-          state.items.length > 0 ? (
-            <div className="max-w-5xl mx-auto flex flex-row rounded-md text-xl font-medium text-black ">
-              <Link href="/">
-                <AiFillHome className="mt-0.5 text-slate-800 hover:text-blue-500 cursor-pointer" />
-              </Link>
-              <span className="text-gray-400">
-                &nbsp;{router?.pathname.slice(0, 1)}
-              </span>{" "}
-              <span className="text-lg hover:text-blue-500 cursor-pointer">
-                &nbsp;Cart
-              </span>
-            </div>
-          ) : (
-            ""
-          )
-        ) : (
-          ""
-        )}
-
         <div className="max-w-5xl flex flex-col lg:flex-row mx-auto relative mt-2">
           <div className="relative overflow-y-auto max-h-[640px] w-full lg:w-2/3 flex flex-col ">
             {state.items
@@ -176,10 +176,6 @@ export default function Cart() {
                     ${subtotal ? subtotal : ""}
                   </p>
                 </div>
-                {/* <div className="py-6 flex justify-between border-b border-gray-300">
-                  <p className="text-gray-700 font-semibold">Shipping</p>
-                  <p className="text-gray-700 font-semibold">Free</p>
-                </div> */}
                 <div className="mt-8 flex justify-between">
                   <p className="text-lg font-bold">Total</p>
                   <div className="">
@@ -198,7 +194,7 @@ export default function Cart() {
                     </p>
                   </div>
                 </div>
-                
+
                 <button
                   onClick={handleClearAll}
                   className="flex justify-center bottom-8 mt-12 w-full mx-auto rounded-md bg-red-600 py-1.5 font-medium text-blue-50 hover:bg-red-700"
@@ -206,7 +202,7 @@ export default function Cart() {
                   {loading ? <div className="flex items-center"><Spinner />Processing...</div> : "Clear All"}
                 </button>
                 <button className="flex justify-center bottom-8 mt-4 w-full  mx-auto rounded-md bg-slate-800 py-1.5 font-medium text-blue-50 hover:bg-slate-700">
-                  <Link href="/Shop/Checkout">
+                  <Link href="/Shop/Cart/Checkout">
                     Checkout<span className="ml-2">&rarr;</span>
                   </Link>
                 </button>

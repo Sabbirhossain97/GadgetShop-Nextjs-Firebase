@@ -13,9 +13,9 @@ import { CgSpinner } from "react-icons/cg";
 import useBreadCrumbNavigation from '../../../helpers/hooks/useBreadCrumbNavigation';
 import { AiFillHome } from "react-icons/ai";
 import Link from 'next/link';
+import withAuth from '../../../helpers/ProtectedRoutes/withAuth';
 
-
-function index() {
+function Edit() {
     const [user, setUser] = useState(null);
     const router = useRouter();
     const { pathname } = router;
@@ -236,4 +236,4 @@ function index() {
     )
 }
 
-export default index
+export default withAuth(Edit)
