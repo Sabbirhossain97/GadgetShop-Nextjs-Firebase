@@ -49,7 +49,6 @@ const SingleProduct = () => {
     setUserRating(countStars(singleProduct))
   }, [singleProduct])
 
-
   return (
     <div className="">
       <Navbar />
@@ -81,10 +80,10 @@ const SingleProduct = () => {
                 <div className="flex flex-col mb-4">
                   <span className="flex items-center mt-2">
                     {userRating && userRating.fullStars && userRating?.fullStars?.map((star, index) => (
-                      <span key={`full-star-${index}`}>{star}</span>
+                      <span key={`full-star-${index}`} className="text-yellow-400">{star}</span>
                     ))}
                     {userRating && userRating.emptyStarsArr && userRating?.emptyStarsArr?.map((star, index) => (
-                      <span key={`full-star-${index}`}>{star}</span>
+                      <span key={`full-star-${index}`} className="text-gray-500">{star}</span>
                     ))}
                     <span className="text-blue-600 ml-3">
                       ( 42 )

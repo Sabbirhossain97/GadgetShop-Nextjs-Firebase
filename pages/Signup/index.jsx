@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../context";
 import Navbar from "../../components/Navigation/Navbar";
+import Subnavbar from "../../components/Navigation/Subnavbar";
 import Link from "next/link";
 import Footer from "../../components/Footer/Footer";
 import { useRouter } from "next/router";
@@ -56,7 +57,8 @@ function Signup() {
   return (
     <div>
       <Navbar />
-      <div className="bg-gray-100 flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <Subnavbar />
+      <div className="bg-gray-100 flex min-h-screen items-center justify-center px-4 py-12 mt-8 sm:px-6 lg:px-8">
         <div className="bg-white w-full max-w-xl space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl ">
           <div>
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
@@ -68,7 +70,7 @@ function Signup() {
             validationSchema={signupSchema}
             onSubmit={handleSubmit}
           >
-            {({ isSubmitting, errors, touched }) => (
+            {({ errors, touched }) => (
               <Form className="mt-8 space-y-6">
                 <div className="mb-4">
                   <Field
@@ -121,7 +123,6 @@ function Signup() {
                     <IoMdEyeOff onClick={() => setShowConfirmPass(!showConfirmPass)} className="cursor-pointer absolute top-3 right-4 h-5 w-5 text-gray-400 " />
                   }
                 </div>
-
                 <div>
                   <button
                     type="submit"

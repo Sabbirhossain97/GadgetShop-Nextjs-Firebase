@@ -13,7 +13,6 @@ import products from "../../products.json"
 import { Flash } from "../SvgComponents/SVG";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { FaRegHeart } from "react-icons/fa";
-import Spinner from "../Animation/Spinner";
 import { CgSpinner } from "react-icons/cg";
 
 const auth = getAuth(firebaseAapp);
@@ -71,24 +70,21 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    if (searchQuery.trim() === "") {
-      return
-    } else {
-      setSearchLoading(true)
-      const timeoutId = setTimeout(() => {
-        const fetchedProducts = products.filter((val) => {
-          if (searchQuery === "") {
-            return [];
-          } else if (val.title.toLowerCase().includes(searchQuery.toLowerCase())) {
-            return val;
-          }
-        });
+    setSearchLoading(true);
+    const timeoutId = setTimeout(() => {
+      if (searchQuery.trim() === "") {
+        setSearchedProducts([]);
+      } else {
+        const fetchedProducts = products.filter((val) =>
+          val.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
         setSearchedProducts(fetchedProducts);
-        setSearchLoading(false)
-      }, 2000);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [searchQuery])
+      }
+      setSearchLoading(false);
+    }, 2000);
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
+
 
   const goToSingleProduct = useCallback((id) => {
     setSearchQuery("")

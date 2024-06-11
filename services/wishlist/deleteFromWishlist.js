@@ -2,7 +2,7 @@ import { db } from '../firebase';
 import { collection, doc, getDocs, where, query, updateDoc } from 'firebase/firestore';
 import { message } from 'antd';
 
-export const handleDeleteItem = async (user,wishlistItemId) => {
+export const handleDeleteItem = async (user, wishlistItemId) => {
     if (!user) {
         return
     }
