@@ -26,8 +26,6 @@ function Address() {
         getAddressData(db, user, setAddressData);
     }, [user]);
 
-    console.log(addressData)
-
     return (
         <div>
             <Navbar />
@@ -65,7 +63,11 @@ function Address() {
                                     </p>
                                 </div>
                                 <div className='flex gap-4 pr-8'>
-                                    <MdEdit className='text-xl' />
+                                    <Link href={`/Profile/Address/Edit/address_id=${addressInfo.id}`}>
+                                        <span>
+                                            <MdEdit className='text-xl hover:text-blue-500 transition duration-300' />
+                                        </span>
+                                    </Link>
                                     <span onClick={() => handleDeleteAddress(user, addressInfo.id)}>
                                         <MdDelete className='text-xl hover:text-red-500 transition duration-300' />
                                     </span>

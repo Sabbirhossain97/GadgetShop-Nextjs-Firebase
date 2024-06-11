@@ -3,13 +3,12 @@ import Navbar from '../../../components/Navigation/Navbar'
 import { Context } from '../../../context'
 import Subnavbar from '../../../components/Navigation/Subnavbar'
 import Footer from '../../../components/Footer/Footer'
-import { db } from '../../../services/firebase'
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { useRouter } from "next/router";
 import { AiFillHome } from "react-icons/ai";
 import Link from 'next/link'
 import useBreadCrumbNavigation from '../../../helpers/hooks/useBreadCrumbNavigation'
 import withAuth from '../../../helpers/ProtectedRoutes/withAuth'
+import { getOrderData } from '../../../services/orders/getOrderList'
 
 function Orders() {
     const router = useRouter();
@@ -20,39 +19,7 @@ function Orders() {
     const breadcrumbNav = useBreadCrumbNavigation(pathname)
 
     useEffect(() => {
-        const getOrderData = async () => {
-            if (!user) {
-                setOrderList([])
-                return
-            }
-            try {
-                if (!db) {
-                    console.error('Firestore is not initialized.');
-                    return;
-                }
-                const orderRef = collection(db, 'orders');
-                if (!orderRef) {
-                    console.error('Order does not exist.');
-                    return;
-                }
-                const q = query(orderRef, where('userId', '==', user.uid));
-                onSnapshot(q, (snapshot) => {
-                    const orderData = [];
-                    snapshot.forEach((doc) => {
-                        orderData.push({ id: doc.id, ...doc.data() });
-                    });
-                    if (orderData.length > 0) {
-                        const { orders } = orderData?.[0];
-                        setOrderList(orders);
-                    } else {
-                        setOrderList([]);
-                    }
-                });
-            } catch (error) {
-                console.error('Error fetching Orders:', error);
-            }
-        };
-        getOrderData();
+        getOrderData(user, setOrderList);
     }, [user]);
 
     const goToOrderInfo = (id) => {

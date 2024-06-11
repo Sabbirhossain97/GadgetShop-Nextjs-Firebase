@@ -40,7 +40,6 @@ function Wishlist() {
                                     </p>
 
                                 </Link>
-
                             </React.Fragment>
                         ))}
                     </div>

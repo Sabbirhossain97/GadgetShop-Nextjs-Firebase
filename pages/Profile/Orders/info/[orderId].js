@@ -4,12 +4,11 @@ import Navbar from '../../../../components/Navigation/Navbar'
 import Footer from '../../../../components/Footer/Footer'
 import Subnavbar from '../../../../components/Navigation/Subnavbar'
 import { useRouter } from "next/router";
-import { db } from '../../../../services/firebase'
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { AiFillHome } from "react-icons/ai";
 import Link from 'next/link'
 import useBreadCrumbNavigation from '../../../../helpers/hooks/useBreadCrumbNavigation'
 import withAuth from '../../../../helpers/ProtectedRoutes/withAuth'
+import { getOrderInfo } from '../../../../services/orders/getOrderInfo'
 
 function OrderInfo() {
     const router = useRouter();
@@ -21,41 +20,7 @@ function OrderInfo() {
     const breadcrumbNav = useBreadCrumbNavigation(pathname)
 
     useEffect(() => {
-        const getOrderData = async () => {
-            if (!user) {
-                setOrderInfo(null)
-                return
-            }
-            try {
-                if (!db) {
-                    console.error('Firestore is not initialized.');
-                    return;
-                }
-                const orderRef = collection(db, 'orders');
-                if (!orderRef) {
-                    console.error('Order does not exist.');
-                    return;
-                }
-                const q = query(orderRef, where('userId', '==', user.uid));
-                onSnapshot(q, (snapshot) => {
-                    const orderData = [];
-                    snapshot.forEach((doc) => {
-                        orderData.push({ id: doc.id, ...doc.data() });
-                    });
-                    if (orderData.length > 0) {
-                        const { orders } = orderData?.[0];
-                        const [currentOrderInfo] = orders.filter((item) => item.orderId === oid);
-                        setOrderInfo(currentOrderInfo)
-
-                    } else {
-                        setOrderInfo(null)
-                    }
-                });
-            } catch (error) {
-                console.error('Error fetching Orders:', error);
-            }
-        };
-        getOrderData();
+        getOrderInfo(user, setOrderInfo, oid);
     }, [user, oid]);
 
     return (
@@ -80,7 +45,7 @@ function OrderInfo() {
                                         </p>
                                     </Link>
                                 ) : (
-                                        <p className="hover:text-blue-500 cursor-pointer">{route.name}</p>
+                                    <p className="hover:text-blue-500 cursor-pointer">{route.name}</p>
                                 )}
                             </React.Fragment>
                         ))}

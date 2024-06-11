@@ -69,6 +69,7 @@ export default function Navbar() {
     }
   };
 
+
   useEffect(() => {
     setSearchLoading(true);
     const timeoutId = setTimeout(() => {
@@ -84,7 +85,6 @@ export default function Navbar() {
     }, 2000);
     return () => clearTimeout(timeoutId);
   }, [searchQuery]);
-
 
   const goToSingleProduct = useCallback((id) => {
     setSearchQuery("")
@@ -104,7 +104,6 @@ export default function Navbar() {
         setIsSideBarOpen={setIsSideBarOpen}
         isSideBarOpen={isSideBarOpen}
       />
-
       <div className="mx-auto w-full md:w-full lg:w-full xl:w-11/12 px-2 sm:px-6 lg:px-8 ">
         <div className="relative flex h-[70px] items-center justify-between">
           <div className="flex flex-row flex-1 items-center gap-0  justify-center sm:items-stretch sm:justify-start ">
