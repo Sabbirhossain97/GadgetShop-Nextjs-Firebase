@@ -9,6 +9,8 @@ import Link from 'next/link';
 import useBreadCrumbNavigation from '../../../../helpers/hooks/useBreadCrumbNavigation';
 import Spinner from '../../../../components/Animation/Spinner';
 import { getAddressInfo } from '../../../../services/address/getAddressInfo';
+import editAddress from '../../../../services/address/editAddress'
+import { updateExistingDefaultAddress } from '../../../../services/address/updateExistingDefaultAddress'
 
 function AddressEdit() {
     const router = useRouter();
@@ -19,10 +21,51 @@ function AddressEdit() {
     const [loading, setLoading] = useState(false);
     const addressId = router.query?.addressId?.split("=")[1]
     const [addressInfo, setAddressInfo] = useState(null)
+    const [isDefault, setIsDefault] = useState(addressInfo?.isDefault || "no");
+
+    useEffect(() => {
+        setIsDefault(addressInfo?.isDefault || "no");
+    }, [addressInfo]);
+
+    const handleRadioChange = (event) => {
+        setIsDefault(event.target.value);
+    };
 
     useEffect(() => {
         getAddressInfo(user, setAddressInfo, addressId);
     }, [user, addressId]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const formDataObj = Object.fromEntries(formData.entries());
+        const { username, address1, address2, city, country, postcode, defaultaddress } = formDataObj;
+
+        const addressDetails = {
+            id: addressId,
+            username: username,
+            address: address2 ? address1 + ", " + address2 : address1,
+            city: city,
+            country: country,
+            postcode: postcode,
+            isDefault: defaultaddress
+        }
+
+        if (defaultaddress === "yes") {
+            await updateExistingDefaultAddress(user.uid);
+        }
+
+        try {
+            setLoading(true)
+            setTimeout(() => {
+                editAddress(user, addressDetails, router);
+                router.push('/Profile/Address')
+                setLoading(false)
+            }, 1000)
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
     return (
         <div>
@@ -57,7 +100,7 @@ function AddressEdit() {
                         Edit Address
                     </h2>
                     <form className="max-w-sm mx-auto py-6"
-                    // onSubmit={handleSubmit}
+                        onSubmit={handleSubmit}
                     >
                         <div className="mb-5 mt-4">
                             <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 ">Username</label>
@@ -65,7 +108,7 @@ function AddressEdit() {
                                 type="text"
                                 id="username"
                                 name="username"
-                                value={addressInfo?.username}
+                                defaultValue={addressInfo?.username}
                                 required
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             />
@@ -76,7 +119,7 @@ function AddressEdit() {
                                 type="text"
                                 id="address1"
                                 name="address1"
-                                value={addressInfo?.address}
+                                defaultValue={addressInfo?.address}
                                 required
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             />
@@ -96,7 +139,7 @@ function AddressEdit() {
                                 type="city"
                                 id="city"
                                 name='city'
-                                value={addressInfo?.city}
+                                defaultValue={addressInfo?.city}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 required
                             />
@@ -107,7 +150,7 @@ function AddressEdit() {
                                 type="text"
                                 id="postcode"
                                 name="postcode"
-                                value={addressInfo?.postcode}
+                                defaultValue={addressInfo?.postcode}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 required
                             />
@@ -118,7 +161,7 @@ function AddressEdit() {
                                 type="text"
                                 id="country"
                                 name="country"
-                                value={addressInfo?.country}
+                                defaultValue={addressInfo?.country}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 required
                             />
@@ -126,11 +169,27 @@ function AddressEdit() {
                         <div className="mb-5">
                             <p className="text-md mt-4 mb-4 font-semibold">Default Address</p>
                             <div className="flex items-center mb-4">
-                                <input type="radio" value="yes" checked={addressInfo?.isDefault === "yes" ? true : false} required name="defaultaddress" id="radio-yes" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300" />
+                                <input
+                                    type="radio"
+                                    value="yes"
+                                    checked={isDefault === "yes"}
+                                    onChange={handleRadioChange}
+                                    required
+                                    name="defaultaddress"
+                                    id="radio-yes"
+                                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300" />
                                 <label htmlFor="radio-cash" className="ms-2 text-sm font-medium text-gray-900 ">Yes</label>
                             </div>
                             <div className="flex items-center">
-                                <input type="radio" value="no" checked={addressInfo?.isDefault === "no" ? true : false} required name="defaultaddress" id="radio-no" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300" />
+                                <input
+                                    type="radio"
+                                    value="no"
+                                    checked={isDefault === "no"}
+                                    onChange={handleRadioChange}
+                                    required
+                                    name="defaultaddress"
+                                    id="radio-no"
+                                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300" />
                                 <label htmlFor="radio-online" className="ms-2 text-sm font-medium text-gray-900 ">No</label>
                             </div>
                         </div>

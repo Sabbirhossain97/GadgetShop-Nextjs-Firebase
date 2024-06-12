@@ -6,7 +6,8 @@ import { Context } from '../../context';
 function Subnavbar() {
     const [categories, setCategories] = useState([]);
     const getData = useContext(Context);
-    const [isOpen, setIsOpen] = getData?.sidebar;
+    const [isCategorySidebarOpen, setIsCategorySidebarOpen] = getData?.categorySidebar;
+
 
     useEffect(() => {
         const allCategories = [];
@@ -31,7 +32,7 @@ function Subnavbar() {
                     )}
                 </ul>
             </div>
-            <div className={`${isOpen ? "translate-x-0" : '-translate-x-full'} px-4 transiton duration-300 fixed left-0 top-0 bottom-0 z-20 bg-white shadow-2xl drop-shadow-2xl`}>
+            <div className={`${isCategorySidebarOpen ? "translate-x-0" : '-translate-x-full'} px-4 transiton duration-300 fixed left-0 top-0 bottom-0 z-20 bg-white shadow-2xl drop-shadow-2xl`}>
                 <svg
                     className="h-8 w-8 absolute right-2 top-4 hover:bg-gray-200 transition duration-300 cursor-pointer"
                     fill="none"
@@ -39,7 +40,7 @@ function Subnavbar() {
                     strokeWidth="1.5"
                     stroke="currentColor"
                     aria-hidden="true"
-                    onClick={() => setIsOpen(!isOpen)}
+                    onClick={() => setIsCategorySidebarOpen(!isCategorySidebarOpen)}
                 >
                     <path
                         strokeLinecap="round"

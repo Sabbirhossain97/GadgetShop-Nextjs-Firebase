@@ -22,6 +22,7 @@ const SingleProduct = () => {
   const [_, setTotalQuantity] = getData?.cartTotal;
   const [user] = getData?.isAuth;
   const [state, dispatch] = getData?.cartReducer;
+  const [, setIsCartSidebarOpen] = getData?.sidebar;
   const [userRating, setUserRating] = useState(null)
 
   function getSingleProduct() {
@@ -143,8 +144,10 @@ const SingleProduct = () => {
                     </div>
                     <div className="w-full sm:w-[150px] lg:w-[120px]">
                       <button
-                        onClick={() =>
+                        onClick={() => {
+                          setIsCartSidebarOpen(true);
                           handleCartAction(user, singleProduct.id, router, dispatch)
+                        }
                         }
                         className="px-5 w-full flex justify-center text-white bg-slate-800 font-semibold border hover:bg-slate-700 py-2 rounded-md transition duration-300"
                       >

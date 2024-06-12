@@ -18,6 +18,7 @@ function Products() {
     const [isLoggedIn] = getData?.isAuth;
     const [_, dispatch] = getData?.cartReducer;
     const [user] = getData?.isAuth;
+    const [, setIsCartSidebarOpen] = getData?.sidebar;
     const [productList, setProductList] = useState(products);
     const [filters, setFilters] = useState({
         sortBy: "",
@@ -37,7 +38,15 @@ function Products() {
     const router = useRouter();
 
     const onChange = (page) => {
-        setCurrentPage(page);
+        setLoading(true)
+        setTimeout(() => {
+            setCurrentPage(page);
+            setLoading(false)
+        }, 1500)
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' 
+        });
     };
 
     const priceRangeChange = (value) => {
@@ -127,37 +136,37 @@ function Products() {
     }
 
     const applyFilters = useCallback(() => {
-        let filtered;
-        filtered = productList.filter((product) => {
-            if (product.price >= localPriceRange[0] && product.price <= localPriceRange[1]) {
-                return product
-            }
-        })
+        let filtered = products;
+
+        filtered = filtered.filter(product =>
+            product.price >= localPriceRange[0] && product.price <= localPriceRange[1]
+        );
+
         if (filters.category.length > 0) {
-            filtered = filtered.map((product) => {
-                if (filters.category.includes(product.category)) {
-                    return product
-                }
-            }).filter((item) => item !== undefined)
+            filtered = filtered.filter(product =>
+                filters.category.includes(product.category)
+            );
         }
-        // // else if (filters.category.length === 0) {
-        // //     // setProductList(filtered)
-        // // }
+
         if (filters.sortBy === "asc") {
             filtered = filtered.sort((a, b) => a.price - b.price);
         } else if (filters.sortBy === "desc") {
             filtered = filtered.sort((a, b) => b.price - a.price);
         }
+
         setProductList(filtered)
+
     }, [products, filters, localPriceRange])
 
     useEffect(() => {
-        setLoading(true)
-        setTimeout(() => {
+        setLoading(true);
+        const timer = setTimeout(() => {
             applyFilters();
-            setLoading(false)
-        }, 2000)
-    }, [filters, applyFilters])
+            setLoading(false);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [filters, applyFilters]);
 
     const handleCartAction = (id) => {
         if (!isLoggedIn) {
@@ -426,7 +435,11 @@ function Products() {
                                                     </div>
                                                     <div className="flex flex-col w-[150px] relative ">
                                                         <button
-                                                            onClick={() => handleCartAction(item.id)}
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setIsCartSidebarOpen(true)
+                                                                handleCartAction(item.id);
+                                                            }}
                                                             className="w-full mt-4 bg-slate-800 hover:bg-slate-700 px-2  text-white font-bold py-2 rounded-md"
                                                         >
                                                             <p className="text-sm flex flex-row justify-around">

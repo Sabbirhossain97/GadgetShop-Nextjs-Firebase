@@ -24,8 +24,8 @@ export default function Navbar() {
   const [user] = getData?.isAuth;
   const [isLoggedIn] = getData?.isAuth;
   const [wishlist] = getData?.wishlistData
-  const [, setIsOpen] = getData?.sidebar;
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = getData?.sidebar;
+  const [isCategorySidebarOpen, setIsCategorySidebarOpen] = getData?.categorySidebar;
   const [width] = useWindowSize();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchedProducts, setSearchedProducts] = useState(null)
@@ -62,9 +62,9 @@ export default function Navbar() {
 
   const goToCart = () => {
     if (width < 800) {
-      setIsSideBarOpen(true);
+      setIsSidebarOpen(true);
     } else if (width > 800) {
-      setIsSideBarOpen(false);
+      setIsSidebarOpen(false);
       router.push("/Shop/Cart");
     }
   };
@@ -101,15 +101,15 @@ export default function Navbar() {
   return (
     <nav className="bg-slate-800 fixed right-0 left-0 top-0 z-20">
       <CartSideBar
-        setIsSideBarOpen={setIsSideBarOpen}
-        isSideBarOpen={isSideBarOpen}
+        setIsSideBarOpen={setIsSidebarOpen}
+        isSidebarOpen={isSidebarOpen}
       />
       <div className="mx-auto w-full md:w-full lg:w-full xl:w-11/12 px-2 sm:px-6 lg:px-8 ">
         <div className="relative flex h-[70px] items-center justify-between">
           <div className="flex flex-row flex-1 items-center gap-0  justify-center sm:items-stretch sm:justify-start ">
             <div className="xl:hidden flex items-center">
               <button
-                onClick={() => setIsOpen(true)}
+                onClick={() => setIsCategorySidebarOpen(true)}
                 type="button"
                 className="inline-flex transition duration-300 items-center justify-center rounded-md p-2 text-white hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               >

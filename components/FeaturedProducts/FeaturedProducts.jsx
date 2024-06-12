@@ -14,6 +14,7 @@ export default function FeaturedProducts() {
     const [_, setTotalQuantity] = getData?.cartTotal;
     const [user] = getData?.isAuth;
     const [state, dispatch] = getData?.cartReducer;
+    const [, setIsCartSidebarOpen] = getData?.sidebar;
     const router = useRouter();
 
     const goToSingleProduct = (id) => {
@@ -63,6 +64,7 @@ export default function FeaturedProducts() {
                                     <button
                                         onClick={(e) => {
                                             e.stopPropagation();
+                                            setIsCartSidebarOpen(true)
                                             handleCartAction(user, item.id, router, dispatch);
                                         }}
                                         className="w-full mt-4 bg-slate-800 hover:bg-slate-700 px-2 transition duration-300 text-white font-bold py-2 rounded-md"

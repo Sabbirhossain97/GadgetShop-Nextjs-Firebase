@@ -14,6 +14,7 @@ import { message } from 'antd'
 import Spinner from "../../../../components/Animation/Spinner";
 import withAuth from "../../../../helpers/ProtectedRoutes/withAuth";
 import useBreadCrumbNavigation from "../../../../helpers/hooks/useBreadCrumbNavigation";
+import { CgSpinner } from "react-icons/cg";
 
 function Checkout() {
     const getData = useContext(Context);
@@ -99,6 +100,9 @@ function Checkout() {
         <div>
             <Navbar />
             <Subnavbar />
+            {loading && <div className="fixed inset-0 bg-opacity-75 bg-white z-50">
+                <CgSpinner className="text-4xl animate-spin text-blue-500 top-1/2 left-1/2 absolute" />
+            </div>}
             <div className="min-h-screen bg-white py-40 px-10 md:px-20 lg:px-0 ">
                 <div className='flex items-center justify-center py-4'>
                     <Link href="/">
@@ -123,10 +127,10 @@ function Checkout() {
                     <div className="relative flex flex-col xl:flex-row md:items-start md:justify-center flex-wrap ">
                         {/* form section */}
                         <div className="w-full xl:w-2/5 ml-0 md:mt-4">
-                         
+
                             <form onSubmit={handleOrderConfirm} className="mt-4 border-t border-l border-b border-r border-gray-200 w-full  p-8 bg-white rounded-xl ">
                                 <p className="text-gray-800 font-bold text-xl">
-                                    Customer information
+                                    Customer Information
                                 </p>
                                 <div className="mt-4">
                                     <label

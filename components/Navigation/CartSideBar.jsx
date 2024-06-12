@@ -3,12 +3,17 @@ import { Context } from "../../context";
 import { MdDelete } from "react-icons/md";
 import { BsCartX } from "react-icons/bs";
 import Link from "next/link";
+import Spinner from "../Animation/Spinner";
+import { message } from "antd";
+import { useRouter } from "next/router";
 
-export default function CartSideBar({ isSideBarOpen, setIsSideBarOpen }) {
+export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
   const getData = useContext(Context);
   const [, setTotalQuantity] = getData?.cartTotal;
   const [state, dispatch] = getData?.cartReducer;
   const [subtotal, setSubtotal] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter()
 
   useEffect(() => {
     let totalValue = state.items.reduce(
@@ -22,16 +27,25 @@ export default function CartSideBar({ isSideBarOpen, setIsSideBarOpen }) {
   }, [state]);
 
   const clearCart = () => {
-    dispatch({ type: "CLEAR_ALL" });
+    setLoading(true)
     setTimeout(() => {
-      setIsSideBarOpen(!isSideBarOpen);
-    }, 1500);
+      dispatch({ type: "CLEAR_ALL" });
+      message.success("Cart is cleared")
+      setLoading(false)
+    }, 2000);
   };
+
+  const goToCheckout = () => {
+    router.push('/Shop/Cart/Checkout')
+    setTimeout(() => {
+      setIsSideBarOpen(false)
+    }, 1000)
+  }
 
 
   return (
     <>
-      <div className={`${isSideBarOpen ? "translate-x-0" : "translate-x-full"
+      <div className={`${isSidebarOpen ? "translate-x-0" : "translate-x-full"
         } fixed top-0 bottom-0 right-0 flex transition pl-10 z-20 ease-in-out duration-300`}>
         <div className="pointer-events-auto w-screen max-w-md">
           <div
@@ -49,7 +63,7 @@ export default function CartSideBar({ isSideBarOpen, setIsSideBarOpen }) {
                   <button
                     type="button"
                     onClick={() => {
-                      setIsSideBarOpen(!isSideBarOpen);
+                      setIsSideBarOpen(!isSidebarOpen);
                     }}
                     className="-m-2 p-0.5  rounded-md text-gray-400 hover:text-red-500 "
                   >
@@ -184,12 +198,10 @@ export default function CartSideBar({ isSideBarOpen, setIsSideBarOpen }) {
                       Shipping and taxes calculated at checkout.
                     </p>
                     <div className="mt-6">
-                      <Link href="/Shop/Checkout">
-                        <p className="flex items-center justify-center rounded-md border border-transparent bg-slate-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-slate-700">
-                          Checkout
-                          <span className="ml-2 text-lg"> &rarr;</span>
-                        </p>
-                      </Link>
+                      <button onClick={goToCheckout} className="w-full flex items-center justify-center rounded-md border border-transparent bg-slate-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-slate-700">
+                        Checkout
+                        <span className="ml-2 text-lg"> &rarr;</span>
+                      </button>
                     </div>
                   </div>
                 )
@@ -204,12 +216,12 @@ export default function CartSideBar({ isSideBarOpen, setIsSideBarOpen }) {
                   </p>
                 </Link>
               ) : (
-                <p
+                <button
                   onClick={clearCart}
-                  className="cursor-pointer mt-6 flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700"
+                  className="cursor-pointer w-full mt-6 flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700"
                 >
-                  <span className="">Clear Cart </span>
-                </p>
+                  {loading ? <p className="flex justify-center items-center"><Spinner /> Processing...</p> : "Clear All"}
+                </button>
               )}
             </div>
           </div>

@@ -15,7 +15,8 @@ export default function MyApp({ Component, pageProps }) {
   const [avatar, setAvatar] = useState(null);
   const [wishlist, setWishlist] = useState([]);
   const [user, setUser] = useState(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
+  const [isCategorySidebarOpen, setIsCategorySidebarOpen] = useState(false);
   const initialState = {
     items: [],
   };
@@ -46,7 +47,8 @@ export default function MyApp({ Component, pageProps }) {
           userAvatar: [avatar, setAvatar],
           cartReducer: [state, dispatch],
           isAuth: [user, setUser],
-          sidebar: [isSidebarOpen, setIsSidebarOpen]
+          sidebar: [isCartSidebarOpen, setIsCartSidebarOpen],
+          categorySidebar: [isCategorySidebarOpen, setIsCategorySidebarOpen]
         }}
       >
         <div className="font-sans">
