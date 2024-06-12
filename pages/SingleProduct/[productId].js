@@ -19,9 +19,8 @@ const SingleProduct = () => {
   const router = useRouter();
   const getData = useContext(Context);
   const pid = router.query?.productId;
-  const [_, setTotalQuantity] = getData?.cartTotal;
   const [user] = getData?.isAuth;
-  const [state, dispatch] = getData?.cartReducer;
+  const [, dispatch] = getData?.cartReducer;
   const [, setIsCartSidebarOpen] = getData?.sidebar;
   const [userRating, setUserRating] = useState(null)
 
@@ -39,16 +38,17 @@ const SingleProduct = () => {
     getSingleProduct();
   }, [pid]);
 
-  useEffect(() => {
-    setTotalQuantity(
-      state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
-    );
-  }, [state]);
-
-
+ 
   useEffect(() => {
     setUserRating(countStars(singleProduct))
   }, [singleProduct])
+
+  const handleCartAdd = (user, itemId, router, dispatch) => {
+    if (user) {
+      setIsCartSidebarOpen(true)
+    }
+    handleCartAction(user, itemId, router, dispatch)
+  }
 
   return (
     <div className="">
@@ -145,8 +145,7 @@ const SingleProduct = () => {
                     <div className="w-full sm:w-[150px] lg:w-[120px]">
                       <button
                         onClick={() => {
-                          setIsCartSidebarOpen(true);
-                          handleCartAction(user, singleProduct.id, router, dispatch)
+                          handleCartAdd(user, singleProduct.id, router, dispatch)
                         }
                         }
                         className="px-5 w-full flex justify-center text-white bg-slate-800 font-semibold border hover:bg-slate-700 py-2 rounded-md transition duration-300"
@@ -162,12 +161,6 @@ const SingleProduct = () => {
             </div>
           </div>}
         </section>
-        {/* ))
-        :
-        <section className="mt-16 text-gray-600 flex justify-center items-center min-h-screen border">
-          <h1 className=" text-2xl md:text-4xl font-bold text-center"> There is no product that matches your criteria!</h1>
-        </section>
-        } */}
         <Footer />
       </div>
     </div>

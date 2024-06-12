@@ -8,9 +8,8 @@ import { message } from "antd";
 import { useRouter } from "next/router";
 
 export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
-  const getData = useContext(Context);
-  const [, setTotalQuantity] = getData?.cartTotal;
-  const [state, dispatch] = getData?.cartReducer;
+  const { cartReducer } = useContext(Context);
+  const [state, dispatch] = cartReducer;
   const [subtotal, setSubtotal] = useState(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter()
@@ -21,9 +20,6 @@ export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
       0
     );
     setSubtotal(totalValue);
-    setTotalQuantity(
-      state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
-    );
   }, [state]);
 
   const clearCart = () => {

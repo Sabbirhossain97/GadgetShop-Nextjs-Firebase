@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Context } from "../../context";
 import products from "../../products.json";
@@ -10,22 +10,23 @@ import addToWishlist from "../../services/wishlist/addToWishlist";
 import { handleCartAction } from "../../helpers/addToCart";
 
 export default function FeaturedProducts() {
-    const getData = useContext(Context);
-    const [_, setTotalQuantity] = getData?.cartTotal;
-    const [user] = getData?.isAuth;
-    const [state, dispatch] = getData?.cartReducer;
-    const [, setIsCartSidebarOpen] = getData?.sidebar;
+    const { isAuth, cartReducer, sidebar } = useContext(Context);
+    const [user] = isAuth;
+    const [, dispatch] = cartReducer;
+    const [, setIsCartSidebarOpen] = sidebar;
     const router = useRouter();
 
     const goToSingleProduct = (id) => {
         router.push(`/SingleProduct/${id}`);
     };
 
-    useEffect(() => {
-        setTotalQuantity(
-            state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
-        );
-    }, [state]);
+    const handleCartAdd = (e, user, itemId, router, dispatch) => {
+        e.stopPropagation();
+        if (user) {
+            setIsCartSidebarOpen(true)
+        }
+        handleCartAction(user, itemId, router, dispatch);
+    }
 
     return (
         <>
@@ -62,11 +63,7 @@ export default function FeaturedProducts() {
                                 </div>
                                 <div className="flex flex-col w-[150px] relative ">
                                     <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            setIsCartSidebarOpen(true)
-                                            handleCartAction(user, item.id, router, dispatch);
-                                        }}
+                                        onClick={(e) => handleCartAdd(e, user, item.id, router, dispatch)}
                                         className="w-full mt-4 bg-slate-800 hover:bg-slate-700 px-2 transition duration-300 text-white font-bold py-2 rounded-md"
                                     >
                                         <p className="text-sm flex flex-row justify-around">

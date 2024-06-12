@@ -16,10 +16,10 @@ import { handleDeleteAddress } from '../../../services/address/deleteAddress'
 import { CgSpinner } from "react-icons/cg";
 
 function Address() {
+    const { isAuth } = useContext(Context);
+    const [user] = isAuth;
     const router = useRouter();
     const { pathname } = router;
-    const getData = useContext(Context);
-    const [user] = getData?.isAuth;
     const breadcrumbNav = useBreadCrumbNavigation(pathname);
     const [addressData, setAddressData] = useState([]);
     const [loading, setLoading] = useState(false);

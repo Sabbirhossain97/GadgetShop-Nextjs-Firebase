@@ -12,9 +12,8 @@ import useBreadCrumbNavigation from "../../../helpers/hooks/useBreadCrumbNavigat
 import { AiFillHome } from "react-icons/ai";
 
 export default function Cart() {
-  const getData = useContext(Context);
-  const [, setTotalQuantity] = getData?.cartTotal;
-  const [state, dispatch] = getData?.cartReducer;
+  const { cartReducer } = useContext(Context);
+  const [state, dispatch] = cartReducer;
   const [subtotal, setSubtotal] = useState(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -27,9 +26,6 @@ export default function Cart() {
       0
     );
     setSubtotal(totalValue);
-    setTotalQuantity(
-      state.items.reduce((acm, currentElm) => acm + currentElm.quantity, 0)
-    );
   }, [state]);
 
   const handleClearAll = () => {
@@ -40,6 +36,7 @@ export default function Cart() {
       message.success("Cart is cleared")
     }, 2000)
   }
+
   return (
     <div>
       <Navbar />

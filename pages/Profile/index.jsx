@@ -23,8 +23,8 @@ import withAuth from '../../helpers/ProtectedRoutes/withAuth'
 import { message } from 'antd'
 
 function Profile() {
-    const getData = useContext(Context);
-    const [user] = getData?.isAuth;
+    const { isAuth } = useContext(Context);
+    const [user] = isAuth;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();

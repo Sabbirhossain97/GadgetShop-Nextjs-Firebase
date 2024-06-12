@@ -2,13 +2,10 @@ import "../globals.css";
 import { Context } from "../context";
 import { useState, useEffect, useReducer } from "react";
 import { reducer } from "../components/Reducers/reducer";
-import { onAuthStateChanged, getAuth } from "firebase/auth";
-import firebaseAapp from "../services/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import Notification from "../components/Animation/Notification";
-import { db } from "../services/firebase";
+import { db, auth } from "../services/firebase";
 import getWishlistData from "../services/wishlist/getWishlist";
-
-const auth = getAuth(firebaseAapp);
 
 export default function MyApp({ Component, pageProps }) {
   const [totalCartItem, setTotalCartItem] = useState(0);
@@ -36,6 +33,11 @@ export default function MyApp({ Component, pageProps }) {
   useEffect(() => {
     getWishlistData(db, user, setWishlist);
   }, [user]);
+
+  useEffect(() => {
+    setTotalCartItem(state.items.length)
+  }, [state.items])
+
 
   return (
     <>

@@ -12,8 +12,8 @@ import useBreadCrumbNavigation from '../../../../../helpers/hooks/useBreadCrumbN
 import { useRouter } from "next/router";
 
 function Success() {
-    const getData = useContext(Context);
-    const [user] = getData?.isAuth;
+    const {isAuth} = useContext(Context);
+    const [user] = isAuth;
     const [orderList, setOrderList] = useState(null);
     const router = useRouter();
     const { pathname } = router;
@@ -54,8 +54,6 @@ function Success() {
         };
         getOrderData();
     }, [user]);
-
-    console.log(breadcrumbNav)
 
     return (
         <div>

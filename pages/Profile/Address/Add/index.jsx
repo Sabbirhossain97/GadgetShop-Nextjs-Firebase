@@ -13,14 +13,14 @@ import Spinner from '../../../../components/Animation/Spinner'
 import { updateExistingDefaultAddress } from '../../../../services/address/updateExistingDefaultAddress'
 
 function Add() {
+    const { isAuth } = useContext(Context);
+    const [user] = isAuth;
     const router = useRouter();
     const { pathname } = router;
     const breadcrumbNav = useBreadCrumbNavigation(pathname);
-    const getData = useContext(Context);
-    const [user] = getData?.isAuth;
     const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const formDataObj = Object.fromEntries(formData.entries());

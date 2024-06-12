@@ -11,10 +11,10 @@ import withAuth from '../../../../helpers/ProtectedRoutes/withAuth'
 import { getOrderInfo } from '../../../../services/orders/getOrderInfo'
 
 function OrderInfo() {
+    const { isAuth } = useContext(Context);
+    const [user] = isAuth;
     const router = useRouter();
     const { pathname } = router;
-    const getData = useContext(Context);
-    const [user] = getData?.isAuth;
     const [orderInfo, setOrderInfo] = useState(null)
     const oid = router.query?.orderId?.split("=")[1]
     const breadcrumbNav = useBreadCrumbNavigation(pathname)

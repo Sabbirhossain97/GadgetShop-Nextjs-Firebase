@@ -13,10 +13,10 @@ import editAddress from '../../../../services/address/editAddress'
 import { updateExistingDefaultAddress } from '../../../../services/address/updateExistingDefaultAddress'
 
 function AddressEdit() {
+    const { isAuth } = useContext(Context);
+    const [user] = isAuth;
     const router = useRouter();
     const { pathname } = router;
-    const getData = useContext(Context);
-    const [user] = getData?.isAuth;
     const breadcrumbNav = useBreadCrumbNavigation(pathname);
     const [loading, setLoading] = useState(false);
     const addressId = router.query?.addressId?.split("=")[1]

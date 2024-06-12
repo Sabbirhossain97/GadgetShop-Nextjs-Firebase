@@ -3,84 +3,64 @@ import products from "../../products";
 export const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_PRODUCT":
-      let existingProduct = state.items.find((currentElm) => {
-        if (currentElm.id === action.id) {
-          return currentElm;
-        }
-      });
-
+      const existingProduct = state.items.find((item) => item.id === action.id);
       if (existingProduct) {
-        let updatedCart = state.items.map((currentElm) => {
-          if (currentElm.id === action.id) {
-            let newAmount = currentElm.quantity + 1;
-            return {
-              ...currentElm,
-              quantity: newAmount,
-            };
-          } else {
-            return currentElm;
-          }
-        });
+        const updatedCart = state.items.map((item) =>
+          item.id === action.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
         return {
           ...state,
           items: updatedCart,
         };
       } else {
-        let addedProduct = products.filter((currentElm) => {
-          if (currentElm.id === action.id) {
-            return { currentElm };
-          }
-        });
-        let [selectedProduct] = addedProduct;
-
-        return {
-          ...state,
-          items: [...state.items, selectedProduct],
-        };
-      }
-    case "INCREMENT_QUANTITY":
-      let incrementQuantity = state.items.map((currentElm) => {
-        if (currentElm.id === action.id) {
-          if (currentElm.quantity + 1 <= currentElm.rating.stock) {
-            return { ...currentElm, quantity: currentElm.quantity + 1 };
-          } else {
-            return currentElm;
-          }
+        const addedProduct = products.find((item) => item.id === action.id);
+        if (addedProduct) {
+          return {
+            ...state,
+            items: [...state.items, { ...addedProduct, quantity: 1 }],
+          };
         }
-        return currentElm;
-      });
+        return state; 
+      }
 
+    case "INCREMENT_QUANTITY":
+      const incrementQuantity = state.items.map((item) =>
+        item.id === action.id && item.quantity < item.rating.stock
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
       return {
         ...state,
         items: incrementQuantity,
       };
+
     case "DECREMENT_QUANTITY":
-      let decrementQuantity = state.items.map((currentElm) => {
-        if (currentElm.id === action.id) {
-          if (currentElm.quantity > 1) {
-            return { ...currentElm, quantity: currentElm.quantity - 1 };
-          }
-        }
-        return currentElm;
-      });
+      const decrementQuantity = state.items.map((item) =>
+        item.id === action.id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      );
       return {
         ...state,
         items: decrementQuantity,
       };
 
     case "REMOVE_PRODUCT":
-      let deleteProduct = state.items.filter((item) => {
-        if (item.id !== action.id) {
-          return item;
-        }
-      });
+      const deleteProduct = state.items.filter((item) => item.id !== action.id);
       return {
+        ...state,
         items: deleteProduct,
       };
+
     case "CLEAR_ALL":
       return {
         ...state,
         items: [],
       };
+
+    default:
+      return state; 
   }
 };

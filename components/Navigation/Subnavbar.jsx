@@ -5,8 +5,8 @@ import { Context } from '../../context';
 
 function Subnavbar() {
     const [categories, setCategories] = useState([]);
-    const getData = useContext(Context);
-    const [isCategorySidebarOpen, setIsCategorySidebarOpen] = getData?.categorySidebar;
+    const { categorySidebar } = useContext(Context);
+    const [isCategorySidebarOpen, setIsCategorySidebarOpen] = categorySidebar;
 
 
     useEffect(() => {

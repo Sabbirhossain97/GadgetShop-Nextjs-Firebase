@@ -14,11 +14,10 @@ import { FaRegHeart } from "react-icons/fa";
 import { message } from 'antd'
 
 function Products() {
-    const getData = useContext(Context);
-    const [isLoggedIn] = getData?.isAuth;
-    const [_, dispatch] = getData?.cartReducer;
-    const [user] = getData?.isAuth;
-    const [, setIsCartSidebarOpen] = getData?.sidebar;
+    const { cartReducer, isAuth, sidebar } = useContext(Context);
+    const [_, dispatch] = cartReducer;
+    const [user] = isAuth;
+    const [, setIsCartSidebarOpen] = sidebar;
     const [productList, setProductList] = useState(products);
     const [filters, setFilters] = useState({
         sortBy: "",
@@ -169,7 +168,7 @@ function Products() {
     }, [filters, applyFilters]);
 
     const handleCartAction = (id) => {
-        if (!isLoggedIn) {
+        if (!user) {
             setTimeout(() => {
                 router.push("/Signin");
             }, 2000);

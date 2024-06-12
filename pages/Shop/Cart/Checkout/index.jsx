@@ -17,9 +17,9 @@ import useBreadCrumbNavigation from "../../../../helpers/hooks/useBreadCrumbNavi
 import { CgSpinner } from "react-icons/cg";
 
 function Checkout() {
-    const getData = useContext(Context);
-    const [state, dispatch] = getData?.cartReducer;
-    const [user] = getData?.isAuth;
+    const { cartReducer, isAuth } = useContext(Context);
+    const [state, dispatch] = cartReducer;
+    const [user] = isAuth;
     const [paymentMethod, setPaymentMethod] = useState("");
     const [deliveryMethod, setDeliveryMethod] = useState("")
     const [loading, setLoading] = useState(false);
@@ -91,7 +91,7 @@ function Checkout() {
                 setLoading(false)
             }, 2000)
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 
@@ -140,7 +140,7 @@ function Checkout() {
                                         Name
                                     </label>
                                     <input
-                                        className="placeholder:text-sm mt-2 w-full px-3 py-1 text-gray-700 bg-gray-200 rounded"
+                                        className="placeholder:text-sm mt-2 w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
                                         id="username"
                                         name="username"
                                         type="text"
@@ -156,10 +156,10 @@ function Checkout() {
                                         Email
                                     </label>
                                     <input
-                                        className="placeholder:text-sm mt-2 w-full px-3  py-1 text-gray-700 bg-gray-200 rounded"
+                                        className="placeholder:text-sm mt-2 w-full px-3  py-2 text-gray-700 bg-gray-200 rounded"
                                         id="email"
                                         name="email"
-                                        type="text"
+                                        type="email"
                                         required
                                         placeholder="Your Email"
                                     />
@@ -188,7 +188,7 @@ function Checkout() {
                                         placeholder="City"
                                     />
                                 </div>
-                                <div className="inline-block mt-4 w-1/2 pr-1">
+                                <div className="inline-block mt-4 w-full md:w-1/2 pr-1">
                                     <input
                                         className="placeholder:text-sm w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
                                         type="text"
@@ -196,12 +196,12 @@ function Checkout() {
                                         placeholder="Country"
                                     />
                                 </div>
-                                <div className="inline-block mt-2 -mx-0.5 pl-1 w-1/2">
+                                <div className="inline-block mt-4 md:mt-2 -mx-0.5 pl-1 w-full md:w-1/2">
                                     <input
                                         className="placeholder:text-sm w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
                                         type="text"
                                         name="zip"
-                                        placeholder="Zip"
+                                        placeholder="Zip/Postcode"
                                     />
                                 </div>
                                 <div>

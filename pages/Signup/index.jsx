@@ -17,8 +17,8 @@ import Spinner from "../../components/Animation/Spinner";
 import withPublic from "../../helpers/ProtectedRoutes/withPublic";
 
 function Signup() {
-  const getData = useContext(Context)
-  const [user] = getData?.isAuth;
+  const {isAuth} = useContext(Context)
+  const [user] = isAuth;
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false)

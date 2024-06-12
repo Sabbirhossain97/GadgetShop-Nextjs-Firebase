@@ -5,8 +5,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
 import { useRouter } from "next/router";
 import CartSideBar from "./CartSideBar";
-import { getAuth, signOut } from "firebase/auth";
-import firebaseAapp from "../../services/firebase";
+import { signOut } from "firebase/auth";
 import { message } from "antd";
 import { IoSearch } from "react-icons/io5";
 import products from "../../products.json"
@@ -14,18 +13,16 @@ import { Flash } from "../SvgComponents/SVG";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { FaRegHeart } from "react-icons/fa";
 import { CgSpinner } from "react-icons/cg";
-
-const auth = getAuth(firebaseAapp);
+import { auth } from "../../services/firebase";
 
 export default function Navbar() {
-  const getData = useContext(Context);
-  const [, dispatch] = getData?.cartReducer;
-  const [cartTotalValue] = getData?.cartTotal;
-  const [user] = getData?.isAuth;
-  const [isLoggedIn] = getData?.isAuth;
-  const [wishlist] = getData?.wishlistData
-  const [isSidebarOpen, setIsSidebarOpen] = getData?.sidebar;
-  const [isCategorySidebarOpen, setIsCategorySidebarOpen] = getData?.categorySidebar;
+  const { cartReducer, cartTotal, isAuth, wishlistData, sidebar, categorySidebar } = useContext(Context);
+  const [, dispatch] = cartReducer;
+  const [totalCartItem] = cartTotal;
+  const [user] = isAuth;
+  const [wishlist] = wishlistData
+  const [isSidebarOpen, setIsSidebarOpen] = sidebar;
+  const [, setIsCategorySidebarOpen] = categorySidebar;
   const [width] = useWindowSize();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchedProducts, setSearchedProducts] = useState(null)
@@ -41,13 +38,13 @@ export default function Navbar() {
   };
 
   const handleRegister = () => {
-    if (!isLoggedIn) {
+    if (!user) {
       router.push("/Signup");
     }
   };
 
   const handleSignIn = () => {
-    if (!isLoggedIn) {
+    if (!user) {
       router.push("/Signin");
     }
   };
@@ -222,7 +219,7 @@ export default function Navbar() {
               >
                 <AiOutlineShoppingCart className=" text-gray-100/50 text-3xl " />
                 <span className="absolute rounded-full z-10 text-white text-sm -top-1 left-4 bg-blue-500 px-2">
-                  {cartTotalValue}
+                  {totalCartItem}
                 </span>
               </button>
             </div>
@@ -281,7 +278,7 @@ export default function Navbar() {
               >
                 <AiOutlineShoppingCart className=" text-gray-100/50 text-3xl " />
                 <span className="absolute rounded-full z-10 text-white text-sm -top-1 left-5 bg-blue-500 px-2">
-                  {cartTotalValue}
+                  {totalCartItem}
                 </span>
               </button>
             </div>
@@ -351,7 +348,7 @@ export default function Navbar() {
               >
                 <AiOutlineShoppingCart className=" text-gray-100/50 text-3xl " />
                 <span className="absolute rounded-full z-10 text-white text-sm -top-1 left-5 bg-blue-500 px-2">
-                  {cartTotalValue}
+                  {totalCartItem}
                 </span>
               </button>
             </div>
