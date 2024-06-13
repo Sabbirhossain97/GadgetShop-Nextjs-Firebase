@@ -1,0 +1,667 @@
+[
+  {
+    "id": 1,
+    "title": "WD Blue 2TB HDD",
+    "price": 60,
+    "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
+    "category": "HDD & SSD",
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/WD-2TB.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvV0QtMlRCLndlYnAiLCJpYXQiOjE3MDgwOTE3OTEsImV4cCI6MTg2NTc3MTc5MX0.B7cJpESyFwV-nQuc-UJs3SCIPv9V-Dqo902t0fjIp1c&t=2024-02-16T13%3A56%3A32.638Z",
+    "rating": {
+      "rate": 3.3,
+      "stock": 200
+    },
+    "quantity": 1,
+    "discount": 100
+  },
+  {
+    "id": 2,
+    "title": "Toshiba 1TB HDD",
+    "price": 100,
+    "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
+    "category": "HDD & SSD",
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/Toshiba%201TB.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvVG9zaGliYSAxVEIuanBnIiwiaWF0IjoxNzA4MDkxNjU0LCJleHAiOjE4NjU3NzE2NTR9.NahFGVHavIqBpWvcuY2gaINSNeutlYCCOmzjd4xn4SY&t=2024-02-16T13%3A54%3A15.341Z",
+    "rating": {
+      "rate": 2.9,
+      "stock": 470
+    },
+    "quantity": 1,
+    "discount": 50
+  },
+  {
+    "id": 3,
+    "title": "Samsung 870 Evo 250GB Sata SSD",
+    "price": 100,
+    "description": "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
+    "category": "HDD & SSD",
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/870-evo.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvODcwLWV2by5qcGciLCJpYXQiOjE3MDgwOTE1ODksImV4cCI6MTg2NTc3MTU4OX0.u24yy8cDAD4ILnDp228ySDe4s2_AeHaJrYLCDihklEg&t=2024-02-16T13%3A53%3A11.257Z",
+    "rating": {
+      "rate": 4.8,
+      "stock": 319
+    },
+    "quantity": 1,
+    "discount": 150
+  },
+  {
+    "id": 4,
+    "title": "Samsung 980 Pro 500GB NVMe SSD",
+    "price": 115,
+    "description": "The 980 PRO is for those who want to improve PC performance, enhance gaming experiences, and to expand storage space. Built using their V-NAND 3-bit MLC flash technology and Elpis controller, the Samsung 980 PRO 500GB SSD from Samsung offers an M.2 2280 form factor and a PCIe 4.0 x4 / NVMe 1.3 interface to deliver sequential read speeds of up to 6900 MB/s and sequential write speeds of up to 5000 MB/s. Users will also have access to encryption via TCG/Opal 2.0 and MS eDrive, while a TBW (Total Bytes Written) rating of 600TB helps ensure a long operational life.",
+    "category": "HDD & SSD",
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/980-pro.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvOTgwLXByby5qcGciLCJpYXQiOjE3MDgwOTE1NTYsImV4cCI6MTg2NTc3MTU1Nn0.aLTZvDsL7Jx2ngVIeQ-J9EC21cqsbL4pmDjMN4u0KyU&t=2024-02-16T13%3A52%3A37.619Z",
+    "rating": {
+      "rate": 4.8,
+      "stock": 400
+    },
+    "quantity": 1,
+    "discount": 60
+  },
+  {
+    "id": 5,
+    "title": "Seagate 1TB HDD",
+    "price": 115,
+    "description": "Seagate SkyHawk 1TB Surveillance Hard Drive  SATA 6Gb/s 64MB Cache 3.5-Inch Internal Drive Custom-built for surveillance applications with Image Perfect firmware for crisp, clear, 24×7 video workloads.Rotational vibration (RV) sensors help maintain performance in RAID and multi-drive systems. SkyHawk Health Management actively helps protect surveillance storage by focusing on prevention, intervention and recovery options, NVR-ready design allows drives to maintain performance in multi-bay systems, giving customers the flexibility to scale their systems when more storage is needed, ATA streaming support enables recordings from up to 64 HD cameras for smooth, uninterrupted footage, Lower power consumption",
+    "category": "HDD & SSD",
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/seagate-1.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvc2VhZ2F0ZS0xLmpwZyIsImlhdCI6MTcwODA5MTQ0OCwiZXhwIjoxODY1NzcxNDQ4fQ.7bdW18wrJB_ck-LXxjs6Sa8k5KfKS1W01CX0rdv6Mbc&t=2024-02-16T13%3A50%3A50.215Z",
+    "rating": {
+      "rate": 4.8,
+      "stock": 400
+    },
+    "quantity": 1,
+    "discount": 250
+  },
+  {
+    "id": 6,
+    "title": "MSI Optix G27 27inch 165HZ FHD",
+    "price": 600,
+    "description": "27  inches Full HD (1920 x 1080) widescreen IPS display And Radeon free Sync technology. No compatibility for VESA Mount Refresh Rate: 165Hz - Using HDMI port Zero-frame design | ultra-thin | 4ms response time | IPS panel Aspect ratio - 16: 9. Color Supported - 16. 7 million colors. Brightness - 250 nit Tilt angle -5 degree to 15 degree. Horizontal viewing angle-178 degree. Vertical viewing angle-178 degree 75 hertz",
+    "category": "Monitors",
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/MSI%20G24.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvTVNJIEcyNC5qcGciLCJpYXQiOjE3MDgwOTE0MjYsImV4cCI6MTg2NTc3MTQyNn0.ZKN3PZw2laPt9BqjupQ_ZgMjUnzeVvnh06KETBpXlVM&t=2024-02-16T13%3A50%3A27.883Z",
+    "rating": {
+      "rate": 2.9,
+      "stock": 250
+    },
+    "quantity": 1,
+    "discount": 80
+  },
+  {
+    "id": 7,
+    "title": "Samsung Odyssey G5 27inch",
+    "price": 1000,
+    "description": "27 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side QUANTUM DOT (QLED) TECHNOLOGY, HDR support and factory calibration provides stunningly realistic and accurate color and contrast 144HZ HIGH REFRESH RATE and 1ms ultra fast response time work to eliminate motion blur, ghosting, and reduce input lag",
+    "category": "Monitors",
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/odyssey-g5.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvb2R5c3NleS1nNS5qcGciLCJpYXQiOjE3MDgwOTEzMjcsImV4cCI6MTg2NTc3MTMyN30.0E65HiEmATp_fMtN9WC37cQDZx5ry9g48ksLdIaEZ3g&t=2024-02-16T13%3A48%3A48.617Z",
+    "rating": {
+      "rate": 2.2,
+      "stock": 140
+    },
+    "quantity": 1,
+    "discount": 120
+  },
+  {
+    "id": 8,
+    "title": "Asus TUF VG27AQ1A Gaming Monitor",
+    "price": 1000,
+    "description": "The ASUS TUF Gaming VG27AQ1A 27 Inch 170 Hz Adaptive-Sync WQHD IPS Gaming Monitor. Featuring a 170 Hz overclocked refresh rate and 1 ms MPRT response time, combined with AMD FreeSync and NVIDIA G-SYNC Adaptive-Sync compatibility and ASUS ELMB (Extreme Low Motion Blur) technology, this 2560 x 1440 QHD resolution IPS (In-Plane Switching) monitor is designed to deliver sharp graphics during high-action sequences. High dynamic range support provides realistic looking color with deep blacks and bright whites. Additionally, ASUS Shadow Boost, GameVisual, and GamePlus visual enhancements give you an edge against the competition. Other features include a variety of connectivity options, an adjustable ergonomic design, and built-in stereo speakers.",
+    "category": "Monitors",
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/tuf-vg27aq1a.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvdHVmLXZnMjdhcTFhLmpwZyIsImlhdCI6MTcwODA5MTI5NywiZXhwIjoxODY1NzcxMjk3fQ.ShSWCaAMhZNOdtI78gAt5GUXkclr-FmJq6qVhRCv39c&t=2024-02-16T13%3A48%3A19.231Z",
+    "rating": {
+      "rate": 2.2,
+      "stock": 140
+    },
+    "quantity": 1,
+    "discount": 100
+  },
+  {
+    "id": 9,
+    "title": "LG 24GNU Gaming Monitor",
+    "price": 1000,
+    "description": "The LG UltraGear 24GN60R-B 24 Inch FHD 144Hz IPS FreeSync Gaming Screen is appropriate for basically any undertaking, whether you're watching films or creating proficient material. This 24 inch screen upholds a 1920 x 1080 FHD goal and highlights an IPS (In-Plane Exchanging) HDR10 board that shows 16.7 million varieties covering the vast majority of the sRGB range for clear and sensible tones",
+    "category": "Monitors",
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/LG%2024gn650.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvTEcgMjRnbjY1MC5qcGciLCJpYXQiOjE3MDgwOTEyNjMsImV4cCI6MTg2NTc3MTI2M30.cV4ij1lAu6rBqw1dSS_-hpaId4CL3RAViEaV1fQIOEw&t=2024-02-16T13%3A47%3A45.207Z",
+    "rating": {
+      "rate": 2.2,
+      "stock": 140
+    },
+    "quantity": 1,
+    "discount": 110
+  },
+  {
+    "id": 10,
+    "title": "Gigabyte M32U Gaming Monitor",
+    "price": 1000,
+    "description": "The GIGABYTE M32U is a 31.5 inch gaming monitor designed for gamers looking for a high-quality, immersive experience. The IPS panel features a 4K resolution of 3840x2160 pixels, providing sharp and detailed images with vibrant colors. The screen has a brightness of 350 cd/m2 and a contrast ratio of 1000:1, enabling it to display deep blacks and bright whites.",
+    "category": "Monitors",
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/m32u-01.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvbTMydS0wMS5qcGciLCJpYXQiOjE3MDgwOTEyMjQsImV4cCI6MTg2NTc3MTIyNH0.B0cGh-2M8yXc198xpZ0TKeYY03N8kHqWbBVyBzjJnrw&t=2024-02-16T13%3A47%3A05.336Z",
+    "rating": {
+      "rate": 2.2,
+      "stock": 140
+    },
+    "quantity": 1,
+    "discount": 130
+  },
+  {
+    "id": 11,
+    "title": "Samsung S21 Fe",
+    "description": "The Samsung Galaxy S21 specs are top-notch including a Snapdragon 888 chipset, 5G capability, 8GB RAM coupled with 128/256GB storage, and a 4000mAh battery. The phone sports a 6.2-inch Dynamic AMOLED display with an adaptive 120Hz refresh rate. In the camera department, a triple-sensor setup is presented. The Samsung Galaxy S21 price starts at $800 for the base 128GB model",
+    "category": "Phone",
+    "price": 850,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/S21-Fe.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvUzIxLUZlLmpwZyIsImlhdCI6MTcwODA5MTIwMSwiZXhwIjoxODY1NzcxMjAxfQ.oFIP2avKf6zharYrubV5gozzNrBvDJaj8t3hrp-rNG0&t=2024-02-16T13%3A46%3A42.323Z",
+    "rating": {
+      "rate": 3.5,
+      "stock": 100
+    },
+    "quantity": 1,
+    "discount": 200
+  },
+  {
+    "id": 12,
+    "title": "Samsung M21",
+    "description": "Samsung Galaxy M21 comes with 6.4 inches Full HD+ Super AMOLED screen. It has a Full-View waterdrop notch design. The front side is protected by a 3rd generation Gorilla Glass. The back camera is of triple 48+8+5 MP with PDAF, LED flash, depth sensor, ultrawide etc. and UHD 4K video recording. The front camera is of 20 MP. Samsung Galaxy M21 comes with 6000 mAh huge battery with 15W fast charging. It has 4 or 6 GB RAM, 2.3 GHz octa-core CPU and Mali-G72 MP3 GPU. It is powered by Exynos 9611 (10nm) chipset. The device comes with 64 or 128 GB UFS 2.1 internal storage and dedicated MicroSD slot. There is a back-mounted fingerprint sensor in this phone.",
+    "category": "Phone",
+    "price": 210,
+    "image": "https://images.pexels.com/photos/47261/pexels-photo-47261.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "rating": {
+      "rate": 4.5,
+      "stock": 240
+    },
+    "quantity": 1,
+    "discount": 160
+  },
+  {
+    "id": 13,
+    "title": "Redmi 9",
+    "description": "Redmi 9 mobile was launched on 27th August 2020. The phone comes with a 6.53-inch touchscreen display offering a resolution of 720x1600 pixels and an aspect ratio of 20:9. Redmi 9 is powered by an octa-core MediaTek Helio G35 processor. It comes with 4GB of RAM. The Redmi 9 runs Android 10 and is powered by a 5000mAh battery. The Redmi 9 supports proprietary fast charging.",
+    "category": "Phone",
+    "price": 120,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71A9Vo1BatL._SL1500_.jpg",
+    "rating": {
+      "rate": 3.2,
+      "stock": 150
+    },
+    "quantity": 1,
+    "discount": 100
+  },
+  {
+    "id": 14,
+    "title": "Iphone 12",
+    "description": "The iPhone 12 is the latest model of Apple's popular smartphone, and it comes packed with a variety of impressive features. One of the most noticeable changes is the new, flat-edged design, which looks sleek and modern. The display has also been improved, with a Super Retina XDR display that offers vibrant colors and excellent contrast. The A14 Bionic chip powers the iPhone 12, providing fast and efficient performance, and there's 5G connectivity for lightning-fast internet speeds.",
+    "category": "Phone",
+    "price": 850,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71hIfcIPyxS._SL1500_.jpg",
+    "rating": {
+      "rate": 3.8,
+      "stock": 100
+    },
+    "quantity": 1,
+    "discount": 200
+  },
+  {
+    "id": 15,
+    "title": "Huawei P50 Pro",
+    "description": "Dual Matrix Camera Design, 4360 mAh Large Battery, 120 Hz Refresh Rate, Dual Stereo Speakers",
+    "category": "Phone",
+    "price": 850,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/p50-pro.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvcDUwLXByby53ZWJwIiwiaWF0IjoxNzA4MDkxMDM4LCJleHAiOjE4NjU3NzEwMzh9.iLUVMwnp2P8r-1SgiDeZVcXo1tqClUl7Is6s2Epf03c&t=2024-02-16T13%3A43%3A59.950Z",
+    "rating": {
+      "rate": 4.0,
+      "stock": 120
+    },
+    "quantity": 1,
+    "discount": 80
+  },
+  {
+    "id": 16,
+    "title": "LG 42inch TV",
+    "description": "",
+    "category": "Television",
+    "price": 1000,
+    "image": "http://www.lg.com/us/images/tvs/md05802269/gallery/medium01.jpg",
+    "rating": {
+      "rate": 4.6,
+      "stock": 180
+    },
+    "quantity": 1
+  },
+  {
+    "id": 17,
+    "title": "Haier 32inch TV",
+    "description": "",
+    "category": "Television",
+    "price": 1000,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/haier-32.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvaGFpZXItMzIud2VicCIsImlhdCI6MTcwODA5MTAxOCwiZXhwIjoxODY1NzcxMDE4fQ.z3DtZm61DjwPJb6ITV9O5tGte1Hf1Nb9yIqK_d6N8vQ&t=2024-02-16T13%3A43%3A39.998Z",
+    "rating": {
+      "rate": 3.8,
+      "stock": 130
+    },
+    "quantity": 1
+  },
+  {
+    "id": 18,
+    "title": "Singer 50inch TV",
+    "description": "",
+    "category": "Television",
+    "price": 900,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/sle50g22got.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvc2xlNTBnMjJnb3Qud2VicCIsImlhdCI6MTcwODA5MDk4OCwiZXhwIjoxODY1NzcwOTg4fQ.b6pPqDo5xWC8K8tslE8eEDl-MfK5xGCgmrgOc5dHceQ&t=2024-02-16T13%3A43%3A09.319Z",
+    "rating": {
+      "rate": 3.5,
+      "stock": 200
+    },
+    "quantity": 1
+  },
+  {
+    "id": 19,
+    "title": "Samsung 43 4k TV",
+    "description": "",
+    "category": "Television",
+    "price": 950,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/samsung43'-4k.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvc2Ftc3VuZzQzJy00ay5qcGciLCJpYXQiOjE3MDgwOTA3OTMsImV4cCI6MTg2NTc3MDc5M30.ZYMcMIAUQgY-ivqiIv_m_Yt0xOR47dIPE5DUh8GLSco&t=2024-02-16T13%3A39%3A54.534Z",
+    "rating": {
+      "rate": 4.4,
+      "stock": 240
+    },
+    "quantity": 1
+  },
+  {
+    "id": 20,
+    "title": "Sony Bravia 55inch",
+    "description": "",
+    "category": "Television",
+    "price": 1000,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/sony-bravia-xr-55x90j-55-4k-hdr-led-smart-google-tv.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvc29ueS1icmF2aWEteHItNTV4OTBqLTU1LTRrLWhkci1sZWQtc21hcnQtZ29vZ2xlLXR2LmpwZyIsImlhdCI6MTcwODA5MDc3NywiZXhwIjoxODY1NzcwNzc3fQ.ml76HXcEBVm7A78w4hxTmqvuXYtHH97rYD2dQX26_JU&t=2024-02-16T13%3A39%3A38.694Z",
+    "rating": {
+      "rate": 4.8,
+      "stock": 80
+    },
+    "quantity": 1
+  },
+  {
+    "id": 21,
+    "title": "Razer Blackshark V2",
+    "description": "Razer BlackShark V2 Multi-Platform Wired Esports Headset comes with titanium-coated diaphragms, giving added clarity to any vocals you hear so that any comms you receive is always crisp and clear. This headset is supported by a USB sound card, you can tweak and enhance your voice output further via Razer Synapse, with access to features such as Mic Boost, Voice Gate, Volume Normalization, Mic Equalizer and Ambient Noise Reduction.This new headphone offering greater speech pickup and noise cancellation, the removable mic on this esports headset has an optimized microphone housing which adopts a more open design for minimal obstruction and resulting in improved clarity for a closer recreation of your voice",
+    "category": "Headphones",
+    "price": 50,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/kraken-v3.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMva3Jha2VuLXYzLndlYnAiLCJpYXQiOjE3MDgwOTA3NDYsImV4cCI6MTg2NTc3MDc0Nn0._YAw7lVhWg-UZ0mOy4mFirVMiRWBsIec-3x9IEMbXzs&t=2024-02-16T13%3A39%3A07.308Z",
+    "rating": {
+      "rate": 3.4,
+      "stock": 90
+    },
+    "quantity": 1
+  },
+  {
+    "id": 22,
+    "title": "Razer Kraken ",
+    "description": "The Razer Kraken X CLassic Gaming Headset from Razer. This wired over-ear headset comes equipped with a 3.5mm audio jack connected to a 4.27' captive cable, a retractable boom microphone, and 50mm speaker drivers with neodymium magnets.The bauxite aluminum frame on this Discord-certified headset has been designed for durability, while the round ear cushions help to boost comfort and noise isolation.",
+    "category": "Headphones",
+    "price": 40,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/kraken-x.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMva3Jha2VuLXguanBnIiwiaWF0IjoxNzA4MDkwNzI4LCJleHAiOjE4NjU3NzA3Mjh9.fM4SleeqaqXz3ffkgPd7MvNjROHkF5RndZuha1QY3t4&t=2024-02-16T13%3A38%3A50.257Z",
+     "rating": {
+      "rate": 3.6,
+      "stock": 190
+    },
+    "quantity": 1
+  },
+  {
+    "id": 23,
+    "title": "HyperX Cloud Stinger ",
+    "description": "Enjoy wireless freedom at an excellent price on HyperX Cloud Stinger Core in TechLand BD. The wireless HyperX Cloud Stinger Core may be a lightweight, a sturdy receiver that' able to play on PS4 and PS5 systems. Chat along with your friends online and revel in clear communication with your squad due to its noise-canceling microphone. Get immersed in your diversion and lose yourself in your audio diversion with Cloud Stinger Core’s made a sound. HyperX Cloud Stinger Core Gaming Headset in Bangladesh conjointly options aboard audio controls on the earcup and a convenient swivel-to-mute mic.",
+    "category": "Headphones",
+    "price": 45,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/cloud.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvY2xvdWQuanBnIiwiaWF0IjoxNzA4MDkwNjg0LCJleHAiOjE4NjU3NzA2ODR9.FxU7xuIXwUkIp8STszf9J-bkl6PHSxtgWo34g-EF6p8&t=2024-02-16T13%3A38%3A05.569Z",
+     "rating": {
+      "rate": 4.1,
+      "stock": 160
+    },
+    "quantity": 1
+  },
+  {
+    "id": 24,
+    "title": "HyperX Cloud Alpha",
+    "description": "HyperX™ Cloud Alpha’s groundbreaking Dual Chamber Drivers design will give your audio more distinction and clarity by reducing the distortion. The dual chambers separate the bass from the mids and highs, allowing optimal tuning for cleaner, smoother sound. The Cloud Alpha headset builds upon HyperX’s foundation of signature award-winning comfort with premium red memory foam, expanded headband and softer, more pliable leatherette",
+    "category": "Headphones",
+    "price": 42,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/cloud-alpha-s.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvY2xvdWQtYWxwaGEtcy5qcGciLCJpYXQiOjE3MDgwOTA2NjEsImV4cCI6MTg2NTc3MDY2MX0.CfJylBwiugSCrz8KEe4VQ0D6mVz8xgoB0fcpWHSo3rc&t=2024-02-16T13%3A37%3A43.127Z",
+     "rating": {
+      "rate": 4.6,
+      "stock": 140
+    },
+    "quantity": 1
+  },
+  {
+    "id": 25,
+    "title": "HyperX Cloud II",
+    "description": "The HyperX Cloud II Gaming Headset was built to be an ultra-comfortable gaming headset with amazing sound. We put a lot of thought into the details of our HyperX signature memory foam, the HyperX Cloud II Gaming Headset has premium leatherette, clamping force, and weight distribution to create a headset that’s comfortable through long gaming sessions.",
+    "category": "Headphones",
+    "price": 42,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/cloud-ii.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvY2xvdWQtaWkuanBnIiwiaWF0IjoxNzA4MDkwNjM4LCJleHAiOjE4NjU3NzA2Mzh9.10F24Et0mjz3VX8duP9zRLdGxI_eRpfHXOzFV_xdVP4&t=2024-02-16T13%3A37%3A19.857Z",
+     "rating": {
+      "rate": 4.5,
+      "stock": 140
+    },
+    "quantity": 1
+  },
+  {
+    "id": 26,
+    "title": "Intel Arc A750 8GB",
+    "description": "The Intel ARC A750 8GB graphics card is a powerful and reliable choice for gamers and content creators alike. Featuring 8GB of GDDR6 memory, a clock speed of up to 2100MHz, and support for DirectX 12 Ultimate, this graphics card can handle even the most demanding games and applications with ease. Its 128-bit memory interface ensures smooth and seamless performance",
+    "category": "Graphics Card",
+    "price": 350,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/arc-a750.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvYXJjLWE3NTAuanBnIiwiaWF0IjoxNzA4MDkwNTc1LCJleHAiOjE4NjU3NzA1NzV9.yr89SiwGFDGWXMZHa3AEdSqEbzfpy0sSStXIgUGAh3k&t=2024-02-16T13%3A36%3A16.814Z",
+     "rating": {
+      "rate": 4.3,
+      "stock": 200
+    },
+    "quantity": 1
+  },
+  {
+    "id": 27,
+    "title": "Intel Arc A770 16GB",
+    "description": "The Sparkle Intel Arc A770 Titan OC Edition 16GB GDDR6 Graphics Card is a high-performance graphics card available at TechLand BD. It boasts a Graphics Boost Clock of 2300MHz, 32 Xe-Core, and 32 Ray Tracing Units. With 512 Intel® XMX Engines and Xe Vector Engines, it provides superior graphics performance.",
+    "category": "Graphics Card",
+    "price": 400,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/arc-a770.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvYXJjLWE3NzAud2VicCIsImlhdCI6MTcwODA5MDU1OCwiZXhwIjoxODY1NzcwNTU4fQ.i6xciKJcqr_d4HO5L_EvLkAO6eJLINnTUjpuzt7DlVs&t=2024-02-16T13%3A35%3A59.511Z",
+     "rating": {
+      "rate": 4.65,
+      "stock": 110
+    },
+    "quantity": 1
+  },
+  {
+    "id": 28,
+    "title": "Gigabyte RTX 4070ti 12GB",
+    "description": "",
+    "category": "Graphics Card",
+    "price": 1200,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/geforce-rtx-4070-ti-aero-oc-12g.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvZ2Vmb3JjZS1ydHgtNDA3MC10aS1hZXJvLW9jLTEyZy53ZWJwIiwiaWF0IjoxNzA4MDkwNTM5LCJleHAiOjE4NjU3NzA1Mzl9.GJl6EFtfPcYjzFTqM54KNYMnn4Kc1fhweq2ZRJ4Ai28&t=2024-02-16T13%3A35%3A41.099Z",
+     "rating": {
+      "rate": 4.8,
+      "stock": 40
+    },
+    "quantity": 1
+  },
+  {
+    "id": 29,
+    "title": "MSI RTX 4080 16GB",
+    "description": "The MSI GeForce RTX 4080 16GB Gaming X Slim GDDR6X Graphics Card, available at TechLand BD, is a high-performance graphics card designed for serious gamers and creative professionals. It features a NVIDIA® GeForce RTX™ 4080 16GB Graphics Processing Unit and operates on a PCI Express® Gen 4 interface. The card boasts an extreme performance core clock speed of 2610 MHz and a boost clock speed of 2595 MHz.",
+    "category": "Graphics Card",
+    "price": 1500,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/geforce-rtx-4080-16gb-gaming-trio.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvZ2Vmb3JjZS1ydHgtNDA4MC0xNmdiLWdhbWluZy10cmlvLndlYnAiLCJpYXQiOjE3MDgwOTA1MTksImV4cCI6MTg2NTc3MDUxOX0.Ufx1w3Ih4troTx2kTDCWTw-Gu13e5mVOKx1q7AHPHp0&t=2024-02-16T13%3A35%3A21.258Z",
+     "rating": {
+      "rate": 5.0,
+      "stock": 50
+    },
+    "quantity": 1
+  },
+  {
+    "id": 30,
+    "title": "Asus RTX 3060 12GB",
+    "description": "Featuring the latest NVIDIA Ampere architecture, ASUS Dual GeForce RTX™ 3060 fuses dynamic thermal performance with broad compatibility. Advanced cooling solutions from flagship graphics cards — including two Axial-tech fans for maximizing airflow to the heatsink — are packed into the 20 cm long, 2-slot card, delivering more power in less space. These enhancements make ASUS Dual the perfect choice for gamers who want heavyweight graphics performance in a compact build.",
+    "category": "Graphics Card",
+    "price": 400,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/rtx-3060-v2-oc.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvcnR4LTMwNjAtdjItb2MuanBnIiwiaWF0IjoxNzA4MDkwNTAxLCJleHAiOjE4NjU3NzA1MDF9.9VYxIdJ8zqdUQkLD4lbrlSpU5bGpQbz7KUXDupofhdg&t=2024-02-16T13%3A35%3A02.579Z",
+     "rating": {
+      "rate": 4.3,
+      "stock": 120
+    },
+    "quantity": 1
+  },
+  {
+    "id": 31,
+    "title": "Intel i7 11700",
+    "description": "This Intel Core i7-11700 Processor comes with Intel Iris Xe Graphics 32 graphics. This new 11th gen Rocket Lake microarchitecture is manufactured with the 14nm process that comes with eight cores and 16 threads. These Intel Core i7-11700 Processor also support 64-bit computing on Intel architecture requires an Intel x86-64 (64 bit) architecture-enabled BIOS. As this chip is updated to the latest BIOS revision",
+    "category": "Processor",
+    "price": 250,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/i7-11700.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvaTctMTE3MDAuanBnIiwiaWF0IjoxNzA4MDkwNDU4LCJleHAiOjE4NjU3NzA0NTh9.TYU9mg9pGws-sSTVk-SHBzC09p8br9PfyH7V80xCXLs&t=2024-02-16T13%3A34%3A20.247Z",
+     "rating": {
+      "rate": 4.5,
+      "stock": 100
+    },
+    "quantity": 1
+  },
+  {
+    "id": 32,
+    "title": "Intel i7 12700",
+    "description": "The latest Intel Core I7-12700 Processor featured with 8 Golden Cove cores but cut down the Gracemont cores to 4. This comes with 12 cores (8+4) and 20 threads (16+4). The P-cores (Golden Cove) will operate at a base frequency of 2.10 GHz and a maximum boost frequency of up to 4.80 GHz. The i7-12700 Alder Lake Processor will feature 25 MB of L3 cache and TDP values are maintained at 65 W (PL1)",
+    "category": "Processor",
+    "price": 350,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/i7-12700.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvaTctMTI3MDAuanBnIiwiaWF0IjoxNzA4MDkwNDM2LCJleHAiOjE4NjU3NzA0MzZ9.ElC2rkxp6MqBQU713LC6TaF-j35nXJLyldTiZbl13es&t=2024-02-16T13%3A33%3A58.034Z",
+     "rating": {
+      "rate": 4.8,
+      "stock": 120
+    },
+    "quantity": 1
+  },
+  {
+    "id": 33,
+    "title": "Intel i9 10900",
+    "description": "The Intel Core i9-10900 Processor with Ten-Core LGA 1200 from Intel has a base clock speed of 2.8 GHz and comes with features such as Intel Optane Memory support, Intel vPro, Intel Boot Guard, Intel VT-d virtualization technology for directed I/O, and Intel Hyper-Threading technology",
+    "category": "Processor",
+    "price": 450,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/i9-10900.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvaTktMTA5MDAuanBnIiwiaWF0IjoxNzA4MDkwNDEyLCJleHAiOjE4NjU3NzA0MTJ9.AVCeeWQFhdjpyxgbDxLQh73J3tPkVc5bB-hR-yOJFdQ&t=2024-02-16T13%3A33%3A34.161Z",
+     "rating": {
+      "rate": 4.7,
+      "stock": 130
+    },
+    "quantity": 1
+  },
+  {
+    "id": 34,
+    "title": "AMD Ryzen 5 3600",
+    "description": "The AMD Ryzen 5 3600 Processor is built-in intelligence featuring 6 processor cores, 12 threads, and an astonishingly efficient 95W TDP. This processor, It stands with 3.6GHz Base Clock, 4.4GHz Max Boost Clock, 3MB L2 Cache, 32MB L3 Cache with AM4 Package, and TSMC 7nm FinFET CMOS",
+    "category": "Processor",
+    "price": 150,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/ryzen-5-3600.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvcnl6ZW4tNS0zNjAwLmpwZyIsImlhdCI6MTcwODA5MDI5MiwiZXhwIjoxODY1NzcwMjkyfQ.DewWn27oIKnwt7QHlCu5Fjvbr5Gg0XTaunzzza4pHLg&t=2024-02-16T13%3A31%3A34.033Z",
+     "rating": {
+      "rate": 4.4,
+      "stock": 280
+    },
+    "quantity": 1
+  },
+  {
+    "id": 35,
+    "title": "AMD Ryzen 5 7600X",
+    "description": "Take your computing to the next level with the Ryzen 5 7600X 4.7 GHz Six-Core AM5 Processor, which features six cores and 12 threads to help quickly load and multitask demanding applications. Designed for socket AM5 motherboards using the powerful Zen 4 architecture with the 5nm process, this Ryzen processor delivers significantly improved performance compared to its predecessor while maintaining high energy efficiency",
+    "category": "Processor",
+    "price": 220,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/ryzen-5-7600.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvcnl6ZW4tNS03NjAwLndlYnAiLCJpYXQiOjE3MDgwOTAzODksImV4cCI6MTg2NTc3MDM4OX0.2Rwd_yUlzRbH4hGZJ0M66Cw1cqdGW30d--Hk3kBcGAo&t=2024-02-16T13%3A33%3A10.750Z",
+     "rating": {
+      "rate": 3.8,
+      "stock": 170
+    },
+    "quantity": 1
+  },
+  {
+    "id": 36,
+    "title": "Asrock B660M Pro RS",
+    "description": "Asrock b660m pro rs supports 12th gen intel core processor. Asrock b660m pro rs comes with 8 phase power design. In this motherboard it supports ddr4 4800mhz ram with is ideal for gaming. You can use the max of 128GB memory. It has a slot of m.2 . This ASRock b660m pro rs is capable of accommodating multiple m.2 storage devices, one of which can support PCI express 4.0 m.2 SSD.",
+    "category": "Motherboard",
+    "price": 150,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/Asrock-B660M.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvQXNyb2NrLUI2NjBNLmpwZyIsImlhdCI6MTcwODA5MTk5MiwiZXhwIjoxODY1NzcxOTkyfQ.kcFC1tNzAd9Pn8s_ONpRfGcJCNvOYDBDfFfe9UWXdCo&t=2024-02-16T13%3A59%3A53.812Z",
+     "rating": {
+      "rate": 3.7,
+      "stock": 340
+    },
+    "quantity": 1
+  },
+  {
+    "id": 37,
+    "title": "Gigabyte B760M D2H DDR4",
+    "description": "GIGABYTE B760M D2H is a Micro-ATX motherboard designed for use with 12th Generation Intel Core processors and LGA 1700 socket. It supports DDR4 memory, providing faster speeds and higher data bandwidth than previous DDR3 memory standards. This motherboard features advanced heat dissipation, with a thermal design that optimizes air flow and reduces operating temperatures.",
+    "category": "Motherboard",
+    "price": 180,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/Gigabyte%20B760M.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvR2lnYWJ5dGUgQjc2ME0ud2VicCIsImlhdCI6MTcwODA5MjAxOSwiZXhwIjoxODY1NzcyMDE5fQ.JG5IQV2l-pm70Pl9Y7GYUXIZMoZyTJEPOcDs9mtuoFo&t=2024-02-16T14%3A00%3A20.708Z",
+     "rating": {
+      "rate": 4.3,
+      "stock": 270
+    },
+    "quantity": 1
+  },
+  {
+    "id": 38,
+    "title": "MSI Mag B660M Bazooka",
+    "description": "Designed to offer the robust power of full-sized motherboards in a compact form factor, the MSI MAG B660M BAZOOKA DDR4 Micro-ATX Motherboard offers robust functionality suitable for gamers looking to leverage a wide range of components while saving space within their case.Based on the Intel B660 chipset",
+    "category": "Motherboard",
+    "price": 200,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/mag-b660m-bazooka-ddr4.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvbWFnLWI2NjBtLWJhem9va2EtZGRyNC5qcGciLCJpYXQiOjE3MDgwOTAyMjIsImV4cCI6MTg2NTc3MDIyMn0.kZrjN8ckzkndI4844F3-YaTeT4Wrnb7dqEN-5Wx-A4Y&t=2024-02-16T13%3A30%3A24.181Z",
+     "rating": {
+      "rate": 4.2,
+      "stock": 250
+    },
+    "quantity": 1
+  },
+  {
+    "id": 39,
+    "title": "Asus Prime B760 plus",
+    "description": "Asus PRIME B760-PLUS D4 12th & 13th Gen Motherboard. The PRIME B760-PLUS D4 is a motherboard from ASUS that supports 13th and 12th Gen Intel Core, Pentium Gold, and Celeron processors. The CPU socket is Intel Socket LGA1700. It has the Intel B760 chipset and four DIMM slots that support a maximum of 128GB of DDR4 memory with data rates ranging from 2133MHz to 5066MHz (OC)",
+    "category": "Motherboard",
+    "price": 160,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/prime-b760-plus-d4.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvcHJpbWUtYjc2MC1wbHVzLWQ0LndlYnAiLCJpYXQiOjE3MDgwOTAxOTMsImV4cCI6MTg2NTc3MDE5M30.mQ3dxOtLqVJ9MakKSlgGiJMQRMhT_HrHidP6R7burG8&t=2024-02-16T13%3A29%3A54.849Z",
+     "rating": {
+      "rate": 3.8,
+      "stock": 340
+    },
+    "quantity": 1
+  },
+  {
+    "id": 40,
+    "title": "Asus TUF B660M E D4",
+    "description": "Asus PRIME B760-PLUS D4 12th & 13th Gen Motherboard. The PRIME B760-PLUS D4 is a motherboard from ASUS that supports 13th and 12th Gen Intel Core, Pentium Gold, and Celeron processors. The CPU socket is Intel Socket LGA1700. It has the Intel B760 chipset and four DIMM slots that support a maximum of 128GB of DDR4 memory with data rates ranging from 2133MHz to 5066MHz (OC)",
+    "category": "Motherboard",
+    "price": 220,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/b660m-pro.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvYjY2MG0tcHJvLndlYnAiLCJpYXQiOjE3MDgwOTAxMTMsImV4cCI6MTg2NTc3MDExM30.MzwVGxxqeCuZqNzLtCWsQv4DAdtUyFfWF5sRAv_EKj4&t=2024-02-16T13%3A28%3A35.067Z",
+     "rating": {
+      "rate": 4.7,
+      "stock": 240
+    },
+    "quantity": 1
+  },
+  {
+    "id": 41,
+    "title": "Team TForce Delta RGB Ram 32GB (7600Mhz)",
+    "description": "The TEAM T-Force Delta RGB 32GB (16GBx2) 7200MHz DDR5 Gaming RAM is a high-performance memory module for gamers and professionals. It has a magnificent RGB lighting system that enables a wide range of colors and effects, allowing for an immersive gaming experience. The 120° ultra-wide illumination illuminates every part of the module, resulting in a visually dazzling presentation. The module supports Intel XMP 3.0 for one-click overclocking, making it simple to improve the performance of your system without the need for complex manual settings",
+    "category": "RAM",
+    "price": 550,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/delta-rgb.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvZGVsdGEtcmdiLndlYnAiLCJpYXQiOjE3MDgwOTAwNjYsImV4cCI6MTg2NTc3MDA2Nn0.7g6Q6zQdWsqtjSzUvnnjXq4ev5rnaR-ZdJLg6hWGsTE&t=2024-02-16T13%3A27%3A48.240Z",
+     "rating": {
+      "rate": 4.3,
+      "stock": 340
+    },
+    "quantity": 1
+  },
+  {
+    "id": 42,
+    "title": "Kingston Fury Beast 8GB (3200MHz)",
+    "description": "The Kingston FURY Beast DDR4 provides a powerful performance boost for gaming, video editing and rendering with speeds of up to 3733MHz. This cost-effective upgrade is available in 2666MHz-3733MHz speeds, CL15–19 latencies, single-module capacities of 4GB-32GB and kit capacities of 8GB-128GB. It features Plug N Play automatic overclocking at 2666MHz and is both Intel XMP-ready and ready for AMD Ryzen",
+    "category": "RAM",
+    "price": 50,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/fury-beast-rgb.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvZnVyeS1iZWFzdC1yZ2IuanBnIiwiaWF0IjoxNzA4MDkwMDIzLCJleHAiOjE4NjU3NzAwMjN9.e9CDkz9tDQS9vsjZZTcKTfeQEXIfvLbshIlNrUjWVRo&t=2024-02-16T13%3A27%3A04.892Z",
+     "rating": {
+      "rate": 4.6,
+      "stock": 310
+    },
+    "quantity": 1
+  },
+  {
+    "id": 43,
+    "title": "Gskill Trident Z 8GB (3200Mhz)",
+    "description": "The G.Skill Trident Z 8GB DDR4 3200MHz Desktop RAM is created for PC enthusiasts, overclockers, and hardcore gamers, and is extensively tested for durability, compatibility, and performance across a broad range of motherboards. The Trident Z series, which builds on the popularity of the G.SKILL Trident series, is one of the world's highest-performance DDR4 DRAM memory built for PC enthusiasts and intense gamers.",
+    "category": "RAM",
+    "price": 45,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/trident-z-rgb-8gb.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvdHJpZGVudC16LXJnYi04Z2IuanBnIiwiaWF0IjoxNzA4MDg5OTkxLCJleHAiOjE4NjU3Njk5OTF9.x1sZjJwLtQxR1ajRgN3_1b8Zp692hZOr8vFvLsbRIm4&t=2024-02-16T13%3A26%3A33.085Z",
+     "rating": {
+      "rate": 4.7,
+      "stock": 240
+    },
+    "quantity": 1
+  },
+  {
+    "id": 44,
+    "title": "Corsair Vengeance RGB Pro White 16GB (3200MHz)",
+    "description": "CORSAIR VENGEANCE RGB PRO Series DDR4 memory lights up your PC with mesmerizing dynamic multi-zone RGB lighting, while delivering the best in DDR4 performance and stability. Every module boasts ten bright RGB LEDs, while wire-free design makes installation simple. Take control with CORSAIR iCUE software and completely customize every module’s lighting to match your system,",
+    "category": "RAM",
+    "price": 90,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/vengeance-rgb-pro-ram-kit.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvdmVuZ2VhbmNlLXJnYi1wcm8tcmFtLWtpdC5qcGciLCJpYXQiOjE3MDgwODk5NjIsImV4cCI6MTg2NTc2OTk2Mn0.Q6LYpHR0A9V77K3PsK3PxgOjltsdHy4CVE0m98iUW3U&t=2024-02-16T13%3A26%3A03.512Z",
+     "rating": {
+      "rate": 5.0,
+      "stock": 220
+    },
+    "quantity": 1
+  },
+  {
+    "id": 45,
+    "title": "Corsair Vengeance RGB RS Black 16GB (3200MHz)",
+    "description": "CORSAIR VENGEANCE RGB PRO Series DDR4 memory lights up your PC with mesmerizing dynamic multi-zone RGB lighting, while delivering the best in DDR4 performance and stability. Every module boasts ten bright RGB LEDs, while wire-free design makes installation simple. Take control with CORSAIR iCUE software and completely customize every module’s lighting to match your system,",
+    "category": "RAM",
+    "price": 45,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/vengeance-rgb-rs.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvdmVuZ2VhbmNlLXJnYi1ycy5qcGciLCJpYXQiOjE3MDgwODk5MzcsImV4cCI6MTg2NTc2OTkzN30.y7By8OxZSh9Me65CFBVH6TT8eUvm0OLh3gNaXBMzGyM&t=2024-02-16T13%3A25%3A38.778Z",
+     "rating": {
+      "rate": 4.9,
+      "stock": 2100
+    },
+    "quantity": 1
+  },
+  {
+    "id": 46,
+    "title": "Xbox One S 1TB",
+    "description": "Microsoft Xbox One S 8GB RAM,1TB Gaming Console is comes with 8 core Jaguar CPU at 1.75GHz Processor, 8GB DDR3 RAM, 1TB Storage, 12 CUs (914MHz) 1.23 TF GPU with 1x Wireless Controller. This Xbox has HDMI-in, HDMI-out, one front-facing USB 3.0, two rear-facing USB 3.0, IR receiver/blaster, SPDIF digital audio, Ethernet Input / Output port. This Xbox One S has 4K UHD Blu Ray and also features with Thousands of games without breaking the bank",
+    "category": "Console",
+    "price": 300,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/xbox-one-s.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMveGJveC1vbmUtcy5qcGciLCJpYXQiOjE3MDgwODk4NDEsImV4cCI6MTg2NTc2OTg0MX0.9xjn01rQe_JeP6WxindFvgcEQd8W9aXCPLMwprVjioc&t=2024-02-16T13%3A24%3A02.301Z",
+     "rating": {
+      "rate": 3.9,
+      "stock": 70
+    },
+    "quantity": 1
+  },
+  {
+    "id": 47,
+    "title": "Xbox Series S 512GB",
+    "description": "The Microsoft Xbox Series S Gaming Console delivers sensationally smooth frame rates of up to 120FPS with the visual pop of HDR. Immerse yourself with sharper characters, brighter worlds, and impossible details with true-to-life 4K. The Xbox Series S is equipped with 8X Cores @ 3.6 GHz (3.4 GHz w/SMT) Custom Zen 2 CPU and 4 TFLOPS, 20 CUs @1.565 GHz Custom RDNA 2 GPU",
+    "category": "Console",
+    "price": 320,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/xbox_series_s.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMveGJveF9zZXJpZXNfcy53ZWJwIiwiaWF0IjoxNzA4MDg5NzcwLCJleHAiOjE4NjU3Njk3NzB9.FOYR9s0ScARcZJ7PKSWeUpWGglGyKmjdKgk3b4tI5eQ&t=2024-02-16T13%3A22%3A51.394Z",
+     "rating": {
+      "rate": 4.5,
+      "stock": 110
+    },
+    "quantity": 1
+  },
+  {
+    "id": 48,
+    "title": "Xbox Series X 1TB ",
+    "description": "The Microsoft Xbox Series X Gaming Console delivers sensationally smooth frame rates of up to 120FPS with the visual pop of HDR. Immerse yourself with sharper characters, brighter worlds, and impossible details with true-to-life 4K. The Xbox Series X is equipped with 8X Cores @ 3.8 GHz (3.66 GHz w/SMT) Custom Zen 2 CPU and 12 TFLOPS, 52 CUs @1.825 GHz Custom RDNA 2 GPU. It comes with 16GB GDDR6 w/320 bit-wide bus memory and 1TB Custom NVME SSD.",
+    "category": "Console",
+    "price": 500,
+    "image": "https://www.startech.com.bd/image/cache/catalog/gaming-console/microsoft/xbox-series-x/xbox-series-x-01-500x500.webp",
+     "rating": {
+      "rate": 4.2,
+      "stock": 200
+    },
+    "quantity": 1
+  },
+  {
+    "id": 49,
+    "title": "Sony Playstation 5 Digital Edition",
+    "description": "The PlayStation 5 (PS5) is a high-performance Gaming Console that delivers stunning visuals and lightning-fast load times. The console features an Ultra HD Blu-ray Disc Drive, which allows you to enjoy your favorite movies and games in stunning 4K resolution. Under the hood, the PS5 is powered by a powerful 3.5GHz, 8-core CPU, which ensures smooth and seamless gameplay.",
+    "category": "Console",
+    "price": 600,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/PS5.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvUFM1LmpwZyIsImlhdCI6MTcwODA4OTcwNywiZXhwIjoxODY1NzY5NzA3fQ.ISqpXJ7d9n9vApS22N0H6kYXQLdh-YsMKDn4aMR8KcE&t=2024-02-16T13%3A21%3A48.547Z",
+     "rating": {
+      "rate": 3.9,
+      "stock": 180
+    },
+    "quantity": 1
+  },
+  {
+    "id": 50,
+    "title": "Nintendo Switch Fortnite Edition",
+    "description": "The Nintendo Switch Lite gaming console is designed specifically for handheld play. It has a very compact and lightweight design. This Nintendo Switch Lite Gaming Console comes in Coral color. It comes with built-in controllers. The controllers are built right into the system for handheld play, and the left side sports a +Control Pad. The Nintendo Switch Lite system is compatible with the robust library of Nintendo Switch games that support handheld mode. The Nintendo Switch Lite also comes with multiplayer gaming options. It enables you to link up to eight Nintendo Switch and Nintendo Switch Lite systems together to play multiplayer games anywhere.",
+    "category": "Console",
+    "price": 45,
+    "image": "https://aliltdblkhwtxvwqhipo.supabase.co/storage/v1/object/sign/Ecommerce/products/nintendo-switch.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJFY29tbWVyY2UvcHJvZHVjdHMvbmludGVuZG8tc3dpdGNoLndlYnAiLCJpYXQiOjE3MDgwODk2ODEsImV4cCI6MTg2NTc2OTY4MX0.wyHENizGVaih3dyQP2CtaCEUhPfPSKF7XvjQa4Ah_VY&t=2024-02-16T13%3A21%3A22.916Z",
+     "rating": {
+      "rate": 3.8,
+      "stock": 160
+    },
+    "quantity": 1
+  }
+]
