@@ -8,7 +8,7 @@ export default function EmptyCart() {
         <img
           className="lg:w-4/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
           alt="hero"
-          src="/assets/emptycart.png"
+          src="/assets/cart/emptycart.png"
         />
         <div className="-mt-16 text-center lg:w-2/3 w-full">
           <h1 className="title-font sm:text-4xl text-3xl mb-4 font-semibold text-slate-900">

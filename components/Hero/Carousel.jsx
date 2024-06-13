@@ -25,24 +25,24 @@ export default function Carousel() {
             >
               <SwiperSlide>
                 <img
-                  src="/assets/electronics.png"
+                  src="/assets/hero/electronics.png"
                   width="1800px"
                   height="400px"
                   className="w-full h-full object-cover object-center block  rounded-md"
                 />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="/assets/buy-gpus.png" />
+                <img src="/assets/hero/buy-gpus.png" />
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="/assets/buy-processors.png"
+                  src="/assets/hero/buy-processors.png"
                   className="w-full h-full object-cover object-center block  rounded-md"
                 />
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="/assets/ram.png"
+                  src="/assets/hero/ram.png"
                   className="w-full h-full object-cover object-center block  rounded-md"
                 />
               </SwiperSlide>
@@ -56,14 +56,14 @@ export default function Carousel() {
                   <img
                     alt="gallery"
                     className="w-full object-cover h-full object-center block rounded-md"
-                    src="/assets/24by7.png"
+                    src="/assets/hero/24by7.png"
                   />
                 </div>
                 <div className="md:p-2 p-1 w-1/2 hidden sm:block">
                   <img
                     alt="gallery"
                     className="w-full object-cover h-full object-center block  rounded-md"
-                    src="/assets/affordableprice.png"
+                    src="/assets/hero/affordableprice.png"
                   />
                 </div>
                 <div className="md:p-2 p-1 w-full ">
@@ -79,14 +79,14 @@ export default function Carousel() {
                   >
                     <SwiperSlide>
                       <img
-                        src="/assets/electronics.png"
+                        src="/assets/hero/electronics.png"
                         width="1800px"
                         height="400px"
                         className="w-full h-full object-cover object-center block  rounded-md"
                       />
                     </SwiperSlide>
                     <SwiperSlide>
-                      <img src="/assets/buy-gpus.png" />
+                      <img src="/assets/hero/buy-gpus.png" />
                     </SwiperSlide>
                   </Swiper>
                 </div>
@@ -105,13 +105,13 @@ export default function Carousel() {
                   >
                     <SwiperSlide>
                       <img
-                        src="/assets/buy-processors.png"
+                        src="/assets/hero/buy-processors.png"
                         className="w-full h-full object-cover object-center block  rounded-md"
                       />
                     </SwiperSlide>
                     <SwiperSlide>
                       <img
-                        src="/assets/ram.png"
+                        src="/assets/hero/ram.png"
                         className="w-full h-full object-cover object-center block  rounded-md"
                       />
                     </SwiperSlide>
@@ -121,14 +121,14 @@ export default function Carousel() {
                   <img
                     alt="gallery"
                     className="w-full object-cover h-full object-center block  rounded-md"
-                    src="/assets/wrapping.png"
+                    src="/assets/hero/wrapping.png"
                   />
                 </div>
                 <div className="md:p-2 p-1 w-1/2 hidden sm:block">
                   <img
                     alt="gallery"
                     className="w-full object-cover h-full object-center block  rounded-md"
-                    src="/assets/shipping.png"
+                    src="/assets/hero/shipping.png"
                   />
                 </div>
               </div>

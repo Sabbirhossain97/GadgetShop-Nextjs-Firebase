@@ -6,7 +6,7 @@ import { Context } from "../../../../context";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { AiFillHome } from "react-icons/ai";
-import { sponsors } from "../../../../helpers/helpers";
+import { sponsors } from "../../../../helpers/static/static";
 import { v4 as uuidv4 } from 'uuid';
 import moment from "moment/moment";
 import addOrder from "../../../../services/orders/addOrder";

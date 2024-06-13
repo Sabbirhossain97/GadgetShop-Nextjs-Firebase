@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Tooltip } from "antd";
 import { FaRegHeart } from "react-icons/fa";
 import addToWishlist from "../../services/wishlist/addToWishlist";
-import { handleCartAction } from "../../helpers/addToCart";
+import { handleCartAction } from "../../helpers/cart/addToCart";
 
 export default function FeaturedProducts() {
     const { isAuth, cartReducer, sidebar } = useContext(Context);

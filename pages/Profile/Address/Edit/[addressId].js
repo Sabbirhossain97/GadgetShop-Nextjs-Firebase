@@ -11,6 +11,7 @@ import Spinner from '../../../../components/Animation/Spinner';
 import { getAddressInfo } from '../../../../services/address/getAddressInfo';
 import editAddress from '../../../../services/address/editAddress'
 import { updateExistingDefaultAddress } from '../../../../services/address/updateExistingDefaultAddress'
+import withAuth from '../../../../helpers/ProtectedRoutes/withAuth'
 
 function AddressEdit() {
     const { isAuth } = useContext(Context);
@@ -202,4 +203,4 @@ function AddressEdit() {
     )
 }
 
-export default AddressEdit
+export default withAuth(AddressEdit)

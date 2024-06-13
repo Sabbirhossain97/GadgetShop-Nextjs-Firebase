@@ -4,7 +4,7 @@ import Navbar from '../../../components/Navigation/Navbar';
 import Subnavbar from '../../../components/Navigation/Subnavbar';
 import { useRouter } from 'next/router';
 import Footer from '../../../components/Footer/Footer';
-import { handleCartAction } from '../../../helpers/addToCart';
+import { handleCartAction } from '../../../helpers/cart/addToCart';
 import { handleDeleteItem } from '../../../services/wishlist/deleteFromWishlist';
 import useBreadCrumbNavigation from '../../../helpers/hooks/useBreadCrumbNavigation';
 import { AiFillHome } from "react-icons/ai";
@@ -53,7 +53,7 @@ function Wishlist() {
                                 wishlist.length === 0 ?
                                     <>
                                         <div className='flex justify-center'>
-                                            <img src="/assets/wishlist.png" />
+                                            <img src="/assets/wishlist/wishlist.png" />
                                         </div>
                                         <div className='text-center text-xl'>
                                             <h1>You haven't saved anything yet.</h1>

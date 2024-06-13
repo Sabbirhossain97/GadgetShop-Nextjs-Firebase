@@ -1,5 +1,5 @@
 import React from "react";
-import { sponsors } from "../../helpers/helpers";
+import { sponsors } from "../../helpers/static/static";
 
 export default function Footer() {
   return (

@@ -14,6 +14,7 @@ import getAddressData from '../../../services/address/getAddress'
 import { db } from '../../../services/firebase'
 import { handleDeleteAddress } from '../../../services/address/deleteAddress'
 import { CgSpinner } from "react-icons/cg";
+import withAuth from '../../../helpers/ProtectedRoutes/withAuth'
 
 function Address() {
     const { isAuth } = useContext(Context);
@@ -100,4 +101,4 @@ function Address() {
     )
 }
 
-export default Address
+export default withAuth(Address)

@@ -11,6 +11,7 @@ import addNewAddress from '../../../../services/address/addAddress'
 import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../../../../components/Animation/Spinner'
 import { updateExistingDefaultAddress } from '../../../../services/address/updateExistingDefaultAddress'
+import withAuth from '../../../../helpers/ProtectedRoutes/withAuth'
 
 function Add() {
     const { isAuth } = useContext(Context);
@@ -161,4 +162,4 @@ function Add() {
     )
 }
 
-export default Add
+export default withAuth(Add)

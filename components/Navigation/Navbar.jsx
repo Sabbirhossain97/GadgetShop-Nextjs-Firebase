@@ -10,7 +10,7 @@ import { message } from "antd";
 import { IoSearch } from "react-icons/io5";
 import products from "../../products.json"
 import { Flash } from "../SvgComponents/SVG";
-import { useWindowSize } from "../hooks/useWindowSize";
+import { useWindowSize } from "../../helpers/hooks/useWindowSize";
 import { FaRegHeart } from "react-icons/fa";
 import { CgSpinner } from "react-icons/cg";
 import { auth } from "../../services/firebase";

@@ -6,11 +6,11 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  api: {
-    bodyParser: {
-      sizeLimit: "1mb",
-    },
-  },
+  // api: {
+  //   bodyParser: {
+  //     sizeLimit: "1mb",
+  //   },
+  // },
 };
 
 module.exports = nextConfig

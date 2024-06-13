@@ -11,7 +11,7 @@ import Link from "next/link";
 import { AiFillHome } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import addToWishlist from "../../services/wishlist/addToWishlist";
-import { handleCartAction } from "../../helpers/addToCart";
+import { handleCartAction } from "../../helpers/cart/addToCart";
 import { countStars } from "../../helpers/ProductDetails/countStars";
 
 const SingleProduct = () => {
