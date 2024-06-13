@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Navbar from "../../../../components/Navigation/Navbar";
 import Subnavbar from "../../../../components/Navigation/Subnavbar";
 import Footer from "../../../../components/Footer/Footer";
@@ -15,6 +15,10 @@ import Spinner from "../../../../components/Animation/Spinner";
 import withAuth from "../../../../helpers/ProtectedRoutes/withAuth";
 import useBreadCrumbNavigation from "../../../../helpers/hooks/useBreadCrumbNavigation";
 import { CgSpinner } from "react-icons/cg";
+import getAddressData from "../../../../services/address/getAddress";
+import { db } from "../../../../services/firebase";
+import { FaAddressBook } from "react-icons/fa";
+import { Modal } from "antd";
 
 function Checkout() {
     const { cartReducer, isAuth } = useContext(Context);
@@ -23,6 +27,11 @@ function Checkout() {
     const [paymentMethod, setPaymentMethod] = useState("");
     const [deliveryMethod, setDeliveryMethod] = useState("")
     const [loading, setLoading] = useState(false);
+    const [formLoading, setFormLoading] = useState(false)
+    const [addressData, setAddressData] = useState([]);
+    const [defaultAddress, setDefaultAddress] = useState(null);
+    const [selectedAddressId, setSelectedAddressId] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const router = useRouter();
     const { pathname } = router;
     const breadcrumbNav = useBreadCrumbNavigation(pathname)
@@ -95,6 +104,40 @@ function Checkout() {
         }
     }
 
+    useEffect(() => {
+        getAddressData(db, user, setAddressData);
+    }, [user]);
+
+
+    const getUserDefaultAddress = () => {
+        const getDefaultAddress = addressData.find((item) => item.isDefault === "yes");
+        setDefaultAddress(getDefaultAddress)
+    }
+
+    useEffect(() => {
+        if (addressData && addressData.length > 0) {
+            setFormLoading(true)
+            setTimeout(() => {
+                getUserDefaultAddress();
+                setFormLoading(false)
+            }, 1500)
+        }
+    }, [addressData])
+
+    const handleAddressSelect = (addressId) => {
+        setSelectedAddressId(addressId)
+    }
+
+    const saveSelectedAddress = () => {
+        setFormLoading(true)
+        setIsModalOpen(!isModalOpen)
+        setTimeout(() => {
+            const selectedAddress = addressData.find((item) => item.id === selectedAddressId);
+            setDefaultAddress(selectedAddress)
+            message.success('Address changed successfully!')
+            setFormLoading(false)
+        }, 1500)
+    }
 
     return (
         <div>
@@ -128,7 +171,8 @@ function Checkout() {
                         {/* form section */}
                         <div className="w-full xl:w-2/5 ml-0 md:mt-4">
 
-                            <form onSubmit={handleOrderConfirm} className="mt-4 border-t border-l border-b border-r border-gray-200 w-full  p-8 bg-white rounded-xl ">
+                            <form onSubmit={handleOrderConfirm} className={`${formLoading && "opacity-50"} relative mt-4 border-t border-l border-b border-r border-gray-200 w-full p-8 bg-white rounded-xl`}>
+                                {formLoading && <CgSpinner className="text-4xl animate-spin text-blue-400 top-1/2 left-1/2 absolute" />}
                                 <p className="text-gray-800 font-bold text-xl">
                                     Customer Information
                                 </p>
@@ -144,6 +188,7 @@ function Checkout() {
                                         id="username"
                                         name="username"
                                         type="text"
+                                        defaultValue={defaultAddress?.username}
                                         required
                                         placeholder="Your Name"
                                     />
@@ -160,48 +205,83 @@ function Checkout() {
                                         id="email"
                                         name="email"
                                         type="email"
+                                        defaultValue={user?.email}
                                         required
                                         placeholder="Your Email"
                                     />
                                 </div>
                                 <div className="mt-6">
-                                    <label
-                                        className="font-semibold  block text-sm text-gray-600"
-                                        htmlFor="address"
-                                    >
-                                        Address
-                                    </label>
+                                    <div className="flex items-center justify-between">
+                                        <label
+                                            className="font-semibold block text-sm text-gray-600"
+                                            htmlFor="address"
+                                        >
+                                            Address
+                                        </label>
+                                        <button type="button" onClick={() => setIsModalOpen(!isModalOpen)} className="group font-semibold items-center text-sm text-gray-600 flex gap-1">
+                                            <FaAddressBook className="text-blue-500" />
+                                            <span className="group-hover:text-blue-500">Change Address</span>
+                                        </button>
+                                    </div>
                                     <input
                                         className="placeholder:text-sm mt-2 w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
                                         id="address"
                                         type="text"
                                         name="address"
+                                        defaultValue={defaultAddress?.address}
                                         required
                                         placeholder="Address Line 1"
                                     />
                                 </div>
                                 <div className="mt-4">
+                                    <label
+                                        className="font-semibold block text-sm text-gray-600"
+                                        htmlFor="city"
+                                    >
+                                        City
+                                    </label>
                                     <input
-                                        className="placeholder:text-sm w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
+                                        className="placeholder:text-sm w-full mt-2 px-3 py-2 text-gray-700 bg-gray-200 rounded"
+                                        id="city"
                                         type="text"
                                         name="city"
+                                        defaultValue={defaultAddress?.city}
                                         placeholder="City"
+                                        required
                                     />
                                 </div>
                                 <div className="inline-block mt-4 w-full md:w-1/2 pr-1">
+                                    <label
+                                        className="font-semibold block text-sm text-gray-600"
+                                        htmlFor="country"
+                                    >
+                                        Country
+                                    </label>
                                     <input
-                                        className="placeholder:text-sm w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
+                                        className="placeholder:text-sm w-full mt-2 px-3 py-2 text-gray-700 bg-gray-200 rounded"
+                                        id="country"
                                         type="text"
                                         name="country"
+                                        defaultValue={defaultAddress?.country}
                                         placeholder="Country"
+                                        required
                                     />
                                 </div>
                                 <div className="inline-block mt-4 md:mt-2 -mx-0.5 pl-1 w-full md:w-1/2">
+                                    <label
+                                        className="font-semibold block text-sm text-gray-600"
+                                        htmlFor="zip"
+                                    >
+                                        Zip/Postcode
+                                    </label>
                                     <input
-                                        className="placeholder:text-sm w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
+                                        className="placeholder:text-sm w-full mt-2 px-3 py-2 text-gray-700 bg-gray-200 rounded"
+                                        id="zip"
                                         type="text"
                                         name="zip"
+                                        defaultValue={defaultAddress?.postcode}
                                         placeholder="Zip/Postcode"
+                                        required
                                     />
                                 </div>
                                 <div>
@@ -327,6 +407,51 @@ function Checkout() {
                                 </div>
                             </form>
                         </div>
+
+                        <Modal
+                            open={isModalOpen}
+                            onCancel={() => {
+                                setIsModalOpen(!isModalOpen)
+                                setSelectedAddressId(null);
+                            }
+                            }
+                            footer={null}
+                        >
+                            <div className="py-10">
+                                <p className="font-inter font-semibold block text-md text-gray-600">Select an address to continue</p>
+                                <ul className='flex flex-col gap-6 pt-4'>
+                                    {addressData && addressData.map((addressInfo, index) => (
+                                        <li key={index} onClick={() => handleAddressSelect(addressInfo.id)} className={`cursor-pointer text-black border ${selectedAddressId === addressInfo.id ? 'border-blue-400' : 'border-gray-200'} border-gray-200 py-4 rounded-md shadow-sm hover:shadow-md transition duration-300 flex justify-between`}>
+                                            <div>
+                                                <p className='pl-8'>
+                                                    {addressInfo.username}, {addressInfo.address}, {addressInfo.city} - {addressInfo.postcode}, {addressInfo.country}
+                                                    {addressInfo.isDefault === "yes" &&
+                                                        <span className='ml-2 leading-8 border py-1 px-2 bg-green-500 text-sm text-white rounded-md'>Default</span>
+                                                    }
+                                                </p>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <div className="pt-4 flex justify-end">
+                                    <button
+                                        onClick={() => {
+                                            setSelectedAddressId(null);
+                                            setIsModalOpen(!isModalOpen)
+                                        }}
+                                        className="text-sm ml-4 font-semibold px-6 py-2 text-white bg-red-600 hover:bg-red-500 rounded-md"
+                                    >
+                                        <span>Cancel</span>
+                                    </button>
+                                    <button
+                                        onClick={saveSelectedAddress}
+                                        className="text-sm ml-4 font-semibold px-8 py-2 text-white bg-slate-800 hover:bg-slate-700 rounded-md"
+                                    >
+                                        <span>Save</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </Modal>
 
                         {/*order summary section */}
 
