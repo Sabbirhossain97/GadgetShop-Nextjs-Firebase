@@ -222,6 +222,7 @@ function Checkout() {
                                             <FaAddressBook className="text-blue-500" />
                                             <span className="group-hover:text-blue-500">Change Address</span>
                                         </button>
+
                                     </div>
                                     <input
                                         className="placeholder:text-sm mt-2 w-full px-3 py-2 text-gray-700 bg-gray-200 rounded"
@@ -417,40 +418,54 @@ function Checkout() {
                             }
                             footer={null}
                         >
-                            <div className="py-10">
-                                <p className="font-inter font-semibold block text-md text-gray-600">Select an address to continue</p>
-                                <ul className='flex flex-col gap-6 pt-4'>
-                                    {addressData && addressData.map((addressInfo, index) => (
-                                        <li key={index} onClick={() => handleAddressSelect(addressInfo.id)} className={`cursor-pointer text-black border ${selectedAddressId === addressInfo.id ? 'border-blue-400' : 'border-gray-200'} border-gray-200 py-4 rounded-md shadow-sm hover:shadow-md transition duration-300 flex justify-between`}>
-                                            <div>
-                                                <p className='pl-8'>
-                                                    {addressInfo.username}, {addressInfo.address}, {addressInfo.city} - {addressInfo.postcode}, {addressInfo.country}
-                                                    {addressInfo.isDefault === "yes" &&
-                                                        <span className='ml-2 leading-8 border py-1 px-2 bg-green-500 text-sm text-white rounded-md'>Default</span>
-                                                    }
-                                                </p>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <div className="pt-4 flex justify-end">
-                                    <button
-                                        onClick={() => {
-                                            setSelectedAddressId(null);
-                                            setIsModalOpen(!isModalOpen)
-                                        }}
-                                        className="text-sm ml-4 font-semibold px-6 py-2 text-white bg-red-600 hover:bg-red-500 rounded-md"
-                                    >
-                                        <span>Cancel</span>
-                                    </button>
-                                    <button
-                                        onClick={saveSelectedAddress}
-                                        className="text-sm ml-4 font-semibold px-8 py-2 text-white bg-slate-800 hover:bg-slate-700 rounded-md"
-                                    >
-                                        <span>Save</span>
-                                    </button>
-                                </div>
-                            </div>
+                            {addressData && addressData.length > 0 ?
+                                <>
+                                    <div className="mt-10 min-h-[350px] overflow-y-auto">
+                                        <p className="font-inter font-semibold block text-md text-gray-600">Select an address to continue</p>
+                                        <ul className='flex flex-col gap-6 pt-4'>
+                                            {addressData && addressData.map((addressInfo, index) => (
+                                                <li key={index} onClick={() => handleAddressSelect(addressInfo.id)} className={`cursor-pointer text-black border ${selectedAddressId === addressInfo.id ? 'border-blue-400' : 'border-gray-200'} py-4 rounded-md shadow-sm hover:shadow-md transition duration-300 flex justify-between`}>
+                                                    <div>
+                                                        <p className='pl-8'>
+                                                            {addressInfo.username}, {addressInfo.address}, {addressInfo.city} - {addressInfo.postcode}, {addressInfo.country}
+                                                            {addressInfo.isDefault === "yes" &&
+                                                                <span className='ml-2 leading-8 border py-1 px-2 bg-green-500 text-sm text-white rounded-md'>Default</span>
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div className="pt-4 flex justify-end">
+                                        <button
+                                            onClick={() => {
+                                                setSelectedAddressId(null);
+                                                setIsModalOpen(!isModalOpen)
+                                            }}
+                                            className="text-sm ml-4 font-semibold px-6 py-2 text-white bg-red-600 hover:bg-red-500 rounded-md"
+                                        >
+                                            <span>Cancel</span>
+                                        </button>
+                                        <button
+                                            onClick={saveSelectedAddress}
+                                            className="text-sm ml-4 font-semibold px-8 py-2 text-white bg-slate-800 hover:bg-slate-700 rounded-md"
+                                        >
+                                            <span>Save</span>
+                                        </button>
+                                    </div>
+                                </>
+                                :
+                                <div className="py-10 flex gap-6 flex-col items-center">
+                                    <p className="text-xl"> You have no saved address!</p>
+                                    <Link href="/Profile/Address/Add">
+                                        <button
+                                            className="text-sm ml-4 font-semibold px-8 py-2 text-white bg-slate-800 hover:bg-slate-700 rounded-md"
+                                        >
+                                            <span>Add New Address</span>
+                                        </button>
+                                    </Link>
+                                </div>}
                         </Modal>
 
                         {/*order summary section */}

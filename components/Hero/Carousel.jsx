@@ -48,7 +48,7 @@ export default function Carousel() {
               </SwiperSlide>
             </Swiper>
           </div>
-          <div className="max-w-[1536px] px-5 mx-auto flex flex-wrap hidden md:block">
+          <div className="max-w-[1536px] px-5 mx-auto hidden md:block">
             <div className="flex w-full mb-20 flex-wrap"></div>
             <div className="flex flex-wrap md:-m-2 -m-1">
               <div className="flex flex-wrap w-1/2 ">

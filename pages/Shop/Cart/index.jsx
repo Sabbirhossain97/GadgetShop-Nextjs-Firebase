@@ -191,18 +191,18 @@ export default function Cart() {
                     </p>
                   </div>
                 </div>
-
-                <button
-                  onClick={handleClearAll}
-                  className="flex justify-center bottom-8 mt-12 w-full mx-auto rounded-md bg-red-600 py-1.5 font-medium text-blue-50 hover:bg-red-700"
-                >
-                  {loading ? <div className="flex items-center"><Spinner />Processing...</div> : "Clear All"}
-                </button>
-                <button className="flex justify-center bottom-8 mt-4 w-full  mx-auto rounded-md bg-slate-800 py-1.5 font-medium text-blue-50 hover:bg-slate-700">
+                <button className="flex justify-center bottom-8 mt-12 w-full  mx-auto rounded-md bg-slate-800 py-1.5 font-medium text-blue-50 hover:bg-slate-700">
                   <Link href="/Shop/Cart/Checkout">
                     Checkout<span className="ml-2">&rarr;</span>
                   </Link>
                 </button>
+                <button
+                  onClick={handleClearAll}
+                  className="flex justify-center bottom-8 mt-4 w-full mx-auto rounded-md bg-red-600 py-1.5 font-medium text-blue-50 hover:bg-red-700"
+                >
+                  {loading ? <div className="flex items-center"><Spinner />Processing...</div> : "Clear All"}
+                </button>
+             
               </div>
             ) : (
               ""
