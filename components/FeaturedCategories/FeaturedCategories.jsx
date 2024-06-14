@@ -23,7 +23,7 @@ export default function FeaturedCategories() {
               "Console",
               "Phone",
             ].map((item, key) => (
-              <div key={key} className="p-4 w-1/2 md:w-1/3 lg:w-1/5  ">
+              <div key={key} className="p-4 xs:w-full sm:w-1/2 md:w-1/3 lg:w-1/5  ">
                 <div className="border-2 border-gray-200 px-3 py-3 rounded-lg">
                   <img src={`assets/categories/${item}.png`} />
                   <h2 className="title-font font-medium text-md text-gray-900">

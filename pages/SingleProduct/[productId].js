@@ -93,23 +93,23 @@ const SingleProduct = () => {
                 </div>
                 <p className="leading-relaxed">{singleProduct.description}</p>
                 <div className="flex flex-row justify-between mt-12 items-center mb-5 ">
-                  <div className="flex flex-col items-center ">
+                  <div className="flex flex-col items-center">
                     <span className="border p-2 rounded-full bg-gray-100">
                       <MdLocalShipping className="text-3xl text-slate-800 " />
                     </span>
-                    <p>Free Delivery</p>
+                    <p className="py-2 text-center">Free Delivery</p>
                   </div>
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center ">
                     <span className="border p-2 rounded-full bg-gray-100">
                       <TbReplace className="text-3xl text-slate-800 " />
                     </span>
-                    <p>30 days replacement </p>
+                    <p className="py-2 text-center">30 days replacement </p>
                   </div>
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center ">
                     <span className="border p-2 rounded-full bg-gray-100">
                       <SiAdguard className="text-3xl text-slate-800 " />
                     </span>
-                    <p>2 years warranty</p>
+                    <p className="py-2 text-center">2 years warranty</p>
                   </div>
                 </div>
                 <div className="h-[1px] mt-2 bg-gray-200"></div>

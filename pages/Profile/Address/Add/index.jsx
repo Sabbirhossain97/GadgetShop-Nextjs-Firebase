@@ -56,7 +56,7 @@ function Add() {
         <div>
             <Navbar />
             <Subnavbar />
-            <div className='min-h-screen flex flex-col items-center gap-6 max-w-[1500px] mx-auto py-10 xl:py-10 px-10 mt-10 xl:mt-24'>
+            <div className='min-h-screen flex flex-col items-center gap-6 max-w-[1500px] mx-auto py-10 xl:py-10 px-4 sm:px-10 mt-10 xl:mt-24'>
                 <div className='flex items-center justify-center py-4'>
                     <Link href="/">
                         <AiFillHome className='hover:text-blue-500 cursor-pointer' />
@@ -80,7 +80,7 @@ function Add() {
                     <h2 className="mb-1 text-xl font-bold text-center leading-tight tracking-tight text-gray-900 md:text-2xl ">
                         Add Address
                     </h2>
-                    <form className="max-w-sm mx-auto py-6"
+                    <form className="max-w-md sm:max-w-sm mx-auto py-6"
                         onSubmit={handleSubmit}
                     >
                         <div className="mb-5 mt-4">

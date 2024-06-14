@@ -58,7 +58,7 @@ function Orders() {
                                 orderList.length === 0 ?
                                     <>
                                         <div className='flex justify-center'>
-                                            <img src="/assets/wishlist.png" />
+                                            <img src="/assets/wishlist/wishlist.png" />
                                         </div>
                                         <div className='text-center text-xl'>
                                             <h1>You haven't ordered anything yet.</h1>
