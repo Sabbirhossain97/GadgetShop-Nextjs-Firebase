@@ -135,7 +135,10 @@ export default function Cart() {
                     </div>
                     <div
                       onClick={() =>
-                        dispatch({ type: "REMOVE_PRODUCT", id: item.id })
+                        dispatch({
+                          type: "REMOVE_PRODUCT",
+                          id: item.id
+                        })
                       }
                       className="px-4 "
                     >
@@ -202,7 +205,7 @@ export default function Cart() {
                 >
                   {loading ? <div className="flex items-center"><Spinner />Processing...</div> : "Clear All"}
                 </button>
-             
+
               </div>
             ) : (
               ""

@@ -12,7 +12,7 @@ import { handleCartAction } from "../../helpers/cart/addToCart";
 export default function FeaturedProducts() {
     const { isAuth, cartReducer, sidebar } = useContext(Context);
     const [user] = isAuth;
-    const [, dispatch] = cartReducer;
+    const [state, dispatch] = cartReducer;
     const [, setIsCartSidebarOpen] = sidebar;
     const router = useRouter();
 
@@ -22,10 +22,7 @@ export default function FeaturedProducts() {
 
     const handleCartAdd = (e, user, itemId, router, dispatch) => {
         e.stopPropagation();
-        if (user) {
-            setIsCartSidebarOpen(true)
-        }
-        handleCartAction(user, itemId, router, dispatch);
+        handleCartAction(state, setIsCartSidebarOpen, user, itemId, router, dispatch);
     }
 
     return (

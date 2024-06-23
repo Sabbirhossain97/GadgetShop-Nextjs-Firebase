@@ -12,10 +12,11 @@ import { IoFilterSharp } from "react-icons/io5";
 import { BsFillEmojiFrownFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { message } from 'antd'
+import { handleCartAction } from '../../helpers/cart/addToCart'
 
 function Products() {
     const { cartReducer, isAuth, sidebar } = useContext(Context);
-    const [_, dispatch] = cartReducer;
+    const [state, dispatch] = cartReducer;
     const [user] = isAuth;
     const [, setIsCartSidebarOpen] = sidebar;
     const [productList, setProductList] = useState(products);
@@ -44,7 +45,7 @@ function Products() {
         }, 1500)
         window.scrollTo({
             top: 0,
-            behavior: 'smooth' 
+            behavior: 'smooth'
         });
     };
 
@@ -167,15 +168,10 @@ function Products() {
         return () => clearTimeout(timer);
     }, [filters, applyFilters]);
 
-    const handleCartAction = (id) => {
-        if (!user) {
-            setTimeout(() => {
-                router.push("/Signin");
-            }, 2000);
-        } else {
-            dispatch({ type: "ADD_PRODUCT", id: id });
-        }
-    };
+    const handleCartAdd = (e, user, itemId, router, dispatch) => {
+        e.stopPropagation();
+        handleCartAction(state, setIsCartSidebarOpen, user, itemId, router, dispatch);
+    }
 
     const clearFilters = () => {
         setTimeout(() => {
@@ -434,11 +430,7 @@ function Products() {
                                                     </div>
                                                     <div className="flex flex-col w-[150px] relative ">
                                                         <button
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                setIsCartSidebarOpen(true)
-                                                                handleCartAction(item.id);
-                                                            }}
+                                                            onClick={(e) => handleCartAdd(e, user, item.id, router, dispatch)}
                                                             className="w-full mt-4 bg-slate-800 hover:bg-slate-700 px-2  text-white font-bold py-2 rounded-md"
                                                         >
                                                             <p className="text-sm flex flex-row justify-around">

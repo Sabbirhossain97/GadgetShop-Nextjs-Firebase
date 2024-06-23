@@ -13,6 +13,7 @@ import { FaRegHeart } from "react-icons/fa";
 import addToWishlist from "../../services/wishlist/addToWishlist";
 import { handleCartAction } from "../../helpers/cart/addToCart";
 import { countStars } from "../../helpers/ProductDetails/countStars";
+import { message } from "antd";
 
 const SingleProduct = () => {
   const [singleProduct, setSingleProduct] = useState([]);
@@ -20,7 +21,7 @@ const SingleProduct = () => {
   const getData = useContext(Context);
   const pid = router.query?.productId;
   const [user] = getData?.isAuth;
-  const [, dispatch] = getData?.cartReducer;
+  const [state, dispatch] = getData?.cartReducer;
   const [, setIsCartSidebarOpen] = getData?.sidebar;
   const [userRating, setUserRating] = useState(null)
 
@@ -38,17 +39,30 @@ const SingleProduct = () => {
     getSingleProduct();
   }, [pid]);
 
- 
+
   useEffect(() => {
     setUserRating(countStars(singleProduct))
   }, [singleProduct])
 
   const handleCartAdd = (user, itemId, router, dispatch) => {
-    if (user) {
-      setIsCartSidebarOpen(true)
-    }
-    handleCartAction(user, itemId, router, dispatch)
+    handleCartAction(state, setIsCartSidebarOpen, user, itemId, router, dispatch);
   }
+
+  const handleIncrement = () => {
+    const isProductExist = state.items.find(
+      (product) => product.id === parseInt(pid)
+    );
+    if (!isProductExist) {
+      message.error("Add the product to cart first!")
+    } else {
+      dispatch({
+        type: "INCREMENT_QUANTITY",
+        id: parseInt(pid),
+      })
+    }
+  }
+
+  console.log(singleProduct)
 
   return (
     <div className="">
@@ -91,7 +105,12 @@ const SingleProduct = () => {
                     </span>
                   </span>
                 </div>
-                <p className="leading-relaxed">{singleProduct.description}</p>
+                <div className="w-[180px]">
+                  <span className="title-font font-medium text-2xl text-gray-900">
+                    ${singleProduct.price}
+                  </span>
+                </div>
+                <p className="leading-relaxed py-4">{singleProduct.description}</p>
                 <div className="flex flex-row justify-between mt-12 items-center mb-5 ">
                   <div className="flex flex-col items-center">
                     <span className="border p-2 rounded-full bg-gray-100">
@@ -115,19 +134,67 @@ const SingleProduct = () => {
                 <div className="h-[1px] mt-2 bg-gray-200"></div>
                 <div className="mt-4">
                   <p>
-                    Availability: <span className="font-bold">In Stock</span>
+                    Availability: <span className="font-bold text-blue-500">In Stock</span>
                   </p>
-                  <span className="mt-4">
+                  <span className="">
                     Category:{" "}
-                    <span className="text-blue-500">{singleProduct.category}</span>
+                    <span className="font-bold">{singleProduct.category}</span>
                   </span>
+                  <p>
+                    Stock: <span className="font-bold">{singleProduct.rating?.stock}</span>
+                  </p>
                 </div>
-                <div className="flex flex-wrap sm:flex-nowrap mt-12 border-t border-gray-200 py-4 ">
-                  <div className="w-[80px]">
-                    <span className="title-font font-medium text-2xl text-gray-900">
-                      $ {singleProduct.price}
-                    </span>
+                <div className="flex flex-wrap sm:flex-nowrap mt-4 border-t border-gray-200 py-4 ">
+                  {/* quantity */}
+                  <div class="relative flex items-center w-full sm:w-1/3">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        dispatch({
+                          type: "DECREMENT_QUANTITY",
+                          id: parseInt(pid),
+                        })
+                      }
+                      className="bg-white hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3  focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                      <svg className="w-3 h-3 text-gray-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M1 1h16"
+                        />
+                      </svg>
+                    </button>
+                    <input
+                      type="text"
+                      className="bg-white border border-gray-300 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2"
+                      value={state.items.find(
+                        (product) => product.id === parseInt(pid)
+                      ) ? state.items.find(
+                        (product) => product.id === parseInt(pid)
+                      )?.quantity : singleProduct?.quantity}
+                      min={1}
+                      required
+                    />
+                    <button
+                      type="button"
+                      id="increment-button"
+                      onClick={handleIncrement}
+                      className="bg-white hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 focus:ring-gray-100 focus:ring-2 focus:outline-none"
+                    >
+                      <svg className="w-3 h-3 text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M9 1v16M1 9h16"
+                        />
+                      </svg>
+                    </button>
                   </div>
+                  {/* quantity */}
                   <div className="w-full flex flex-wrap mt-6 sm:mt-0 sm:flex-nowrap gap-4 justify-end">
                     <div className="w-full sm:w-[200px] lg:w-[150px]">
                       <button

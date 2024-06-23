@@ -5,15 +5,7 @@ export const reducer = (state, action) => {
     case "ADD_PRODUCT":
       const existingProduct = state.items.find((item) => item.id === action.id);
       if (existingProduct) {
-        const updatedCart = state.items.map((item) =>
-          item.id === action.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-        return {
-          ...state,
-          items: updatedCart,
-        };
+        return state;
       } else {
         const addedProduct = products.find((item) => item.id === action.id);
         if (addedProduct) {
@@ -22,7 +14,7 @@ export const reducer = (state, action) => {
             items: [...state.items, { ...addedProduct, quantity: 1 }],
           };
         }
-        return state; 
+        return state;
       }
 
     case "INCREMENT_QUANTITY":
@@ -46,7 +38,6 @@ export const reducer = (state, action) => {
         ...state,
         items: decrementQuantity,
       };
-
     case "REMOVE_PRODUCT":
       const deleteProduct = state.items.filter((item) => item.id !== action.id);
       return {
@@ -61,6 +52,6 @@ export const reducer = (state, action) => {
       };
 
     default:
-      return state; 
+      return state;
   }
 };

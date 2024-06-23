@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../../../context';
 import Navbar from '../../../components/Navigation/Navbar';
 import Subnavbar from '../../../components/Navigation/Subnavbar';
@@ -16,9 +16,14 @@ function Wishlist() {
     const [wishlist] = wishlistData
     const [user] = isAuth;
     const [, setIsCartSidebarOpen] = sidebar;
-    const [, dispatch] = cartReducer;
+    const [state, dispatch] = cartReducer;
     const { pathname } = router;
     const breadcrumbNav = useBreadCrumbNavigation(pathname)
+
+    const handleCartAdd = (e, user, itemId, router, dispatch) => {
+        e.stopPropagation();
+        handleCartAction(state, setIsCartSidebarOpen, user, itemId, router, dispatch);
+    }
 
     return (
         <div>
@@ -109,10 +114,7 @@ function Wishlist() {
                                                     </td>
                                                     <td className="px-6 py-4 flex justify-center gap-4">
                                                         <button
-                                                            onClick={(e) => {
-                                                                setIsCartSidebarOpen(true);
-                                                                handleCartAction(user, item.id, router, dispatch)
-                                                            }}
+                                                            onClick={(e) => handleCartAdd(e, user, item.id, router, dispatch)}
                                                             className="w-[120px] mt-4 bg-slate-800 hover:bg-slate-700 px-2 transition duration-300 text-white font-semibold py-2 rounded-md"
                                                         >
                                                             <p className="text-sm flex flex-row justify-around">
