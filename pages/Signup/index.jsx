@@ -58,7 +58,7 @@ function Signup() {
     <div>
       <Navbar />
       <Subnavbar />
-      <div className="bg-gray-100 flex min-h-screen items-center justify-center px-4 py-12 mt-8 sm:px-6 lg:px-8">
+      <div className="bg-gray-100 flex min-h-screen items-center justify-center px-4 py-12 mt-12 sm:px-6 lg:px-8">
         <div className="bg-white w-full max-w-xl space-y-8 border border-gray-100 p-8 rounded-xl shadow-xl ">
           <div>
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
