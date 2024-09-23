@@ -55,7 +55,7 @@ const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
-    alert(err.message);
+    console.error(err.message);
   }
 };
 
@@ -74,7 +74,7 @@ const signInWithFacebook = async () => {
       });
     }
   } catch (err) {
-    alert(err.message);
+    console.error(err.message);
   }
 };
 

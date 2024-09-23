@@ -11,18 +11,20 @@ import Link from "next/link";
 import { AiFillHome } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import addToWishlist from "../../services/wishlist/addToWishlist";
-import { handleCartAction } from "../../helpers/cart/addToCart";
 import { countStars } from "../../helpers/ProductDetails/countStars";
 import { message } from "antd";
+import addToCart from "../../services/cart/addToCart";
+import { increaseQuantity } from "../../services/cart/increaseQuantity";
+import { decreaseQuantity } from "../../services/cart/decreaseQuantity";
 
 const SingleProduct = () => {
   const [singleProduct, setSingleProduct] = useState([]);
   const router = useRouter();
-  const getData = useContext(Context);
+  const { cartData, isAuth, sidebar } = useContext(Context);
+  const [_, setIsCartSidebarOpen] = sidebar
+  const [cartItems] = cartData
   const pid = router.query?.productId;
-  const [user] = getData?.isAuth;
-  const [state, dispatch] = getData?.cartReducer;
-  const [, setIsCartSidebarOpen] = getData?.sidebar;
+  const [user] = isAuth;
   const [userRating, setUserRating] = useState(null)
 
   function getSingleProduct() {
@@ -44,25 +46,26 @@ const SingleProduct = () => {
     setUserRating(countStars(singleProduct))
   }, [singleProduct])
 
-  const handleCartAdd = (user, itemId, router, dispatch) => {
-    handleCartAction(state, setIsCartSidebarOpen, user, itemId, router, dispatch);
+  const handleCartAdd = () => {
+    addToCart(setIsCartSidebarOpen, user, singleProduct, router);
+  }
+
+  const handleDecrement = () => {
+    let itemId = parseInt(pid)
+    decreaseQuantity(user, itemId)
   }
 
   const handleIncrement = () => {
-    const isProductExist = state.items.find(
+    let itemId = parseInt(pid)
+    const isProductExist = cartItems.find(
       (product) => product.id === parseInt(pid)
     );
     if (!isProductExist) {
       message.error("Add the product to cart first!")
     } else {
-      dispatch({
-        type: "INCREMENT_QUANTITY",
-        id: parseInt(pid),
-      })
+      increaseQuantity(user, itemId)
     }
   }
-
-  console.log(singleProduct)
 
   return (
     <div className="">
@@ -149,12 +152,7 @@ const SingleProduct = () => {
                   <div class="relative flex items-center w-full sm:w-1/3">
                     <button
                       type="button"
-                      onClick={() =>
-                        dispatch({
-                          type: "DECREMENT_QUANTITY",
-                          id: parseInt(pid),
-                        })
-                      }
+                      onClick={handleDecrement}
                       className="bg-white hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3  focus:ring-gray-100 focus:ring-2 focus:outline-none">
                       <svg className="w-3 h-3 text-gray-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
                         <path
@@ -169,9 +167,9 @@ const SingleProduct = () => {
                     <input
                       type="text"
                       className="bg-white border border-gray-300 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2"
-                      value={state.items.find(
+                      value={cartItems.find(
                         (product) => product.id === parseInt(pid)
-                      ) ? state.items.find(
+                      ) ? cartItems.find(
                         (product) => product.id === parseInt(pid)
                       )?.quantity : singleProduct?.quantity}
                       min={1}
@@ -211,10 +209,7 @@ const SingleProduct = () => {
                     </div>
                     <div className="w-full sm:w-[150px] lg:w-[120px]">
                       <button
-                        onClick={() => {
-                          handleCartAdd(user, singleProduct.id, router, dispatch)
-                        }
-                        }
+                        onClick={handleCartAdd}
                         className="px-5 w-full flex justify-center text-white bg-slate-800 font-semibold border hover:bg-slate-700 py-2 rounded-md transition duration-300"
                       >
                         <p className="text-sm flex flex-row gap-2 items-center">

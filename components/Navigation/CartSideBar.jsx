@@ -4,29 +4,32 @@ import { MdDelete } from "react-icons/md";
 import { BsCartX } from "react-icons/bs";
 import Link from "next/link";
 import Spinner from "../Animation/Spinner";
-import { message } from "antd";
 import { useRouter } from "next/router";
+import { clearCart } from "../../services/cart/deleteAllCartItems";
+import { increaseQuantity } from "../../services/cart/increaseQuantity";
+import { decreaseQuantity } from "../../services/cart/decreaseQuantity";
+import { deleteCartItem } from "../../services/cart/deleteFromCart";
 
 export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
-  const { cartReducer } = useContext(Context);
-  const [state, dispatch] = cartReducer;
+  const { cartData, isAuth } = useContext(Context);
+  const [cartItems] = cartData;
+  const [user] = isAuth
   const [subtotal, setSubtotal] = useState(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter()
 
   useEffect(() => {
-    let totalValue = state.items.reduce(
+    let totalValue = cartItems.reduce(
       (acm, currentElm) => acm + currentElm.price * currentElm.quantity,
       0
     );
     setSubtotal(totalValue);
-  }, [state]);
+  }, [cartItems]);
 
-  const clearCart = () => {
+  const handleClearCart = () => {
     setLoading(true)
     setTimeout(() => {
-      dispatch({ type: "CLEAR_ALL" });
-      message.success("Cart is cleared")
+      clearCart(user)
       setLoading(false)
     }, 2000);
   };
@@ -87,8 +90,8 @@ export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
                     role="list"
                     className="-my-6 divide-y divide-gray-200 overflow-y-auto"
                   >
-                    {state.items
-                      ? state.items.map((item, key) => (
+                    {cartItems
+                      ? cartItems.map((item, key) => (
                         <li key={key} className="flex py-6">
                           <div className="h-32 px-2 py-2 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                             <img
@@ -117,10 +120,7 @@ export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
                               <div className="flex items-center border-gray-100">
                                 <span
                                   onClick={() =>
-                                    dispatch({
-                                      type: "DECREMENT_QUANTITY",
-                                      id: item.id,
-                                    })
+                                    decreaseQuantity(user, item.id)
                                   }
                                   className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
                                 >
@@ -135,10 +135,7 @@ export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
                                 />
                                 <span
                                   onClick={() =>
-                                    dispatch({
-                                      type: "INCREMENT_QUANTITY",
-                                      id: item.id,
-                                    })
+                                    increaseQuantity(user, item.id)
                                   }
                                   className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
                                 >
@@ -148,10 +145,7 @@ export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
                               <div className="flex">
                                 <button
                                   onClick={() =>
-                                    dispatch({
-                                      type: "REMOVE_PRODUCT",
-                                      id: item.id,
-                                    })
+                                    deleteCartItem(user, item.id)
                                   }
                                 >
                                   <MdDelete className="cursor-pointer hover:bg-gray-100 rounded-md text-2xl text-red-500" />
@@ -165,8 +159,8 @@ export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
                   </ul>
                 </div>
 
-                {state.items ? (
-                  state.items.length === 0 ? (
+                {cartItems ? (
+                  cartItems.length === 0 ? (
                     <div className="absolute top-[200px] left-1/3">
                       <BsCartX className=" text-9xl" />
                       <p className="text-xl mt-6 ml-2">Cart is Empty!</p>
@@ -181,8 +175,8 @@ export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
             </div>
 
             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-              {state.items ? (
-                state.items.length === 0 ? (
+              {cartItems ? (
+                cartItems.length === 0 ? (
                   ""
                 ) : (
                   <div>
@@ -204,7 +198,7 @@ export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
               ) : (
                 ""
               )}
-              {state.items.length === 0 ? (
+              {cartItems.length === 0 ? (
                 <Link href="/">
                   <p className="mt-6 flex items-center justify-center rounded-md border border-transparent bg-slate-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-slate-700">
                     <span className=" text-lg"> &larr;</span>
@@ -213,7 +207,7 @@ export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
                 </Link>
               ) : (
                 <button
-                  onClick={clearCart}
+                  onClick={handleClearCart}
                   className="cursor-pointer w-full mt-6 flex items-center justify-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-red-700"
                 >
                   {loading ? <p className="flex justify-center items-center"><Spinner /> Processing...</p> : "Clear All"}

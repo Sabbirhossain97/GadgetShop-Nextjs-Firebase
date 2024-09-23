@@ -16,8 +16,7 @@ import { CgSpinner } from "react-icons/cg";
 import { auth } from "../../services/firebase";
 
 export default function Navbar() {
-  const { cartReducer, cartTotal, isAuth, wishlistData, sidebar, categorySidebar } = useContext(Context);
-  const [, dispatch] = cartReducer;
+  const { cartTotal, isAuth, wishlistData, sidebar, categorySidebar } = useContext(Context);
   const [totalCartItem] = cartTotal;
   const [user] = isAuth;
   const [wishlist] = wishlistData
@@ -32,7 +31,6 @@ export default function Navbar() {
 
   const handleSignOut = async () => {
     await signOut(auth);
-    dispatch({ type: "CLEAR_ALL" });
     message.success("You have been logged Out!");
     router.push("/")
   };

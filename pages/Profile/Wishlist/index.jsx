@@ -4,25 +4,24 @@ import Navbar from '../../../components/Navigation/Navbar';
 import Subnavbar from '../../../components/Navigation/Subnavbar';
 import { useRouter } from 'next/router';
 import Footer from '../../../components/Footer/Footer';
-import { handleCartAction } from '../../../helpers/cart/addToCart';
 import { handleDeleteItem } from '../../../services/wishlist/deleteFromWishlist';
 import useBreadCrumbNavigation from '../../../helpers/hooks/useBreadCrumbNavigation';
 import { AiFillHome } from "react-icons/ai";
 import Link from 'next/link';
+import addToCart from '../../../services/cart/addToCart';
 
 function Wishlist() {
     const router = useRouter()
-    const { wishlistData, isAuth, sidebar, cartReducer } = useContext(Context);
+    const { wishlistData, isAuth, sidebar } = useContext(Context);
     const [wishlist] = wishlistData
     const [user] = isAuth;
     const [, setIsCartSidebarOpen] = sidebar;
-    const [state, dispatch] = cartReducer;
     const { pathname } = router;
     const breadcrumbNav = useBreadCrumbNavigation(pathname)
 
-    const handleCartAdd = (e, user, itemId, router, dispatch) => {
+    const handleCartAdd = (e, user, item, router) => {
         e.stopPropagation();
-        handleCartAction(state, setIsCartSidebarOpen, user, itemId, router, dispatch);
+        addToCart(setIsCartSidebarOpen, user, item, router);
     }
 
     return (
@@ -75,7 +74,6 @@ function Wishlist() {
                                             </Link>
                                         </div>
                                     </>
-
                                     :
                                     <table className=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                         <thead className="text-xs text-gray-900 uppercase border">
@@ -114,7 +112,7 @@ function Wishlist() {
                                                     </td>
                                                     <td className="px-6 py-4 flex justify-center gap-4">
                                                         <button
-                                                            onClick={(e) => handleCartAdd(e, user, item.id, router, dispatch)}
+                                                            onClick={(e) => handleCartAdd(e, user, item, router)}
                                                             className="w-[120px] mt-4 bg-slate-800 hover:bg-slate-700 px-2 transition duration-300 text-white font-semibold py-2 rounded-md"
                                                         >
                                                             <p className="text-sm flex flex-row justify-around">

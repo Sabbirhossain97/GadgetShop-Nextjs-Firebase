@@ -19,10 +19,11 @@ import getAddressData from "../../../../services/address/getAddress";
 import { db } from "../../../../services/firebase";
 import { FaAddressBook } from "react-icons/fa";
 import { Modal } from "antd";
+import { clearCart } from "../../../../services/cart/deleteAllCartItems";
 
 function Checkout() {
-    const { cartReducer, isAuth } = useContext(Context);
-    const [state, dispatch] = cartReducer;
+    const { cartData, isAuth } = useContext(Context);
+    const [cartItems] = cartData
     const [user] = isAuth;
     const [paymentMethod, setPaymentMethod] = useState("");
     const [deliveryMethod, setDeliveryMethod] = useState("")
@@ -59,9 +60,9 @@ function Checkout() {
             orderId: uuidv4().replace(/\D/g, '').slice(0, 8),
             status: "pending",
             orderDate: currentDate,
-            totalAmount: state?.items?.reduce((acc, currentElm) => acc + (currentElm.quantity * currentElm.price), 0) + (deliveryMethod === "home" ? 2 : 0),
+            totalAmount: cartItems?.reduce((acc, currentElm) => acc + (currentElm.quantity * currentElm.price), 0) + (deliveryMethod === "home" ? 2 : 0),
             currency: "USD",
-            items: state?.items?.map((product) => {
+            items: cartItems?.map((product) => {
                 return {
                     productId: product.id,
                     productName: product.title,
@@ -95,7 +96,7 @@ function Checkout() {
             setTimeout(() => {
                 addOrder(user, payload)
                 router.push("/Shop/Cart/Checkout/Success")
-                dispatch({ type: "CLEAR_ALL" })
+                clearCart(user)
                 message.success("Order placed successfully!")
                 setLoading(false)
             }, 2000)
@@ -476,8 +477,8 @@ function Checkout() {
                             </h1>
                             <div className="h-[340px] overflow-y-auto">
                                 <ul className=" py-16  space-y-6 px-8  ">
-                                    {state.items
-                                        ? state.items.map((item, key) => (
+                                    {cartItems
+                                        ? cartItems.map((item, key) => (
                                             <li
                                                 key={key}
                                                 className="grid grid-cols-6 gap-2 border-b-1"
@@ -517,8 +518,8 @@ function Checkout() {
                                     <span>Subtotal</span>
                                     <span className="font-semibold ">
                                         $
-                                        {state.items
-                                            ? state.items
+                                        {cartItems
+                                            ? cartItems
                                                 .reduce(
                                                     (acm, currentElm) =>
                                                         acm + currentElm.price * currentElm.quantity,
@@ -547,8 +548,8 @@ function Checkout() {
                                 <span>Total</span>
                                 <span>
                                     $
-                                    {state.items
-                                        ? state.items
+                                    {cartItems
+                                        ? cartItems
                                             .reduce(
                                                 (acm, currentElm) =>
                                                     acm + currentElm.price * currentElm.quantity,

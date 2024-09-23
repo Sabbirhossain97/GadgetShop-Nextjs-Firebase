@@ -7,12 +7,11 @@ import Link from "next/link";
 import { Tooltip } from "antd";
 import { FaRegHeart } from "react-icons/fa";
 import addToWishlist from "../../services/wishlist/addToWishlist";
-import { handleCartAction } from "../../helpers/cart/addToCart";
+import addToCart from "../../services/cart/addToCart";
 
 export default function FeaturedProducts() {
-    const { isAuth, cartReducer, sidebar } = useContext(Context);
+    const { isAuth, sidebar } = useContext(Context);
     const [user] = isAuth;
-    const [state, dispatch] = cartReducer;
     const [, setIsCartSidebarOpen] = sidebar;
     const router = useRouter();
 
@@ -20,9 +19,9 @@ export default function FeaturedProducts() {
         router.push(`/SingleProduct/${id}`);
     };
 
-    const handleCartAdd = (e, user, itemId, router, dispatch) => {
+    const handleCartAdd = (e, user, item, router) => {
         e.stopPropagation();
-        handleCartAction(state, setIsCartSidebarOpen, user, itemId, router, dispatch);
+        addToCart(setIsCartSidebarOpen, user, item, router);
     }
 
     return (
@@ -60,7 +59,11 @@ export default function FeaturedProducts() {
                                 </div>
                                 <div className="flex flex-col w-[150px] relative ">
                                     <button
-                                        onClick={(e) => handleCartAdd(e, user, item.id, router, dispatch)}
+                                        onClick={(e) => {
+                                            handleCartAdd(e, user, item, router)
+                                            // e.stopPropagation();
+                                            // addToCart(user, item, router);
+                                        }}
                                         className="w-full mt-4 bg-slate-800 hover:bg-slate-700 px-2 transition duration-300 text-white font-bold py-2 rounded-md"
                                     >
                                         <p className="text-sm flex flex-row justify-around">

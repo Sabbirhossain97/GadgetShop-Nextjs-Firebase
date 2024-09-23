@@ -7,13 +7,17 @@ import EmptyCart from "../../../components/Empty/EmptyCart";
 import Subnavbar from "../../../components/Navigation/Subnavbar";
 import { useRouter } from "next/router";
 import Spinner from "../../../components/Animation/Spinner";
-import { message } from "antd";
 import useBreadCrumbNavigation from "../../../helpers/hooks/useBreadCrumbNavigation";
 import { AiFillHome } from "react-icons/ai";
+import { increaseQuantity } from "../../../services/cart/increaseQuantity";
+import { decreaseQuantity } from "../../../services/cart/decreaseQuantity";
+import { deleteCartItem } from "../../../services/cart/deleteFromCart";
+import { clearCart } from "../../../services/cart/deleteAllCartItems";
 
 export default function Cart() {
-  const { cartReducer } = useContext(Context);
-  const [state, dispatch] = cartReducer;
+  const { cartData, isAuth } = useContext(Context);
+  const [cartItems] = cartData;
+  const [user] = isAuth;
   const [subtotal, setSubtotal] = useState(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -21,19 +25,18 @@ export default function Cart() {
   const breadcrumbNav = useBreadCrumbNavigation(pathname)
 
   useEffect(() => {
-    let totalValue = state.items.reduce(
+    let totalValue = cartItems.reduce(
       (acm, currentElm) => acm + currentElm.price * currentElm.quantity,
       0
     );
     setSubtotal(totalValue);
-  }, [state]);
+  }, [cartItems]);
 
   const handleClearAll = () => {
     setLoading(true)
     setTimeout(() => {
-      dispatch({ type: "CLEAR_ALL" })
+      clearCart(user)
       setLoading(false)
-      message.success("Cart is cleared")
     }, 2000)
   }
 
@@ -61,8 +64,8 @@ export default function Cart() {
             ))}
           </div>
         </div>
-        {state.items ? (
-          state.items.length === 0 ? (
+        {cartItems ? (
+          cartItems.length === 0 ? (
             <div>
               {" "}
               <EmptyCart />{" "}
@@ -77,8 +80,8 @@ export default function Cart() {
         )}
         <div className="max-w-5xl flex flex-col lg:flex-row mx-auto relative mt-2">
           <div className="relative overflow-y-auto max-h-[640px] w-full lg:w-2/3 flex flex-col ">
-            {state.items
-              ? state.items.map((item, key) => (
+            {cartItems ?
+              cartItems.map((item, key) => (
                 <div
                   key={key}
                   className="bg-white relative py-4 border-b flex min-w-[570px]"
@@ -103,10 +106,7 @@ export default function Cart() {
                     <div className="flex items-center border-gray-100 ">
                       <span
                         onClick={() =>
-                          dispatch({
-                            type: "DECREMENT_QUANTITY",
-                            id: item.id,
-                          })
+                          decreaseQuantity(user, item.id)
                         }
                         className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
                       >
@@ -122,10 +122,7 @@ export default function Cart() {
                       />
                       <span
                         onClick={() =>
-                          dispatch({
-                            type: "INCREMENT_QUANTITY",
-                            id: item.id,
-                          })
+                          increaseQuantity(user, item.id)
                         }
                         className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
                       >
@@ -135,10 +132,7 @@ export default function Cart() {
                     </div>
                     <div
                       onClick={() =>
-                        dispatch({
-                          type: "REMOVE_PRODUCT",
-                          id: item.id
-                        })
+                        deleteCartItem(user, item.id)
                       }
                       className="px-4 "
                     >
@@ -163,8 +157,8 @@ export default function Cart() {
               : ""}
           </div>
 
-          {state.items ? (
-            state.items.length > 0 ? (
+          {cartItems ? (
+            cartItems.length > 0 ? (
               <div className="relative mt-6 bg-gray-200/50 border-r p-6  md:mt-0 w-full lg:w-1/3 h-[640px]">
                 <p className="text-gray-700 text-3xl font-semibold border-b border-gray-300 py-4">
                   Summary
@@ -181,7 +175,7 @@ export default function Cart() {
                   <div className="">
                     <p className="mb-1 text-lg font-bold ml-10">
                       $
-                      {state.items
+                      {cartItems
                         .reduce(
                           (acm, currentElm) =>
                             acm + currentElm.price * currentElm.quantity,

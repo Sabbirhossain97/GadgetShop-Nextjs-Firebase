@@ -12,11 +12,10 @@ import { IoFilterSharp } from "react-icons/io5";
 import { BsFillEmojiFrownFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { message } from 'antd'
-import { handleCartAction } from '../../helpers/cart/addToCart'
+import addToCart from '../../services/cart/addToCart'
 
 function Products() {
-    const { cartReducer, isAuth, sidebar } = useContext(Context);
-    const [state, dispatch] = cartReducer;
+    const { isAuth, sidebar } = useContext(Context);
     const [user] = isAuth;
     const [, setIsCartSidebarOpen] = sidebar;
     const [productList, setProductList] = useState(products);
@@ -168,9 +167,9 @@ function Products() {
         return () => clearTimeout(timer);
     }, [filters, applyFilters]);
 
-    const handleCartAdd = (e, user, itemId, router, dispatch) => {
+    const handleCartAdd = (e, user, item, router) => {
         e.stopPropagation();
-        handleCartAction(state, setIsCartSidebarOpen, user, itemId, router, dispatch);
+        addToCart(setIsCartSidebarOpen, user, item, router);
     }
 
     const clearFilters = () => {
@@ -430,7 +429,7 @@ function Products() {
                                                     </div>
                                                     <div className="flex flex-col w-[150px] relative ">
                                                         <button
-                                                            onClick={(e) => handleCartAdd(e, user, item.id, router, dispatch)}
+                                                            onClick={(e) => handleCartAdd(e, user, item, router)}
                                                             className="w-full mt-4 bg-slate-800 hover:bg-slate-700 px-2  text-white font-bold py-2 rounded-md"
                                                         >
                                                             <p className="text-sm flex flex-row justify-around">
