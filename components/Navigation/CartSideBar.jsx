@@ -64,7 +64,7 @@ export default function CartSideBar({ isSidebarOpen, setIsSideBarOpen }) {
                     onClick={() => {
                       setIsSideBarOpen(!isSidebarOpen);
                     }}
-                    className="-m-2 p-0.5  rounded-md text-gray-400 hover:text-red-500 "
+                    className="-m-2 p-0.5 rounded-md text-gray-400 hover:text-red-500 "
                   >
                     <svg
                       className="h-6 w-6"
